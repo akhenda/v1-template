@@ -7,13 +7,13 @@
     "analyze": "prisma generate --no-hints --schema=./prisma/schema.prisma",
     "build": "prisma generate --no-hints --schema=./prisma/schema.prisma",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "schema:generate": "npx drizzle-kit pull",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.0",
-    "@prisma/adapter-neon": "6.4.1",
-    "@prisma/client": "6.4.1",
     "@t3-oss/env-nextjs": "^0.13.4",
+    "drizzle-orm": "^0.44.3",
     "server-only": "^0.0.1",
     "undici": "^7.10.0",
     "ws": "^8.18.2",
@@ -24,7 +24,7 @@
     "@types/node": "22.15.21",
     "@types/ws": "^8.18.1",
     "bufferutil": "^4.0.9",
-    "prisma": "6.4.1",
+    "drizzle-kit": "^0.31.4",
     "typescript": "^5.8.3"
   }
 }

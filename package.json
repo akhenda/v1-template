@@ -4,11 +4,10 @@
   "bin": {
     "next-forge": "dist/index.js"
   },
-  "files": [
-    "dist/index.js"
-  ],
+  "files": ["dist/index.js"],
   "scripts": {
     "build": "turbo build",
+    "clean": "git clean -xdf node_modules",
     "dev": "turbo dev",
     "lint": "ultracite lint",
     "format": "ultracite format",
@@ -18,8 +17,10 @@
     "boundaries": "turbo boundaries",
     "bump-deps": "npx npm-check-updates --deep -u -x react-day-picker",
     "bump-ui": "npx shadcn@latest add --all --overwrite -c packages/design-system",
-    "migrate": "cd packages/database && npx prisma format && npx prisma generate && npx prisma db push",
-    "clean": "git clean -xdf node_modules"
+    "db:migrate": "cd packages/database && npx drizzle-kit migrate",
+    "db:generate": "cd packages/database && npx drizzle-kit generate",
+    "db:pull": "cd packages/database && npx drizzle-kit pull",
+    "migrate": "cd packages/database && npx prisma format && npx prisma generate && npx prisma db push"
   },
   "devDependencies": {
     "@auto-it/first-time-contributor": "^11.3.0",
@@ -42,8 +43,5 @@
     "commander": "^14.0.0"
   },
   "type": "module",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+  "workspaces": ["apps/*", "packages/*"]
 }
