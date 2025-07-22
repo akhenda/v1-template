@@ -1,47 +1,86 @@
 {
-  "name": "next-forge",
+  "name": "kaidoku-cars",
   "version": "5.0.4",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.2.8",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "volta": {
+    "node": "22.12.0",
+    "bun": "1"
+  },
+  "engines": {
+    "node": ">=22"
+  },
   "bin": {
     "next-forge": "dist/index.js"
   },
-  "files": ["dist/index.js"],
+  "files": [
+    "dist/index.js"
+  ],
   "scripts": {
-    "build": "turbo build",
-    "clean": "git clean -xdf node_modules",
-    "dev": "turbo dev",
-    "lint": "ultracite lint",
-    "format": "ultracite format",
-    "test": "turbo test",
     "analyze": "turbo analyze",
-    "translate": "turbo translate",
     "boundaries": "turbo boundaries",
-    "bump-deps": "npx npm-check-updates --deep -u -x react-day-picker",
+    "build": "turbo build",
+    "bump-deps": "npx npm-check-updates --deep -u -x react-day-picker && pnpm install",
     "bump-ui": "npx shadcn@latest add --all --overwrite -c packages/design-system",
-    "db:migrate": "cd packages/database && npx drizzle-kit migrate",
+    "clean": "git clean -xdf node_modules",
+    "clean:workspaces": "turbo clean",
     "db:generate": "cd packages/database && npx drizzle-kit generate",
+    "db:migrate": "cd packages/database && npx drizzle-kit migrate",
     "db:pull": "cd packages/database && npx drizzle-kit pull",
-    "migrate": "cd packages/database && npx prisma format && npx prisma generate && npx prisma db push"
+    "dev": "turbo dev --parallel",
+    "format": "turbo format",
+    "gc": "git add . && cz",
+    "gc-ai": "git add . && bunx czg ai -N=5",
+    "i18n:check": "turbo i18n:check",
+    "i18n:extract": "turbo i18n:extract",
+    "lint": "turbo lint && bun lint:repo",
+    "lint:repo": "bunx sherif@latest",
+    "lint:repo:fix": "bunx sherif@latest --fix",
+    "migrate": "cd packages/database && npx prisma format && npx prisma generate && npx prisma db push",
+    "postinstall": "patch-package",
+    "preinstall": "npx only-allow bun",
+    "prepare": "husky",
+    "release": "turbo release --concurrency=1",
+    "test": "turbo test --parallel",
+    "test:run": "turbo test:run --parallel",
+    "translate": "turbo translate",
+    "typecheck": "turbo typecheck"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git",
+      "useEmoji": false
+    }
   },
   "devDependencies": {
-    "@auto-it/first-time-contributor": "^11.3.0",
-    "@biomejs/biome": "1.9.4",
-    "@repo/typescript-config": "*",
-    "@turbo/gen": "^2.5.3",
-    "@types/node": "^22.15.21",
-    "tsup": "^8.5.0",
-    "turbo": "^2.5.3",
-    "typescript": "^5.8.3",
-    "ultracite": "^4.2.5",
-    "vitest": "^3.1.4"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "packageManager": "bun@1.1.43",
-  "dependencies": {
-    "@clack/prompts": "^0.11.0",
-    "commander": "^14.0.0"
-  },
-  "type": "module",
-  "workspaces": ["apps/*", "packages/*"]
+    "@auto-it/first-time-contributor": "11.3.0",
+    "@biomejs/biome": "2.1.2",
+    "@commitlint/cli": "19.6.0",
+    "@commitlint/config-conventional": "19.6.0",
+    "@repo/typescript-config": "workspace:*",
+    "@t3-oss/env-nextjs": "0.13.4",
+    "@turbo/gen": "2.5.5",
+    "@turbo/workspaces": "2.3.3",
+    "@types/node": "22.15.21",
+    "@vitest/coverage-v8": "2.1.8",
+    "chalk": "4.1.2",
+    "cz-git": "1.11.0",
+    "dotenv": "16.4.7",
+    "husky": "9.1.7",
+    "lint-staged": "15.2.11",
+    "ora": "5.4.1",
+    "patch-package": "8.0.0",
+    "ts-node": "10.9.2",
+    "tsup": "8.5.0",
+    "tsx": "4.19.3",
+    "turbo": "2.5.5",
+    "typescript": "5.8.3",
+    "ultracite": "5.0.47",
+    "vitest": "3.2.4"
+  }
 }

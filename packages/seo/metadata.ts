@@ -1,5 +1,6 @@
-import merge from 'lodash.merge';
 import type { Metadata } from 'next';
+
+import merge from 'lodash.merge';
 
 type MetadataGenerator = Omit<Metadata, 'description' | 'title'> & {
   title: string;
@@ -7,15 +8,18 @@ type MetadataGenerator = Omit<Metadata, 'description' | 'title'> & {
   image?: string;
 };
 
-const applicationName = 'next-forge';
-const author: Metadata['authors'] = {
-  name: 'Vercel',
-  url: 'https://vercel.com/',
-};
-const publisher = 'Vercel';
-const twitterHandle = '@vercel';
-const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
-const productionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+const applicationName = 'KaidokuCars';
+const url = 'https://kaidokucars.com';
+const canonical = 'https://www.kaidokucars.com';
+const author: Metadata['authors'] = { name: 'KaidokuCars Team', url };
+const publisher = 'KaidokuCars Team';
+const twitterHandle = '@kaidoku.cars';
+const shortDescription =
+  'TODO: Write a short description for KaidokuCars that highlights its features and benefits.';
+const twitterDescription =
+  'TODO: Write a Twitter description for KaidokuCars that is concise and engaging.';
+const keywords =
+  'TODO: Write keywords for KaidokuCars that are relevant to its content and purpose.';
 
 export const createMetadata = ({
   title,
@@ -25,26 +29,20 @@ export const createMetadata = ({
 }: MetadataGenerator): Metadata => {
   const parsedTitle = `${title} | ${applicationName}`;
   const defaultMetadata: Metadata = {
+    metadataBase: new URL(url),
     title: parsedTitle,
     description,
+    keywords,
     applicationName,
-    metadataBase: productionUrl
-      ? new URL(`${protocol}://${productionUrl}`)
-      : undefined,
     authors: [author],
     creator: author.name,
-    formatDetection: {
-      telephone: false,
-    },
-    appleWebApp: {
-      capable: true,
-      statusBarStyle: 'default',
-      title: parsedTitle,
-    },
+    formatDetection: { telephone: false },
+    appleWebApp: { capable: true, statusBarStyle: 'default', title: parsedTitle },
     openGraph: {
-      title: parsedTitle,
-      description,
       type: 'website',
+      url,
+      title: parsedTitle,
+      description: shortDescription,
       siteName: applicationName,
       locale: 'en_US',
     },
@@ -52,20 +50,18 @@ export const createMetadata = ({
     twitter: {
       card: 'summary_large_image',
       creator: twitterHandle,
+      site: twitterHandle,
+      title: parsedTitle,
+      description: twitterDescription,
     },
+    alternates: { canonical },
+    category: 'Business',
   };
 
   const metadata: Metadata = merge(defaultMetadata, properties);
 
   if (image && metadata.openGraph) {
-    metadata.openGraph.images = [
-      {
-        url: image,
-        width: 1200,
-        height: 630,
-        alt: title,
-      },
-    ];
+    metadata.openGraph.images = [{ url: image, width: 1200, height: 630, alt: title }];
   }
 
   return metadata;

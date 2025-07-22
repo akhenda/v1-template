@@ -1,0 +1,38 @@
+name: Repo Integrity
+
+on: workflow_call
+
+jobs:
+  deps-integrity:
+    name: Dependency Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🏁 Verify conditions
+        id: verify-conditions
+        uses: ./.github/actions/verify-conditions
+
+      - name: 📦 Install dependencies
+        if: steps.verify-conditions.outputs.check-deps-integrity == 'true'
+        uses: ./.github/actions/install-deps
+
+      - name: 🚨 Check for vulnerabilities in dependencies
+        if: steps.verify-conditions.outputs.check-deps-integrity == 'true'
+        continue-on-error: true
+        run: bunx bun-audit
+
+      - name: 📜 Check for outdated dependencies
+        if: steps.verify-conditions.outputs.check-deps-integrity == 'true'
+        continue-on-error: true
+        run: bunx npm-check-updates
+
+  other-repo-checks:
+    name: Other Repo Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🤔 What should we check next?
+        run: echo 'What should we check next? 🤷‍♂️'

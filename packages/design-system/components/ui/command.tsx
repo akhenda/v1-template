@@ -132,7 +132,7 @@ function CommandSeparator({
   )
 }
 
-function CommandItem({
+const CommandItem = React.memo(function CommandItem({
   className,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Item>) {
@@ -146,7 +146,7 @@ function CommandItem({
       {...props}
     />
   )
-}
+});
 
 function CommandShortcut({
   className,

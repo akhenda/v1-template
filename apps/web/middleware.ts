@@ -1,6 +1,7 @@
-import { env } from '@/env';
+import { type NextMiddleware, type NextRequest, NextResponse } from 'next/server';
+
 import { authMiddleware } from '@repo/auth/middleware';
-import { internationalizationMiddleware } from '@repo/internationalization/middleware';
+import { i18nMiddleware } from '@repo/i18n/middleware';
 import { parseError } from '@repo/observability/error';
 import { secure } from '@repo/security';
 import {
@@ -8,16 +9,21 @@ import {
   noseconeOptions,
   noseconeOptionsWithToolbar,
 } from '@repo/security/middleware';
-import {
-  type NextMiddleware,
-  type NextRequest,
-  NextResponse,
-} from 'next/server';
 
+import { env } from '@/env';
+
+/**
+ * ISSUE
+ *
+ * @see https://github.com/haydenbleasel/next-forge/issues/486
+ */
 export const config = {
   // matcher tells Next.js which routes to run the middleware on. This runs the
   // middleware on all routes except for static assets and Posthog ingest
-  matcher: ['/((?!_next/static|_next/image|ingest|favicon.ico).*)'],
+  // matcher: ['/((?!_next/static|_next/image|ingest|favicon.ico).*)'],
+  matcher: [
+    '/((?!_next/static|_next/image|ingest|favicon.ico|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+  ],
 };
 
 const securityHeaders = env.FLAGS_SECRET
@@ -25,16 +31,10 @@ const securityHeaders = env.FLAGS_SECRET
   : noseconeMiddleware(noseconeOptions);
 
 const middleware = authMiddleware(async (_auth, request) => {
-  const i18nResponse = internationalizationMiddleware(
-    request as unknown as NextRequest
-  );
-  if (i18nResponse) {
-    return i18nResponse;
-  }
+  const i18nResponse = i18nMiddleware(request as unknown as NextRequest);
 
-  if (!env.ARCJET_KEY) {
-    return securityHeaders();
-  }
+  if (i18nResponse) return i18nResponse;
+  if (!env.ARCJET_KEY) return securityHeaders();
 
   try {
     await secure(
@@ -44,7 +44,7 @@ const middleware = authMiddleware(async (_auth, request) => {
         'CATEGORY:PREVIEW', // Allow preview links to show OG images
         'CATEGORY:MONITOR', // Allow uptime monitoring services
       ],
-      request
+      request,
     );
 
     return securityHeaders();

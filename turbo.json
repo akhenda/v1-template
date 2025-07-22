@@ -1,33 +1,95 @@
 {
-  "$schema": "https://turborepo.com/schema.json",
-  "globalDependencies": ["**/.env.*local"],
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [
+    "**/.env.*local",
+    "**/.env",
+    "biome.json",
+    "tsconfig.json"
+  ],
   "ui": "tui",
   "envMode": "loose",
   "tasks": {
+    "topo": {
+      "dependsOn": ["^topo"]
+    },
     "build": {
+      "env": [
+        "RESEND_API_KEY",
+        "LOOPS_ENDPOINT",
+        "LOOPS_API_KEY",
+        "OPENPANEL_SECRET_KEY",
+        "SENTRY_AUTH_TOKEN",
+        "SENTRY_ORG",
+        "SENTRY_PROJECT"
+      ],
+      "inputs": ["$TURBO_DEFAULT$", ".env", ".env.local", ".env.*local"],
       "dependsOn": ["^build", "test"],
       "outputs": [
         ".next/**",
         "!.next/cache/**",
+        "next-env.d.ts",
         ".basehub/**",
         "**/generated/**",
         "storybook-static/**",
-        ".react-email/**"
+        ".react-email/**",
+        ".react-email/.next/**",
+        "!.react-email/.next/cache/**",
+        ".expo/**",
+        "dist/**"
       ]
     },
     "test": {
       "dependsOn": ["^test"]
     },
+    "test:run": {
+      "cache": false
+    },
     "analyze": {
       "dependsOn": ["^analyze"]
     },
     "dev": {
+      "inputs": ["$TURBO_DEFAULT$", ".env", ".env.local", ".env.*local"],
       "cache": false,
       "persistent": true
+    },
+    "generate-prompts": {
+      "cache": true,
+      "dependsOn": ["^topo"]
+    },
+    "i18n:check": {
+      "cache": false,
+      "dependsOn": ["^i18n:check"],
+      "outputs": ["packages/i18n/locales/*.json"]
+    },
+    "i18n:extract": {
+      "cache": false,
+      "dependsOn": ["^i18n:extract"],
+      "outputs": ["packages/i18n/locales/en.json"]
     },
     "translate": {
       "dependsOn": ["^translate"],
       "cache": false
+    },
+    "lint": {
+      "dependsOn": ["^topo"]
+    },
+    "format": {
+      "dependsOn": ["^topo"]
+    },
+    "typecheck": {
+      "dependsOn": ["^topo"],
+      "inputs": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "**/*.ts",
+        "**/*.tsx",
+        "tsconfig.json"
+      ],
+      "outputs": []
+    },
+    "release": {
+      "cache": false,
+      "env": ["GH_TOKEN", "GITHUB_TOKEN"]
     },
     "clean": {
       "cache": false

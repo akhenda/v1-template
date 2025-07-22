@@ -1,0 +1,48 @@
+diff --git a/node_modules/@convex-dev/polar/dist/esm/client/index.js b/node_modules/@convex-dev/polar/dist/esm/client/index.js
+index 788b7cf..d03c0b9 100644
+--- a/node_modules/@convex-dev/polar/dist/esm/client/index.js
++++ b/node_modules/@convex-dev/polar/dist/esm/client/index.js
+@@ -208,7 +208,13 @@ export class Polar {
+     checkoutApi() {
+         return this.api();
+     }
+-    registerRoutes(http, { path = "/polar/events", } = {}) {
++    registerRoutes(http, {
++        path = "/polar/events",
++        onSubscriptionCreated,
++        onSubscriptionUpdated,
++        onProductCreated,
++        onProductUpdated,
++    } = {}) {
+         http.route({
+             path,
+             method: "POST",
+@@ -225,24 +231,28 @@ export class Polar {
+                             await ctx.runMutation(this.component.lib.createSubscription, {
+                                 subscription: convertToDatabaseSubscription(event.data),
+                             });
++                            if (onSubscriptionCreated) await onSubscriptionCreated(ctx, event);
+                             break;
+                         }
+                         case "subscription.updated": {
+                             await ctx.runMutation(this.component.lib.updateSubscription, {
+                                 subscription: convertToDatabaseSubscription(event.data),
+                             });
++                            if (onSubscriptionUpdated) await onSubscriptionUpdated(ctx, event);
+                             break;
+                         }
+                         case "product.created": {
+                             await ctx.runMutation(this.component.lib.createProduct, {
+                                 product: convertToDatabaseProduct(event.data),
+                             });
++                            if (onProductCreated) await onProductCreated(ctx, event);
+                             break;
+                         }
+                         case "product.updated": {
+                             await ctx.runMutation(this.component.lib.updateProduct, {
+                                 product: convertToDatabaseProduct(event.data),
+                             });
++                            if (onProductUpdated) await onProductUpdated(ctx, event);
+                             break;
+                         }
+                     }

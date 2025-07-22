@@ -1,11 +1,6 @@
-import { env } from '@/env';
-import { legal } from '@repo/cms';
-import { Feed } from '@repo/cms/components/feed';
-import { Status } from '@repo/observability/status';
-import Link from 'next/link';
-
 export const Footer = () => (
-  <Feed queries={[legal.postsQuery]}>
+  <>
+    {/* <Feed queries={[legal.postsQuery]}>
     {async ([data]) => {
       'use server';
 
@@ -114,5 +109,6 @@ export const Footer = () => (
         </section>
       );
     }}
-  </Feed>
+  </Feed> */}
+  </>
 );

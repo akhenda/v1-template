@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres:16.2
+    container_name: pg
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - ${DB_PORT}:5432
+    volumes:
+      - ~/Docker/volumes/@v1/db/pg:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pg-admin
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: jakhenda@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: supersecret
+    volumes:
+      - ~/Docker/volumes/@v1/db/pgadmin:/var/lib/pgadmin

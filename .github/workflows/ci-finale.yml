@@ -1,0 +1,19 @@
+name: Finale
+
+on: workflow_call
+
+jobs:
+  finale:
+    runs-on: ubuntu-latest
+    name: Final Jobs
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 📋 TODO to Issue
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: alstr/todo-to-issue-action@v5.1.7
+        with:
+          AUTO_ASSIGN: true

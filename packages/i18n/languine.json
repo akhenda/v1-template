@@ -1,0 +1,12 @@
+{
+  "projectId": "kaidoku-cars",
+  "locale": {
+    "source": "en",
+    "targets": ["es", "de", "zh", "fr", "pt", "sw"]
+  },
+  "files": {
+    "json": {
+      "include": ["locales/[locale].json"]
+    }
+  }
+}

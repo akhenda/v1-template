@@ -9,9 +9,7 @@ export const createFlag = (key: string) =>
     async decide() {
       const { userId } = await auth();
 
-      if (!userId) {
-        return this.defaultValue as boolean;
-      }
+      if (!userId) return this.defaultValue as boolean;
 
       const isEnabled = await analytics.isFeatureEnabled(key, userId);
 

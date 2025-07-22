@@ -1,0 +1,95 @@
+---
+title: My Third Post
+description: 'This is my third blog post'
+date: 2024-10-23
+image:
+  url: /images/blog/blog-image-3.png
+  alt: an awesome image
+  width: 1200
+  height: 630
+authors:
+  - name: "John Doe"
+    image: "/images/avatar-placeholder-man.jpg"
+    url: "https://johndoe.com"
+    email: "john.doe@example.com"
+  - name: "Jane Smith"
+    image: "/images/avatar-placeholder-woman.jpg"
+tags: ["third blog","Next.js", "MDX"]
+isPublished: true
+---
+
+![Numida](/images/blog/logo.numida.png)
+
+# Assessment
+
+![Demo](/images/blog/demo.png)
+
+## Approach
+
+1. **Production-Ready Setup:** I implemented best practices for linting and Developer Experience (DX), opting to use PNPM for package management. I included detailed setup instructions in the README.
+2. **Tailwind & ShadCN UI:** I used TailwindCSS and ShadCN to quickly build a modern and responsive interface with a streamlined developer experience.
+3. **Separation of Concerns:** Business logic, data fetching (API), and presentation logic are structured into distinct layers to keep the code clean and maintainable.
+4. **Smooth User Experience:** React Suspense and UI skeletons ensure smooth transitions between data fetching states.
+5. **Centralized Logging:** A thin wrapper on top of console.log using consola helps unify and future-proof our logging strategy.
+
+## Setup
+
+The project was migrated to PNPM Package Manager from NPM to work well with ShadCN Ui lib. To set it up, follow the official instructions [here](https://pnpm.io/installation)
+
+### Server
+
+To run the server, change to the server directory then run:
+
+```sh
+docker compose up --build
+```
+
+### Web
+
+To run the web app, run:
+
+```sh
+pnpm run dev
+```
+
+To build the web app, run:
+
+```sh
+pnpm run build
+```
+
+To Preview the web app, run:
+
+```sh
+pnpm run preview
+```
+
+To serve/run the production build, run:
+
+```sh
+pnpm run serve
+```
+
+To run tests, run:
+
+```sh
+pnpm run test
+```
+
+### Notes
+
+The `server` stores `console.log("Hello World"){:js}` the loans and loan_payments in-memory, so the data you work with will be reset the the initial states each time the server is restarted.
+
+#### Improvements
+
+Given time, I would implement the following:
+
+- Properly set up apollo client, react and typescript to automatically generate hooks and consume `.graphql` files.
+- Store the API base urls and secrets in env variables and properly setup env validation using `t3-env`
+- Add comprehensive observability i.e. logging using a service like betterstack, monitoring using betterstack, error tracing using sentry etc
+  - Set up a proper logger like pino or winston instead of the simple consola
+- Properly setup a global state management like `zustand` to supplement `tanstack-query`
+- Maybe setup a Persister for tanstack query for `local-first` architecure.
+  - `@tanstack/react-query-persist-client`
+  - `@tanstack/query-async-storage-persister{:js}`
+- Move the compose file out of `server` to the root of the repo and configure the web app as a docker service in the compose file so that the tech stack can be spun up all at once.

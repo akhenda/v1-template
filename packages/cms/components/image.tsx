@@ -1,1 +1,1 @@
-export { BaseHubImage as Image } from 'basehub/next-image';
+export { default as Image } from 'next/image';

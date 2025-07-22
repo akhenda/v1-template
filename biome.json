@@ -1,17 +1,254 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "extends": ["ultracite"],
-  "javascript": {
-    "globals": ["Liveblocks"]
-  },
-  "files": {
-    "ignore": [
-      "packages/design-system/components/ui/**",
-      "packages/design-system/lib/**",
-      "packages/design-system/hooks/**",
-      "packages/collaboration/config.ts",
-      "apps/docs/**/*.json",
-      "apps/email/.react-email/**"
-    ]
-  }
+	"$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
+	"files": {
+		"ignoreUnknown": false,
+		"includes": [
+			"**",
+			"!**/packages/design-system/components/ui/**",
+			"!**/packages/design-system/lib/**",
+			"!**/packages/design-system/hooks/**",
+			"!**/packages/collaboration/config.ts",
+			"!**/apps/docs/**/*.json",
+			"!**/apps/email/.react-email/**",
+			"!**/.content-collections/**",
+			"!**/node",
+			"!**/dist",
+			"!**/build",
+			"!**/coverage",
+			"!**/node_modules",
+			"!**/.next",
+			"!**/.turbo",
+			"!**/.github",
+			"!**/.react-email",
+			"!**/_generated",
+			"!**/*/fixtures",
+			"!**/migrations/meta"
+		]
+	},
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true,
+		"defaultBranch": "dev"
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"a11y": {
+				"noAutofocus": "off",
+				"noSvgWithoutTitle": "off"
+			},
+			"complexity": {
+				"noForEach": "off",
+				"useSimplifiedLogicExpression": "off",
+				"noExcessiveCognitiveComplexity": {
+					"level": "warn",
+					"options": {
+						"maxAllowedComplexity": 30
+					}
+				}
+			},
+			"correctness": {
+				"noUndeclaredDependencies": "off",
+				"useImportExtensions": "off",
+				"noNodejsModules": "off",
+				"useExhaustiveDependencies": "off",
+				"noUnusedImports": {
+					"level": "warn",
+					"fix": "safe",
+					"options": {}
+				},
+				"noUnusedVariables": {
+					"level": "warn",
+					"fix": "safe",
+					"options": {
+						"ignoreRestSiblings": false
+					}
+				}
+			},
+			"nursery": {
+				"noSecrets": "off",
+				"useExplicitType": "off",
+				"useSortedClasses": {
+					"fix": "safe",
+					"level": "error",
+					"options": {
+						"attributes": [
+							"className"
+						],
+						"functions": [
+							"clsx",
+							"cva",
+							"tw",
+							"twMerge",
+							"cn",
+							"twJoin"
+						]
+					}
+				}
+			},
+			"performance": {
+				"noBarrelFile": "off",
+				"noReExportAll": "off",
+				"noNamespaceImport": "off"
+			},
+			"style": {
+				"noNonNullAssertion": "off",
+				"noDefaultExport": "off",
+				"noImplicitBoolean": "off",
+				"useBlockStatements": "off",
+				"useExplicitLengthCheck": "off",
+				"useSingleVarDeclarator": "off",
+				"useNamingConvention": "off",
+				"noCommonJs": "off",
+				"noProcessEnv": "off",
+				"useComponentExportOnlyModules": "off",
+				"useConsistentCurlyBraces": "off",
+				"noExportedImports": "off"
+			},
+			"suspicious": {
+				"noReactSpecificProps": "off",
+				"noArrayIndexKey": "off",
+				"useStrictMode": "off",
+				"noConsole": "error"
+			}
+		}
+	},
+	"formatter": {
+		"indentStyle": "space",
+		"indentWidth": 2,
+		"lineWidth": 100,
+		"formatWithErrors": true
+	},
+	"javascript": {
+		"formatter": {
+			"arrowParentheses": "always",
+			"quoteStyle": "single"
+		},
+		"globals": [
+			"Liveblocks",
+			"__DEV__",
+			"afterEach",
+			"afterAll",
+			"beforeEach",
+			"beforeAll",
+			"jest"
+		],
+		"jsxRuntime": "reactClassic"
+	},
+	"css": {
+		"formatter": {
+			"lineWidth": 80,
+			"quoteStyle": "double"
+		},
+		"parser": {
+			"allowWrongLineComments": false,
+			"cssModules": false
+		}
+	},
+	"json": {
+		"formatter": {
+			"lineWidth": 80,
+			"trailingCommas": "none"
+		},
+		"linter": {
+			"enabled": true
+		},
+		"parser": {
+			"allowComments": true,
+			"allowTrailingCommas": false
+		}
+	},
+	"assist": {
+		"enabled": true,
+		"actions": {
+			"source": {
+				"useSortedKeys": "off",
+				"organizeImports": {
+					"level": "on",
+					"options": {
+						"groups": [
+							":URL:",
+							":BLANK_LINE:",
+							":NODE:",
+							":BUN:",
+							":BLANK_LINE:",
+							[
+								"react",
+								"react-*",
+								"react/**",
+								"@react",
+								"@react-*",
+								"@react/**"
+							],
+							":BLANK_LINE:",
+							[
+								"next",
+								"next-*",
+								"next/**",
+								"@next",
+								"@next-*",
+								"@next/**"
+							],
+							":BLANK_LINE:",
+							[
+								"convex",
+								"convex-*",
+								"convex/**",
+								"convex-helpers/**",
+								"@convex",
+								"@convex-*",
+								"@convex/**",
+								"@convex-dev/**"
+							],
+							":BLANK_LINE:",
+							[
+								":PACKAGE_WITH_PROTOCOL:"
+							],
+							":BLANK_LINE:",
+							[
+								":PACKAGE:",
+								"!@udecode/**",
+								"!@repo/**",
+								"!@/**",
+								"!../**",
+								"!./**"
+							],
+							":BLANK_LINE:",
+							[
+								"@udecode/**"
+							],
+							":BLANK_LINE:",
+							[
+								"@repo/**"
+							],
+							":BLANK_LINE:",
+							[
+								"@/**",
+								":ALIAS:"
+							],
+							":BLANK_LINE:",
+							[
+								"../**"
+							],
+							":BLANK_LINE:",
+							[
+								"./**",
+								":PATH:"
+							],
+							":BLANK_LINE:",
+							[
+								"**/*.css",
+								"**/*.scss",
+								"./**/*.css",
+								"./**/*.scss",
+								"./**/*.less"
+							],
+							":BLANK_LINE:"
+						]
+					}
+				}
+			}
+		}
+	}
 }

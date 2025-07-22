@@ -1,7 +1,29 @@
 'use client';
 
+import type { ReactNode } from 'react';
+
+import Link from 'next/link';
+
+import {
+  AnchorIcon,
+  BookOpenIcon,
+  BotIcon,
+  ChevronRightIcon,
+  FolderIcon,
+  FrameIcon,
+  LifeBuoyIcon,
+  MapIcon,
+  MoreHorizontalIcon,
+  PieChartIcon,
+  SendIcon,
+  Settings2Icon,
+  ShareIcon,
+  SquareTerminalIcon,
+  Trash2Icon,
+} from 'lucide-react';
+
 import { OrganizationSwitcher, UserButton } from '@repo/auth/client';
-import { ModeToggle } from '@repo/design-system/components/mode-toggle';
+import { ModeToggle } from '@repo/design-system/components/layout/mode-toggle';
 import { Button } from '@repo/design-system/components/ui/button';
 import {
   Collapsible,
@@ -35,25 +57,7 @@ import {
 } from '@repo/design-system/components/ui/sidebar';
 import { cn } from '@repo/design-system/lib/utils';
 import { NotificationsTrigger } from '@repo/notifications/components/trigger';
-import {
-  AnchorIcon,
-  BookOpenIcon,
-  BotIcon,
-  ChevronRightIcon,
-  FolderIcon,
-  FrameIcon,
-  LifeBuoyIcon,
-  MapIcon,
-  MoreHorizontalIcon,
-  PieChartIcon,
-  SendIcon,
-  Settings2Icon,
-  ShareIcon,
-  SquareTerminalIcon,
-  Trash2Icon,
-} from 'lucide-react';
-import Link from 'next/link';
-import type { ReactNode } from 'react';
+
 import { Search } from './search';
 
 type GlobalSidebarProperties = {
@@ -201,13 +205,10 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
               <div
                 className={cn(
                   'h-[36px] overflow-hidden transition-all [&>div]:w-full',
-                  sidebar.open ? '' : '-mx-1'
+                  sidebar.open ? '' : '-mx-1',
                 )}
               >
-                <OrganizationSwitcher
-                  hidePersonal
-                  afterSelectOrganizationUrl="/"
-                />
+                <OrganizationSwitcher hidePersonal afterSelectOrganizationUrl="/" />
               </div>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -218,11 +219,7 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
             <SidebarGroupLabel>Platform</SidebarGroupLabel>
             <SidebarMenu>
               {data.navMain.map((item) => (
-                <Collapsible
-                  key={item.title}
-                  asChild
-                  defaultOpen={item.isActive}
-                >
+                <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild tooltip={item.title}>
                       <Link href={item.url}>
@@ -276,11 +273,7 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
                         <span className="sr-only">More</span>
                       </SidebarMenuAction>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                      className="w-48"
-                      side="bottom"
-                      align="end"
-                    >
+                    <DropdownMenuContent className="w-48" side="bottom" align="end">
                       <DropdownMenuItem>
                         <FolderIcon className="text-muted-foreground" />
                         <span>View Project</span>
@@ -338,12 +331,7 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
               />
               <div className="flex shrink-0 items-center gap-px">
                 <ModeToggle />
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="shrink-0"
-                  asChild
-                >
+                <Button variant="ghost" size="icon" className="shrink-0" asChild>
                   <div className="h-4 w-4">
                     <NotificationsTrigger />
                   </div>

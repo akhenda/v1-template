@@ -1,17 +1,11 @@
-import { pgTable, serial, text } from 'drizzle-orm/pg-core';
+import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 
-// Define the 'Page' table schema for PostgreSQL
-export const page = pgTable('Page', {
-  // Corresponds to: id Int @id @default(autoincrement())
-  // 'serial' creates an auto-incrementing integer primary key in PostgreSQL
-  id: serial('id').primaryKey(),
+import { relations, type TableNames, tables } from './tables';
 
-  // Corresponds to: name String
-  // Prisma's String maps typically to 'text' in Postgres unless constrained.
-  // Prisma fields are non-nullable by default, so we add .notNull()
-  name: text('name').notNull(),
-});
+export * from './tables';
 
-// You might also want to define types for easier usage (optional but recommended)
-export type Page = typeof page.$inferSelect; // type for select operations
-export type NewPage = typeof page.$inferInsert; // type for insert operations
+export const schema = { ...tables, ...relations } as const;
+
+export type Schema = typeof schema;
+export type DB = PostgresJsDatabase<Schema>;
+export type Query<T extends TableNames> = DB['query'][T];

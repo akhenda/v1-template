@@ -1,37 +1,24 @@
 import type { PlopTypes } from '@turbo/gen';
 
+import example from './example';
+import init from './init';
+import { bunCreateExpo, bunCreateNextApp, bunInstall } from './utils/actions';
+
 export default function generator(plop: PlopTypes.NodePlopAPI): void {
-  plop.setGenerator('init', {
-    description: 'Generate a new package for the Monorepo',
+  plop.setActionType('bunInstall', bunInstall);
+  plop.setActionType('bunCreateExpo', bunCreateExpo);
+  plop.setActionType('bunCreateNextApp', bunCreateNextApp);
+
+  // use the custom action
+  plop.setGenerator('test', {
+    description: 'Noma sana...',
     prompts: [
-      {
-        type: 'input',
-        name: 'name',
-        message:
-          'What is the name of the package? (You can skip the `@repo/` prefix)',
-      },
+      { type: 'input', name: 'appName', message: 'What?' },
+      { type: 'input', name: 'path', message: 'Where?' },
     ],
-    actions: [
-      (answers) => {
-        if (
-          'name' in answers &&
-          typeof answers.name === 'string' &&
-          answers.name.startsWith('@repo/')
-        ) {
-          answers.name = answers.name.replace('@repo/', '');
-        }
-        return 'Config sanitized';
-      },
-      {
-        type: 'add',
-        path: 'packages/{{ name }}/package.json',
-        templateFile: 'templates/package.json.hbs',
-      },
-      {
-        type: 'add',
-        path: 'packages/{{ name }}/tsconfig.json',
-        templateFile: 'templates/tsconfig.json.hbs',
-      },
-    ],
+    actions: [{ type: 'bunCreateExpo' }],
   });
+
+  plop.setGenerator('example', example);
+  plop.setGenerator('init', init);
 }

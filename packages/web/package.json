@@ -1,0 +1,43 @@
+{
+  "name": "@repo/web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/core/providers/index.tsx",
+    "./core/*": "./src/core/*.ts",
+    "./core/api": "./src/core/api/index.ts",
+    "./features/*": "./src/features/*.tsx",
+    "./features/types/*": "./src/features/*.ts",
+    "./features/libs/*": "./src/features/*.ts",
+    "./features/utils/*": "./src/features/*.ts"
+  },
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "format": "biome format --write .",
+    "lint": "biome check ./src",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@maxmorozoff/try-catch-tuple": "0.1.2",
+    "@repo/date": "workspace:*",
+    "@repo/design-system": "workspace:*",
+    "@repo/i18n": "workspace:*",
+    "@repo/observability": "workspace:*",
+    "@tanstack/query-sync-storage-persister": "5.74.3",
+    "@tanstack/react-query": "5.74.3",
+    "@tanstack/react-query-persist-client": "5.74.3",
+    "apisauce": "3.1.1",
+    "axios": "1.8.4",
+    "next": "15.4.2",
+    "papaparse": "5.5.3",
+    "remeda": "2.19.0",
+    "usehooks-ts": "3.1.1",
+    "zustand": "5.0.3",
+    "zustand-x": "6.1.0"
+  },
+  "devDependencies": {
+    "@types/papaparse": "5.3.16"
+  }
+}

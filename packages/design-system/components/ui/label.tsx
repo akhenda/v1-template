@@ -5,7 +5,7 @@ import * as LabelPrimitive from "@radix-ui/react-label"
 
 import { cn } from "@repo/design-system/lib/utils"
 
-function Label({
+const Label = React.memo(function Label({
   className,
   ...props
 }: React.ComponentProps<typeof LabelPrimitive.Root>) {
@@ -19,6 +19,13 @@ function Label({
       {...props}
     />
   )
-}
+}, (prevProps, nextProps) => {
+  return (
+    prevProps.className === nextProps.className &&
+    prevProps.htmlFor === nextProps.htmlFor &&
+    // Compare other props if necessary, or ensure they are stable from parent
+    true
+  );
+});
 
 export { Label }

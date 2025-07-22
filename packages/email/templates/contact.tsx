@@ -16,11 +16,7 @@ type ContactTemplateProps = {
   readonly message: string;
 };
 
-export const ContactTemplate = ({
-  name,
-  email,
-  message,
-}: ContactTemplateProps) => (
+export const ContactTemplate = ({ name, email, message }: ContactTemplateProps) => (
   <Tailwind>
     <Html>
       <Head />
@@ -45,10 +41,12 @@ export const ContactTemplate = ({
   </Tailwind>
 );
 
-ContactTemplate.PreviewProps = {
-  name: 'Jane Smith',
-  email: 'jane.smith@example.com',
-  message: "I'm interested in your services.",
-};
+const ExampleContactEmail = () => (
+  <ContactTemplate
+    name="Jane Smith"
+    email="jane@example.com"
+    message="Hello, how do I get started?"
+  />
+);
 
-export default ContactTemplate;
+export default ExampleContactEmail;

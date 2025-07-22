@@ -5,17 +5,18 @@ import arcjet, {
   request,
   shield,
 } from '@arcjet/next';
+
+import { logger } from '@repo/observability/logger';
+
 import { keys } from './keys';
 
 const arcjetKey = keys().ARCJET_KEY;
 
 export const secure = async (
   allow: (ArcjetWellKnownBot | ArcjetBotCategory)[],
-  sourceRequest?: Request
+  sourceRequest?: Request,
 ) => {
-  if (!arcjetKey) {
-    return;
-  }
+  if (!arcjetKey) return;
 
   const base = arcjet({
     // Get your site key from https://app.arcjet.com
@@ -37,17 +38,10 @@ export const secure = async (
   const decision = await aj.protect(req);
 
   if (decision.isDenied()) {
-    console.warn(
-      `Arcjet decision: ${JSON.stringify(decision.reason, null, 2)}`
-    );
+    logger.warn(`Arcjet decision: ${JSON.stringify(decision.reason, null, 2)}`);
 
-    if (decision.reason.isBot()) {
-      throw new Error('No bots allowed');
-    }
-
-    if (decision.reason.isRateLimit()) {
-      throw new Error('Rate limit exceeded');
-    }
+    if (decision.reason.isBot()) throw new Error('No bots allowed');
+    if (decision.reason.isRateLimit()) throw new Error('Rate limit exceeded');
 
     throw new Error('Access denied');
   }

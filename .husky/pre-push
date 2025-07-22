@@ -1,0 +1,3 @@
+bun run i18n:extract
+bun run boundaries
+bun run typecheck

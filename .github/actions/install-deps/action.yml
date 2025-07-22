@@ -1,0 +1,21 @@
+name: Bun Setup
+description: Bun & Node setup
+
+runs:
+  using: 'composite'
+
+  steps:
+    - name: 🏗  Install Bun packager
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
+
+    - name: 🏗  Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: 'package.json'
+
+    - name: 📦 Bun install
+      shell: bash
+      # run: bun install --no-cache
+      run: bun install --frozen-lockfile

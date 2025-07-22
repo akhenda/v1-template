@@ -1,0 +1,43 @@
+{
+  "enabled": false,
+  "name": "Security Scanner",
+  "description": "Automatically reviews changed files for potential security issues including API keys, tokens, credentials, private keys, encryption keys, certificates, authentication tokens, session IDs, passwords, secrets in configuration files, IP addresses with sensitive data, hardcoded internal URLs, and database connection credentials. For each issue found, highlights the specific security risk, suggests secure alternatives, and recommends security best practices.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.{js",
+      "jsx",
+      "ts",
+      "tsx",
+      "json",
+      "env",
+      "yaml",
+      "yml",
+      "toml",
+      "ini",
+      "conf",
+      "config",
+      "py",
+      "rb",
+      "php",
+      "java",
+      "go",
+      "rs",
+      "sh",
+      "bash",
+      "zsh",
+      "fish",
+      "ps1",
+      "bat",
+      "cmd",
+      "sql",
+      "md",
+      "txt}"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Review the changed files for potential security issues:\n\n1. Look for API keys, tokens, or credentials in source code\n2. Check for private keys or sensitive credentials  \n3. Scan for encryption keys or certificates\n4. Identify authentication tokens or session IDs\n5. Flag passwords or secrets in configuration files\n6. Detect IP addresses containing sensitive data\n7. Find hardcoded internal URLs\n8. Spot database connection credentials\n\nFor each issue found:\n1. Highlight the specific security risk\n2. Suggest a secure alternative approach\n3. Recommend security best practices\n\nFocus on practical, actionable security improvements while considering the context of a Next.js/TypeScript application with AI integrations."
+  }
+}

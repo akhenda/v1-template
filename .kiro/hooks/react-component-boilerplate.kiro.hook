@@ -1,0 +1,16 @@
+{
+  "enabled": false,
+  "name": "React Component Boilerplate",
+  "description": "Automatically adds imports, component structure, TypeScript interface, and export statement when a new React component file is created",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.tsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "This is a new React component file. Please add:\n\n1. Import statements for React and any necessary hooks\n2. A TypeScript interface for component props\n3. A functional component with proper TypeScript typing\n4. Default export statement\n5. Create a matching test file in the appropriate directory (same filename but with .test.tsx extension)\n\nFollow the project's coding standards and structure the component according to best practices. If the file appears to be in a directory that suggests styling is needed (e.g., UI components), include basic styling imports as well."
+  }
+}

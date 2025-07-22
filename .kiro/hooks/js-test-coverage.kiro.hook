@@ -1,0 +1,19 @@
+{
+  "enabled": false,
+  "name": "JS/TS Test Coverage Hook",
+  "description": "Automatically identifies corresponding test files, updates tests to maintain coverage for new functions, runs tests to verify they pass, and updates snapshots if necessary when JavaScript or TypeScript files are saved",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.{js",
+      "jsx",
+      "ts",
+      "tsx}"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A JavaScript/TypeScript file has been saved. Please:\n\n1. **Identify the corresponding test file** for the modified file:\n   - Look for files with `.test.{js,jsx,ts,tsx}` or `.spec.{js,jsx,ts,tsx}` extensions\n   - Check common test directory patterns like `__tests__/`, `tests/`, or co-located test files\n   - If no test file exists, suggest creating one following the project's testing conventions\n\n2. **Analyze the modified file** for:\n   - New functions, methods, or components that need test coverage\n   - Modified function signatures or behavior that require test updates\n   - Removed functions that may have orphaned tests\n\n3. **Update or create tests** to:\n   - Add test cases for any new functions or components\n   - Update existing tests for modified functionality\n   - Remove tests for deleted functions\n   - Ensure comprehensive coverage including edge cases and error scenarios\n   - Follow the project's testing patterns and conventions (Vitest framework)\n\n4. **Run the tests** to verify they pass:\n   - Execute the specific test file or related test suite\n   - Check for any failing tests and provide fixes if needed\n   - Ensure all assertions are valid and meaningful\n\n5. **Update snapshots if necessary**:\n   - If component snapshots are outdated due to changes\n   - Run snapshot updates only when changes are intentional\n   - Review snapshot changes to ensure they're expected\n\nPlease provide the updated test file content and any necessary commands to run the tests. Focus on maintaining high code quality and comprehensive test coverage following the project's Vitest testing standards."
+  }
+}

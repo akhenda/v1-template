@@ -1,0 +1,53 @@
+name: Coverage Badge
+
+on: workflow_call
+
+jobs:
+  code-coverage-badge:
+    name: Code Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗️ Create a few directories
+        run: |
+          mkdir apps
+          mkdir packages
+
+      - name: ⤵️ Download artifact (base code coverage results)
+        if: github.event_name == 'pull_request'
+        uses: dawidd6/action-download-artifact@v7
+        id: restored-base-code-coverage
+        continue-on-error: true
+        with:
+          workflow: merge.yml
+          workflow_conclusion: success
+          branch: dev
+          name: coverage
+          path: coverage-base
+          if_no_artifact_found: ignore
+
+      - name: ⤵️ Download code coverage results
+        uses: actions/download-artifact@v4
+        id: restored-code-coverage
+        continue-on-error: true
+        with:
+          name: coverage
+          path: .
+          merge-multiple: true
+
+      - name: 📋 Display structure of downloaded files
+        run: ls -R
+
+      # https://github.com/marketplace/actions/code-coverage-with-reviewdog
+      - name: 📔 Apps code coverage report
+        uses: hokify/code-coverage-assistant-ts@v2.5
+        if: github.event_name == 'pull_request'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          monorepo-base-path: './apps'
+
+      - name: 📔 Packages code coverage report
+        uses: hokify/code-coverage-assistant-ts@v2.5
+        if: github.event_name == 'pull_request'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          monorepo-base-path: './packages'

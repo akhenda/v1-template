@@ -1,4 +1,5 @@
 import { defineConfig } from 'drizzle-kit';
+
 import { keys } from './keys';
 
 export default defineConfig({
