@@ -1,5 +1,5 @@
 {
-  "projectId": "kaidoku-cars",
+  "projectId": "v1-template",
   "locale": {
     "source": "en",
     "targets": ["es", "de", "zh", "fr", "pt", "sw"]

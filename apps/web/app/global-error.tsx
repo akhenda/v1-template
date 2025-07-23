@@ -34,7 +34,7 @@ export default function GlobalError({ error, reset }: Props) {
               <Image
                 priority
                 src="/images/logo.svg"
-                alt="Kaidoku Cars Logo"
+                alt="v1 Template Logo"
                 width={0}
                 height={0}
                 className="h-20 w-auto dark:invert-30"
@@ -92,11 +92,11 @@ export default function GlobalError({ error, reset }: Props) {
                 If the problem persists, please contact our support team.
               </p>
               <a
-                href="mailto:support@kaidokucars.com"
+                href="mailto:support@v1.com"
                 className="mt-3 inline-flex items-center font-medium text-emerald-600 text-sm hover:text-emerald-700"
               >
                 <Mail className="mr-2 h-4 w-4" />
-                support@kaidokucars.com
+                support@v1.com
               </a>
             </div>
 

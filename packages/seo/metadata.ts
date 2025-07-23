@@ -8,18 +8,16 @@ type MetadataGenerator = Omit<Metadata, 'description' | 'title'> & {
   image?: string;
 };
 
-const applicationName = 'KaidokuCars';
-const url = 'https://kaidokucars.com';
-const canonical = 'https://www.kaidokucars.com';
-const author: Metadata['authors'] = { name: 'KaidokuCars Team', url };
-const publisher = 'KaidokuCars Team';
-const twitterHandle = '@kaidoku.cars';
+const applicationName = 'v1';
+const url = 'https://v1.com';
+const canonical = 'https://www.v1.com';
+const author: Metadata['authors'] = { name: 'v1 Team', url };
+const publisher = 'v1 Team';
+const twitterHandle = '@v1.template';
 const shortDescription =
-  'TODO: Write a short description for KaidokuCars that highlights its features and benefits.';
-const twitterDescription =
-  'TODO: Write a Twitter description for KaidokuCars that is concise and engaging.';
-const keywords =
-  'TODO: Write keywords for KaidokuCars that are relevant to its content and purpose.';
+  'TODO: Write a short description for v1 that highlights its features and benefits.';
+const twitterDescription = 'TODO: Write a Twitter description for v1 that is concise and engaging.';
+const keywords = 'TODO: Write keywords for v1 that are relevant to its content and purpose.';
 
 export const createMetadata = ({
   title,
