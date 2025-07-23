@@ -1,9 +1,8 @@
-import { Toolbar } from '@repo/cms/components/toolbar';
-import type { ReactNode } from 'react';
+import type { PropsWithChildren } from 'react';
 
-type LegalLayoutProps = {
-  children: ReactNode;
-};
+import { Toolbar } from '@repo/cms/components/toolbar';
+
+type LegalLayoutProps = PropsWithChildren;
 
 const LegalLayout = ({ children }: LegalLayoutProps) => (
   <>

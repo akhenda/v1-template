@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -17,47 +18,27 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@repo/design-system/components/ui/navigation-menu';
-import type { Dictionary } from '@repo/internationalization';
 
 import { env } from '@/env';
 
 import { LanguageSwitcher } from './language-switcher';
 
-type HeaderProps = {
-  dictionary: Dictionary;
-};
+const DOCS_URL = env.NEXT_PUBLIC_DOCS_URL;
 
-export const Header = ({ dictionary }: HeaderProps) => {
+export const Header = () => {
+  const { t } = useTranslation();
+
   const navigationItems = [
+    { title: t('Home'), href: '/', description: '' },
     {
-      title: dictionary.web.header.home,
-      href: '/',
-      description: '',
+      title: t('Product'),
+      description: t('Managing a small business today is already tough.'),
+      items: [{ title: t('Pricing'), href: '/pricing' }],
     },
-    {
-      title: dictionary.web.header.product.title,
-      description: dictionary.web.header.product.description,
-      items: [
-        {
-          title: dictionary.web.header.product.pricing,
-          href: '/pricing',
-        },
-      ],
-    },
-    {
-      title: dictionary.web.header.blog,
-      href: '/blog',
-      description: '',
-    },
+    { title: t('Blog'), href: '/blog', description: '' },
   ];
 
-  if (env.NEXT_PUBLIC_DOCS_URL) {
-    navigationItems.push({
-      title: dictionary.web.header.docs,
-      href: env.NEXT_PUBLIC_DOCS_URL,
-      description: '',
-    });
-  }
+  if (DOCS_URL) navigationItems.push({ title: t('Docs'), href: DOCS_URL, description: '' });
 
   const [isOpen, setOpen] = useState(false);
   return (
@@ -87,7 +68,7 @@ export const Header = ({ dictionary }: HeaderProps) => {
                               <p className="text-muted-foreground text-sm">{item.description}</p>
                             </div>
                             <Button size="sm" className="mt-10" asChild>
-                              <Link href="/contact">{dictionary.web.global.primaryCta}</Link>
+                              <Link href="/contact">{t('Book a call')}</Link>
                             </Button>
                           </div>
                           <div className="flex h-full flex-col justify-end text-sm">
@@ -117,7 +98,7 @@ export const Header = ({ dictionary }: HeaderProps) => {
         </div>
         <div className="flex w-full justify-end gap-4">
           <Button variant="ghost" className="hidden md:inline" asChild>
-            <Link href="/contact">{dictionary.web.header.contact}</Link>
+            <Link href="/contact">{t('Contact')}</Link>
           </Button>
           <div className="hidden border-r md:inline" />
           <div className="hidden md:inline">
@@ -127,10 +108,10 @@ export const Header = ({ dictionary }: HeaderProps) => {
             <ModeToggle />
           </div>
           <Button variant="outline" asChild className="hidden md:inline">
-            <Link href={`${env.NEXT_PUBLIC_APP_URL}/sign-in`}>{dictionary.web.header.signIn}</Link>
+            <Link href={`${env.NEXT_PUBLIC_APP_URL}/sign-in`}>{t('Sign in')}</Link>
           </Button>
           <Button asChild>
-            <Link href={`${env.NEXT_PUBLIC_APP_URL}/sign-up`}>{dictionary.web.header.signUp}</Link>
+            <Link href={`${env.NEXT_PUBLIC_APP_URL}/sign-up`}>{t('Get started')}</Link>
           </Button>
         </div>
         <div className="flex w-12 shrink items-end justify-end lg:hidden">

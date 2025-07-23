@@ -1,4 +1,8 @@
-import { env } from '@/env';
+import { headers } from 'next/headers';
+import { NextResponse } from 'next/server';
+
+import { Webhook } from 'svix';
+
 import { analytics } from '@repo/analytics/posthog/server';
 import type {
   DeletedObjectJSON,
@@ -8,9 +12,8 @@ import type {
   WebhookEvent,
 } from '@repo/auth/server';
 import { log } from '@repo/observability/log';
-import { headers } from 'next/headers';
-import { NextResponse } from 'next/server';
-import { Webhook } from 'svix';
+
+import { env } from '@/env';
 
 const handleUserCreated = (data: UserJSON) => {
   analytics.identify({
@@ -114,9 +117,7 @@ const handleOrganizationUpdated = (data: OrganizationJSON) => {
   return new Response('Organization updated', { status: 201 });
 };
 
-const handleOrganizationMembershipCreated = (
-  data: OrganizationMembershipJSON
-) => {
+const handleOrganizationMembershipCreated = (data: OrganizationMembershipJSON) => {
   analytics.groupIdentify({
     groupKey: data.organization.id,
     groupType: 'company',
@@ -131,9 +132,7 @@ const handleOrganizationMembershipCreated = (
   return new Response('Organization membership created', { status: 201 });
 };
 
-const handleOrganizationMembershipDeleted = (
-  data: OrganizationMembershipJSON
-) => {
+const handleOrganizationMembershipDeleted = (data: OrganizationMembershipJSON) => {
   // Need to unlink the user from the group
 
   analytics.capture({

@@ -8,50 +8,23 @@
  * @module
  */
 
-import type * as applications from '../applications.js';
-import type * as applicationsNode from '../applicationsNode.js';
-import type * as ats from '../ats.js';
 import type * as billing from '../billing.js';
 import type * as crons from '../crons.js';
 import type * as env from '../env.js';
-import type * as github from '../github.js';
 import type * as http from '../http.js';
 import type * as httpNode from '../httpNode.js';
 import type * as init from '../init.js';
 import type * as libs_email_index from '../libs/email/index.js';
 import type * as libs_email_templates_subscriptionEmail from '../libs/email/templates/subscriptionEmail.js';
-import type * as libs_errors_ats_base from '../libs/errors/ats/base.js';
-import type * as libs_errors_ats_index from '../libs/errors/ats/index.js';
-import type * as libs_errors_ats_invalidJsonPointer from '../libs/errors/ats/invalidJsonPointer.js';
-import type * as libs_errors_ats_invalidSuggestionValue from '../libs/errors/ats/invalidSuggestionValue.js';
-import type * as libs_errors_index from '../libs/errors/index.js';
-import type * as libs_github_index from '../libs/github/index.js';
-import type * as libs_github_types from '../libs/github/types.js';
-import type * as libs_parser_resume_dictionary from '../libs/parser/resume/dictionary.js';
-import type * as libs_parser_resume_index from '../libs/parser/resume/index.js';
-import type * as libs_parser_resume_utils from '../libs/parser/resume/utils.js';
 import type * as libs_utils_analytics from '../libs/utils/analytics.js';
-import type * as libs_utils_ats from '../libs/utils/ats.js';
 import type * as libs_utils_logger from '../libs/utils/logger.js';
 import type * as libs_utils_objects from '../libs/utils/objects.js';
-import type * as libs_utils_pdf from '../libs/utils/pdf.js';
 import type * as libs_utils_rateLimiter from '../libs/utils/rateLimiter.js';
 import type * as libs_utils_strings from '../libs/utils/strings.js';
 import type * as libs_utils_validators from '../libs/utils/validators.js';
-import type * as linkedin from '../linkedin.js';
 import type * as messages from '../messages.js';
-import type * as model_applications from '../model/applications.js';
-import type * as model_ats from '../model/ats.js';
 import type * as model_index from '../model/index.js';
-import type * as model_resumeNotes from '../model/resumeNotes.js';
-import type * as model_resumes from '../model/resumes.js';
-import type * as model_summaryJobs from '../model/summaryJobs.js';
 import type * as model_users from '../model/users.js';
-import type * as pools from '../pools.js';
-import type * as resumeNotes from '../resumeNotes.js';
-import type * as resumes from '../resumes.js';
-import type * as resumesNode from '../resumesNode.js';
-import type * as summaryJobs from '../summaryJobs.js';
 import type * as users from '../users.js';
 import type * as web from '../web.js';
 
@@ -66,50 +39,23 @@ import type { ApiFromModules, FilterApi, FunctionReference } from 'convex/server
  * ```
  */
 declare const fullApi: ApiFromModules<{
-  applications: typeof applications;
-  applicationsNode: typeof applicationsNode;
-  ats: typeof ats;
   billing: typeof billing;
   crons: typeof crons;
   env: typeof env;
-  github: typeof github;
   http: typeof http;
   httpNode: typeof httpNode;
   init: typeof init;
   'libs/email/index': typeof libs_email_index;
   'libs/email/templates/subscriptionEmail': typeof libs_email_templates_subscriptionEmail;
-  'libs/errors/ats/base': typeof libs_errors_ats_base;
-  'libs/errors/ats/index': typeof libs_errors_ats_index;
-  'libs/errors/ats/invalidJsonPointer': typeof libs_errors_ats_invalidJsonPointer;
-  'libs/errors/ats/invalidSuggestionValue': typeof libs_errors_ats_invalidSuggestionValue;
-  'libs/errors/index': typeof libs_errors_index;
-  'libs/github/index': typeof libs_github_index;
-  'libs/github/types': typeof libs_github_types;
-  'libs/parser/resume/dictionary': typeof libs_parser_resume_dictionary;
-  'libs/parser/resume/index': typeof libs_parser_resume_index;
-  'libs/parser/resume/utils': typeof libs_parser_resume_utils;
   'libs/utils/analytics': typeof libs_utils_analytics;
-  'libs/utils/ats': typeof libs_utils_ats;
   'libs/utils/logger': typeof libs_utils_logger;
   'libs/utils/objects': typeof libs_utils_objects;
-  'libs/utils/pdf': typeof libs_utils_pdf;
   'libs/utils/rateLimiter': typeof libs_utils_rateLimiter;
   'libs/utils/strings': typeof libs_utils_strings;
   'libs/utils/validators': typeof libs_utils_validators;
-  linkedin: typeof linkedin;
   messages: typeof messages;
-  'model/applications': typeof model_applications;
-  'model/ats': typeof model_ats;
   'model/index': typeof model_index;
-  'model/resumeNotes': typeof model_resumeNotes;
-  'model/resumes': typeof model_resumes;
-  'model/summaryJobs': typeof model_summaryJobs;
   'model/users': typeof model_users;
-  pools: typeof pools;
-  resumeNotes: typeof resumeNotes;
-  resumes: typeof resumes;
-  resumesNode: typeof resumesNode;
-  summaryJobs: typeof summaryJobs;
   users: typeof users;
   web: typeof web;
 }>;
@@ -959,162 +905,6 @@ export declare const components: {
         'internal',
         { id: string; metadata?: Record<string, any>; userId: string },
         string
-      >;
-    };
-  };
-  atsWorkpool: {
-    lib: {
-      cancel: FunctionReference<
-        'mutation',
-        'internal',
-        {
-          id: string;
-          logLevel: 'DEBUG' | 'TRACE' | 'INFO' | 'REPORT' | 'WARN' | 'ERROR';
-        },
-        any
-      >;
-      cancelAll: FunctionReference<
-        'mutation',
-        'internal',
-        {
-          before?: number;
-          logLevel: 'DEBUG' | 'TRACE' | 'INFO' | 'REPORT' | 'WARN' | 'ERROR';
-        },
-        any
-      >;
-      enqueue: FunctionReference<
-        'mutation',
-        'internal',
-        {
-          config: {
-            logLevel: 'DEBUG' | 'TRACE' | 'INFO' | 'REPORT' | 'WARN' | 'ERROR';
-            maxParallelism: number;
-          };
-          fnArgs: any;
-          fnHandle: string;
-          fnName: string;
-          fnType: 'action' | 'mutation' | 'query';
-          onComplete?: { context?: any; fnHandle: string };
-          retryBehavior?: {
-            base: number;
-            initialBackoffMs: number;
-            maxAttempts: number;
-          };
-          runAt: number;
-        },
-        string
-      >;
-      status: FunctionReference<
-        'query',
-        'internal',
-        { id: string },
-        | { previousAttempts: number; state: 'pending' }
-        | { previousAttempts: number; state: 'running' }
-        | { state: 'finished' }
-      >;
-    };
-  };
-  summaryJobsWorkpool: {
-    lib: {
-      cancel: FunctionReference<
-        'mutation',
-        'internal',
-        {
-          id: string;
-          logLevel: 'DEBUG' | 'TRACE' | 'INFO' | 'REPORT' | 'WARN' | 'ERROR';
-        },
-        any
-      >;
-      cancelAll: FunctionReference<
-        'mutation',
-        'internal',
-        {
-          before?: number;
-          logLevel: 'DEBUG' | 'TRACE' | 'INFO' | 'REPORT' | 'WARN' | 'ERROR';
-        },
-        any
-      >;
-      enqueue: FunctionReference<
-        'mutation',
-        'internal',
-        {
-          config: {
-            logLevel: 'DEBUG' | 'TRACE' | 'INFO' | 'REPORT' | 'WARN' | 'ERROR';
-            maxParallelism: number;
-          };
-          fnArgs: any;
-          fnHandle: string;
-          fnName: string;
-          fnType: 'action' | 'mutation' | 'query';
-          onComplete?: { context?: any; fnHandle: string };
-          retryBehavior?: {
-            base: number;
-            initialBackoffMs: number;
-            maxAttempts: number;
-          };
-          runAt: number;
-        },
-        string
-      >;
-      status: FunctionReference<
-        'query',
-        'internal',
-        { id: string },
-        | { previousAttempts: number; state: 'pending' }
-        | { previousAttempts: number; state: 'running' }
-        | { state: 'finished' }
-      >;
-    };
-  };
-  applicationsWorkpool: {
-    lib: {
-      cancel: FunctionReference<
-        'mutation',
-        'internal',
-        {
-          id: string;
-          logLevel: 'DEBUG' | 'TRACE' | 'INFO' | 'REPORT' | 'WARN' | 'ERROR';
-        },
-        any
-      >;
-      cancelAll: FunctionReference<
-        'mutation',
-        'internal',
-        {
-          before?: number;
-          logLevel: 'DEBUG' | 'TRACE' | 'INFO' | 'REPORT' | 'WARN' | 'ERROR';
-        },
-        any
-      >;
-      enqueue: FunctionReference<
-        'mutation',
-        'internal',
-        {
-          config: {
-            logLevel: 'DEBUG' | 'TRACE' | 'INFO' | 'REPORT' | 'WARN' | 'ERROR';
-            maxParallelism: number;
-          };
-          fnArgs: any;
-          fnHandle: string;
-          fnName: string;
-          fnType: 'action' | 'mutation' | 'query';
-          onComplete?: { context?: any; fnHandle: string };
-          retryBehavior?: {
-            base: number;
-            initialBackoffMs: number;
-            maxAttempts: number;
-          };
-          runAt: number;
-        },
-        string
-      >;
-      status: FunctionReference<
-        'query',
-        'internal',
-        { id: string },
-        | { previousAttempts: number; state: 'pending' }
-        | { previousAttempts: number; state: 'running' }
-        | { state: 'finished' }
       >;
     };
   };

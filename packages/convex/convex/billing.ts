@@ -23,13 +23,13 @@ export const polar = new Polar(components.polar, {
   // whatever you want), and replace the values with the actual product IDs from your
   // Polar dashboard
   products: {
-    free: env.POLAR_PRODUCT_FREE,
-    legend: env.POLAR_PRODUCT_LEGEND,
-    plusSmallPack: env.POLAR_PRODUCT_PLUS_SMALL_PACK,
-    plusMediumPack: env.POLAR_PRODUCT_PLUS_MEDIUM_PACK,
-    plusLargePack: env.POLAR_PRODUCT_PLUS_LARGE_PACK,
-    proMonthly: env.POLAR_PRODUCT_PRO_MONTHLY,
-    proYearly: env.POLAR_PRODUCT_PRO_YEARLY,
+    // free: env.POLAR_PRODUCT_FREE,
+    // legend: env.POLAR_PRODUCT_LEGEND,
+    // plusSmallPack: env.POLAR_PRODUCT_PLUS_SMALL_PACK,
+    // plusMediumPack: env.POLAR_PRODUCT_PLUS_MEDIUM_PACK,
+    // plusLargePack: env.POLAR_PRODUCT_PLUS_LARGE_PACK,
+    // proMonthly: env.POLAR_PRODUCT_PRO_MONTHLY,
+    // proYearly: env.POLAR_PRODUCT_PRO_YEARLY,
   },
   // Optional: Set Polar configuration directly in code
   organizationToken: env.POLAR_ORGANIZATION_TOKEN, // Defaults to POLAR_ORGANIZATION_TOKEN env var

@@ -1,21 +1,21 @@
 import type { Metadata } from 'next';
 
+import { initTranslations, type SupportedLocale } from '@repo/i18n';
 import { getDictionary } from '@repo/internationalization';
 import type { Blog, WithContext } from '@repo/seo/json-ld';
 import { JsonLd } from '@repo/seo/json-ld';
 import { createMetadata } from '@repo/seo/metadata';
 
-type BlogProps = {
-  params: Promise<{
-    locale: string;
-  }>;
-};
+type BlogProps = { params: Promise<{ locale: SupportedLocale }> };
 
 export const generateMetadata = async ({ params }: BlogProps): Promise<Metadata> => {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
+  const { t } = await initTranslations(locale);
 
-  return createMetadata(dictionary.web.blog.meta);
+  return createMetadata({
+    title: t('Blog'),
+    description: t('Thoughts, ideas, and opinions.'),
+  });
 };
 
 const BlogIndex = async ({ params }: BlogProps) => {

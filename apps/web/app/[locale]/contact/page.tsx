@@ -1,28 +1,22 @@
-import { getDictionary } from '@repo/internationalization';
-import { createMetadata } from '@repo/seo/metadata';
 import type { Metadata } from 'next';
+
+import { initTranslations, type SupportedLocale } from '@repo/i18n';
+import { createMetadata } from '@repo/seo/metadata';
+
 import { ContactForm } from './components/contact-form';
 
-type ContactProps = {
-  params: Promise<{
-    locale: string;
-  }>;
-};
+type ContactProps = { params: Promise<{ locale: SupportedLocale }> };
 
-export const generateMetadata = async ({
-  params,
-}: ContactProps): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: ContactProps): Promise<Metadata> => {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
+  const { t } = await initTranslations(locale);
 
-  return createMetadata(dictionary.web.contact.meta);
+  return createMetadata({
+    title: t("Let's Talk About Your Business"),
+    description: t(
+      'Schedule a consultation with our team to discuss how we can help streamline your operations and drive growth for your business.',
+    ),
+  });
 };
 
-const Contact = async ({ params }: ContactProps) => {
-  const { locale } = await params;
-  const dictionary = await getDictionary(locale);
-
-  return <ContactForm dictionary={dictionary} />;
-};
-
-export default Contact;
+export default ContactForm;

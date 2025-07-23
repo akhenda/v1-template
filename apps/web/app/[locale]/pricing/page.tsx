@@ -1,7 +1,10 @@
-import { env } from '@/env';
-import { Button } from '@repo/design-system/components/ui/button';
-import { Check, Minus, MoveRight, PhoneCall } from 'lucide-react';
 import Link from 'next/link';
+
+import { Check, Minus, MoveRight, PhoneCall } from 'lucide-react';
+
+import { Button } from '@repo/design-system/components/ui/button';
+
+import { env } from '@/env';
 
 const Pricing = () => (
   <div className="w-full py-20 lg:py-40">
@@ -20,8 +23,8 @@ const Pricing = () => (
           <div className="flex flex-col gap-2 px-3 py-1 md:px-6 md:py-4">
             <p className="text-2xl">Startup</p>
             <p className="text-muted-foreground text-sm">
-              Our goal is to streamline SMB trade, making it easier and faster
-              than ever for everyone and everywhere.
+              Our goal is to streamline SMB trade, making it easier and faster than ever for
+              everyone and everywhere.
             </p>
             <p className="mt-8 flex flex-col gap-2 text-xl lg:flex-row lg:items-center">
               <span className="text-4xl">$40</span>
@@ -36,8 +39,8 @@ const Pricing = () => (
           <div className="flex flex-col gap-2 px-3 py-1 md:px-6 md:py-4">
             <p className="text-2xl">Growth</p>
             <p className="text-muted-foreground text-sm">
-              Our goal is to streamline SMB trade, making it easier and faster
-              than ever for everyone and everywhere.
+              Our goal is to streamline SMB trade, making it easier and faster than ever for
+              everyone and everywhere.
             </p>
             <p className="mt-8 flex flex-col gap-2 text-xl lg:flex-row lg:items-center">
               <span className="text-4xl">$40</span>
@@ -52,8 +55,8 @@ const Pricing = () => (
           <div className="flex flex-col gap-2 px-3 py-1 md:px-6 md:py-4">
             <p className="text-2xl">Enterprise</p>
             <p className="text-muted-foreground text-sm">
-              Our goal is to streamline SMB trade, making it easier and faster
-              than ever for everyone and everywhere.
+              Our goal is to streamline SMB trade, making it easier and faster than ever for
+              everyone and everywhere.
             </p>
             <p className="mt-8 flex flex-col gap-2 text-xl lg:flex-row lg:items-center">
               <span className="text-4xl">$40</span>
@@ -83,9 +86,7 @@ const Pricing = () => (
             <Check className="h-4 w-4 text-primary" />
           </div>
           {/* New Line */}
-          <div className="col-span-3 px-3 py-4 lg:col-span-1 lg:px-6">
-            AI Assistant
-          </div>
+          <div className="col-span-3 px-3 py-4 lg:col-span-1 lg:px-6">AI Assistant</div>
           <div className="flex justify-center px-3 py-1 md:px-6 md:py-4">
             <Minus className="h-4 w-4 text-muted-foreground" />
           </div>
@@ -96,9 +97,7 @@ const Pricing = () => (
             <Check className="h-4 w-4 text-primary" />
           </div>
           {/* New Line */}
-          <div className="col-span-3 px-3 py-4 lg:col-span-1 lg:px-6">
-            Version Control
-          </div>
+          <div className="col-span-3 px-3 py-4 lg:col-span-1 lg:px-6">Version Control</div>
           <div className="flex justify-center px-3 py-1 md:px-6 md:py-4">
             <Minus className="h-4 w-4 text-muted-foreground" />
           </div>
@@ -109,9 +108,7 @@ const Pricing = () => (
             <Check className="h-4 w-4 text-primary" />
           </div>
           {/* New Line */}
-          <div className="col-span-3 px-3 py-4 lg:col-span-1 lg:px-6">
-            Members
-          </div>
+          <div className="col-span-3 px-3 py-4 lg:col-span-1 lg:px-6">Members</div>
           <div className="flex justify-center px-3 py-1 md:px-6 md:py-4">
             <p className="text-muted-foreground text-sm">5 members</p>
           </div>
@@ -122,9 +119,7 @@ const Pricing = () => (
             <p className="text-muted-foreground text-sm">100+ members</p>
           </div>
           {/* New Line */}
-          <div className="col-span-3 px-3 py-4 lg:col-span-1 lg:px-6">
-            Multiplayer Mode
-          </div>
+          <div className="col-span-3 px-3 py-4 lg:col-span-1 lg:px-6">Multiplayer Mode</div>
           <div className="flex justify-center px-3 py-1 md:px-6 md:py-4">
             <Minus className="h-4 w-4 text-muted-foreground" />
           </div>
@@ -135,9 +130,7 @@ const Pricing = () => (
             <Check className="h-4 w-4 text-primary" />
           </div>
           {/* New Line */}
-          <div className="col-span-3 px-3 py-4 lg:col-span-1 lg:px-6">
-            Orchestration
-          </div>
+          <div className="col-span-3 px-3 py-4 lg:col-span-1 lg:px-6">Orchestration</div>
           <div className="flex justify-center px-3 py-1 md:px-6 md:py-4">
             <Minus className="h-4 w-4 text-muted-foreground" />
           </div>

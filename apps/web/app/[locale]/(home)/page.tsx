@@ -1,7 +1,10 @@
+import type { Metadata } from 'next';
+
 import { showBetaFeature } from '@repo/feature-flags';
+import { initTranslations, type SupportedLocale } from '@repo/i18n';
 import { getDictionary } from '@repo/internationalization';
 import { createMetadata } from '@repo/seo/metadata';
-import type { Metadata } from 'next';
+
 import { Cases } from './components/cases';
 import { CTA } from './components/cta';
 import { FAQ } from './components/faq';
@@ -10,19 +13,18 @@ import { Hero } from './components/hero';
 import { Stats } from './components/stats';
 import { Testimonials } from './components/testimonials';
 
-type HomeProps = {
-  params: Promise<{
-    locale: string;
-  }>;
-};
+type HomeProps = { params: Promise<{ locale: SupportedLocale }> };
 
-export const generateMetadata = async ({
-  params,
-}: HomeProps): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: HomeProps): Promise<Metadata> => {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
+  const { t } = await initTranslations(locale);
 
-  return createMetadata(dictionary.web.home.meta);
+  return createMetadata({
+    title: t('Transform Your Business Operations Today'),
+    description: t(
+      "In today's fast-paced world, your business deserves better than outdated trading systems. Our innovative platform streamlines operations, reduces complexity, and helps small businesses thrive in the modern economy.",
+    ),
+  });
 };
 
 const Home = async ({ params }: HomeProps) => {

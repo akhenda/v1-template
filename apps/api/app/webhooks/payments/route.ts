@@ -1,33 +1,30 @@
-import { env } from '@/env';
+import { headers } from 'next/headers';
+import { NextResponse } from 'next/server';
+
 import { analytics } from '@repo/analytics/posthog/server';
 import { clerkClient } from '@repo/auth/server';
 import { parseError } from '@repo/observability/error';
 import { log } from '@repo/observability/log';
-import { stripe } from '@repo/payments';
 import type { Stripe } from '@repo/payments';
-import { headers } from 'next/headers';
-import { NextResponse } from 'next/server';
+import { stripe } from '@repo/payments';
+
+import { env } from '@/env';
 
 const getUserFromCustomerId = async (customerId: string) => {
   const clerk = await clerkClient();
   const users = await clerk.users.getUserList();
 
-  const user = users.data.find(
-    (user) => user.privateMetadata.stripeCustomerId === customerId
-  );
+  const user = users.data.find((user) => user.privateMetadata.stripeCustomerId === customerId);
 
   return user;
 };
 
-const handleCheckoutSessionCompleted = async (
-  data: Stripe.Checkout.Session
-) => {
+const handleCheckoutSessionCompleted = async (data: Stripe.Checkout.Session) => {
   if (!data.customer) {
     return;
   }
 
-  const customerId =
-    typeof data.customer === 'string' ? data.customer : data.customer.id;
+  const customerId = typeof data.customer === 'string' ? data.customer : data.customer.id;
   const user = await getUserFromCustomerId(customerId);
 
   if (!user) {
@@ -40,15 +37,12 @@ const handleCheckoutSessionCompleted = async (
   });
 };
 
-const handleSubscriptionScheduleCanceled = async (
-  data: Stripe.SubscriptionSchedule
-) => {
+const handleSubscriptionScheduleCanceled = async (data: Stripe.SubscriptionSchedule) => {
   if (!data.customer) {
     return;
   }
 
-  const customerId =
-    typeof data.customer === 'string' ? data.customer : data.customer.id;
+  const customerId = typeof data.customer === 'string' ? data.customer : data.customer.id;
   const user = await getUserFromCustomerId(customerId);
 
   if (!user) {
@@ -75,11 +69,7 @@ export const POST = async (request: Request): Promise<Response> => {
       throw new Error('missing stripe-signature header');
     }
 
-    const event = stripe.webhooks.constructEvent(
-      body,
-      signature,
-      env.STRIPE_WEBHOOK_SECRET
-    );
+    const event = stripe.webhooks.constructEvent(body, signature, env.STRIPE_WEBHOOK_SECRET);
 
     switch (event.type) {
       case 'checkout.session.completed': {
@@ -108,7 +98,7 @@ export const POST = async (request: Request): Promise<Response> => {
         message: 'something went wrong',
         ok: false,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

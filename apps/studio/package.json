@@ -2,7 +2,7 @@
   "name": "studio",
   "version": "0.0.0",
   "scripts": {
-    "dev": "npx drizzle-kit -c ../../packages/database/drizzle.config.ts studio",
+    "dev": "npx drizzle-kit studio --config=../../packages/database/drizzle.config.ts",
     "clean": "git clean -xdf .cache .turbo dist node_modules"
   },
   "devDependencies": {

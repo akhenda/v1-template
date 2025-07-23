@@ -32,7 +32,7 @@ export const withTurboPackFix = (config: NextConfig): NextConfig => {
   return config;
 };
 
-export const config: NextConfig = withTurboPackFix({
+export const config: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [{ protocol: 'https', hostname: 'img.clerk.com' }],
@@ -42,10 +42,10 @@ export const config: NextConfig = withTurboPackFix({
     return [
       {
         source: '/ingest/static/:path*',
-        destination: 'https://us-assets.i.posthog.com/static/:path*',
+        destination: 'https://eu-assets.i.posthog.com/static/:path*',
       },
-      { source: '/ingest/:path*', destination: 'https://us.i.posthog.com/:path*' },
-      { source: '/ingest/decide', destination: 'https://us.i.posthog.com/decide' },
+      { source: '/ingest/:path*', destination: 'https://eu.i.posthog.com/:path*' },
+      { source: '/ingest/decide', destination: 'https://eu.i.posthog.com/decide' },
     ];
   },
 
@@ -64,7 +64,7 @@ export const config: NextConfig = withTurboPackFix({
   turbopack: {
     resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.cjs', '.json'],
   },
-});
+};
 
 export const withAnalyzer = (sourceConfig: NextConfig): NextConfig =>
   withBundleAnalyzer()(sourceConfig);
