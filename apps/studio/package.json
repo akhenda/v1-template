@@ -6,6 +6,6 @@
     "clean": "git clean -xdf .cache .turbo dist node_modules"
   },
   "devDependencies": {
-    "drizzle-kit": "0.30.6"
+    "drizzle-kit": "0.31.4"
   }
 }
