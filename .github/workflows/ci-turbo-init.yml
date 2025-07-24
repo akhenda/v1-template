@@ -24,4 +24,4 @@ jobs:
         uses: ./.github/actions/install-deps
 
       - name: 💼 Cache for Turbo
-        uses: rharkor/caching-for-turbo@v1.5
+        uses: rharkor/caching-for-turbo@v1.8
