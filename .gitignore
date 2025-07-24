@@ -278,6 +278,7 @@ packages/database/generated
 
 # @repo
 !.claude
+!CLAUDE.md
 **/.content-collections
 **/.million
 .content-collections
