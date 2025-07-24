@@ -1,0 +1,51 @@
+name: 🕵️ Validate
+
+on: workflow_call
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: write
+
+jobs:
+  run-turbo-validate:
+    name: Turbo CI
+    runs-on: ubuntu-latest
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 📦 Install dependencies
+        uses: ./.github/actions/install-deps
+
+      - name: 📝 Test & build projects
+        run: |
+          bun run test
+          bun run build
+
+      - name: 🧐 Lint projects
+        continue-on-error: true
+        run: |
+          bun run lint
+
+      - name: ✍🏻 Annotate code linting results
+        uses: mongolyy/reviewdog-action-biome@v1
+        if: github.event_name == 'pull_request'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          fail_level: error
+
+      - name: 📤 Archive code coverage results
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: |
+            ./apps/**/coverage/*
+            ./packages/**/coverage/*
+            ./tooling/**/coverage/*

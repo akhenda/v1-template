@@ -1,0 +1,27 @@
+name: Turbo Init
+
+on: workflow_call
+
+# Down scope as necessary via https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token
+permissions:
+  checks: write
+  contents: write
+
+jobs:
+  run-turbo-cloud:
+    name: Start CI
+    runs-on: ubuntu-latest
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 📦 Install dependencies
+        uses: ./.github/actions/install-deps
+
+      - name: 💼 Cache for Turbo
+        uses: rharkor/caching-for-turbo@v1.5

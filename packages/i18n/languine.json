@@ -1,0 +1,12 @@
+{
+  "projectId": "v1-template",
+  "locale": {
+    "source": "en",
+    "targets": ["es", "de", "zh", "fr", "pt", "sw"]
+  },
+  "files": {
+    "json": {
+      "include": ["locales/[locale].json"]
+    }
+  }
+}

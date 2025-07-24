@@ -1,0 +1,42 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Error Registry > should have a comprehensive list of error codes 1`] = `
+{
+  "ATSError": {
+    "code": 500,
+  },
+  "BadRequestError": {
+    "code": 400,
+  },
+  "ConflictError": {
+    "code": 409,
+  },
+  "ForbiddenError": {
+    "code": 403,
+  },
+  "InternalServerError": {
+    "code": 500,
+  },
+  "InvalidATSJSONPointerError": {
+    "code": 400,
+  },
+  "InvalidATSSuggestionValueError": {
+    "code": 400,
+  },
+  "NotFoundError": {
+    "code": 404,
+  },
+  "RequestError": {
+    "code": 500,
+  },
+  "RequestTimeoutError": {
+    "code": 408,
+  },
+  "TooManyRequestsError": {
+    "code": 429,
+  },
+  "UnauthorizedError": {
+    "code": 401,
+  },
+}
+`;

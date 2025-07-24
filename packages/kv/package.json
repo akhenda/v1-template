@@ -1,0 +1,19 @@
+{
+  "name": "@repo/kv",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "format": "biome format --write src",
+    "lint": "biome check src",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@repo/observability": "workspace:*",
+    "@upstash/ratelimit": "2.0.5",
+    "@upstash/redis": "1.34.7",
+    "remeda": "2.19.0",
+    "server-only": "0.0.1"
+  }
+}

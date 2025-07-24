@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "biomejs.biome",
+    "million.million-lint",
+    "bradlc.vscode-tailwindcss",
+    "christian-kohler.npm-intellisense",
+    "dsznajder.es7-react-js-snippets",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "mikestead.dotenv",
+    "ms-playwright.playwright",
+    "unifiedjs.vscode-mdx",
+    "DavidAnson.vscode-markdownlint"
+  ]
+}

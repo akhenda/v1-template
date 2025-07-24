@@ -1,0 +1,17 @@
+{
+  "name": "@repo/date",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "lint": "biome check src",
+    "format": "biome format --write src",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@repo/observability": "workspace:*",
+    "dayjs": "1.11.13",
+    "remeda": "2.19.0"
+  }
+}

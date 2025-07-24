@@ -1,0 +1,19 @@
+{
+  "enabled": false,
+  "name": "Auto Documentation Generator",
+  "description": "Automatically generates comprehensive documentation for modified files including function signatures, parameters, return types, usage examples, and updates README.md files in monorepo packages/apps",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.js",
+      "**/*.jsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A file has been modified. Please generate comprehensive documentation for this file:\n\n1. **Extract and document all function and class signatures** including:\n   - Function names and purposes\n   - Parameter types and descriptions\n   - Return types and descriptions\n   - JSDoc comments where applicable\n\n2. **Provide usage examples** based on the existing code patterns:\n   - Show how to import and use exported functions/classes\n   - Include realistic examples with proper TypeScript types\n   - Demonstrate common use cases\n\n3. **Update package/app README.md**:\n   - If this file is in a package (`packages/*/`) or app (`apps/*/`), find the closest README.md\n   - Add or update the API documentation section with new exports\n   - Include installation/import instructions\n   - Add usage examples\n\n4. **Create README.md if missing**:\n   - If no README.md exists in the package/app directory, create one\n   - Include package purpose, installation, API reference, and examples\n   - Follow the monorepo documentation standards\n\n5. **Follow project standards**:\n   - Use TypeScript-first documentation\n   - Include proper import paths with `@repo/` prefixes for workspace packages\n   - Follow the established code quality and formatting standards\n   - Ensure documentation is consistent with the ResumeMoto product context\n\nPlease analyze the modified file and generate/update the appropriate documentation."
+  }
+}

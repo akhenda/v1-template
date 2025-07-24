@@ -1,0 +1,19 @@
+name: Verify Conditions
+description: Verify a few things needed in our workflows before proceeding
+outputs:
+  check-deps-integrity:
+    description: Tells workflows if dependency checks should be done
+    value: ${{ contains(steps.changed-files.outputs.modified_files, 'bun.lock') }}
+
+runs:
+  using: 'composite'
+
+  steps:
+    - name: 🗃️ Verify changed files
+      uses: tj-actions/changed-files@v45
+      id: changed-files
+      with:
+        files: |
+          package.json
+          bun.lock
+          .github/**/*.yml

@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "title": "Austenland",
+    "genre": "Comedy|Romance",
+    "borrower_id": 3,
+    "isbn": "659774359-8",
+    "created_at": "2024-11-11 03:31:48",
+    "updated_at": "2023-11-28 12:45:44"
+  },
+  {
+    "id": 2,
+    "title": "Madeinusa",
+    "genre": "Drama",
+    "borrower_id": 7,
+    "isbn": "217889180-2",
+    "created_at": "2024-06-29 08:42:26",
+    "updated_at": "2024-04-18 10:54:23"
+  },
+  {
+    "id": 3,
+    "title": "Bless the Child",
+    "genre": "Thriller",
+    "borrower_id": 8,
+    "isbn": "818290351-3",
+    "created_at": "2024-07-03 17:11:50",
+    "updated_at": "2024-06-28 19:35:02"
+  },
+  {
+    "id": 4,
+    "title": "Battle Royale 2: Requiem (Batoru rowaiaru II: Chinkonka)",
+    "genre": "Action|Drama|Thriller|War",
+    "borrower_id": null,
+    "isbn": "613031838-3",
+    "created_at": "2023-10-29 23:32:06",
+    "updated_at": "2024-03-02 08:28:06"
+  },
+  {
+    "id": 5,
+    "title": "Becoming Jane",
+    "genre": "Drama|Romance",
+    "borrower_id": null,
+    "isbn": "826784421-X",
+    "created_at": "2024-09-12 23:23:40",
+    "updated_at": "2023-10-21 20:17:27"
+  },
+  {
+    "id": 6,
+    "title": "Grave Decisions (Wer früher stirbt, ist länger tot)",
+    "genre": "Comedy|Drama",
+    "borrower_id": null,
+    "isbn": "403172507-8",
+    "created_at": "2024-01-20 10:26:34",
+    "updated_at": "2024-11-11 02:44:44"
+  },
+  {
+    "id": 7,
+    "title": "Chameleon, The ",
+    "genre": "Drama",
+    "borrower_id": null,
+    "isbn": "759598514-5",
+    "created_at": "2024-04-30 06:47:53",
+    "updated_at": "2024-06-05 06:10:43"
+  },
+  {
+    "id": 8,
+    "title": "Rebecca",
+    "genre": "Drama|Mystery|Romance|Thriller",
+    "borrower_id": 3,
+    "isbn": "064035651-6",
+    "created_at": "2023-09-15 20:26:44",
+    "updated_at": "2023-10-03 16:32:58"
+  },
+  {
+    "id": 9,
+    "title": "Angel Face",
+    "genre": "Crime|Drama|Film-Noir",
+    "borrower_id": 5,
+    "isbn": "318147623-4",
+    "created_at": "2024-04-17 10:36:19",
+    "updated_at": "2023-09-21 09:47:48"
+  },
+  {
+    "id": 10,
+    "title": "Don McKay",
+    "genre": "Drama|Mystery|Thriller",
+    "borrower_id": 1,
+    "isbn": "496849952-3",
+    "created_at": "2023-09-28 05:16:52",
+    "updated_at": "2024-06-19 04:29:43"
+  },
+  {
+    "id": 11,
+    "title": "My Neighbor Totoro (Tonari no Totoro)",
+    "genre": "Animation|Children|Drama|Fantasy",
+    "borrower_id": 4,
+    "isbn": "359176866-9",
+    "created_at": "2024-08-05 16:30:23",
+    "updated_at": "2024-07-12 20:23:17"
+  },
+  {
+    "id": 12,
+    "title": "Ladrones",
+    "genre": "Drama",
+    "borrower_id": 4,
+    "isbn": "473534539-6",
+    "created_at": "2024-01-12 01:56:05",
+    "updated_at": "2023-11-15 14:38:55"
+  },
+  {
+    "id": 13,
+    "title": "Godspeed",
+    "genre": "Drama|Horror|Thriller",
+    "borrower_id": 2,
+    "isbn": "040345871-4",
+    "created_at": "2024-06-26 21:15:56",
+    "updated_at": "2023-10-22 13:42:43"
+  },
+  {
+    "id": 14,
+    "title": "SIS",
+    "genre": "Action|Crime|Drama|Thriller",
+    "borrower_id": null,
+    "isbn": "814433710-7",
+    "created_at": "2024-02-28 15:35:17",
+    "updated_at": "2023-08-20 11:06:22"
+  },
+  {
+    "id": 15,
+    "title": "Subway",
+    "genre": "Crime|Drama|Romance|Thriller",
+    "borrower_id": null,
+    "isbn": "625878248-5",
+    "created_at": "2024-11-07 07:41:42",
+    "updated_at": "2024-04-20 12:40:44"
+  },
+  {
+    "id": 16,
+    "title": "Empire of the Ants",
+    "genre": "Horror|Sci-Fi",
+    "borrower_id": null,
+    "isbn": "241099417-2",
+    "created_at": "2024-04-05 17:47:45",
+    "updated_at": "2024-07-17 15:52:56"
+  },
+  {
+    "id": 17,
+    "title": "Hansel & Gretel Get Baked",
+    "genre": "Comedy|Horror",
+    "borrower_id": 7,
+    "isbn": "452486709-0",
+    "created_at": "2024-03-19 16:23:45",
+    "updated_at": "2023-08-29 17:08:40"
+  },
+  {
+    "id": 18,
+    "title": "Ballad of Jack and Rose, The",
+    "genre": "Drama",
+    "borrower_id": 6,
+    "isbn": "897412170-0",
+    "created_at": "2024-09-13 11:32:56",
+    "updated_at": "2024-07-09 09:27:07"
+  },
+  {
+    "id": 19,
+    "title": "Morgan Pålsson - världsreporter",
+    "genre": "Action|Comedy",
+    "borrower_id": null,
+    "isbn": "315256393-0",
+    "created_at": "2023-12-10 16:13:02",
+    "updated_at": "2024-05-23 19:42:22"
+  },
+  {
+    "id": 20,
+    "title": "Superstar",
+    "genre": "Comedy",
+    "borrower_id": 9,
+    "isbn": "459065257-9",
+    "created_at": "2023-12-19 17:24:08",
+    "updated_at": "2024-02-04 17:41:36"
+  }
+]

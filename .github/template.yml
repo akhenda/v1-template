@@ -1,0 +1,29 @@
+name: v1-template Configuration
+description: Define variables for your new project.
+body:
+  - type: input
+    id: project_name
+    attributes:
+      label: Project Name
+      description: "What is the name of your project? (e.g., My Awesome SaaS)"
+      placeholder: "My Awesome SaaS"
+    validations:
+      required: true
+
+  - type: input
+    id: project_slug
+    attributes:
+      label: Project Slug
+      description: "A short, URL-friendly name for your project. (e.g., my-awesome-saas)"
+      placeholder: "my-awesome-saas"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: project_description
+    attributes:
+      label: Project Description
+      description: "A short description of your new project."
+      placeholder: "The best SaaS for doing amazing things."
+    validations:
+      required: true

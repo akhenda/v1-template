@@ -1,0 +1,34 @@
+name: PR
+
+on:
+  pull_request:
+    branches:
+      - dev
+      - main
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: write
+
+jobs:
+  ci-pr-title:
+    name: Lint Pull Request Titles
+    uses: ./.github/workflows/ci-pr-title.yml
+
+  ci-repo-integrity:
+    name: Repo Integrity
+    needs: ci-pr-title
+    uses: ./.github/workflows/ci-repo-integrity.yml
+
+  ci-validate:
+    name: Validate (Lint, Test & Build)
+    needs: ci-repo-integrity
+    uses: ./.github/workflows/ci-validate.yml
+    secrets: inherit
+
+  ci-coverage-badge:
+    name: Coverage Badge
+    needs: ci-validate
+    uses: ./.github/workflows/ci-coverage-badge.yml
+    secrets: inherit

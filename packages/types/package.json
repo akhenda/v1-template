@@ -1,0 +1,27 @@
+{
+  "name": "@repo/types",
+  "version": "0.0.0",
+  "private": true,
+  "sideEffects": false,
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./common": "./src/common.ts",
+    "./components": "./src/components.ts",
+    "./domain": "./src/domain.ts",
+    "./helpers": "./src/helpers.ts",
+    "./navigation": "./src/navigation.ts"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf .turbo dist node_modules coverage",
+    "format": "biome format --write src",
+    "lint": "biome check src",
+    "release": "semantic-release",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@repo/release": "workspace:*",
+    "react": "19.1.0"
+  }
+}

@@ -1,0 +1,47 @@
+name: Merge
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+permissions:
+  actions: read
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  ci-repo-integrity:
+    name: Repo Integrity
+    uses: ./.github/workflows/ci-repo-integrity.yml
+
+  ci-validate:
+    name: Validate (Lint/Test/Build)
+    needs: ci-repo-integrity
+    uses: ./.github/workflows/ci-validate.yml
+    secrets: inherit
+
+  ci-coverage-badge:
+    name: Coverage Badge
+    needs: ci-validate
+    uses: ./.github/workflows/ci-coverage-badge.yml
+    secrets: inherit
+
+  ci-release:
+    name: Release
+    needs: ci-validate
+    uses: ./.github/workflows/ci-release.yml
+    secrets: inherit
+
+  # https://stackoverflow.com/a/66358138
+  ci-finale:
+    name: Finale
+    needs: [ci-coverage-badge, ci-release]
+    if: |
+      always()
+      && contains(needs.*.result, 'success')
+      && !contains(needs.*.result, 'failure')
+    uses: ./.github/workflows/ci-finale.yml

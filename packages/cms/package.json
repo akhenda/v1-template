@@ -1,0 +1,45 @@
+{
+  "name": "@repo/cms",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./content-collections": "./dist/content-collections.js",
+    "./keys": "./keys.ts",
+    "./next-config": "./next-config.ts",
+    "./typescript-config.json": "./typescript-config.json",
+    "./components/*": "./components/*.tsx"
+  },
+  "scripts": {
+    "dev:disabled": "content-collections build",
+    "build": "content-collections build",
+    "bundle": "tsc --noEmit false",
+    "analyze": "content-collections build",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@content-collections/mdx": "0.2.2",
+    "@t3-oss/env-nextjs": "0.13.4",
+    "fumadocs-core": "15.4.0",
+    "fumadocs-docgen": "2.0.0",
+    "react": "19.1.0",
+    "reading-time": "1.5.0",
+    "sqip": "1.0.0-alpha.51",
+    "sqip-plugin-data-uri": "1.0.0-alpha.52",
+    "sqip-plugin-primitive": "1.0.0-alpha.53",
+    "sqip-plugin-svgo": "1.0.0-alpha.54",
+    "zod": "3.25.28"
+  },
+  "devDependencies": {
+    "@content-collections/cli": "0.1.6",
+    "@content-collections/core": "0.8.2",
+    "@content-collections/next": "0.2.6",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "22.15.21",
+    "@types/react": "19.1.0",
+    "@types/react-dom": "19.1.0",
+    "next": "15.4.2"
+  }
+}
