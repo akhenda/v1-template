@@ -20,7 +20,7 @@
 			"!**/.turbo",
 			"!**/.github",
 			"!**/.react-email",
-			"!**/_generated",
+			"!**/_generated/**",
 			"!**/*/fixtures",
 			"!**/migrations/meta"
 		]
