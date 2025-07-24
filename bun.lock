@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "kaidoku-cars",
+      "name": "v1-template",
       "devDependencies": {
         "@auto-it/first-time-contributor": "11.3.0",
         "@biomejs/biome": "2.1.2",
