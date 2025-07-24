@@ -14,6 +14,6 @@ jobs:
 
       - name: 📋 TODO to Issue
         if: ${{ github.ref == 'refs/heads/main' }}
-        uses: alstr/todo-to-issue-action@v5.1.7
+        uses: alstr/todo-to-issue-action@v5.1.13
         with:
           AUTO_ASSIGN: true
