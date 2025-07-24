@@ -44,7 +44,7 @@
     "react-wrap-balancer": "1.1.1",
     "reading-time": "1.5.0",
     "require-in-the-middle": "7.5.2",
-    "sharp": "0.34.2",
+    "sharp": "0.34.3",
     "shiki": "3.4.2",
     "zod": "3.25.28"
   },
