@@ -35,7 +35,7 @@
     "remeda": "2.19.0",
     "usehooks-ts": "3.1.1",
     "zustand": "5.0.3",
-    "zustand-x": "6.1.0"
+    "zustand-x": "6.1.1"
   },
   "devDependencies": {
     "@types/papaparse": "5.3.16"
