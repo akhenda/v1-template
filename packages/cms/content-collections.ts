@@ -22,12 +22,7 @@ const posts = defineCollection({
     description: z.string().optional(),
     date: z.string(),
     image: z
-      .object({
-        alt: z.string(),
-        url: z.string(),
-        width: z.number(),
-        height: z.number(),
-      })
+      .object({ alt: z.string(), url: z.string(), width: z.number(), height: z.number() })
       .optional(),
     authors: z.array(
       z.object({

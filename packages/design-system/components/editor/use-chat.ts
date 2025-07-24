@@ -28,6 +28,7 @@ export const useChat = () => {
       model: model.value,
     },
     // Mock the API response. Remove it when you implement the route /api/ai/command
+    // @ts-expect-error TODO: We'll come back to this
     fetch: async (input, init) => {
       const res = await fetch(input, init);
 
@@ -97,7 +98,6 @@ const fakeStreamText = ({
   const encoder = new TextEncoder();
 
   return new ReadableStream({
-    // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: <explanation>
     async start(controller) {
       if (signal?.aborted) {
         controller.error(new Error('Aborted before start'));

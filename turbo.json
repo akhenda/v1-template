@@ -8,9 +8,22 @@
   ],
   "ui": "tui",
   "envMode": "loose",
+  "boundaries": {
+    "tags": {
+      "web": {
+        "dependencies": {
+          "allow": [
+            "@repo/cms"
+          ]
+        }
+      }
+    }
+  },
   "tasks": {
     "topo": {
-      "dependsOn": ["^topo"]
+      "dependsOn": [
+        "^topo"
+      ]
     },
     "build": {
       "env": [
@@ -22,8 +35,16 @@
         "SENTRY_ORG",
         "SENTRY_PROJECT"
       ],
-      "inputs": ["$TURBO_DEFAULT$", ".env", ".env.local", ".env.*local"],
-      "dependsOn": ["^build", "test"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env",
+        ".env.local",
+        ".env.*local"
+      ],
+      "dependsOn": [
+        "^build",
+        "test"
+      ],
       "outputs": [
         ".next/**",
         "!.next/cache/**",
@@ -39,45 +60,72 @@
       ]
     },
     "test": {
-      "dependsOn": ["^test"]
+      "dependsOn": [
+        "^test"
+      ]
     },
     "test:run": {
       "cache": false
     },
     "analyze": {
-      "dependsOn": ["^analyze"]
+      "dependsOn": [
+        "^analyze"
+      ]
     },
     "dev": {
-      "inputs": ["$TURBO_DEFAULT$", ".env", ".env.local", ".env.*local"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env",
+        ".env.local",
+        ".env.*local"
+      ],
       "cache": false,
       "persistent": true
     },
     "generate-prompts": {
       "cache": true,
-      "dependsOn": ["^topo"]
+      "dependsOn": [
+        "^topo"
+      ]
     },
     "i18n:check": {
       "cache": false,
-      "dependsOn": ["^i18n:check"],
-      "outputs": ["packages/i18n/locales/*.json"]
+      "dependsOn": [
+        "^i18n:check"
+      ],
+      "outputs": [
+        "packages/i18n/locales/*.json"
+      ]
     },
     "i18n:extract": {
       "cache": false,
-      "dependsOn": ["^i18n:extract"],
-      "outputs": ["packages/i18n/locales/en.json"]
+      "dependsOn": [
+        "^i18n:extract"
+      ],
+      "outputs": [
+        "packages/i18n/locales/en.json"
+      ]
     },
     "translate": {
-      "dependsOn": ["^translate"],
+      "dependsOn": [
+        "^translate"
+      ],
       "cache": false
     },
     "lint": {
-      "dependsOn": ["^topo"]
+      "dependsOn": [
+        "^topo"
+      ]
     },
     "format": {
-      "dependsOn": ["^topo"]
+      "dependsOn": [
+        "^topo"
+      ]
     },
     "typecheck": {
-      "dependsOn": ["^topo"],
+      "dependsOn": [
+        "^topo"
+      ],
       "inputs": [
         "src/**/*.ts",
         "src/**/*.tsx",
@@ -89,7 +137,10 @@
     },
     "release": {
       "cache": false,
-      "env": ["GH_TOKEN", "GITHUB_TOKEN"]
+      "env": [
+        "GH_TOKEN",
+        "GITHUB_TOKEN"
+      ]
     },
     "clean": {
       "cache": false

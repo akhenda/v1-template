@@ -12,10 +12,7 @@ export const generateMetadata = async ({ params }: BlogProps): Promise<Metadata>
   const { locale } = await params;
   const { t } = await initTranslations(locale);
 
-  return createMetadata({
-    title: t('Blog'),
-    description: t('Thoughts, ideas, and opinions.'),
-  });
+  return createMetadata({ title: t('Blog'), description: t('Thoughts, ideas, and opinions.') });
 };
 
 const BlogIndex = async ({ params }: BlogProps) => {

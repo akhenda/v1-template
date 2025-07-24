@@ -2,9 +2,19 @@
   "name": "@repo/cms",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./content-collections": "./dist/content-collections.js",
+    "./keys": "./keys.ts",
+    "./next-config": "./next-config.ts",
+    "./typescript-config.json": "./typescript-config.json",
+    "./components/*": "./components/*.tsx"
+  },
   "scripts": {
-    "dev": "content-collections build",
+    "dev:disabled": "content-collections build",
     "build": "content-collections build",
+    "bundle": "tsc --noEmit false",
     "analyze": "content-collections build",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
