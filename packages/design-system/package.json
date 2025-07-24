@@ -69,7 +69,7 @@
     "@udecode/cn": "48.0.3",
     "@udecode/plate": "48.0.5",
     "@udecode/plate-ai": "48.0.5",
-    "@udecode/plate-alignment": "48.0.0",
+    "@udecode/plate-alignment": "49.0.0",
     "@udecode/plate-autoformat": "48.0.0",
     "@udecode/plate-basic-elements": "48.0.0",
     "@udecode/plate-basic-marks": "48.0.0",
