@@ -1,4 +1,4 @@
-import { type Resource, createInstance, type i18n } from 'i18next';
+import { createInstance, type i18n, type Resource } from 'i18next';
 import { initReactI18next } from 'react-i18next/initReactI18next';
 
 import i18nConfig, { type SupportedLocale } from './config';

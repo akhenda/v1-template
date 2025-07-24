@@ -13,7 +13,7 @@
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "i18n:sync:disabled:use:translate:instead": "sync-i18n --files 'locales/*.json' --primary en --languages fr sw --space 2 --finalnewline true",
     "i18n:check": "bun run i18n:sync:disabled:use:translate:instead --check",
-    "i18n:extract": "NODE_ENV=development babel -f ./babel.config.js '../../{apps,packages}/!(node_modules|.git)**/*.{ts,tsx}' > /dev/null",
+    "i18n:extract": "NODE_ENV=development babel -f ./babel.config.js '../../{apps,packages}/**/*.{ts,tsx}' > /dev/null",
     "i18n:extract-and-sync:disabled:use:translate:instead": "bun run i18n:extract && bun run i18n:sync && git add locales",
     "translate": "npx -y languine@latest translate",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
@@ -28,13 +28,13 @@
   "devDependencies": {
     "@babel/cli": "7.27.0",
     "@babel/core": "7.26.10",
-    "@babel/preset-typescript": "7.27.0",
+    "@babel/preset-typescript": "7.27.1",
     "@repo/typescript-config": "workspace:*",
     "@types/negotiator": "0.6.3",
     "@types/node": "22.15.21",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.0",
-    "babel-plugin-i18next-extract": "1.0.0",
+    "babel-plugin-i18next-extract": "1.1.0",
     "i18next-json-sync": "3.1.2"
   }
 }

@@ -21,5 +21,18 @@ const plugins = () => {
 module.exports = function (api) {
   api.cache(true);
 
-  return { presets: ['@babel/preset-typescript'], plugins: plugins() };
+  return {
+    presets: ['@babel/preset-typescript'],
+    plugins: plugins(),
+    ignore: [
+      /node_modules/,
+      /dist/,
+      /generate/,
+      /public/,
+      /.turbo/,
+      /.next/,
+      /_generated/,
+      /.content-collections/,
+    ],
+  };
 };
