@@ -1,0 +1,31 @@
+{
+  "name": "extension",
+  "displayName": "Kaidoku Cars",
+  "version": "0.0.1",
+  "description": "Decode Japanese auction sheets — bid smarter.",
+  "author": "Kaidoku Cars Team",
+  "scripts": {
+    "dev": "plasmo dev",
+    "build": "plasmo build",
+    "package": "plasmo package"
+  },
+  "dependencies": {
+    "plasmo": "0.90.5",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "4.1.1",
+    "@types/chrome": "0.0.258",
+    "@types/node": "22.15.21",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
+    "prettier": "3.2.4",
+    "typescript": "5.8.3"
+  },
+  "manifest": {
+    "host_permissions": [
+      "https://*/*"
+    ]
+  }
+}
