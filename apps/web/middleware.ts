@@ -1,6 +1,6 @@
 import { type NextMiddleware, type NextRequest, NextResponse } from 'next/server';
 
-import { authMiddleware } from '@repo/auth/middleware';
+import { authMiddleware } from '@repo/auth/nextjs/middleware';
 import { i18nMiddleware } from '@repo/i18n/middleware';
 import { parseError } from '@repo/observability/error';
 import { secure } from '@repo/security';

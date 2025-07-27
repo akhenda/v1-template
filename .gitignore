@@ -282,3 +282,4 @@ packages/database/generated
 **/.content-collections
 **/.million
 .content-collections
+.serena

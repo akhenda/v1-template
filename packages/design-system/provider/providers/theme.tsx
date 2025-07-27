@@ -1,8 +1,5 @@
 'use client';
 
-import type { Prettify } from '@repo/types';
-import type { ThemeProviderProps } from 'next-themes';
-import { ThemeProvider as NextThemeProvider } from 'next-themes';
 import {
   type Dispatch,
   type PropsWithChildren,
@@ -12,7 +9,12 @@ import {
   useState,
 } from 'react';
 
-import { createCtx } from '../hooks/utils';
+import type { ThemeProviderProps } from 'next-themes';
+import { ThemeProvider as NextThemeProvider } from 'next-themes';
+
+import type { Prettify } from '@repo/types';
+
+import { createCtx } from '../../hooks/utils';
 
 const THEME_STORAGE_KEY = 'resume-moto-storage@theme';
 const GRADIENT_STORAGE_KEY = 'resume-moto-storage@gradient';

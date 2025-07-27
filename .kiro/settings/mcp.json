@@ -1,0 +1,161 @@
+{
+  "mcpServers": {
+    "fetch": {
+      "role": "On-Demand Fetch",
+      "description": "A Model Context Protocol server that provides web content fetching capabilities. This server enables LLMs to retrieve and process content from web pages, converting HTML to markdown for easier consumption.",
+      "command": "uvx",
+      "args": ["mcp-server-fetch"],
+      "env": {},
+      "disabled": true,
+      "autoApprove": []
+    },
+    "Ref": {
+      "role": "Docs",
+      "description": "A better Context7 replacemnt: An MCP server to stop hallucinations with lightning fast search over public and private documentation.",
+      "command": "npx",
+      "args": ["ref-tools-mcp@latest"],
+      "env": {
+        "REF_API_KEY": "${REF_API_KEY}"
+      },
+      "disabled": false,
+      "autoApprove": []
+    },
+    "serena": {
+      "role": "Code Indexing",
+      "description": "Serena is a powerful AI coding tool that acts as a coding agent, integrating with existing large language models (LLMs) to provide semantic code retrieval and editing capabilities directly on your codebase.",
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena-mcp-server",
+        "--context",
+        "ide-assistant",
+        "--project",
+        "/Users/hendaz/Projects/Sides/resume-moto"
+      ],
+      "env": {},
+      "disabled": false,
+      "autoApprove": []
+    },
+    "exa": {
+      "role": "Google Search",
+      "description": "Exa MCP Server enables AI assistants like Claude to perform real-time web searches through the Exa Search API, allowing them to access up-to-date information from the internet.",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.exa.ai/mcp?exaApiKey=${EXA_API_KEY}"
+      ],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "semgrep": {
+      "role": "Security",
+      "description": "A MCP server for using Semgrep to scan code for security vulnerabilities.",
+      "command": "uvx",
+      "args": ["semgrep-mcp"],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "Pieces": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "http://localhost:39300/model_context_protocol/2024-11-05/sse"
+      ],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "playwright": {
+      "role": "UI Dev Iteration",
+      "description": "A Model Context Protocol (MCP) server that provides browser automation capabilities using Playwright.",
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+      "disabled": true,
+      "autoApprove": []
+    },
+    "aws-docs": {
+      "command": "uvx",
+      "args": ["awslabs.aws-documentation-mcp-server@latest"],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "disabled": true,
+      "autoApprove": []
+    },
+    "Context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"],
+      "env": {},
+      "disabled": true,
+      "autoApprove": []
+    },
+    "@21st-dev/magic": {
+      "command": "npx",
+      "args": ["-y", "@21st-dev/magic@latest", "API_KEY='${MAGIC_API_KEY}'"],
+      "env": {},
+      "disabled": true,
+      "autoApprove": []
+    },
+    "git-cz": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--python",
+        "/Users/hendaz/Projects/AI/MCPServers/mcp-server-git-cz/.venv/bin/python",
+        "-m",
+        "mcp_server_git_cz"
+      ],
+      "env": {},
+      "transport": "stdio",
+      "disabled": true,
+      "autoApprove": []
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "your-token"
+      },
+      "disabled": true,
+      "autoApprove": []
+    },
+    "frontend": {
+      "command": "uvx",
+      "args": ["awslabs.frontend-mcp-server@latest"],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "disabled": true,
+      "autoApprove": []
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "disabled": true,
+      "autoApprove": []
+    },
+    "taskmaster": {
+      "command": "npx",
+      "args": ["-y", "task-master-ai"],
+      "remote": "https://api.taskmaster.ai/mcp",
+      "disabled": true,
+      "autoApprove": []
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "disabled": true,
+      "autoApprove": []
+    },
+    "magic": {
+      "command": "npx",
+      "args": ["-y", "@21st-dev/magic@latest"],
+      "remote": "https://magic.21st.dev/mcp",
+      "disabled": true,
+      "autoApprove": []
+    }
+  }
+}

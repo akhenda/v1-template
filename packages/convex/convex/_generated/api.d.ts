@@ -8,27 +8,31 @@
  * @module
  */
 
-import type * as billing from '../billing.js';
-import type * as crons from '../crons.js';
-import type * as env from '../env.js';
-import type * as http from '../http.js';
-import type * as httpNode from '../httpNode.js';
-import type * as init from '../init.js';
-import type * as libs_email_index from '../libs/email/index.js';
-import type * as libs_email_templates_subscriptionEmail from '../libs/email/templates/subscriptionEmail.js';
-import type * as libs_utils_analytics from '../libs/utils/analytics.js';
-import type * as libs_utils_logger from '../libs/utils/logger.js';
-import type * as libs_utils_objects from '../libs/utils/objects.js';
-import type * as libs_utils_rateLimiter from '../libs/utils/rateLimiter.js';
-import type * as libs_utils_strings from '../libs/utils/strings.js';
-import type * as libs_utils_validators from '../libs/utils/validators.js';
-import type * as messages from '../messages.js';
-import type * as model_index from '../model/index.js';
-import type * as model_users from '../model/users.js';
-import type * as users from '../users.js';
-import type * as web from '../web.js';
+import type * as billing from "../billing.js";
+import type * as crons from "../crons.js";
+import type * as env from "../env.js";
+import type * as http from "../http.js";
+import type * as httpNode from "../httpNode.js";
+import type * as init from "../init.js";
+import type * as libs_email_index from "../libs/email/index.js";
+import type * as libs_email_templates_subscriptionEmail from "../libs/email/templates/subscriptionEmail.js";
+import type * as libs_utils_analytics from "../libs/utils/analytics.js";
+import type * as libs_utils_logger from "../libs/utils/logger.js";
+import type * as libs_utils_objects from "../libs/utils/objects.js";
+import type * as libs_utils_rateLimiter from "../libs/utils/rateLimiter.js";
+import type * as libs_utils_strings from "../libs/utils/strings.js";
+import type * as libs_utils_validators from "../libs/utils/validators.js";
+import type * as messages from "../messages.js";
+import type * as model_index from "../model/index.js";
+import type * as model_users from "../model/users.js";
+import type * as users from "../users.js";
+import type * as web from "../web.js";
 
-import type { ApiFromModules, FilterApi, FunctionReference } from 'convex/server';
+import type {
+  ApiFromModules,
+  FilterApi,
+  FunctionReference,
+} from "convex/server";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -45,39 +49,42 @@ declare const fullApi: ApiFromModules<{
   http: typeof http;
   httpNode: typeof httpNode;
   init: typeof init;
-  'libs/email/index': typeof libs_email_index;
-  'libs/email/templates/subscriptionEmail': typeof libs_email_templates_subscriptionEmail;
-  'libs/utils/analytics': typeof libs_utils_analytics;
-  'libs/utils/logger': typeof libs_utils_logger;
-  'libs/utils/objects': typeof libs_utils_objects;
-  'libs/utils/rateLimiter': typeof libs_utils_rateLimiter;
-  'libs/utils/strings': typeof libs_utils_strings;
-  'libs/utils/validators': typeof libs_utils_validators;
+  "libs/email/index": typeof libs_email_index;
+  "libs/email/templates/subscriptionEmail": typeof libs_email_templates_subscriptionEmail;
+  "libs/utils/analytics": typeof libs_utils_analytics;
+  "libs/utils/logger": typeof libs_utils_logger;
+  "libs/utils/objects": typeof libs_utils_objects;
+  "libs/utils/rateLimiter": typeof libs_utils_rateLimiter;
+  "libs/utils/strings": typeof libs_utils_strings;
+  "libs/utils/validators": typeof libs_utils_validators;
   messages: typeof messages;
-  'model/index': typeof model_index;
-  'model/users': typeof model_users;
+  "model/index": typeof model_index;
+  "model/users": typeof model_users;
   users: typeof users;
   web: typeof web;
 }>;
 declare const fullApiWithMounts: typeof fullApi;
 
-export declare const api: FilterApi<typeof fullApiWithMounts, FunctionReference<any, 'public'>>;
+export declare const api: FilterApi<
+  typeof fullApiWithMounts,
+  FunctionReference<any, "public">
+>;
 export declare const internal: FilterApi<
   typeof fullApiWithMounts,
-  FunctionReference<any, 'internal'>
+  FunctionReference<any, "internal">
 >;
 
 export declare const components: {
   rateLimiter: {
     lib: {
       checkRateLimit: FunctionReference<
-        'query',
-        'internal',
+        "query",
+        "internal",
         {
           config:
             | {
                 capacity?: number;
-                kind: 'token bucket';
+                kind: "token bucket";
                 maxReserved?: number;
                 period: number;
                 rate: number;
@@ -85,7 +92,7 @@ export declare const components: {
               }
             | {
                 capacity?: number;
-                kind: 'fixed window';
+                kind: "fixed window";
                 maxReserved?: number;
                 period: number;
                 rate: number;
@@ -100,15 +107,20 @@ export declare const components: {
         },
         { ok: true; retryAfter?: number } | { ok: false; retryAfter: number }
       >;
-      clearAll: FunctionReference<'mutation', 'internal', { before?: number }, null>;
+      clearAll: FunctionReference<
+        "mutation",
+        "internal",
+        { before?: number },
+        null
+      >;
       rateLimit: FunctionReference<
-        'mutation',
-        'internal',
+        "mutation",
+        "internal",
         {
           config:
             | {
                 capacity?: number;
-                kind: 'token bucket';
+                kind: "token bucket";
                 maxReserved?: number;
                 period: number;
                 rate: number;
@@ -116,7 +128,7 @@ export declare const components: {
               }
             | {
                 capacity?: number;
-                kind: 'fixed window';
+                kind: "fixed window";
                 maxReserved?: number;
                 period: number;
                 rate: number;
@@ -132,21 +144,21 @@ export declare const components: {
         { ok: true; retryAfter?: number } | { ok: false; retryAfter: number }
       >;
       resetRateLimit: FunctionReference<
-        'mutation',
-        'internal',
+        "mutation",
+        "internal",
         { key?: string; name: string },
         null
       >;
     };
     public: {
       checkRateLimit: FunctionReference<
-        'query',
-        'internal',
+        "query",
+        "internal",
         {
           config:
             | {
                 capacity?: number;
-                kind: 'token bucket';
+                kind: "token bucket";
                 maxReserved?: number;
                 period: number;
                 rate: number;
@@ -154,7 +166,7 @@ export declare const components: {
               }
             | {
                 capacity?: number;
-                kind: 'fixed window';
+                kind: "fixed window";
                 maxReserved?: number;
                 period: number;
                 rate: number;
@@ -170,13 +182,13 @@ export declare const components: {
         { ok: true; retryAfter?: number } | { ok: false; retryAfter: number }
       >;
       rateLimit: FunctionReference<
-        'mutation',
-        'internal',
+        "mutation",
+        "internal",
         {
           config:
             | {
                 capacity?: number;
-                kind: 'token bucket';
+                kind: "token bucket";
                 maxReserved?: number;
                 period: number;
                 rate: number;
@@ -184,7 +196,7 @@ export declare const components: {
               }
             | {
                 capacity?: number;
-                kind: 'fixed window';
+                kind: "fixed window";
                 maxReserved?: number;
                 period: number;
                 rate: number;
@@ -200,8 +212,8 @@ export declare const components: {
         { ok: true; retryAfter?: number } | { ok: false; retryAfter: number }
       >;
       resetRateLimit: FunctionReference<
-        'mutation',
-        'internal',
+        "mutation",
+        "internal",
         { key?: string; name: string },
         null
       >;
@@ -210,8 +222,8 @@ export declare const components: {
   workflow: {
     journal: {
       load: FunctionReference<
-        'query',
-        'internal',
+        "query",
+        "internal",
         { workflowId: string },
         {
           inProgress: Array<{
@@ -221,14 +233,14 @@ export declare const components: {
               args: any;
               argsSize: number;
               completedAt?: number;
-              functionType: 'query' | 'mutation' | 'action';
+              functionType: "query" | "mutation" | "action";
               handle: string;
               inProgress: boolean;
               name: string;
               runResult?:
-                | { kind: 'success'; returnValue: any }
-                | { error: string; kind: 'failed' }
-                | { kind: 'canceled' };
+                | { kind: "success"; returnValue: any }
+                | { error: string; kind: "failed" }
+                | { kind: "canceled" };
               startedAt: number;
               workId?: string;
             };
@@ -242,21 +254,21 @@ export declare const components: {
               args: any;
               argsSize: number;
               completedAt?: number;
-              functionType: 'query' | 'mutation' | 'action';
+              functionType: "query" | "mutation" | "action";
               handle: string;
               inProgress: boolean;
               name: string;
               runResult?:
-                | { kind: 'success'; returnValue: any }
-                | { error: string; kind: 'failed' }
-                | { kind: 'canceled' };
+                | { kind: "success"; returnValue: any }
+                | { error: string; kind: "failed" }
+                | { kind: "canceled" };
               startedAt: number;
               workId?: string;
             };
             stepNumber: number;
             workflowId: string;
           }>;
-          logLevel: 'DEBUG' | 'TRACE' | 'INFO' | 'REPORT' | 'WARN' | 'ERROR';
+          logLevel: "DEBUG" | "TRACE" | "INFO" | "REPORT" | "WARN" | "ERROR";
           ok: boolean;
           workflow: {
             _creationTime: number;
@@ -267,9 +279,9 @@ export declare const components: {
             name?: string;
             onComplete?: { context?: any; fnHandle: string };
             runResult?:
-              | { kind: 'success'; returnValue: any }
-              | { error: string; kind: 'failed' }
-              | { kind: 'canceled' };
+              | { kind: "success"; returnValue: any }
+              | { error: string; kind: "failed" }
+              | { kind: "canceled" };
             startedAt?: any;
             state?: any;
             workflowHandle: string;
@@ -277,25 +289,27 @@ export declare const components: {
         }
       >;
       startStep: FunctionReference<
-        'mutation',
-        'internal',
+        "mutation",
+        "internal",
         {
           generationNumber: number;
           name: string;
-          retry?: boolean | { base: number; initialBackoffMs: number; maxAttempts: number };
+          retry?:
+            | boolean
+            | { base: number; initialBackoffMs: number; maxAttempts: number };
           schedulerOptions?: { runAt?: number } | { runAfter?: number };
           step: {
             args: any;
             argsSize: number;
             completedAt?: number;
-            functionType: 'query' | 'mutation' | 'action';
+            functionType: "query" | "mutation" | "action";
             handle: string;
             inProgress: boolean;
             name: string;
             runResult?:
-              | { kind: 'success'; returnValue: any }
-              | { error: string; kind: 'failed' }
-              | { kind: 'canceled' };
+              | { kind: "success"; returnValue: any }
+              | { error: string; kind: "failed" }
+              | { kind: "canceled" };
             startedAt: number;
             workId?: string;
           };
@@ -306,7 +320,7 @@ export declare const components: {
               initialBackoffMs: number;
               maxAttempts: number;
             };
-            logLevel?: 'DEBUG' | 'TRACE' | 'INFO' | 'REPORT' | 'WARN' | 'ERROR';
+            logLevel?: "DEBUG" | "TRACE" | "INFO" | "REPORT" | "WARN" | "ERROR";
             maxParallelism?: number;
             retryActionsByDefault?: boolean;
           };
@@ -318,14 +332,14 @@ export declare const components: {
             args: any;
             argsSize: number;
             completedAt?: number;
-            functionType: 'query' | 'mutation' | 'action';
+            functionType: "query" | "mutation" | "action";
             handle: string;
             inProgress: boolean;
             name: string;
             runResult?:
-              | { kind: 'success'; returnValue: any }
-              | { error: string; kind: 'failed' }
-              | { kind: 'canceled' };
+              | { kind: "success"; returnValue: any }
+              | { error: string; kind: "failed" }
+              | { kind: "canceled" };
             startedAt: number;
             workId?: string;
           };
@@ -335,25 +349,35 @@ export declare const components: {
       >;
     };
     workflow: {
-      cancel: FunctionReference<'mutation', 'internal', { workflowId: string }, null>;
-      cleanup: FunctionReference<'mutation', 'internal', { workflowId: string }, boolean>;
+      cancel: FunctionReference<
+        "mutation",
+        "internal",
+        { workflowId: string },
+        null
+      >;
+      cleanup: FunctionReference<
+        "mutation",
+        "internal",
+        { workflowId: string },
+        boolean
+      >;
       complete: FunctionReference<
-        'mutation',
-        'internal',
+        "mutation",
+        "internal",
         {
           generationNumber: number;
           now: number;
           runResult:
-            | { kind: 'success'; returnValue: any }
-            | { error: string; kind: 'failed' }
-            | { kind: 'canceled' };
+            | { kind: "success"; returnValue: any }
+            | { error: string; kind: "failed" }
+            | { kind: "canceled" };
           workflowId: string;
         },
         null
       >;
       create: FunctionReference<
-        'mutation',
-        'internal',
+        "mutation",
+        "internal",
         {
           maxParallelism?: number;
           onComplete?: { context?: any; fnHandle: string };
@@ -365,8 +389,8 @@ export declare const components: {
         string
       >;
       getStatus: FunctionReference<
-        'query',
-        'internal',
+        "query",
+        "internal",
         { workflowId: string },
         {
           inProgress: Array<{
@@ -376,21 +400,21 @@ export declare const components: {
               args: any;
               argsSize: number;
               completedAt?: number;
-              functionType: 'query' | 'mutation' | 'action';
+              functionType: "query" | "mutation" | "action";
               handle: string;
               inProgress: boolean;
               name: string;
               runResult?:
-                | { kind: 'success'; returnValue: any }
-                | { error: string; kind: 'failed' }
-                | { kind: 'canceled' };
+                | { kind: "success"; returnValue: any }
+                | { error: string; kind: "failed" }
+                | { kind: "canceled" };
               startedAt: number;
               workId?: string;
             };
             stepNumber: number;
             workflowId: string;
           }>;
-          logLevel: 'DEBUG' | 'TRACE' | 'INFO' | 'REPORT' | 'WARN' | 'ERROR';
+          logLevel: "DEBUG" | "TRACE" | "INFO" | "REPORT" | "WARN" | "ERROR";
           workflow: {
             _creationTime: number;
             _id: string;
@@ -400,9 +424,9 @@ export declare const components: {
             name?: string;
             onComplete?: { context?: any; fnHandle: string };
             runResult?:
-              | { kind: 'success'; returnValue: any }
-              | { error: string; kind: 'failed' }
-              | { kind: 'canceled' };
+              | { kind: "success"; returnValue: any }
+              | { error: string; kind: "failed" }
+              | { kind: "canceled" };
             startedAt?: any;
             state?: any;
             workflowHandle: string;
@@ -413,18 +437,23 @@ export declare const components: {
   };
   actionCache: {
     crons: {
-      purge: FunctionReference<'mutation', 'internal', { expiresAt?: number }, null>;
+      purge: FunctionReference<
+        "mutation",
+        "internal",
+        { expiresAt?: number },
+        null
+      >;
     };
     lib: {
       get: FunctionReference<
-        'query',
-        'internal',
+        "query",
+        "internal",
         { args: any; name: string; ttl: number | null },
-        { kind: 'hit'; value: any } | { expiredEntry?: string; kind: 'miss' }
+        { kind: "hit"; value: any } | { expiredEntry?: string; kind: "miss" }
       >;
       put: FunctionReference<
-        'mutation',
-        'internal',
+        "mutation",
+        "internal",
         {
           args: any;
           expiredEntry?: string;
@@ -434,10 +463,15 @@ export declare const components: {
         },
         null
       >;
-      remove: FunctionReference<'mutation', 'internal', { args: any; name: string }, null>;
+      remove: FunctionReference<
+        "mutation",
+        "internal",
+        { args: any; name: string },
+        null
+      >;
       removeAll: FunctionReference<
-        'mutation',
-        'internal',
+        "mutation",
+        "internal",
         { batchSize?: number; before?: number; name?: string },
         null
       >;
@@ -446,8 +480,8 @@ export declare const components: {
   polar: {
     lib: {
       createProduct: FunctionReference<
-        'mutation',
-        'internal',
+        "mutation",
+        "internal",
         {
           product: {
             createdAt: string;
@@ -487,17 +521,17 @@ export declare const components: {
               priceAmount?: number;
               priceCurrency?: string;
               productId: string;
-              recurringInterval?: 'month' | 'year' | null;
+              recurringInterval?: "month" | "year" | null;
               type?: string;
             }>;
-            recurringInterval?: 'month' | 'year' | null;
+            recurringInterval?: "month" | "year" | null;
           };
         },
         any
       >;
       createSubscription: FunctionReference<
-        'mutation',
-        'internal',
+        "mutation",
+        "internal",
         {
           subscription: {
             amount: number | null;
@@ -516,7 +550,7 @@ export declare const components: {
             modifiedAt: string | null;
             priceId?: string;
             productId: string;
-            recurringInterval: 'month' | 'year' | null;
+            recurringInterval: "month" | "year" | null;
             startedAt: string | null;
             status: string;
           };
@@ -524,8 +558,8 @@ export declare const components: {
         any
       >;
       getCurrentSubscription: FunctionReference<
-        'query',
-        'internal',
+        "query",
+        "internal",
         { userId: string },
         {
           amount: number | null;
@@ -581,26 +615,26 @@ export declare const components: {
               priceAmount?: number;
               priceCurrency?: string;
               productId: string;
-              recurringInterval?: 'month' | 'year' | null;
+              recurringInterval?: "month" | "year" | null;
               type?: string;
             }>;
-            recurringInterval?: 'month' | 'year' | null;
+            recurringInterval?: "month" | "year" | null;
           };
           productId: string;
-          recurringInterval: 'month' | 'year' | null;
+          recurringInterval: "month" | "year" | null;
           startedAt: string | null;
           status: string;
         } | null
       >;
       getCustomerByUserId: FunctionReference<
-        'query',
-        'internal',
+        "query",
+        "internal",
         { userId: string },
         { id: string; metadata?: Record<string, any>; userId: string } | null
       >;
       getProduct: FunctionReference<
-        'query',
-        'internal',
+        "query",
+        "internal",
         { id: string },
         {
           createdAt: string;
@@ -640,15 +674,15 @@ export declare const components: {
             priceAmount?: number;
             priceCurrency?: string;
             productId: string;
-            recurringInterval?: 'month' | 'year' | null;
+            recurringInterval?: "month" | "year" | null;
             type?: string;
           }>;
-          recurringInterval?: 'month' | 'year' | null;
+          recurringInterval?: "month" | "year" | null;
         } | null
       >;
       getSubscription: FunctionReference<
-        'query',
-        'internal',
+        "query",
+        "internal",
         { id: string },
         {
           amount: number | null;
@@ -667,20 +701,20 @@ export declare const components: {
           modifiedAt: string | null;
           priceId?: string;
           productId: string;
-          recurringInterval: 'month' | 'year' | null;
+          recurringInterval: "month" | "year" | null;
           startedAt: string | null;
           status: string;
         } | null
       >;
       insertCustomer: FunctionReference<
-        'mutation',
-        'internal',
+        "mutation",
+        "internal",
         { id: string; metadata?: Record<string, any>; userId: string },
         string
       >;
       listCustomerSubscriptions: FunctionReference<
-        'query',
-        'internal',
+        "query",
+        "internal",
         { customerId: string },
         Array<{
           amount: number | null;
@@ -699,14 +733,14 @@ export declare const components: {
           modifiedAt: string | null;
           priceId?: string;
           productId: string;
-          recurringInterval: 'month' | 'year' | null;
+          recurringInterval: "month" | "year" | null;
           startedAt: string | null;
           status: string;
         }>
       >;
       listProducts: FunctionReference<
-        'query',
-        'internal',
+        "query",
+        "internal",
         { includeArchived?: boolean },
         Array<{
           createdAt: string;
@@ -747,15 +781,15 @@ export declare const components: {
             priceAmount?: number;
             priceCurrency?: string;
             productId: string;
-            recurringInterval?: 'month' | 'year' | null;
+            recurringInterval?: "month" | "year" | null;
             type?: string;
           }>;
-          recurringInterval?: 'month' | 'year' | null;
+          recurringInterval?: "month" | "year" | null;
         }>
       >;
       listUserSubscriptions: FunctionReference<
-        'query',
-        'internal',
+        "query",
+        "internal",
         { userId: string },
         Array<{
           amount: number | null;
@@ -811,20 +845,20 @@ export declare const components: {
               priceAmount?: number;
               priceCurrency?: string;
               productId: string;
-              recurringInterval?: 'month' | 'year' | null;
+              recurringInterval?: "month" | "year" | null;
               type?: string;
             }>;
-            recurringInterval?: 'month' | 'year' | null;
+            recurringInterval?: "month" | "year" | null;
           } | null;
           productId: string;
-          recurringInterval: 'month' | 'year' | null;
+          recurringInterval: "month" | "year" | null;
           startedAt: string | null;
           status: string;
         }>
       >;
       updateProduct: FunctionReference<
-        'mutation',
-        'internal',
+        "mutation",
+        "internal",
         {
           product: {
             createdAt: string;
@@ -864,17 +898,17 @@ export declare const components: {
               priceAmount?: number;
               priceCurrency?: string;
               productId: string;
-              recurringInterval?: 'month' | 'year' | null;
+              recurringInterval?: "month" | "year" | null;
               type?: string;
             }>;
-            recurringInterval?: 'month' | 'year' | null;
+            recurringInterval?: "month" | "year" | null;
           };
         },
         any
       >;
       updateSubscription: FunctionReference<
-        'mutation',
-        'internal',
+        "mutation",
+        "internal",
         {
           subscription: {
             amount: number | null;
@@ -893,7 +927,7 @@ export declare const components: {
             modifiedAt: string | null;
             priceId?: string;
             productId: string;
-            recurringInterval: 'month' | 'year' | null;
+            recurringInterval: "month" | "year" | null;
             startedAt: string | null;
             status: string;
           };
@@ -901,8 +935,8 @@ export declare const components: {
         any
       >;
       upsertCustomer: FunctionReference<
-        'mutation',
-        'internal',
+        "mutation",
+        "internal",
         { id: string; metadata?: Record<string, any>; userId: string },
         string
       >;

@@ -28,7 +28,6 @@ export const useChat = () => {
       model: model.value,
     },
     // Mock the API response. Remove it when you implement the route /api/ai/command
-    // @ts-expect-error TODO: We'll come back to this
     fetch: async (input, init) => {
       const res = await fetch(input, init);
 

@@ -22,7 +22,7 @@ import {
   Trash2Icon,
 } from 'lucide-react';
 
-import { OrganizationSwitcher, UserButton } from '@repo/auth/client';
+import { OrganizationSwitcher, UserButton } from '@repo/auth/nextjs';
 import { ModeToggle } from '@repo/design-system/components/layout/mode-toggle';
 import { Button } from '@repo/design-system/components/ui/button';
 import {

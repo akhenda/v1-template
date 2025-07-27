@@ -1,16 +1,16 @@
 'use client';
 
-import { type ComponentProps, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { useTheme } from 'next-themes';
 
-import { ClerkProvider } from '@clerk/nextjs';
+import { ClerkProvider, type ClerkProviderProps } from '@clerk/clerk-react';
 import { dark } from '@clerk/themes';
 import type { Theme } from '@clerk/types';
 
-import ConvexClientProvider from './convex-client-provider';
+import ConvexClientProvider from '../convex/provider';
 
-type AuthProviderProps = ComponentProps<typeof ClerkProvider> & {
+type AuthProviderProps = ClerkProviderProps & {
   privacyUrl?: string;
   termsUrl?: string;
   helpUrl?: string;

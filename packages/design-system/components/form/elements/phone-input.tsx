@@ -1,7 +1,8 @@
-import { flag } from 'country-emoji';
-import { CheckIcon, ChevronsUpDown, PhoneIcon } from 'lucide-react';
 import * as React from 'react';
 import * as RPNInput from 'react-phone-number-input';
+
+import { flag } from 'country-emoji';
+import { CheckIcon, ChevronsUpDown, PhoneIcon } from 'lucide-react';
 
 import { cn } from '../../../lib/utils';
 import { Button } from '../../ui/button';

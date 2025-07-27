@@ -8,7 +8,7 @@ import { ConvexQueryCacheProvider } from 'convex-helpers/react/cache/provider';
 
 import { useAuth } from '@clerk/nextjs';
 
-import { keys } from './keys';
+import { keys } from '../../keys';
 
 const convex = new ConvexReactClient(keys().NEXT_PUBLIC_CONVEX_URL);
 

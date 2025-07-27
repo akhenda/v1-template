@@ -1,3 +1,5 @@
+import React, { useMemo, useState } from 'react';
+
 import i18nIsoCountries from 'i18n-iso-countries';
 import enCountries from 'i18n-iso-countries/langs/en.json';
 import {
@@ -5,7 +7,6 @@ import {
   type E164Number,
   parsePhoneNumberWithError,
 } from 'libphonenumber-js';
-import React, { useMemo, useState } from 'react';
 import ReactPhoneInput, { type Country } from 'react-phone-number-input/input';
 
 import { Input } from '../../../ui/input';

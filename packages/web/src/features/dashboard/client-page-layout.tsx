@@ -2,8 +2,8 @@
 
 import type { PropsWithChildren } from 'react';
 
-import { RedirectToSignIn } from '@repo/auth/client';
 import { ClerkLoading, SignedIn, SignedOut } from '@repo/auth/components';
+import { RedirectToSignIn } from '@repo/auth/nextjs';
 import { FullScreenLoader } from '@repo/design-system/components/full-screen-loader';
 
 export function ClientPageLayout({ children }: PropsWithChildren) {

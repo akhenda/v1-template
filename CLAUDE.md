@@ -5,6 +5,7 @@ This file provides context and rules for AI assistants working with this codebas
 ## 🎯 Project Overview
 
 **v1-template** is a production-ready full-stack SaaS template built on:
+
 - **Turborepo** monorepo structure
 - **Next.js 14** with TypeScript
 - **Convex** real-time backend
@@ -16,11 +17,13 @@ This file provides context and rules for AI assistants working with this codebas
 ## 🔧 Development Setup
 
 ### Required Tools
+
 - **Bun** - Package manager and runtime (use instead of npm/yarn)
 - **Node.js 18+** - Required for native tools
 - **PostgreSQL** - Database (Neon recommended for dev)
 
 ### Essential Commands
+
 ```bash
 # Development
 bun dev           # Start all services
@@ -47,7 +50,7 @@ bun dev:docs      # Documentation (3004)
 
 ## 📁 Repository Structure
 
-```
+```txt
 v1-template/
 ├── apps/
 │   ├── api/                 # Serverless functions & webhooks
@@ -75,7 +78,9 @@ v1-template/
 ### ✅ Always Use These Patterns
 
 #### 1. **Environment Variables**
+
 Use `@t3-oss/env-nextjs` for type-safe env variables:
+
 ```typescript
 import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
@@ -95,12 +100,13 @@ export const env = createEnv({
 ```
 
 #### 2. **Import Order** (Follow exactly)
+
 ```typescript
 // 1. URL imports
 // 2. Node.js built-ins (with node: prefix)
 // 3. Bun runtime
 // 4. React ecosystem
-// 5. Next.js ecosystem  
+// 5. Next.js ecosystem
 // 6. Convex ecosystem
 // 7. External packages
 // 8. Workspace packages
@@ -110,6 +116,7 @@ export const env = createEnv({
 ```
 
 #### 3. **Logging (Never console.log)**
+
 ```typescript
 // ❌ Never do this:
 console.log('Debug message');
@@ -120,6 +127,7 @@ logger.info('Debug message', { userId: '123' });
 ```
 
 #### 4. **Type Safety**
+
 ```typescript
 // ❌ Never use any:
 const data: any = someFunction();
@@ -130,6 +138,7 @@ const data: AnyValue = someFunction();
 ```
 
 #### 5. **String Templates**
+
 ```typescript
 // ❌ Never use string concatenation:
 const url = baseUrl + '/api/' + version + '/users';
@@ -139,6 +148,7 @@ const url = `${baseUrl}/api/${version}/users`;
 ```
 
 #### 6. **Error Handling**
+
 ```typescript
 // ✅ Use our standardized error types:
 import { AppError } from '@repo/errors';
@@ -163,6 +173,7 @@ try {
 ## 🎯 Convex Backend Guidelines
 
 ### Schema Definition
+
 ```typescript
 // Use proper Convex schema definition
 import { v } from 'convex/values';
@@ -180,6 +191,7 @@ export const User = v.object({
 ```
 
 ### Queries & Mutations
+
 ```typescript
 // Always use proper typing
 export const listUsers = query({
@@ -194,13 +206,16 @@ export const listUsers = query({
 ```
 
 ### Webhooks
+
 All webhooks are handled in `/packages/convex/convex/`:
+
 - `/webhooks/clerk/users` - User lifecycle events
 - `/webhooks/polar/events` - Payment & subscription events
 
 ## 🎯 Database Guidelines
 
 ### Drizzle Schema
+
 ```typescript
 // Use consistent naming and types
 export const users = pgTable('users', {
@@ -216,6 +231,7 @@ export type InsertUser = typeof users.$inferInsert;
 ```
 
 ### Migrations
+
 ```bash
 # Generate migration after schema changes
 bun db:generate
@@ -230,6 +246,7 @@ bun db:migrate
 ## 🎯 Styling Guidelines
 
 ### Tailwind Patterns
+
 ```typescript
 // Use cn() utility for conditional classes
 import { cn } from '@repo/design-system/lib/utils';
@@ -244,6 +261,7 @@ const buttonClass = cn(
 ```
 
 ### Component Structure
+
 ```typescript
 // Follow shadcn/ui patterns
 const Component = React.forwardRef<HTMLDivElement, ComponentProps>(
@@ -265,6 +283,7 @@ Component.displayName = 'Component';
 ## 🎯 Testing Guidelines
 
 ### Test Structure
+
 ```typescript
 import { describe, it, expect, vi } from 'vitest';
 
@@ -272,10 +291,10 @@ describe('UserService', () => {
   it('should create user successfully', async () => {
     // Arrange
     const mockData = { email: 'test@example.com' };
-    
+
     // Act
     const result = await createUser(mockData);
-    
+
     // Assert
     expect(result.success).toBe(true);
     expect(result.user.email).toBe(mockData.email);
@@ -284,6 +303,7 @@ describe('UserService', () => {
 ```
 
 ### Mocking Patterns
+
 ```typescript
 // Use proper mocking for external dependencies
 vi.mock('@repo/convex/client', () => ({
@@ -299,6 +319,7 @@ vi.mock('@repo/convex/client', () => ({
 ### Environment Variables by Environment
 
 #### Development
+
 ```bash
 # Core services
 DATABASE_URL=postgresql://localhost:5432/v1_template_dev
@@ -316,6 +337,7 @@ NEXT_PUBLIC_CONVEX_SITE_URL=https://dev-xxx.convex.site
 ```
 
 #### Production
+
 ```bash
 # Update all URLs to production domains
 DATABASE_URL=production_database_url
@@ -326,17 +348,20 @@ NEXT_PUBLIC_CONVEX_SITE_URL=https://prod-xxx.convex.site
 ### Webhook Configuration
 
 #### Clerk Webhooks
+
 - **URL**: `https://[CONVEX_SITE_URL]/webhooks/clerk/users`
 - **Events**: `user.created`, `user.deleted`, `user.updated`
 - **JWT Template**: Must include "metadata" claim: `"{{user.public_metadata}}"`
 
-#### Polar Webhooks  
+#### Polar Webhooks
+
 - **URL**: `https://[CONVEX_SITE_URL]/webhooks/polar/events`
 - **Events**: `subscription.created`, `subscription.updated`, `product.created`, `product.updated`
 
 ## 🎯 Common Tasks
 
 ### Adding a New Package
+
 ```bash
 # Create new package
 cd packages
@@ -350,6 +375,7 @@ bun init
 ```
 
 ### Creating a New Route
+
 ```typescript
 // In apps/[app]/app/api/new-route/route.ts
 import { NextRequest, NextResponse } from 'next/server';
@@ -366,7 +392,7 @@ export async function POST(request: NextRequest) {
 
     const data = await request.json();
     // ... processing logic
-    
+
     logger.info('Created new resource', { userId: user.id, resourceId: result.id });
     return NextResponse.json(result);
   } catch (error) {
@@ -377,6 +403,7 @@ export async function POST(request: NextRequest) {
 ```
 
 ### Adding Database Schema
+
 ```typescript
 // In packages/database/src/schema/
 export const newTable = pgTable('new_table', {
@@ -401,6 +428,7 @@ When generating code:
 5. **Check conventions** - Environment variables, imports, exports
 
 ### Before Contributing
+
 ```bash
 # Always run these before starting work
 bun lint           # Should pass without errors
@@ -409,6 +437,7 @@ bun test           # Should pass with existing tests
 ```
 
 ### File Naming Conventions
+
 - **Components**: `PascalCase.tsx` (e.g., `UserProfile.tsx`)
 - **Utilities**: `camelCase.ts` (e.g., `validateSchema.ts`)
 - **API Routes**: `kebab-case.ts` (e.g., `get-users.ts`)
@@ -416,26 +445,29 @@ bun test           # Should pass with existing tests
 
 ## 🔗 Quick Resources
 
-- **Convex**: https://docs.convex.dev
-- **Clerk**: https://clerk.com/docs
-- **Polar**: https://docs.polar.sh
-- **Tailwind**: https://tailwindcss.com/docs
-- **shadcn/ui**: https://ui.shadcn.com/docs
-- **Drizzle**: https://orm.drizzle.team/docs
+- **Convex**: <https://docs.convex.dev>
+- **Clerk**: <https://clerk.com/docs>
+- **Polar**: <https://docs.polar.sh>
+- **Tailwind**: <https://tailwindcss.com/docs>
+- **shadcn/ui**: <https://ui.shadcn.com/docs>
+- **Drizzle**: <https://orm.drizzle.team/docs>
 
 ## 🆘 Common Issues
 
 **"Convex not connecting"**
+
 - Check NEXT_PUBLIC_CONVEX_URL matches your deployment
-- Verify CONVEX_DEPLOYMENT is set correctly  
+- Verify CONVEX_DEPLOYMENT is set correctly
 - Run `bun convex dev` to sync schema
 
 **"TypeScript errors"**
+
 - Run `bun typecheck` to see specific errors
 - Check import paths vs build config
 - Verify type definitions from @repo/types
 
 **"Linting failures"**
+
 - Use `bun lint:fix --unsafe` for auto-fixes
 - Check for console.log and any types in new code
 - Ensure proper import ordering

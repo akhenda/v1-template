@@ -1,9 +1,11 @@
 'use client';
 
-import posthog, { type PostHog } from 'posthog-js';
-import { PostHogProvider as PostHogProviderRaw } from 'posthog-js/react';
 import type { ReactNode } from 'react';
 import { useEffect } from 'react';
+
+import posthog, { type PostHog } from 'posthog-js';
+import { PostHogProvider as PostHogProviderRaw } from 'posthog-js/react';
+
 import { keys } from '../keys';
 
 type PostHogProviderProps = { readonly children: ReactNode };

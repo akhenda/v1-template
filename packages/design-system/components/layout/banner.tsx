@@ -1,13 +1,13 @@
 'use client';
 
-import { ArrowRightIcon, Eclipse, RocketIcon, TicketPercent, XIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
+
+import { ArrowRightIcon, Eclipse, RocketIcon, TicketPercent, XIcon } from 'lucide-react';
 
 import type { PropsWithClassName } from '@repo/types';
 
 import { cn } from '../../lib/utils';
-import { useAppearanceContext } from '../../providers/theme';
-
+import { useAppearanceContext } from '../../provider/providers/theme';
 import { Button } from '../ui/button';
 
 type BannerProps = PropsWithClassName<{ type?: 'announcement' | 'sale' | 'feature' | 'basic' }>;
