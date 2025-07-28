@@ -6,6 +6,22 @@
       "@repo/design-system/*": ["./*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": [
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "hooks/**/*.ts",
+    "hooks/**/*.tsx",
+    "layouts/**/*.ts",
+    "layouts/**/*.tsx",
+    "lib/**/*.ts",
+    "lib/**/*.tsx",
+    "provider/**/*.ts",
+    "provider/**/*.tsx",
+    "styles/**/*.ts",
+    "styles/**/*.tsx",
+    "index.ts",
+    "index.tsx",
+    "keys.ts"
+  ],
   "exclude": ["node_modules"]
 }

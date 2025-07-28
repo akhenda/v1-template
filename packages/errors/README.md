@@ -14,11 +14,11 @@ This package provides a centralized and extensible error handling system for the
 
 The error system is designed with a clear and consistent hierarchy:
 
-1.  **`ErrorBase`**: An abstract base class that all other errors extend from. It captures the stack trace and provides a common foundation.
-2.  **`RequestError`**: An abstract class for all HTTP-related errors, extending `ErrorBase`. It introduces an abstract `code` property for HTTP status codes.
-3.  **Concrete Error Classes**: Specific error classes like `NotFoundError`, `BadRequestError`, etc., which extend `RequestError`.
-4.  **`ATSError`**: An abstract class for domain-specific errors related to the ATS (Applicant Tracking System), also extending `ErrorBase`.
-5.  **`ERROR_REGISTRY`**: A central registry that maps error names to their HTTP status codes, ensuring consistency.
+1. **`ErrorBase`**: An abstract base class that all other errors extend from. It captures the stack trace and provides a common foundation.
+2. **`RequestError`**: An abstract class for all HTTP-related errors, extending `ErrorBase`. It introduces an abstract `code` property for HTTP status codes.
+3. **Concrete Error Classes**: Specific error classes like `NotFoundError`, `BadRequestError`, etc., which extend `RequestError`.
+4. **`ATSError`**: An abstract class for domain-specific errors related to the ATS (Applicant Tracking System), also extending `ErrorBase`.
+5. **`ERROR_REGISTRY`**: A central registry that maps error names to their HTTP status codes, ensuring consistency.
 
 ## Available Errors
 
@@ -107,7 +107,7 @@ try {
 
 To create a new error type, follow these steps:
 
-1.  **Define the Error Class**: Create a new class that extends `RequestError` or `ATSError`.
+1. **Define the Error Class**: Create a new class that extends `RequestError` or `ATSError`.
 
     ```typescript
     // src/requests/my-custom-error.ts
@@ -119,7 +119,7 @@ To create a new error type, follow these steps:
     }
     ```
 
-2.  **Generate Utilities**: Use `createErrorUtilities` to generate the helper functions.
+2. **Generate Utilities**: Use `createErrorUtilities` to generate the helper functions.
 
     ```typescript
     import { createErrorUtilities } from '../utils';
@@ -127,7 +127,7 @@ To create a new error type, follow these steps:
     export const { is, assert, assertSimple } = createErrorUtilities(MyCustomError);
     ```
 
-3.  **Add to Registry**: Register the new error in `src/registry.ts`.
+3. **Add to Registry**: Register the new error in `src/registry.ts`.
 
     ```typescript
     export const ERROR_REGISTRY = {
@@ -136,14 +136,14 @@ To create a new error type, follow these steps:
     } as const;
     ```
 
-4.  **Export**: Export the new error and its utilities from the main `index.ts` files.
+4. **Export**: Export the new error and its utilities from the main `index.ts` files.
 
 ## Testing
 
 This package uses `vitest` for testing. To run the tests:
 
 ```bash
-bun test --filter=@repo/errors
+bun run test --filter=@repo/errors
 ```
 
 The test suite is designed to be comprehensive, covering the registry, utilities, and each error class to ensure reliability.

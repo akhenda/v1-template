@@ -7,7 +7,16 @@
   "scripts": {
     "dev": "plasmo dev",
     "build": "plasmo build",
-    "package": "plasmo package"
+    "package": "plasmo package",
+    "clean": "git clean -xdf .cache .turbo dist build .plasmo node_modules",
+    "format": "biome format --write .",
+    "lint": "biome check ./src",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:ui": "vitest --ui --watch",
+    "test:debug": "vitest --inspect-brk --no-file-parallelism",
+    "test:coverage": "vitest run --coverage --coverage.reporter=text",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
     "plasmo": "0.90.5",

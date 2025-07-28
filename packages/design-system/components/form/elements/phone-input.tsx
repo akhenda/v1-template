@@ -4,6 +4,8 @@ import * as RPNInput from 'react-phone-number-input';
 import { flag } from 'country-emoji';
 import { CheckIcon, ChevronsUpDown, PhoneIcon } from 'lucide-react';
 
+import type { AnyValue } from '@repo/types';
+
 import { cn } from '../../../lib/utils';
 import { Button } from '../../ui/button';
 import {
@@ -47,7 +49,8 @@ const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> = React.forwa
       [inputClassName],
     );
 
-    const MemoizedFlagComponent = React.useCallback(
+    // TODO: We should not be using any value
+    const MemoizedFlagComponent: AnyValue = React.useCallback(
       (props: React.ComponentProps<typeof FlagComponent>) => {
         return <FlagComponent className={flagClassName} {...props} />;
       },

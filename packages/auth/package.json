@@ -3,17 +3,40 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./*": "./libs/*/index.ts",
-    "./components": "./libs/shared/components/index.tsx",
-    "./components/*": "./libs/shared/components/*.tsx",
-    "./keys": "./keys.ts",
-    "./types": "./libs/shared/types.ts",
-    "./*/provider": "./libs/*/provider.tsx",
-    "./*/middleware": "./libs/*/middleware.ts"
+    "./*": {
+      "types": "./dist/libs/*/index.d.ts",
+      "default": "./libs/*/index.ts"
+    },
+    "./components": {
+      "types": "./dist/libs/shared/components/index.d.ts",
+      "default": "./libs/shared/components/index.tsx"
+    },
+    "./components/*": {
+      "types": "./dist/libs/shared/components/*.d.ts",
+      "default": "./libs/shared/components/*.tsx"
+    },
+    "./keys": {
+      "types": "./dist/keys.d.ts",
+      "default": "./keys.ts"
+    },
+    "./types": {
+      "types": "./dist/libs/shared/types.d.ts",
+      "default": "./libs/shared/types.ts"
+    },
+    "./*/provider": {
+      "types": "./dist/libs/*/provider.d.ts",
+      "default": "./libs/*/provider.tsx"
+    },
+    "./*/middleware": {
+      "types": "./dist/libs/*/middleware.d.ts",
+      "default": "./libs/*/middleware.ts"
+    }
   },
   "scripts": {
+    "build": "tsc --build",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+    "dev": "tsc",
+    "typecheck": "tsc --emitDeclarationOnly false"
   },
   "dependencies": {
     "@clerk/chrome-extension": "2.5.13",

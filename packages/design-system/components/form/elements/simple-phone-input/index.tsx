@@ -9,6 +9,8 @@ import {
 } from 'libphonenumber-js';
 import ReactPhoneInput, { type Country } from 'react-phone-number-input/input';
 
+import type { AnyValue } from '@repo/types';
+
 import { Input } from '../../../ui/input';
 
 import { ComboboxCountryInput } from './combobox';
@@ -25,7 +27,7 @@ export const PhoneInput = ({
   inputClassName?: string;
   inputContainerClassName?: string;
 }) => {
-  const MemoizedInput = useMemo(() => {
+  const MemoizedInput: AnyValue = useMemo(() => {
     return function PhoneInput(props: React.ComponentProps<typeof Input>) {
       return (
         <Input className={inputClassName} containerClassName={inputContainerClassName} {...props} />
