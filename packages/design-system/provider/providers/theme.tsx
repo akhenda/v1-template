@@ -85,29 +85,33 @@ type AppTheme = Prettify<{
   setSpacing: Dispatch<SetStateAction<Spacing>>;
 }>;
 
+const DEFAULT_SPACING: Spacing = 'compact';
+const DEFAULT_GRADIENT: Gradient = 'right';
+const DEFAULT_THEME: SupportedTheme = 'perpetuity';
+
 const [useAppearanceContext, AppearanceContextProvider] = createCtx<AppTheme>('AppearanceContext');
 
 function getSavedTheme(): SupportedTheme {
   try {
-    return (localStorage.getItem(THEME_STORAGE_KEY) as SupportedTheme) ?? 'tangerine';
+    return (localStorage.getItem(THEME_STORAGE_KEY) as SupportedTheme) ?? DEFAULT_THEME;
   } catch {
-    return 'tangerine';
+    return DEFAULT_THEME;
   }
 }
 
 function getSavedGradient(): Gradient {
   try {
-    return (localStorage.getItem(GRADIENT_STORAGE_KEY) as Gradient) ?? 'right';
+    return (localStorage.getItem(GRADIENT_STORAGE_KEY) as Gradient) ?? DEFAULT_GRADIENT;
   } catch {
-    return 'right';
+    return DEFAULT_GRADIENT;
   }
 }
 
 function getSavedSpacing(): Spacing {
   try {
-    return (localStorage.getItem(SPACING_STORAGE_KEY) as Spacing) ?? 'comfortable';
+    return (localStorage.getItem(SPACING_STORAGE_KEY) as Spacing) ?? DEFAULT_SPACING;
   } catch {
-    return 'comfortable';
+    return DEFAULT_SPACING;
   }
 }
 

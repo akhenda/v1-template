@@ -1,22 +1,21 @@
 import type { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 
+import { SignIn } from '@repo/auth/nextjs';
+import { Loader } from '@repo/design-system/components/loader';
 import { createMetadata } from '@repo/seo/metadata';
 
-const title = 'Welcome back';
-const description = 'Enter your details to sign in.';
-const SignIn = dynamic(() => import('@repo/auth/nextjs/components').then((mod) => mod.SignIn));
-
+const title = 'Sign In';
+const description = 'Sign in to your Kaidoku Cars account to manage your garage.';
 export const metadata: Metadata = createMetadata({ title, description });
 
-const SignInPage = () => (
-  <>
-    <div className="flex flex-col space-y-2 text-center">
-      <h1 className="font-semibold text-2xl tracking-tight">{title}</h1>
-      <p className="text-muted-foreground text-sm">{description}</p>
-    </div>
-    <SignIn />
-  </>
-);
-
-export default SignInPage;
+export default function SignInPage() {
+  return (
+    <SignIn
+      fallback={
+        <div className="flex h-80 w-80 items-center justify-center self-center">
+          <Loader className="h-8 w-8" />
+        </div>
+      }
+    />
+  );
+}

@@ -1,17 +1,20 @@
 'use client';
 
-import { useMemo } from 'react';
+import { type ComponentProps, useMemo } from 'react';
 
 import { useTheme } from 'next-themes';
 
 import { ClerkProvider } from '@clerk/chrome-extension';
-import type { ClerkProviderProps } from '@clerk/clerk-react';
 import { dark } from '@clerk/themes';
 import type { Theme } from '@clerk/types';
 
+import type { Prettify } from '@repo/types';
+
 import ConvexClientProvider from '../convex/extension-provider';
 
-export type AuthProviderProps = ClerkProviderProps & {
+type ChromeExtensionClerkProviderProps = Prettify<ComponentProps<typeof ClerkProvider>>;
+
+export type AuthProviderProps = ChromeExtensionClerkProviderProps & {
   privacyUrl?: string;
   termsUrl?: string;
   helpUrl?: string;

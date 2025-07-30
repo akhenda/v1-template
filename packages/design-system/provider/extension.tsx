@@ -11,7 +11,9 @@ import { ThemeProvider } from './providers/theme';
 
 import '@repo/analytics/posthog/extension';
 
-export type DesignSystemProviderProps = ThemeProviderProps & AuthProviderProps;
+import type { Prettify } from '@repo/types';
+
+export type DesignSystemProviderProps = Prettify<ThemeProviderProps & AuthProviderProps>;
 
 const queryClient = new QueryClient();
 
@@ -20,6 +22,7 @@ export const DesignSystemProvider = ({
   privacyUrl,
   termsUrl,
   helpUrl,
+  syncHost,
   publishableKey,
   afterSignOutUrl,
   signInFallbackRedirectUrl,
@@ -33,6 +36,7 @@ export const DesignSystemProvider = ({
           privacyUrl={privacyUrl}
           termsUrl={termsUrl}
           helpUrl={helpUrl}
+          syncHost={syncHost}
           publishableKey={publishableKey}
           afterSignOutUrl={afterSignOutUrl}
           signInFallbackRedirectUrl={signInFallbackRedirectUrl}

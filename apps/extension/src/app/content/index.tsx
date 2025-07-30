@@ -13,7 +13,7 @@ const ContentScriptUI = () => {
 };
 
 export default defineContentScript({
-  matches: ['<all_urls>'],
+  matches: ['https://www.github.com/*'],
   cssInjectionMode: 'ui',
 
   async main(ctx) {

@@ -8,6 +8,8 @@
       "default": "./libs/*/index.ts"
     },
     "./components": {
+      "import": "./dist/libs/*/components/index.js",
+      "require": "./dist/libs/*/components/index.js",
       "types": "./dist/libs/*/components/index.d.ts",
       "default": "./libs/*/components/index.tsx"
     },

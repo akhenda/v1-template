@@ -9,8 +9,8 @@ const Dashboard = dynamic(() =>
   import('@repo/web/features/dashboard/index').then((mod) => mod.Dashboard),
 );
 
-const title = 'Settings';
-const description = 'Manage your account settings.';
+const title = 'Dashboard';
+const description = "Here's an overview of...";
 export const metadata: Metadata = createMetadata({ title, description });
 
 export default Dashboard;

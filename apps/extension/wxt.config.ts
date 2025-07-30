@@ -1,24 +1,34 @@
 import tailwindcss from '@tailwindcss/vite';
 import svgr from 'vite-plugin-svgr';
-import { defineConfig, type WxtViteConfig } from 'wxt';
-
-const crxPubKey = 'imdhnmpcgpknkipjanmmlpelfinmeleb';
-const clerkFrontendUrl = 'https://magnetic-alien-35.clerk.accounts.dev';
+import { defineConfig, type UserManifest, type WxtViteConfig } from 'wxt';
 
 export default defineConfig({
-  manifest: {
-    name: '__MSG_extensionName__',
-    description: '__MSG_extensionDescription__',
-    default_locale: 'en',
-    key: crxPubKey,
-    permissions: ['cookies', 'storage', 'sidePanel', 'scripting'],
-    host_permissions: ['<all_urls>', 'http://localhost/*', `${clerkFrontendUrl}/*`],
+  manifest: () => {
+    const hostPermissions: UserManifest['host_permissions'] = [];
+    const dynamicManifest: UserManifest = { host_permissions: hostPermissions };
+
+    const crxPubKey = import.meta.env.WXT_CRX_PUBLIC_KEY;
+    const clerkFrontendUrl = import.meta.env.WXT_CLERK_FRONTEND_API;
+    const syncHost = import.meta.env.WXT_CLERK_SYNC_HOST;
+
+    if (crxPubKey) dynamicManifest.key = crxPubKey;
+    if (syncHost) hostPermissions.push(`${syncHost}/*`);
+    if (clerkFrontendUrl) hostPermissions.push(`${clerkFrontendUrl}/*`);
+
+    return {
+      name: '__MSG_extensionName__',
+      description: '__MSG_extensionDescription__',
+      default_locale: 'en',
+      permissions: ['cookies', 'storage', 'sidePanel', 'scripting'],
+      ...dynamicManifest,
+    };
   },
   srcDir: 'src',
   entrypointsDir: 'app',
   outDir: 'build',
   modules: ['@wxt-dev/module-react', '@wxt-dev/auto-icons'],
   imports: false,
+  dev: { server: { port: 3100 } },
   vite: () =>
     ({
       plugins: [svgr(), tailwindcss()],

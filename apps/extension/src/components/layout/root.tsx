@@ -10,25 +10,37 @@ import '~/assets/styles/globals.css';
 
 import { DesignSystemProvider } from '@repo/design-system/provider/extension';
 
+import config from '@@/app.config';
+
 type Props = Readonly<{
   loadingFallback?: ReactElement;
   errorFallback?: ReactElement;
   className?: string;
 }>;
 
-const PUBLISHABLE_KEY = import.meta.env.WXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+const SYNC_HOST = config.env.WXT_CLERK_SYNC_HOST;
+const PUBLISHABLE_KEY = config.env.WXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 const EXTENSION_URL = chrome.runtime.getURL('.');
 
-if (!PUBLISHABLE_KEY) {
-  throw new Error('Please add the WXT_PUBLIC_CLERK_PUBLISHABLE_KEY to the .env.local file');
+if (!PUBLISHABLE_KEY || !SYNC_HOST) {
+  throw new Error(
+    'Please add the WXT_PUBLIC_CLERK_PUBLISHABLE_KEY & WXT_CLERK_SYNC_HOST to the .env file',
+  );
 }
 
 export const RootLayout = ({ loadingFallback, errorFallback, className }: Props) => {
   const navigate = useNavigate();
 
+  // 👇 This state changes whenever background pushes an auth update
+  // const { token /*, userId*/ /* requestLatestToken */ } = useClerkAuthSubscription();
+
+  // If you want to re-check right before a network call:
+  // useEffect(() => { requestLatestToken(); }, []);
+
   return (
     <ErrorBoundary fallback={errorFallback}>
       <DesignSystemProvider
+        syncHost={SYNC_HOST}
         routerPush={(to) => navigate(to)}
         routerReplace={(to) => navigate(to, { replace: true })}
         publishableKey={PUBLISHABLE_KEY}
