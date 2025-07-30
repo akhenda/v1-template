@@ -1,18 +1,14 @@
 import type { ThemeProviderProps } from 'next-themes';
 
 import { AnalyticsProvider } from '@repo/analytics';
-import { AuthProvider } from '@repo/auth/nextjs/provider';
+import { AuthProvider, type AuthProviderProps } from '@repo/auth/nextjs/provider';
 
 import { Toaster } from '../components/ui/sonner';
 import { TooltipProvider } from '../components/ui/tooltip';
 
 import { ThemeProvider } from './providers/theme';
 
-type DesignSystemProviderProps = ThemeProviderProps & {
-  privacyUrl?: string;
-  termsUrl?: string;
-  helpUrl?: string;
-};
+export type DesignSystemProviderProps = ThemeProviderProps & AuthProviderProps;
 
 export const DesignSystemProvider = ({
   children,

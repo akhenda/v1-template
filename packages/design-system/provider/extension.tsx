@@ -1,48 +1,47 @@
 import type { ThemeProviderProps } from 'next-themes';
 
-import { AnalyticsProvider } from '@repo/analytics';
-import { AuthProvider } from '@repo/auth/extension/provider';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+import { AuthProvider, type AuthProviderProps } from '@repo/auth/extension/provider';
 
 import { Toaster } from '../components/ui/sonner';
 import { TooltipProvider } from '../components/ui/tooltip';
 
 import { ThemeProvider } from './providers/theme';
 
-type DesignSystemProviderProps = ThemeProviderProps & {
-  privacyUrl?: string;
-  termsUrl?: string;
-  helpUrl?: string;
-  clerkPublishableKey: string;
-  clerkAfterSignOutUrl?: string;
-  clerkSignInFallbackRedirectUrl?: string;
-  clerkSignUpFallbackRedirectUrl?: string;
-};
+import '@repo/analytics/posthog/extension';
+
+export type DesignSystemProviderProps = ThemeProviderProps & AuthProviderProps;
+
+const queryClient = new QueryClient();
 
 export const DesignSystemProvider = ({
   children,
   privacyUrl,
   termsUrl,
   helpUrl,
-  clerkPublishableKey,
-  clerkAfterSignOutUrl,
-  clerkSignInFallbackRedirectUrl,
-  clerkSignUpFallbackRedirectUrl,
+  publishableKey,
+  afterSignOutUrl,
+  signInFallbackRedirectUrl,
+  signUpFallbackRedirectUrl,
   ...props
-}: DesignSystemProviderProps) => (
-  <ThemeProvider {...props}>
-    <AuthProvider
-      privacyUrl={privacyUrl}
-      termsUrl={termsUrl}
-      helpUrl={helpUrl}
-      publishableKey={clerkPublishableKey}
-      afterSignOutUrl={clerkAfterSignOutUrl}
-      signInFallbackRedirectUrl={clerkSignInFallbackRedirectUrl}
-      signUpFallbackRedirectUrl={clerkSignUpFallbackRedirectUrl}
-    >
-      <AnalyticsProvider>
-        <TooltipProvider>{children}</TooltipProvider>
-        <Toaster />
-      </AnalyticsProvider>
-    </AuthProvider>
-  </ThemeProvider>
-);
+}: DesignSystemProviderProps) => {
+  return (
+    <ThemeProvider {...props}>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider
+          privacyUrl={privacyUrl}
+          termsUrl={termsUrl}
+          helpUrl={helpUrl}
+          publishableKey={publishableKey}
+          afterSignOutUrl={afterSignOutUrl}
+          signInFallbackRedirectUrl={signInFallbackRedirectUrl}
+          signUpFallbackRedirectUrl={signUpFallbackRedirectUrl}
+        >
+          <TooltipProvider>{children}</TooltipProvider>
+          <Toaster />
+        </AuthProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
+  );
+};

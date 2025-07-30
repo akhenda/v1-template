@@ -1,7 +1,10 @@
+/** biome-ignore-all lint/suspicious/noConsole: this is allowed in this file */
+
+import type { ReactNode } from 'react';
+
 import { type Logger as LogtailLogger, log as logtail } from '@logtail/next'; // For Prod
 import * as Sentry from '@sentry/nextjs'; // Use Sentry namespace
 import { type ConsolaInstance, consola } from 'consola'; // For Dev
-import type { ReactNode } from 'react';
 import { type ExternalToast, toast as sonnerToast } from 'sonner'; // Rename to avoid conflict
 
 import type { AnyValue } from '@repo/types';

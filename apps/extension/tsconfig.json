@@ -1,11 +1,26 @@
 {
-  "extends": "plasmo/templates/tsconfig.base",
-  "exclude": ["node_modules"],
-  "include": [".plasmo/index.d.ts", "./**/*.ts", "./**/*.tsx"],
+  "extends": "./.wxt/tsconfig.json",
   "compilerOptions": {
-    "paths": {
-      "~*": ["./src/*"]
-    },
-    "baseUrl": "."
-  }
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "ES2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+
+    "incremental": true,
+    "disableSourceOfProjectReferenceRedirect": true,
+
+    "noUncheckedIndexedAccess": true,
+    "checkJs": true,
+
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
+    "noEmit": true
+  },
+  "include": [".wxt/wxt.d.ts", "src", "*.ts", "*.js"],
+  "exclude": ["node_modules"]
 }

@@ -10,7 +10,7 @@ import type { Theme } from '@clerk/types';
 
 import ConvexClientProvider from '../convex/provider';
 
-type AuthProviderProps = ComponentProps<typeof ClerkProvider> & {
+export type AuthProviderProps = ComponentProps<typeof ClerkProvider> & {
   privacyUrl?: string;
   termsUrl?: string;
   helpUrl?: string;

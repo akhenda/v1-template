@@ -8,12 +8,12 @@
       "default": "./libs/*/index.ts"
     },
     "./components": {
-      "types": "./dist/libs/shared/components/index.d.ts",
-      "default": "./libs/shared/components/index.tsx"
+      "types": "./dist/libs/*/components/index.d.ts",
+      "default": "./libs/*/components/index.tsx"
     },
     "./components/*": {
-      "types": "./dist/libs/shared/components/*.d.ts",
-      "default": "./libs/shared/components/*.tsx"
+      "types": "./dist/libs/*/components/*.d.ts",
+      "default": "./libs/*/components/*.tsx"
     },
     "./keys": {
       "types": "./dist/keys.d.ts",

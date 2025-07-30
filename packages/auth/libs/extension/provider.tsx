@@ -9,9 +9,9 @@ import type { ClerkProviderProps } from '@clerk/clerk-react';
 import { dark } from '@clerk/themes';
 import type { Theme } from '@clerk/types';
 
-import ConvexClientProvider from '../convex/provider';
+import ConvexClientProvider from '../convex/extension-provider';
 
-type AuthProviderProps = ClerkProviderProps & {
+export type AuthProviderProps = ClerkProviderProps & {
   privacyUrl?: string;
   termsUrl?: string;
   helpUrl?: string;

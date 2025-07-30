@@ -1,0 +1,13 @@
+diff --git a/node_modules/math-intrinsics/package.json b/node_modules/math-intrinsics/package.json
+index 0676273..c214a97 100644
+--- a/node_modules/math-intrinsics/package.json
++++ b/node_modules/math-intrinsics/package.json
+@@ -2,7 +2,7 @@
+ 	"name": "math-intrinsics",
+ 	"version": "1.1.0",
+ 	"description": "ES Math-related intrinsics and helpers, robustly cached.",
+-	"main": false,
++	"main": "index.js",
+ 	"exports": {
+ 		"./abs": "./abs.js",
+ 		"./floor": "./floor.js",

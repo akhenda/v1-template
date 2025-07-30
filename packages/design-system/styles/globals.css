@@ -6,7 +6,7 @@
 @import "tw-animate-css";
 @source "../**/*.{ts,tsx}";
 @source "../../web/**/*.{ts,tsx}";
-@source "../../resume-engine/**/*.{ts,tsx}";
+@source "../../../apps/extro/**/*.{ts,tsx}";
 
 @plugin '@tailwindcss/typography';
 
