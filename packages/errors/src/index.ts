@@ -6,6 +6,7 @@
  */
 
 export * from './base';
+export * from './parser';
 export * from './registry';
 export * from './requests';
 export * from './utils';

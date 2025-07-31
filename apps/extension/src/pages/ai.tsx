@@ -56,7 +56,6 @@ const Chat = () => {
     },
   });
 
-  // @ts-expect-error TODO: findout why
   const form = useForm<z.infer<typeof promptSchema>>({ resolver: zodResolver(promptSchema) });
   const messagesToDisplay = messages.filter((message) =>
     ['assistant', 'user'].includes(message.role),
@@ -108,7 +107,6 @@ const Chat = () => {
         </div>
       </ScrollArea>
 
-      {/* @ts-expect-error TODO: findout why */}
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

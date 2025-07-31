@@ -15,8 +15,8 @@ describe('Error Registry', () => {
   it('should return the correct error code for a given error name', () => {
     expect(getErrorCode('NotFoundError')).toBe(404);
     expect(getErrorCode('BadRequestError')).toBe(400);
-    expect(getErrorCode('InvalidATSJSONPointerError')).toBe(400);
-    expect(getErrorCode('ATSError')).toBe(500);
+    expect(getErrorCode('ParserVerificationError')).toBe(400);
+    expect(getErrorCode('ParsingError')).toBe(500);
   });
 });
 

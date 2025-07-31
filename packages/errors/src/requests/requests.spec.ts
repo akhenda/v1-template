@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
-import { ERROR_REGISTRY } from './registry';
-import { RequestError } from './requests';
-import { RequestError as BaseRequestError } from './requests/base';
+import { ERROR_REGISTRY } from '../registry';
+
+import { RequestError as BaseRequestError } from './base';
+import { RequestError } from './index';
 
 type ErrorClass = new (message: string) => BaseRequestError;
 type IsErrorFn = (err: unknown) => boolean;

@@ -163,11 +163,12 @@ import './styles.css';
 **✅ PREFERRED PATTERNS:**
 
 ```typescript
-// Use proper error types
-import { AppError } from '@repo/errors';
+// Use proper error types from @repo/errors
+import { ParserError, ParserVerificationError } from '@repo/errors';
 
-// Throw meaningful errors
-throw new AppError('Invalid user input', { code: 'VALIDATION_ERROR' });
+// Throw meaningful errors with specific types
+throw new ParserError('Invalid resume format', originalError);
+throw new ParserVerificationError('Validation failed', ['Missing required field']);
 
 // Handle errors gracefully
 try {
@@ -175,8 +176,44 @@ try {
   return result;
 } catch (error) {
   logger.error('Operation failed', { error, context: additionalInfo });
-  throw new AppError('Operation failed', { cause: error });
+  throw new ParserError('Operation failed', error instanceof Error ? error : undefined);
 }
+```
+
+**🔧 MANDATORY: New Feature Error Creation Process**
+
+When implementing new features that require custom errors:
+
+1. **Create errors in `@repo/errors` package first**
+   - Follow the directory structure pattern (e.g., `packages/errors/src/parser/`)
+   - Create a base error class and specific error classes
+   - Include proper TypeScript typing with const assertions
+
+2. **Write comprehensive tests**
+   - Create `.spec.ts` files alongside error definitions
+   - Test error instantiation, inheritance, and properties
+   - Ensure 100% test coverage for error classes
+
+3. **Update the error registry**
+   - Add new error types to `packages/errors/src/registry.ts`
+   - Include appropriate HTTP status codes
+   - Update type definitions
+
+4. **Export from main index**
+   - Add exports to `packages/errors/src/index.ts`
+   - Ensure errors are available for import across the codebase
+
+**Example Structure:**
+
+```txt
+packages/errors/src/
+├── feature-name/
+│   ├── base.ts                    # Base error class
+│   ├── specificError.ts           # Specific error implementations
+│   ├── specificError.spec.ts      # Tests for each error
+│   └── index.ts                   # Feature exports
+├── registry.ts                    # Updated with new errors
+└── index.ts                       # Updated with feature export
 ```
 
 ### Type Safety
@@ -253,6 +290,35 @@ const [userProfile, userPreferences, userHistory] = await Promise.all([
 ```
 
 ## 🧪 Testing Standards
+
+### ⚠️ CRITICAL: Test Runner Command
+
+**ALWAYS use `bun run test` - NEVER use `bun test`**
+
+This is the most important rule for testing in this codebase:
+
+- ✅ **`bun run test`**: Runs Vitest via package.json script with full mocking support
+- ❌ **`bun test`**: Runs Bun's native test runner, which lacks Vitest mocking features
+
+**Why this matters:**
+
+- Using `bun test` will cause all Vitest mocking features to be undefined (`vi.mock`, `vi.hoisted`, etc.)
+- Tests that rely on mocking will fail with cryptic errors
+- This was the root cause of the "enable-skipped-tests" project issues
+
+**Examples:**
+
+```bash
+# ✅ Correct - runs Vitest with full mocking support
+bun run test
+bun run test --run path/to/test.ts
+bun run test:ui
+bun run test:coverage
+
+# ❌ Wrong - runs Bun's native test runner
+bun test
+bun test path/to/test.ts
+```
 
 ### Test Structure
 
@@ -413,6 +479,7 @@ function processUserInput(input: AnyValue) {
 
 Before submitting code for review, ensure:
 
+- [ ] **CRITICAL**: Used `bun run test` (NOT `bun test`) for running tests
 - [ ] No console.log statements (use logger instead)
 - [ ] No `any` types (use `AnyValue` instead)
 - [ ] Template literals used instead of string concatenation
