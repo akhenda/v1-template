@@ -2,8 +2,8 @@
   "name": "@repo/release",
   "version": "0.0.0",
   "private": true,
-  "main": "index.cjs",
   "sideEffects": false,
+  "main": "index.cjs",
   "scripts": {
     "format": "biome format --write .",
     "lint": "biome check ."

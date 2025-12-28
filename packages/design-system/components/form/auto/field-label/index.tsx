@@ -18,13 +18,10 @@ export function FormLabelComponent({ className, children, tooltip, markAsRequire
   );
 }
 
-const areEqual = (prevProps: Props, nextProps: Props) => {
-  return (
-    prevProps.className === nextProps.className &&
-    prevProps.children === nextProps.children &&
-    prevProps.tooltip === nextProps.tooltip &&
-    prevProps.markAsRequired === nextProps.markAsRequired
-  );
-};
+const areEqual = (prevProps: Props, nextProps: Props) =>
+  prevProps.className === nextProps.className &&
+  prevProps.children === nextProps.children &&
+  prevProps.tooltip === nextProps.tooltip &&
+  prevProps.markAsRequired === nextProps.markAsRequired;
 
 export const FormLabel = React.memo(FormLabelComponent, areEqual);

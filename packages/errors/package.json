@@ -1,7 +1,7 @@
 {
   "name": "@repo/errors",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "sideEffects": false,
   "exports": {
     ".": "./src/index.ts",
@@ -12,10 +12,10 @@
     "format": "biome format --write .",
     "lint": "biome check .",
     "test": "vitest",
+    "test:coverage": "vitest run --coverage --coverage.reporter=text",
+    "test:debug": "vitest --inspect-brk --no-file-parallelism",
     "test:run": "vitest run",
     "test:ui": "vitest --ui --watch",
-    "test:debug": "vitest --inspect-brk --no-file-parallelism",
-    "test:coverage": "vitest run --coverage --coverage.reporter=text",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {

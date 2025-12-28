@@ -41,9 +41,9 @@ export function InteractiveGridPattern({
 
   return (
     <svg
-      width={width * horizontal}
-      height={height * vertical}
       className={cn('absolute inset-0 h-full w-full border border-gray-400/30', className)}
+      height={height * vertical}
+      width={width * horizontal}
       {...props}
     >
       {Array.from({ length: horizontal * vertical }).map((_, index) => {
@@ -52,18 +52,18 @@ export function InteractiveGridPattern({
         return (
           // biome-ignore lint/a11y/noStaticElementInteractions: TODO: we'll fix later
           <rect
-            key={index}
-            x={x}
-            y={y}
-            width={width}
-            height={height}
             className={cn(
-              'stroke-gray-400/30 transition-all duration-100 ease-in-out [&:not(:hover)]:duration-1000',
+              'stroke-gray-400/30 transition-all duration-100 not-[&:hover]:duration-1000 ease-in-out',
               hoveredSquare === index ? 'fill-gray-300/30' : 'fill-transparent',
-              squaresClassName,
+              squaresClassName
             )}
+            height={height}
+            key={index}
             onMouseEnter={() => setHoveredSquare(index)}
             onMouseLeave={() => setHoveredSquare(null)}
+            width={width}
+            x={x}
+            y={y}
           />
         );
       })}

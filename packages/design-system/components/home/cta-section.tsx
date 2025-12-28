@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import type React from 'react';
+
+import { motion } from 'framer-motion';
 
 import { cn } from '../../lib/utils';
 
@@ -29,9 +30,9 @@ export function CTASection({
           <motion.h2
             className={cn('font-bold text-3xl tracking-tight sm:text-4xl', titleClassName)}
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            whileInView={{ opacity: 1, y: 0 }}
           >
             {title}
           </motion.h2>
@@ -39,9 +40,9 @@ export function CTASection({
             <motion.p
               className={cn('mt-4 text-lg', descriptionClassName)}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              whileInView={{ opacity: 1, y: 0 }}
             >
               {description}
             </motion.p>
@@ -49,9 +50,9 @@ export function CTASection({
           {cta && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              whileInView={{ opacity: 1, y: 0 }}
             >
               {cta}
             </motion.div>

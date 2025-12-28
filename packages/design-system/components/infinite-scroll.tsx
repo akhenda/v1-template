@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface InfiniteScrollProps {
+type InfiniteScrollProps = {
   isLoading: boolean;
   hasMore: boolean;
   next: () => unknown;
@@ -9,7 +9,7 @@ interface InfiniteScrollProps {
   rootMargin?: string;
   reverse?: boolean;
   children?: React.ReactNode;
-}
+};
 
 const logger = console;
 
@@ -31,7 +31,7 @@ export default function InfiniteScroll({
       let safeThreshold = threshold;
       if (threshold < 0 || threshold > 1) {
         logger.warn(
-          'threshold should be between 0 and 1. You are exceed the range. will use default value: 1',
+          'threshold should be between 0 and 1. You are exceed the range. will use default value: 1'
         );
         safeThreshold = 1;
       }
@@ -48,11 +48,11 @@ export default function InfiniteScroll({
         (entries) => {
           if (entries[0].isIntersecting && hasMore) next();
         },
-        { threshold: safeThreshold, root, rootMargin },
+        { threshold: safeThreshold, root, rootMargin }
       );
       observer.current.observe(element);
     },
-    [hasMore, isLoading, next, threshold, root, rootMargin],
+    [hasMore, isLoading, next, threshold, root, rootMargin]
   );
 
   const flattenChildren = React.useMemo(() => React.Children.toArray(children), [children]);
@@ -61,14 +61,17 @@ export default function InfiniteScroll({
     <>
       {flattenChildren.map((child, index) => {
         if (!React.isValidElement(child)) {
-          process.env.NODE_ENV === 'development' &&
+          if (process.env.NODE_ENV === 'development') {
             logger.warn('You should use a valid element with InfiniteScroll');
+          }
+
           return child;
         }
 
         const isObserveTarget = reverse ? index === 0 : index === flattenChildren.length - 1;
         const ref = isObserveTarget ? observerRef : null;
-        // @ts-ignore ignore ref type
+
+        // @ts-expect-error ignore ref type
         return React.cloneElement(child, { ref });
       })}
     </>

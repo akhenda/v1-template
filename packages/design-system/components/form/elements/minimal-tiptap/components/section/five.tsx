@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import {
   CaretDownIcon,
   CodeIcon,
@@ -7,7 +9,6 @@ import {
 } from '@radix-ui/react-icons';
 import type { Editor } from '@tiptap/react';
 import type { VariantProps } from 'class-variance-authority';
-import * as React from 'react';
 
 import type { toggleVariants } from '../../../../../ui/toggle';
 import type { FormatAction } from '../../types';
@@ -68,10 +69,8 @@ export const SectionFive: React.FC<SectionFiveProps> = ({
       <LinkEditPopover editor={editor} size={size} variant={variant} />
       {/* <ImageEditDialog editor={editor} size={size} variant={variant} /> */}
       <ToolbarSection
-        editor={editor}
         actions={formatActions}
         activeActions={activeActions}
-        mainActionCount={mainActionCount}
         dropdownIcon={
           <>
             <PlusIcon className="size-5" />
@@ -79,6 +78,8 @@ export const SectionFive: React.FC<SectionFiveProps> = ({
           </>
         }
         dropdownTooltip="Insert elements"
+        editor={editor}
+        mainActionCount={mainActionCount}
         size={size}
         variant={variant}
       />

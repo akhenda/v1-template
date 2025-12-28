@@ -2,9 +2,7 @@ import type { PropsWithChildren } from 'react';
 
 import { Toolbar } from '@repo/cms/components/toolbar';
 
-type LegalLayoutProps = PropsWithChildren;
-
-const LegalLayout = ({ children }: LegalLayoutProps) => (
+const LegalLayout = ({ children }: PropsWithChildren) => (
   <>
     {children}
     <Toolbar />

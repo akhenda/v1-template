@@ -1,52 +1,35 @@
+import { withThemeByClassName } from '@storybook/addon-themes';
+import type { Preview } from '@storybook/react';
+
 import { Toaster } from '@repo/design-system/components/ui/sonner';
 import { TooltipProvider } from '@repo/design-system/components/ui/tooltip';
 import { ThemeProvider } from '@repo/design-system/providers/theme';
-import { withThemeByClassName } from '@storybook/addon-themes';
-import type { Preview } from '@storybook/react';
 
 import '@repo/design-system/styles/globals.css';
 
 const preview: Preview = {
   parameters: {
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
-      },
-    },
+    controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } },
     chromatic: {
       modes: {
-        light: {
-          theme: 'light',
-          className: 'light',
-        },
-        dark: {
-          theme: 'dark',
-          className: 'dark',
-        },
+        light: { theme: 'light', className: 'light' },
+        dark: { theme: 'dark', className: 'dark' },
       },
     },
   },
   decorators: [
-    withThemeByClassName({
-      themes: {
-        light: 'light',
-        dark: 'dark',
-      },
-      defaultTheme: 'light',
-    }),
-    (Story) => {
-      return (
-        <div className="bg-background">
-          <ThemeProvider>
-            <TooltipProvider>
-              <Story />
-            </TooltipProvider>
-            <Toaster />
-          </ThemeProvider>
-        </div>
-      );
-    },
+    withThemeByClassName({ themes: { light: 'light', dark: 'dark' }, defaultTheme: 'light' }),
+    // biome-ignore lint/suspicious/noExplicitAny: TODO: fix later
+    (Story: any) => (
+      <div className="bg-background">
+        <ThemeProvider>
+          <TooltipProvider>
+            <Story />
+          </TooltipProvider>
+          <Toaster />
+        </ThemeProvider>
+      </div>
+    ),
   ],
 };
 

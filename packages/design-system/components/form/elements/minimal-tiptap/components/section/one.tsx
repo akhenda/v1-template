@@ -1,8 +1,9 @@
+import * as React from 'react';
+
 import { CaretDownIcon, LetterCaseCapitalizeIcon } from '@radix-ui/react-icons';
 import type { Level } from '@tiptap/extension-heading';
 import type { Editor } from '@tiptap/react';
 import type { VariantProps } from 'class-variance-authority';
-import * as React from 'react';
 
 import { cn } from '../../../../../../lib/utils';
 import {
@@ -78,7 +79,7 @@ export const SectionOne: React.FC<SectionOneProps> = React.memo(
   ({ editor, activeLevels = [1, 2, 3, 4, 5, 6], size, variant }) => {
     const filteredActions = React.useMemo(
       () => formatActions.filter((action) => !action.level || activeLevels.includes(action.level)),
-      [activeLevels],
+      [activeLevels]
     );
 
     const handleStyleChange = React.useCallback(
@@ -86,39 +87,39 @@ export const SectionOne: React.FC<SectionOneProps> = React.memo(
         if (level) editor.chain().focus().toggleHeading({ level }).run();
         else editor.chain().focus().setParagraph().run();
       },
-      [editor],
+      [editor]
     );
 
     const renderMenuItem = React.useCallback(
       ({ label, element: Element, level, className, shortcuts }: TextStyle) => (
         <DropdownMenuItem
-          key={label}
-          onClick={() => handleStyleChange(level)}
+          aria-label={label}
           className={cn('flex flex-row items-center justify-between gap-4', {
             'bg-accent': level
               ? editor.isActive('heading', { level })
               : editor.isActive('paragraph'),
           })}
-          aria-label={label}
+          key={label}
+          onClick={() => handleStyleChange(level)}
         >
           <Element className={className}>{label}</Element>
           <ShortcutKey keys={shortcuts} />
         </DropdownMenuItem>
       ),
-      [editor, handleStyleChange],
+      [editor, handleStyleChange]
     );
 
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <ToolbarButton
-            isActive={editor.isActive('heading')}
-            tooltip="Text styles"
             aria-label="Text styles"
-            pressed={editor.isActive('heading')}
             className="w-12"
             disabled={editor.isActive('codeBlock')}
+            isActive={editor.isActive('heading')}
+            pressed={editor.isActive('heading')}
             size={size}
+            tooltip="Text styles"
             variant={variant}
           >
             <LetterCaseCapitalizeIcon className="size-5" />
@@ -130,7 +131,7 @@ export const SectionOne: React.FC<SectionOneProps> = React.memo(
         </DropdownMenuContent>
       </DropdownMenu>
     );
-  },
+  }
 );
 
 SectionOne.displayName = 'SectionOne';

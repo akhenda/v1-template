@@ -1,8 +1,13 @@
-import { type Logger as LogtailLogger, log as logtail } from '@logtail/next'; // For Prod
-import * as Sentry from '@sentry/nextjs'; // Use Sentry namespace
-import { type ConsolaInstance, consola } from 'consola'; // For Dev
+/** biome-ignore-all lint/suspicious/noConsole: allowed in this context */
 import type { ReactNode } from 'react';
-import { type ExternalToast, toast as sonnerToast } from 'sonner'; // Rename to avoid conflict
+
+import type { Logger as LogtailLogger } from '@logtail/next'; // For Prod
+import { log as logtail } from '@logtail/next'; // For Prod
+import * as Sentry from '@sentry/nextjs'; // Use Sentry namespace
+import type { ConsolaInstance } from 'consola'; // For Dev
+import { consola } from 'consola'; // For Dev
+import type { ExternalToast } from 'sonner'; // Rename to avoid conflict
+import { toast as sonnerToast } from 'sonner'; // Rename to avoid conflict
 
 import type { AnyValue } from '@repo/types';
 
@@ -17,9 +22,7 @@ const isClient = typeof window !== 'undefined';
 // --- Types ---
 
 // Type for the object returned by log methods, enabling chaining
-interface LogResult {
-  toast: (message?: string | ReactNode, options?: ExternalToast) => void;
-}
+type LogResult = { toast: (message?: string | ReactNode, options?: ExternalToast) => void };
 
 // --- Sentry Reporting Helper ---
 
@@ -34,7 +37,7 @@ function reportErrorToSentry(level: LogLevel, message: string, optionalParams: A
     try {
       // Capture the exception with additional context if available
       const sentryId = Sentry.captureException(errorInstance, {
-        level: level, // Sentry understands 'error' and 'fatal'
+        level, // Sentry understands 'error' and 'fatal'
         extra: {
           logMessage: message,
           // Add non-Error optionalParams as extra context
@@ -75,7 +78,7 @@ type LogFunctionMap = Partial<Record<LogLevel, (...args: AnyValue[]) => void>>;
 // Helper to create bound function maps
 function createBoundMap(
   loggerInstance: AnyValue,
-  levelMap: Partial<Record<LogLevel, keyof typeof loggerInstance>>,
+  levelMap: Partial<Record<LogLevel, keyof typeof loggerInstance>>
 ): LogFunctionMap {
   const boundMap: LogFunctionMap = {};
   for (const level in levelMap) {

@@ -33,7 +33,7 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
 
   const memoizedColor = useMemo(() => {
-    const toRGBA = (color: string) => {
+    const toRGBA = (_color: string) => {
       if (typeof window === 'undefined') return 'rgba(0, 0, 0,';
 
       const canvas = document.createElement('canvas');
@@ -42,7 +42,7 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 
       if (!ctx) return 'rgba(255, 0, 0,';
 
-      ctx.fillStyle = color;
+      ctx.fillStyle = _color;
       ctx.fillRect(0, 0, 1, 1);
 
       const [r, g, b] = Array.from(ctx.getImageData(0, 0, 1, 1).data);
@@ -54,14 +54,16 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
   }, [color]);
 
   const setupCanvas = useCallback(
-    (canvas: HTMLCanvasElement, width: number, height: number) => {
+    (canvas: HTMLCanvasElement, w: number, h: number) => {
       const dpr = window.devicePixelRatio || 1;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
-      const cols = Math.floor(width / (squareSize + gridGap));
-      const rows = Math.floor(height / (squareSize + gridGap));
+
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+
+      const cols = Math.floor(w / (squareSize + gridGap));
+      const rows = Math.floor(h / (squareSize + gridGap));
 
       const squares = new Float32Array(cols * rows);
 
@@ -71,7 +73,7 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 
       return { cols, rows, squares, dpr };
     },
-    [squareSize, gridGap, maxOpacity],
+    [squareSize, gridGap, maxOpacity]
   );
 
   const updateSquares = useCallback(
@@ -82,22 +84,23 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
         }
       }
     },
-    [flickerChance, maxOpacity],
+    [flickerChance, maxOpacity]
   );
 
   const drawGrid = useCallback(
+    // biome-ignore lint/nursery/useMaxParams: needed
     (
       ctx: CanvasRenderingContext2D,
-      width: number,
-      height: number,
+      w: number,
+      h: number,
       cols: number,
       rows: number,
       squares: Float32Array,
-      dpr: number,
+      dpr: number
     ) => {
-      ctx.clearRect(0, 0, width, height);
+      ctx.clearRect(0, 0, w, h);
       ctx.fillStyle = 'transparent';
-      ctx.fillRect(0, 0, width, height);
+      ctx.fillRect(0, 0, w, h);
 
       for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
@@ -107,12 +110,12 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
             i * (squareSize + gridGap) * dpr,
             j * (squareSize + gridGap) * dpr,
             squareSize * dpr,
-            squareSize * dpr,
+            squareSize * dpr
           );
         }
       }
     },
-    [memoizedColor, squareSize, gridGap],
+    [memoizedColor, squareSize, gridGap]
   );
 
   useEffect(() => {
@@ -150,7 +153,7 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
         gridParams.cols,
         gridParams.rows,
         gridParams.squares,
-        gridParams.dpr,
+        gridParams.dpr
       );
       animationFrameId = requestAnimationFrame(animate);
     };
@@ -165,7 +168,7 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
       ([entry]) => {
         setIsInView(entry.isIntersecting);
       },
-      { threshold: 0 },
+      { threshold: 0 }
     );
 
     intersectionObserver.observe(canvas);
@@ -180,10 +183,10 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
   }, [setupCanvas, updateSquares, drawGrid, width, height, isInView]);
 
   return (
-    <div ref={containerRef} className={cn(`h-full w-full ${className}`)} {...props}>
+    <div className={cn(`h-full w-full ${className}`)} ref={containerRef} {...props}>
       <canvas
-        ref={canvasRef}
         className="pointer-events-none"
+        ref={canvasRef}
         style={{ width: canvasSize.width, height: canvasSize.height }}
       />
     </div>

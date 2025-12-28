@@ -1,17 +1,24 @@
 {
-  "css.customData": [".vscode/css_custom_data.json"],
+  "prettier.enable": false,
+  "eslint.enable": false,
+  "biome.enabled": true,
 
   "editor.formatOnSave": true,
   "editor.formatOnPaste": false,
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "editor.insertSpaces": true,
-  "editor.defaultFormatter": "biomejs.biome",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "emmet.showExpandedAbbreviation": "never",
+
   "editor.codeActionsOnSave": {
-    "source.addMissingImports": "explicit",
-    "quickfix.biome": "explicit",
-    "source.organizeImports.biome": "explicit"
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit",
+    "source.sortMembers": "explicit",
+    "source.fixAll.biome": "explicit",
+    "source.organizeImports.biome": "explicit",
+
+    "source.addMissingImports": "explicit"
   },
 
   "files.eol": "\n",
@@ -21,25 +28,30 @@
     "*.css": "tailwindcss"
   },
 
-  "prettier.enable": false,
-
   "search.exclude": {
     "**/node_modules": true,
     "yarn.lock": true,
     "pnpm-lock.yaml": true,
-    "bun.lockb": true
+    "bun.lockb": true,
+    "bun.lock": true
   },
 
+  "css.customData": [".vscode/tailwind.json"],
+  "scss.lint.unknownAtRules": "ignore",
+
   "tailwindCSS.experimental.configFile": "packages/design-system/styles/globals.css",
+  "tailwindCSS.experimental.classRegex": [
+    ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
+  "tailwindCSS.classAttributes": ["class", "className", "headerClassName"],
+
   "terminal.integrated.localEchoStyle": "dim",
+
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.preferences.autoImportFileExcludePatterns": [
     "next/router.d.ts",
     "next/dist/client/router.d.ts"
-  ],
-  "tailwindCSS.experimental.classRegex": [
-    ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ],
 
   "[dotenv]": {
@@ -55,7 +67,7 @@
     "editor.defaultFormatter": "biomejs.biome"
   },
   "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "biomejs.biome"
@@ -78,10 +90,19 @@
   "[typescript]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
   "[typescriptreact]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[graphql]": {
+    "editor.defaultFormatter": "biomejs.biome"
   }
 }

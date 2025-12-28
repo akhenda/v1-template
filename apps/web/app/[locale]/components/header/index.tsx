@@ -51,7 +51,7 @@ export const Header = () => {
                 <NavigationMenuItem key={item.title}>
                   {item.href ? (
                     <NavigationMenuLink asChild>
-                      <Button variant="ghost" asChild>
+                      <Button asChild variant="ghost">
                         <Link href={item.href}>{item.title}</Link>
                       </Button>
                     </NavigationMenuLink>
@@ -60,23 +60,23 @@ export const Header = () => {
                       <NavigationMenuTrigger className="font-medium text-sm">
                         {item.title}
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent className="!w-[450px] p-4">
+                      <NavigationMenuContent className="w-112.5! p-4">
                         <div className="flex grid-cols-2 flex-col gap-4 lg:grid">
                           <div className="flex h-full flex-col justify-between">
                             <div className="flex flex-col">
                               <p className="text-base">{item.title}</p>
                               <p className="text-muted-foreground text-sm">{item.description}</p>
                             </div>
-                            <Button size="sm" className="mt-10" asChild>
+                            <Button asChild className="mt-10" size="sm">
                               <Link href="/contact">{t('Book a call')}</Link>
                             </Button>
                           </div>
                           <div className="flex h-full flex-col justify-end text-sm">
                             {item.items?.map((subItem, idx) => (
                               <NavigationMenuLink
+                                className="flex flex-row items-center justify-between rounded px-4 py-2 hover:bg-muted"
                                 href={subItem.href}
                                 key={idx}
-                                className="flex flex-row items-center justify-between rounded px-4 py-2 hover:bg-muted"
                               >
                                 <span>{subItem.title}</span>
                                 <MoveRight className="h-4 w-4 text-muted-foreground" />
@@ -93,11 +93,11 @@ export const Header = () => {
           </NavigationMenu>
         </div>
         <div className="flex items-center gap-2 lg:justify-center">
-          <Image src="./logo.svg" alt="Logo" width={24} height={24} className="dark:invert" />
+          <Image alt="Logo" className="dark:invert" height={24} src="./logo.svg" width={24} />
           <p className="whitespace-nowrap font-semibold">next-forge</p>
         </div>
         <div className="flex w-full justify-end gap-4">
-          <Button variant="ghost" className="hidden md:inline" asChild>
+          <Button asChild className="hidden md:inline" variant="ghost">
             <Link href="/contact">{t('Contact')}</Link>
           </Button>
           <div className="hidden border-r md:inline" />
@@ -107,7 +107,7 @@ export const Header = () => {
           <div className="hidden md:inline">
             <ModeToggle />
           </div>
-          <Button variant="outline" asChild className="hidden md:inline">
+          <Button asChild className="hidden md:inline" variant="outline">
             <Link href={`${env.NEXT_PUBLIC_APP_URL}/sign-in`}>{t('Sign in')}</Link>
           </Button>
           <Button asChild>
@@ -115,7 +115,7 @@ export const Header = () => {
           </Button>
         </div>
         <div className="flex w-12 shrink items-end justify-end lg:hidden">
-          <Button variant="ghost" onClick={() => setOpen(!isOpen)}>
+          <Button onClick={() => setOpen(!isOpen)} variant="ghost">
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
           {isOpen && (
@@ -125,10 +125,10 @@ export const Header = () => {
                   <div className="flex flex-col gap-2">
                     {item.href ? (
                       <Link
-                        href={item.href}
                         className="flex items-center justify-between"
-                        target={item.href.startsWith('http') ? '_blank' : undefined}
+                        href={item.href}
                         rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        target={item.href.startsWith('http') ? '_blank' : undefined}
                       >
                         <span className="text-lg">{item.title}</span>
                         <MoveRight className="h-4 w-4 stroke-1 text-muted-foreground" />
@@ -138,9 +138,9 @@ export const Header = () => {
                     )}
                     {item.items?.map((subItem) => (
                       <Link
-                        key={subItem.title}
-                        href={subItem.href}
                         className="flex items-center justify-between"
+                        href={subItem.href}
+                        key={subItem.title}
                       >
                         <span className="text-muted-foreground">{subItem.title}</span>
                         <MoveRight className="h-4 w-4 stroke-1" />

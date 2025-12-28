@@ -12,7 +12,7 @@ import { env } from '@/env';
 export const contact = async (
   name: string,
   email: string,
-  message: string,
+  message: string
 ): Promise<{
   error?: string;
 }> => {
@@ -36,7 +36,7 @@ export const contact = async (
       to: env.RESEND_FROM,
       subject: 'Contact form submission',
       replyTo: email,
-      react: <ContactTemplate name={name} email={email} message={message} />,
+      react: <ContactTemplate email={email} message={message} name={name} />,
     });
 
     return {};

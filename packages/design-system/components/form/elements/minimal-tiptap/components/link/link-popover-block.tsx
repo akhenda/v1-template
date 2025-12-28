@@ -1,14 +1,15 @@
-import { CopyIcon, ExternalLinkIcon, LinkBreak2Icon } from '@radix-ui/react-icons';
 import * as React from 'react';
+
+import { CopyIcon, ExternalLinkIcon, LinkBreak2Icon } from '@radix-ui/react-icons';
 
 import { Separator } from '../../../../../ui/separator';
 import { ToolbarButton } from '../toolbar-button';
 
-interface LinkPopoverBlockProps {
+type LinkPopoverBlockProps = {
   url: string;
   onClear: () => void;
   onEdit: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}
+};
 
 export const LinkPopoverBlock: React.FC<LinkPopoverBlockProps> = ({ url, onClear, onEdit }) => {
   const [copyTitle, setCopyTitle] = React.useState<string>('Copy');
@@ -24,7 +25,7 @@ export const LinkPopoverBlock: React.FC<LinkPopoverBlockProps> = ({ url, onClear
         })
         .catch(console.error);
     },
-    [url],
+    [url]
   );
 
   const handleOpenLink = React.useCallback(() => {
@@ -34,21 +35,21 @@ export const LinkPopoverBlock: React.FC<LinkPopoverBlockProps> = ({ url, onClear
   return (
     <div className="flex h-10 overflow-hidden rounded bg-background p-2 shadow-lg">
       <div className="inline-flex items-center gap-1">
-        <ToolbarButton tooltip="Edit link" onClick={onEdit} className="w-auto px-2">
+        <ToolbarButton className="w-auto px-2" onClick={onEdit} tooltip="Edit link">
           Edit link
         </ToolbarButton>
         <Separator orientation="vertical" />
-        <ToolbarButton tooltip="Open link in a new tab" onClick={handleOpenLink}>
+        <ToolbarButton onClick={handleOpenLink} tooltip="Open link in a new tab">
           <ExternalLinkIcon className="size-4" />
         </ToolbarButton>
         <Separator orientation="vertical" />
-        <ToolbarButton tooltip="Clear link" onClick={onClear}>
+        <ToolbarButton onClick={onClear} tooltip="Clear link">
           <LinkBreak2Icon className="size-4" />
         </ToolbarButton>
         <Separator orientation="vertical" />
         <ToolbarButton
-          tooltip={copyTitle}
           onClick={handleCopy}
+          tooltip={copyTitle}
           tooltipOptions={{
             onPointerDownOutside: (e) => {
               if (e.target === e.currentTarget) e.preventDefault();

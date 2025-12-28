@@ -1,6 +1,8 @@
-import { Slot, Slottable } from '@radix-ui/react-slot';
-import { type VariantProps, cva } from 'class-variance-authority';
 import * as React from 'react';
+
+import { Slot, Slottable } from '@radix-ui/react-slot';
+import type { VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 
 import { cn } from '../lib/utils';
 
@@ -43,66 +45,65 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: { variant: 'default', size: 'default' },
-  },
+  }
 );
 
-interface IconProps {
+type IconProps = {
   icon: React.ElementType;
   iconPlacement: 'left' | 'right';
-}
+};
 
-interface IconRefProps {
+type IconRefProps = {
   icon?: never;
   iconPlacement?: undefined;
-}
+};
 
 export interface EnhancedButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  ref?: React.Ref<HTMLButtonElement>;
 }
 
 export type EnhancedButtonIconProps = IconProps | IconRefProps;
 
-const EnhancedButton = React.forwardRef<
-  HTMLButtonElement,
-  EnhancedButtonProps & EnhancedButtonIconProps
->(
-  (
-    { className, variant, effect, size, icon: Icon, iconPlacement, asChild = false, ...props },
-    ref,
-  ) => {
-    const Comp = asChild ? Slot : 'button';
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, effect, size, className }))}
-        ref={ref}
-        {...props}
-      >
-        {Icon &&
-          iconPlacement === 'left' &&
-          (effect === 'expandIcon' ? (
-            <div className="w-0 translate-x-[0%] pr-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pr-2 group-hover:opacity-100">
-              <Icon />
-            </div>
-          ) : (
+const EnhancedButton = ({
+  ref,
+  className,
+  variant,
+  effect,
+  size,
+  icon: Icon,
+  iconPlacement,
+  asChild = false,
+  ...props
+}: EnhancedButtonProps & EnhancedButtonIconProps) => {
+  const Comp = asChild ? Slot : 'button';
+  return (
+    <Comp className={cn(buttonVariants({ variant, effect, size, className }))} ref={ref} {...props}>
+      {Icon &&
+        iconPlacement === 'left' &&
+        (effect === 'expandIcon' ? (
+          <div className="w-0 translate-x-[0%] pr-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pr-2 group-hover:opacity-100">
             <Icon />
-          ))}
-        <Slottable>{props.children}</Slottable>
-        {Icon &&
-          iconPlacement === 'right' &&
-          (effect === 'expandIcon' ? (
-            <div className="w-0 translate-x-[100%] pl-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-2 group-hover:opacity-100">
-              <Icon />
-            </div>
-          ) : (
+          </div>
+        ) : (
+          <Icon />
+        ))}
+      <Slottable>{props.children}</Slottable>
+      {Icon &&
+        iconPlacement === 'right' &&
+        (effect === 'expandIcon' ? (
+          <div className="w-0 translate-x-full pl-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-2 group-hover:opacity-100">
             <Icon />
-          ))}
-      </Comp>
-    );
-  },
-);
+          </div>
+        ) : (
+          <Icon />
+        ))}
+    </Comp>
+  );
+};
 EnhancedButton.displayName = 'EnhancedButton';
 
 export const MemoizedEnhancedButton = React.memo(EnhancedButton);
-export { MemoizedEnhancedButton as EnhancedButton, buttonVariants };
+export { buttonVariants, MemoizedEnhancedButton as EnhancedButton };

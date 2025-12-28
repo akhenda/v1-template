@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 
 /**
  * A component that renders its children without any modifications.
@@ -7,6 +7,6 @@ import React, { type ReactNode } from 'react';
  * @param children - The content to be rendered.
  * @returns The unmodified children wrapped in a React fragment.
  */
-export function NoOp({ children }: { children: ReactNode }) {
+export function NoOp({ children }: PropsWithChildren) {
   return <>{children}</>;
 }

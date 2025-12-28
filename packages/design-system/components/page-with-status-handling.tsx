@@ -1,4 +1,4 @@
-import React, { type PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 
 import { FullScreenError } from './full-screen-error';
 import { FullScreenLoader } from './full-screen-loader';
@@ -26,17 +26,17 @@ export function PageWithStatusHandling({
   if (showError) {
     return (
       <FullScreenError
-        isVisible
-        fullScreen={false}
-        errorType="error"
-        iconSize="lg"
         animationStyle="pulse"
-        speed={0.6}
-        showBackgroundElements={false}
-        title={errorTitle}
-        message={errorMessage}
-        details={errorDetails}
         className="h-full"
+        details={errorDetails}
+        errorType="error"
+        fullScreen={false}
+        iconSize="lg"
+        isVisible
+        message={errorMessage}
+        showBackgroundElements={false}
+        speed={0.6}
+        title={errorTitle}
       />
     );
   }
@@ -44,14 +44,14 @@ export function PageWithStatusHandling({
   if (showLoading) {
     return (
       <FullScreenLoader
-        isLoading
-        speed={1.2}
-        fullScreen={false}
-        elementCount={6}
         animationStyle="pulse"
-        message={loadingMessage}
-        subMessage={loadingSubMessage}
         className="h-full"
+        elementCount={6}
+        fullScreen={false}
+        isLoading
+        message={loadingMessage}
+        speed={1.2}
+        subMessage={loadingSubMessage}
       />
     );
   }

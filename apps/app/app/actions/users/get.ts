@@ -1,19 +1,13 @@
 'use server';
 
-import {
-  type OrganizationMembership,
-  auth,
-  clerkClient,
-} from '@repo/auth/server';
+import type { OrganizationMembership } from '@repo/auth/server';
+import { auth, clerkClient } from '@repo/auth/server';
 
 const getName = (user: OrganizationMembership): string | undefined => {
   let name = user.publicUserData?.firstName;
 
-  if (name && user.publicUserData?.lastName) {
-    name = `${name} ${user.publicUserData.lastName}`;
-  } else if (!name) {
-    name = user.publicUserData?.identifier;
-  }
+  if (name && user.publicUserData?.lastName) name = `${name} ${user.publicUserData.lastName}`;
+  else if (!name) name = user.publicUserData?.identifier;
 
   return name;
 };
@@ -40,20 +34,11 @@ const colors = [
 
 export const getUsers = async (
   userIds: string[]
-): Promise<
-  | {
-      data: Liveblocks['UserMeta']['info'][];
-    }
-  | {
-      error: unknown;
-    }
-> => {
+): Promise<{ data: Liveblocks['UserMeta']['info'][] } | { error: unknown }> => {
   try {
     const { orgId } = await auth();
 
-    if (!orgId) {
-      throw new Error('Not logged in');
-    }
+    if (!orgId) throw new Error('Not logged in');
 
     const clerk = await clerkClient();
 
@@ -63,11 +48,7 @@ export const getUsers = async (
     });
 
     const data: Liveblocks['UserMeta']['info'][] = members.data
-      .filter(
-        (user) =>
-          user.publicUserData?.userId &&
-          userIds.includes(user.publicUserData.userId)
-      )
+      .filter((user) => user.publicUserData?.userId && userIds.includes(user.publicUserData.userId))
       .map((user) => ({
         name: getName(user) ?? 'Unknown user',
         picture: user.publicUserData?.imageUrl ?? '',

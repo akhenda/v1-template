@@ -32,27 +32,25 @@ export function PhoneInputFieldComponent<Schema extends FieldValues>({
 }: PhoneInputFieldProps<Schema>) {
   return (
     <FormField
-      name={name}
       control={control}
-      render={({ field }) => {
-        return (
-          <FormItem key={`phone-input-field-${name}`} className={cn('w-full', className)}>
-            <FormLabel markAsRequired={markAsRequired} tooltip={tooltip}>
-              {label}
-            </FormLabel>
-            <FormControl>
-              <PhoneInput
-                inputContainerClassName="flex-1"
-                {...rest}
-                placeholder={placeholder}
-                {...field}
-              />
-            </FormControl>
-            <FormMessage className="font-normal text-xs" />
-            {description && <FormDescription className="text-xs">{description}</FormDescription>}
-          </FormItem>
-        );
-      }}
+      name={name}
+      render={({ field }) => (
+        <FormItem className={cn('w-full', className)} key={`phone-input-field-${name}`}>
+          <FormLabel markAsRequired={markAsRequired} tooltip={tooltip}>
+            {label}
+          </FormLabel>
+          <FormControl>
+            <PhoneInput
+              inputContainerClassName="flex-1"
+              {...rest}
+              placeholder={placeholder}
+              {...field}
+            />
+          </FormControl>
+          <FormMessage className="font-normal text-xs" />
+          {description && <FormDescription className="text-xs">{description}</FormDescription>}
+        </FormItem>
+      )}
     />
   );
 }

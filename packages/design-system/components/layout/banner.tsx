@@ -1,13 +1,13 @@
 'use client';
 
-import { ArrowRightIcon, Eclipse, RocketIcon, TicketPercent, XIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
+
+import { ArrowRightIcon, Eclipse, RocketIcon, TicketPercent, XIcon } from 'lucide-react';
 
 import type { PropsWithClassName } from '@repo/types';
 
 import { cn } from '../../lib/utils';
 import { useAppearanceContext } from '../../providers/theme';
-
 import { Button } from '../ui/button';
 
 type BannerProps = PropsWithClassName<{ type?: 'announcement' | 'sale' | 'feature' | 'basic' }>;
@@ -71,14 +71,14 @@ function SaleBanner({ className }: PropsWithClassName) {
         themeClass,
         gradientClass,
         spacingClass,
-        className,
+        className
       )}
     >
       <div className="container mx-auto flex gap-2 px-5 md:items-center">
         <div className="flex grow gap-3 md:items-center">
           <div
-            className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/15 max-md:mt-0.5"
             aria-hidden="true"
+            className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/15 max-md:mt-0.5"
           >
             <TicketPercent className="opacity-80" size={16} />
           </div>
@@ -110,22 +110,22 @@ function SaleBanner({ className }: PropsWithClassName) {
                   <span className="text-muted-foreground">s</span>
                 </span>
               </div>
-              <Button size="sm" className="text-sm">
+              <Button className="text-sm" size="sm">
                 Buy now
               </Button>
             </div>
           </div>
         </div>
         <Button
-          variant="ghost"
+          aria-label="Close banner"
           className="group -my-1.5 -me-2 size-8 shrink-0 p-0 hover:bg-transparent"
           onClick={() => setIsVisible(false)}
-          aria-label="Close banner"
+          variant="ghost"
         >
           <XIcon
-            size={16}
-            className="opacity-60 transition-opacity group-hover:opacity-100"
             aria-hidden="true"
+            className="opacity-60 transition-opacity group-hover:opacity-100"
+            size={16}
           />
         </Button>
       </div>
@@ -146,14 +146,14 @@ function NewFeatureBanner({ className }: PropsWithClassName) {
         themeClass,
         gradientClass,
         spacingClass,
-        className,
+        className
       )}
     >
       <div className="container mx-auto flex gap-2 px-5 md:items-center">
         <div className="flex grow gap-3 md:items-center">
           <div
-            className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/15 max-md:mt-0.5"
             aria-hidden="true"
+            className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/15 max-md:mt-0.5"
           >
             <RocketIcon className="opacity-80" size={16} />
           </div>
@@ -165,22 +165,22 @@ function NewFeatureBanner({ className }: PropsWithClassName) {
               </p>
             </div>
             <div className="flex gap-2 max-md:flex-wrap">
-              <Button size="sm" className="text-sm">
+              <Button className="text-sm" size="sm">
                 Try now
               </Button>
             </div>
           </div>
         </div>
         <Button
-          variant="ghost"
+          aria-label="Close banner"
           className="group -my-1.5 -me-2 size-8 shrink-0 p-0 hover:bg-transparent"
           onClick={() => setIsVisible(false)}
-          aria-label="Close banner"
+          variant="ghost"
         >
           <XIcon
-            size={16}
-            className="opacity-60 transition-opacity group-hover:opacity-100"
             aria-hidden="true"
+            className="opacity-60 transition-opacity group-hover:opacity-100"
+            size={16}
           />
         </Button>
       </div>
@@ -201,33 +201,33 @@ function AnnouncementBanner({ className }: PropsWithClassName) {
         themeClass,
         gradientClass,
         spacingClass,
-        className,
+        className
       )}
     >
       <div className="flex gap-2 md:items-center">
         <div className="flex grow gap-3 md:items-center md:justify-center">
-          <Eclipse className="shrink-0 opacity-60 max-md:mt-0.5" size={16} aria-hidden="true" />
+          <Eclipse aria-hidden="true" className="shrink-0 opacity-60 max-md:mt-0.5" size={16} />
           <div className="flex flex-col justify-between gap-3 md:flex-row md:items-center">
             <p className="text-sm">
               It&lsquo;s live and ready to use! Start exploring the latest addition to your toolkit.
             </p>
             <div className="flex gap-2 max-md:flex-wrap">
-              <Button size="sm" className="rounded-full">
+              <Button className="rounded-full" size="sm">
                 Learn more
               </Button>
             </div>
           </div>
         </div>
         <Button
-          variant="ghost"
+          aria-label="Close banner"
           className="group -my-1.5 -me-2 size-8 shrink-0 p-0 hover:bg-transparent"
           onClick={() => setIsVisible(false)}
-          aria-label="Close banner"
+          variant="ghost"
         >
           <XIcon
-            size={16}
-            className="opacity-60 transition-opacity group-hover:opacity-100"
             aria-hidden="true"
+            className="opacity-60 transition-opacity group-hover:opacity-100"
+            size={16}
           />
         </Button>
       </div>
@@ -245,17 +245,17 @@ function BasicBanner({ className }: PropsWithClassName) {
         themeClass,
         gradientClass,
         spacingClass,
-        className,
+        className
       )}
     >
       <p className="flex justify-center text-sm">
-        <a href="/" className="group">
+        <a className="group" href="/">
           <span className="me-1 text-base leading-none">✨</span>
           Introducing transactional and marketing emails
           <ArrowRightIcon
+            aria-hidden="true"
             className="-mt-0.5 ms-2 inline-flex opacity-60 transition-transform group-hover:translate-x-0.5"
             size={16}
-            aria-hidden="true"
           />
         </a>
       </p>

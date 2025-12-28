@@ -19,17 +19,17 @@ const otelRegex = /@opentelemetry\/instrumentation/;
  *
  * @see https://github.com/vercel/next.js/discussions/55987#discussioncomment-12316599
  *
- * @param config Next.js configuration
+ * @param c Next.js configuration
  * @returns Next.js configuration with `outputFileTracingRoot` set
  */
-export const withTurboPackFix = (config: NextConfig): NextConfig => {
+export const withTurboPackFix = (c: NextConfig): NextConfig => {
   if (process.env.NODE_ENV === 'development') {
-    config.outputFileTracingRoot = path.join(__dirname, '../../');
+    c.outputFileTracingRoot = path.join(__dirname, '../../');
 
-    return config;
+    return c;
   }
 
-  return config;
+  return c;
 };
 
 export const config: NextConfig = {
@@ -38,21 +38,22 @@ export const config: NextConfig = {
     remotePatterns: [{ protocol: 'https', hostname: 'img.clerk.com' }],
   },
 
+  // biome-ignore lint/suspicious/useAwait: rewrites is async
   async rewrites() {
     return [
       {
         source: '/ingest/static/:path*',
-        destination: 'https://eu-assets.i.posthog.com/static/:path*',
+        destination: 'https://us-assets.i.posthog.com/static/:path*',
       },
-      { source: '/ingest/:path*', destination: 'https://eu.i.posthog.com/:path*' },
-      { source: '/ingest/decide', destination: 'https://eu.i.posthog.com/decide' },
+      { source: '/ingest/:path*', destination: 'https://us.i.posthog.com/:path*' },
+      { source: '/ingest/decide', destination: 'https://us.i.posthog.com/decide' },
     ];
   },
 
-  webpack(config) {
-    config.ignoreWarnings = [{ module: otelRegex }];
+  webpack(c) {
+    c.ignoreWarnings = [{ module: otelRegex }];
 
-    return config;
+    return c;
   },
 
   // This is required to support PostHog trailing slash API requests
@@ -61,9 +62,9 @@ export const config: NextConfig = {
   // https://nextjs.org/docs/app/api-reference/config/next-config-js/devIndicators
   // devIndicators: false,
 
-  turbopack: {
-    resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.cjs', '.json'],
-  },
+  // turbopack: {
+  //   resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.cjs', '.json'],
+  // },
 };
 
 export const withAnalyzer = (sourceConfig: NextConfig): NextConfig =>

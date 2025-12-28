@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useCallback, useState } from 'react';
-import { AIActionDialog, type AIActionDialogProps } from './dialog';
+
+import type { AIActionDialogProps } from './dialog';
+import { AIActionDialog } from './dialog';
 
 export function AIActionComponent({
   size,
@@ -20,15 +22,15 @@ export function AIActionComponent({
 
   return (
     <AIActionDialog
-      size={size}
-      className={className}
-      loading={loading}
-      credits={credits}
-      cost={cost}
-      title={title}
       actionText={actionText}
       buttonText={buttonText}
+      className={className}
+      cost={cost}
+      credits={credits}
+      loading={loading}
       onAction={handleAction}
+      size={size}
+      title={title}
       {...rest}
     />
   );

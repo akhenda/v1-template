@@ -1,7 +1,8 @@
+import { useState } from 'react';
+
 import { ImageIcon } from '@radix-ui/react-icons';
 import type { Editor } from '@tiptap/react';
 import type { VariantProps } from 'class-variance-authority';
-import { useState } from 'react';
 
 import {
   Dialog,
@@ -13,6 +14,7 @@ import {
 } from '../../../../../ui/dialog';
 import type { toggleVariants } from '../../../../../ui/toggle';
 import { ToolbarButton } from '../toolbar-button';
+
 import { ImageEditBlock } from './image-edit-block';
 
 interface ImageEditDialogProps extends VariantProps<typeof toggleVariants> {
@@ -23,13 +25,13 @@ const ImageEditDialog = ({ editor, size, variant }: ImageEditDialogProps) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog onOpenChange={setOpen} open={open}>
       <DialogTrigger asChild>
         <ToolbarButton
-          isActive={editor.isActive('image')}
-          tooltip="Image"
           aria-label="Image"
+          isActive={editor.isActive('image')}
           size={size}
+          tooltip="Image"
           variant={variant}
         >
           <ImageIcon className="size-5" />
@@ -42,7 +44,7 @@ const ImageEditDialog = ({ editor, size, variant }: ImageEditDialogProps) => {
             Upload an image from your computer
           </DialogDescription>
         </DialogHeader>
-        <ImageEditBlock editor={editor} close={() => setOpen(false)} />
+        <ImageEditBlock close={() => setOpen(false)} editor={editor} />
       </DialogContent>
     </Dialog>
   );

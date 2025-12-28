@@ -1,9 +1,10 @@
-import type { Value } from '@udecode/plate';
 import React from 'react';
 import type { Control, FieldPath, FieldValues } from 'react-hook-form';
 
+import type { Value } from '@udecode/plate';
+
 import { cn } from '../../../../lib/utils';
-import { PlateEditorMinimal, getEditorValueFromString } from '../../../editor/plate-editor-minimal';
+import { getEditorValueFromString, PlateEditorMinimal } from '../../../editor/plate-editor-minimal';
 import { FormControl, FormDescription, FormField, FormItem, FormMessage } from '../../../ui/form';
 import { FormLabel } from '../field-label';
 
@@ -48,8 +49,8 @@ export function PlateEditorFieldComponent<Schema extends FieldValues>({
 }: PlateEditorFieldProps<Schema>) {
   return (
     <FormField
-      name={name}
       control={control}
+      name={name}
       render={({ field }) => {
         const onChangeValue = (value: Value) => {
           const stringifiedValue = JSON.stringify(value);
@@ -67,15 +68,15 @@ export function PlateEditorFieldComponent<Schema extends FieldValues>({
             <FormControl>
               <PlateEditorMinimal
                 {...field}
-                value={getParsedValue(field.value)}
-                onChange={onChangeValue}
-                placeholder={placeholder}
                 aiActionTooltipText="Rewrite with AI"
                 className={cn(
-                  'mmax-h-80 min-h-[10rem] resize-none bg-muted text-sm',
+                  'mmax-h-80 min-h-40 resize-none bg-muted text-sm',
                   { 'resize-y': resizable },
-                  editorClassName,
+                  editorClassName
                 )}
+                onChange={onChangeValue}
+                placeholder={placeholder}
+                value={getParsedValue(field.value)}
                 {...rest}
               />
             </FormControl>

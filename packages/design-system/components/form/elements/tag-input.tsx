@@ -1,8 +1,11 @@
 'use client';
 
+import type { ComponentProps, KeyboardEvent } from 'react';
+import { Fragment, useState } from 'react';
+import type { FieldPath, FieldValues } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
+
 import { SquarePenIcon, X } from 'lucide-react';
-import { type ComponentProps, Fragment, type KeyboardEvent, useState } from 'react';
-import { type FieldPath, type FieldValues, useFormContext } from 'react-hook-form';
 
 import { Button } from '@repo/design-system/components/ui/button';
 import {
@@ -63,9 +66,9 @@ function EditTag<Schema extends FieldValues>({ index, name, placeholder }: EditT
           <FormField
             id={name}
             label="Tag"
-            value={text}
             onChange={setText}
             placeholder={placeholder}
+            value={text}
           />
         </div>
         <DialogFooter>
@@ -75,7 +78,7 @@ function EditTag<Schema extends FieldValues>({ index, name, placeholder }: EditT
             </Button>
           </DialogClose>
           <DialogClose asChild>
-            <Button size="sm" onClick={onSave}>
+            <Button onClick={onSave} size="sm">
               Save changes
             </Button>
           </DialogClose>
@@ -118,9 +121,9 @@ export function TagInput<Schema extends FieldValues>({
           {tags.map((tag, index) => (
             <Fragment key={index}>
               <Badge
+                className="flex max-w-full items-center gap-1 border-0 bg-linear-to-r from-emerald-200 to-teal-100 py-1 font-normal hover:from-emerald-300 hover:to-teal-200 hover:text-foreground dark:from-zinc-700 dark:to-stone-600 dark:hover:from-zinc-800 dark:hover:to-stone-900 dark:hover:text-white"
                 key={index}
                 variant="secondary"
-                className="flex max-w-full items-center gap-1 border-0 bg-gradient-to-r from-emerald-200 to-teal-100 py-1 font-normal hover:from-emerald-300 hover:to-teal-200 hover:text-foreground dark:from-zinc-700 dark:to-stone-600 dark:hover:from-zinc-800 dark:hover:to-stone-900 dark:hover:text-white"
               >
                 <span className="block flex-1 truncate pr-1">{tag}</span>
                 {name && allowEdit && (
@@ -138,10 +141,10 @@ export function TagInput<Schema extends FieldValues>({
 
       <Input
         {...rest}
-        value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
+        value={inputValue}
       />
     </div>
   );

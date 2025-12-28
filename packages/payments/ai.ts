@@ -6,15 +6,9 @@ export const paymentsAgentToolkit = new StripeAgentToolkit({
   secretKey: keys().STRIPE_SECRET_KEY,
   configuration: {
     actions: {
-      paymentLinks: {
-        create: true,
-      },
-      products: {
-        create: true,
-      },
-      prices: {
-        create: true,
-      },
+      paymentLinks: { create: true },
+      products: { create: true },
+      prices: { create: true },
     },
   },
 });

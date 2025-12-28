@@ -1,7 +1,8 @@
 'use client';
 
-import { Languages } from 'lucide-react';
 import { useParams, usePathname, useRouter } from 'next/navigation';
+
+import { Languages } from 'lucide-react';
 
 import { Button } from '../ui/button';
 import {
@@ -40,7 +41,7 @@ export const LanguageSwitcher = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="shrink-0 text-foreground">
+        <Button className="shrink-0 text-foreground" size="icon" variant="ghost">
           <Languages className="h-[1.2rem] w-[1.2rem]" />
           <span className="sr-only">Switch language</span>
         </Button>

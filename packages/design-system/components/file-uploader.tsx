@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/style/noNestedTernary: TODO: we'll fix later */
 'use client';
 
 /**
@@ -22,7 +23,8 @@ import {
   XIcon,
 } from 'lucide-react';
 
-import { type FileWithPreview, formatBytes, useFileUpload } from '../hooks/use-file-upload';
+import type { FileWithPreview } from '../hooks/use-file-upload';
+import { formatBytes, useFileUpload } from '../hooks/use-file-upload';
 
 import { Button } from './ui/button';
 
@@ -30,21 +32,21 @@ import { Button } from './ui/button';
 const initialFiles = [
   {
     name: 'intro.zip',
-    size: 252873,
+    size: 252_873,
     type: 'application/zip',
     url: 'https://example.com/intro.zip',
     id: 'intro.zip-1744638436563-8u5xuls',
   },
   {
     name: 'image-01.jpg',
-    size: 1528737,
+    size: 1_528_737,
     type: 'image/jpeg',
     url: 'https://picsum.photos/1000/800?grayscale&random=1',
     id: 'image-01-123456789',
   },
   {
     name: 'audio.mp3',
-    size: 1528737,
+    size: 1_528_737,
     type: 'audio/mpeg',
     url: 'https://example.com/audio.mp3',
     id: 'audio-123456789',
@@ -81,18 +83,9 @@ const getFileIcon = (file: { file: File | { type: string; name: string } }) => {
         name.endsWith('.xlsx') ||
         name.endsWith('.csv'),
     },
-    video: {
-      icon: VideoIcon,
-      conditions: (type: string) => type.includes('video/'),
-    },
-    audio: {
-      icon: HeadphonesIcon,
-      conditions: (type: string) => type.includes('audio/'),
-    },
-    image: {
-      icon: ImageIcon,
-      conditions: (type: string) => type.startsWith('image/'),
-    },
+    video: { icon: VideoIcon, conditions: (type: string) => type.includes('video/') },
+    audio: { icon: HeadphonesIcon, conditions: (type: string) => type.includes('audio/') },
+    image: { icon: ImageIcon, conditions: (type: string) => type.startsWith('image/') },
   };
 
   for (const { icon: Icon, conditions } of Object.values(iconMap)) {
@@ -109,7 +102,7 @@ export const getFilePreview = (file: {
   const fileName = file.file instanceof File ? file.file.name : file.file.name;
 
   const renderImage = (src: string) => (
-    <Image src={src} alt={fileName} className="size-full rounded-t-[inherit] object-cover" />
+    <Image alt={fileName} className="size-full rounded-t-[inherit] object-cover" src={src} />
   );
 
   return (
@@ -139,7 +132,7 @@ type UploadProgress = { fileId: string; progress: number; completed: boolean };
 const simulateUpload = (
   totalBytes: number,
   onProgress: (progress: number) => void,
-  onComplete: () => void,
+  onComplete: () => void
 ) => {
   let timeoutId: NodeJS.Timeout;
   let uploadedBytes = 0;
@@ -147,7 +140,7 @@ const simulateUpload = (
 
   const simulateChunk = () => {
     // Simulate variable network conditions with random chunk sizes
-    const chunkSize = Math.floor(Math.random() * 300000) + 2000;
+    const chunkSize = Math.floor(Math.random() * 300_000) + 2000;
     uploadedBytes = Math.min(totalBytes, uploadedBytes + chunkSize);
 
     // Calculate progress percentage (0-100)
@@ -216,15 +209,15 @@ export function FileUploader() {
         // Progress callback
         (progress) => {
           setUploadProgress((prev) =>
-            prev.map((item) => (item.fileId === file.id ? { ...item, progress } : item)),
+            prev.map((item) => (item.fileId === file.id ? { ...item, progress } : item))
           );
         },
         // Complete callback
         () => {
           setUploadProgress((prev) =>
-            prev.map((item) => (item.fileId === file.id ? { ...item, completed: true } : item)),
+            prev.map((item) => (item.fileId === file.id ? { ...item, completed: true } : item))
           );
-        },
+        }
       );
 
       cleanupFunctions.push(cleanup);
@@ -232,7 +225,9 @@ export function FileUploader() {
 
     // Return a cleanup function that cancels all animations
     return () => {
-      cleanupFunctions.forEach((cleanup) => cleanup());
+      cleanupFunctions.forEach((cleanup) => {
+        cleanup();
+      });
     };
   };
 
@@ -265,35 +260,36 @@ export function FileUploader() {
     <div className="flex flex-col gap-2">
       {/* Drop area */}
       {/** biome-ignore lint/a11y/noStaticElementInteractions: TODO: we'll fix later */}
+      {/** biome-ignore lint/a11y/noNoninteractiveElementInteractions: TODO: we'll fix later */}
       <div
+        className="relative flex min-h-52 flex-col items-center not-data-files:justify-center overflow-hidden rounded-xl border border-input border-dashed p-4 transition-colors has-[input:focus]:border-ring has-[input:focus]:ring-[3px] has-[input:focus]:ring-ring/50 data-[dragging=true]:bg-accent/50"
+        data-dragging={isDragging || undefined}
+        data-files={files.length > 0 || undefined}
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
-        data-dragging={isDragging || undefined}
-        data-files={files.length > 0 || undefined}
-        className="relative flex min-h-52 flex-col items-center not-data-[files]:justify-center overflow-hidden rounded-xl border border-input border-dashed p-4 transition-colors has-[input:focus]:border-ring has-[input:focus]:ring-[3px] has-[input:focus]:ring-ring/50 data-[dragging=true]:bg-accent/50"
       >
-        <input {...getInputProps()} className="sr-only" aria-label="Upload image file" />
+        <input {...getInputProps()} aria-label="Upload image file" className="sr-only" />
         {files.length > 0 ? (
           <div className="flex w-full flex-col gap-3">
             <div className="flex items-center justify-between gap-2">
               <h3 className="truncate font-medium text-sm">Files ({files.length})</h3>
               <div className="flex gap-2">
-                <Button variant="outline" size="sm" onClick={openFileDialog}>
-                  <UploadIcon className="-ms-0.5 size-3.5 opacity-60" aria-hidden="true" />
+                <Button onClick={openFileDialog} size="sm" variant="outline">
+                  <UploadIcon aria-hidden="true" className="-ms-0.5 size-3.5 opacity-60" />
                   Add files
                 </Button>
                 <Button
-                  variant="outline"
-                  size="sm"
                   onClick={() => {
                     // Clear all progress tracking
                     setUploadProgress([]);
                     clearFiles();
                   }}
+                  size="sm"
+                  variant="outline"
                 >
-                  <Trash2Icon className="-ms-0.5 size-3.5 opacity-60" aria-hidden="true" />
+                  <Trash2Icon aria-hidden="true" className="-ms-0.5 size-3.5 opacity-60" />
                   Remove all
                 </Button>
               </div>
@@ -307,9 +303,9 @@ export function FileUploader() {
 
                 return (
                   <div
-                    key={file.id}
-                    data-uploading={isUploading || undefined}
                     className="flex flex-col gap-1 rounded-lg border bg-background p-2 pe-3 transition-opacity duration-300"
+                    data-uploading={isUploading || undefined}
+                    key={file.id}
                   >
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-3 overflow-hidden in-data-[uploading=true]:opacity-50">
@@ -322,22 +318,22 @@ export function FileUploader() {
                           </p>
                           <p className="text-muted-foreground text-xs">
                             {formatBytes(
-                              file.file instanceof File ? file.file.size : file.file.size,
+                              file.file instanceof File ? file.file.size : file.file.size
                             )}
                           </p>
                         </div>
                       </div>
                       <Button
-                        size="icon"
-                        variant="ghost"
+                        aria-label="Remove file"
                         className="-me-2 size-8 text-muted-foreground/80 hover:bg-transparent hover:text-foreground"
                         onClick={() => {
                           handleFileRemoved(file.id);
                           removeFile(file.id);
                         }}
-                        aria-label="Remove file"
+                        size="icon"
+                        variant="ghost"
                       >
-                        <XIcon className="size-4" aria-hidden="true" />
+                        <XIcon aria-hidden="true" className="size-4" />
                       </Button>
                     </div>
 
@@ -371,8 +367,8 @@ export function FileUploader() {
         ) : (
           <div className="flex flex-col items-center justify-center px-4 py-3 text-center">
             <div
-              className="mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border bg-background"
               aria-hidden="true"
+              className="mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border bg-background"
             >
               <ImageIcon className="size-4 opacity-60" />
             </div>
@@ -380,8 +376,8 @@ export function FileUploader() {
             <p className="text-muted-foreground text-xs">
               Max {maxFiles} files ∙ Up to {maxSizeMB}MB
             </p>
-            <Button variant="outline" className="mt-4" onClick={openFileDialog}>
-              <UploadIcon className="-ms-1 opacity-60" aria-hidden="true" />
+            <Button className="mt-4" onClick={openFileDialog} variant="outline">
+              <UploadIcon aria-hidden="true" className="-ms-1 opacity-60" />
               Select images
             </Button>
           </div>

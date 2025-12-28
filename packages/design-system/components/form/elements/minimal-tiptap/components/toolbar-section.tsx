@@ -1,7 +1,8 @@
+import * as React from 'react';
+
 import { CaretDownIcon } from '@radix-ui/react-icons';
 import type { Editor } from '@tiptap/react';
 import type { VariantProps } from 'class-variance-authority';
-import * as React from 'react';
 
 import { cn } from '../../../../../lib/utils';
 import {
@@ -52,42 +53,42 @@ export const ToolbarSection: React.FC<ToolbarSectionProps> = ({
   const renderToolbarButton = React.useCallback(
     (action: FormatAction) => (
       <ToolbarButton
-        key={action.label}
-        onClick={() => action.action(editor)}
+        aria-label={action.label}
         disabled={!action.canExecute(editor)}
         isActive={action.isActive(editor)}
-        tooltip={`${action.label} ${action.shortcuts.map((s) => getShortcutKey(s).symbol).join(' ')}`}
-        aria-label={action.label}
+        key={action.label}
+        onClick={() => action.action(editor)}
         size={size}
+        tooltip={`${action.label} ${action.shortcuts.map((s) => getShortcutKey(s).symbol).join(' ')}`}
         variant={variant}
       >
         {action.icon}
       </ToolbarButton>
     ),
-    [editor, size, variant],
+    [editor, size, variant]
   );
 
   const renderDropdownMenuItem = React.useCallback(
     (action: FormatAction) => (
       <DropdownMenuItem
-        key={action.label}
-        onClick={() => action.action(editor)}
-        disabled={!action.canExecute(editor)}
+        aria-label={action.label}
         className={cn('flex flex-row items-center justify-between gap-4', {
           'bg-accent': action.isActive(editor),
         })}
-        aria-label={action.label}
+        disabled={!action.canExecute(editor)}
+        key={action.label}
+        onClick={() => action.action(editor)}
       >
         <span className="grow">{action.label}</span>
         <ShortcutKey keys={action.shortcuts} />
       </DropdownMenuItem>
     ),
-    [editor],
+    [editor]
   );
 
   const isDropdownActive = React.useMemo(
     () => dropdownActions.some((action) => action.isActive(editor)),
-    [dropdownActions, editor],
+    [dropdownActions, editor]
   );
 
   return (
@@ -97,11 +98,11 @@ export const ToolbarSection: React.FC<ToolbarSectionProps> = ({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <ToolbarButton
-              isActive={isDropdownActive}
-              tooltip={dropdownTooltip}
               aria-label={dropdownTooltip}
               className={cn(dropdownClassName)}
+              isActive={isDropdownActive}
               size={size}
+              tooltip={dropdownTooltip}
               variant={variant}
             >
               {dropdownIcon || <CaretDownIcon className="size-5" />}

@@ -38,8 +38,8 @@ export function MultiCheckboxFieldComponent<Schema extends FieldValues>({
 }: MultiCheckboxFieldProps<Schema>) {
   return (
     <FormField
-      name={name}
       control={control}
+      name={name}
       render={() => (
         <FormItem className={className}>
           <div className="mb-4">
@@ -50,33 +50,31 @@ export function MultiCheckboxFieldComponent<Schema extends FieldValues>({
           </div>
           {options.map((item) => (
             <FormField
+              control={control}
               key={item.id}
               name={name}
-              control={control}
-              render={({ field }) => {
-                return (
-                  <FormItem
-                    key={item.value}
-                    className="flex flex-row items-center space-x-3 space-y-0"
-                  >
-                    <FormControl>
-                      <Checkbox
-                        className="bg-muted"
-                        {...rest}
-                        checked={field.value?.includes(item.value)}
-                        onCheckedChange={(checked) => {
-                          return checked
-                            ? field.onChange([...field.value, item.value])
-                            : field.onChange(
-                                field.value?.filter((value: string) => value !== item.value),
-                              );
-                        }}
-                      />
-                    </FormControl>
-                    <FormLabel className="font-normal">{item.label}</FormLabel>
-                  </FormItem>
-                );
-              }}
+              render={({ field }) => (
+                <FormItem
+                  className="flex flex-row items-center space-x-3 space-y-0"
+                  key={item.value}
+                >
+                  <FormControl>
+                    <Checkbox
+                      className="bg-muted"
+                      {...rest}
+                      checked={field.value?.includes(item.value)}
+                      onCheckedChange={(checked) =>
+                        checked
+                          ? field.onChange([...field.value, item.value])
+                          : field.onChange(
+                              field.value?.filter((value: string) => value !== item.value)
+                            )
+                      }
+                    />
+                  </FormControl>
+                  <FormLabel className="font-normal">{item.label}</FormLabel>
+                </FormItem>
+              )}
             />
           ))}
           <FormMessage className="font-normal text-xs" />

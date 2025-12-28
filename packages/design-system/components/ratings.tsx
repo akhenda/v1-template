@@ -1,5 +1,6 @@
-import { Star } from 'lucide-react';
 import React from 'react';
+
+import { Star } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
@@ -31,10 +32,10 @@ const Ratings = ({
   const partialStar =
     rating % 1 > 0 ? (
       <PartialStar
-        fillPercentage={rating % 1}
-        size={size}
         className={cn(ratingVariants[variant].star)}
+        fillPercentage={rating % 1}
         Icon={Icon}
+        size={size}
       />
     ) : null;
 
@@ -45,7 +46,7 @@ const Ratings = ({
           key: i,
           size,
           className: cn(fill ? 'fill-current' : 'fill-transparent', ratingVariants[variant].star),
-        }),
+        })
       )}
       {partialStar}
       {[...new Array(totalStars - fullStars - (partialStar ? 1 : 0))].map((_, i) =>
@@ -53,7 +54,7 @@ const Ratings = ({
           key: i + fullStars + 1,
           size,
           className: cn(ratingVariants[variant].emptyStar),
-        }),
+        })
       )}
     </div>
   );

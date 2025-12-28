@@ -6,21 +6,25 @@
  * @see https://medium.com/@rutikpanchal121/building-a-robust-form-in-react-native-with-react-hook-form-and-zod-for-validation-7583678970c3
  */
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import React, { type PropsWithChildren, useCallback } from 'react';
-import type { DefaultValues, Mode } from 'react-hook-form';
+import type React from 'react';
+import type { PropsWithChildren } from 'react';
+import { useCallback } from 'react';
+import type { DefaultValues, Mode, Resolver } from 'react-hook-form';
 import { FormProvider, useForm } from 'react-hook-form';
+
+import { zodResolver } from '@hookform/resolvers/zod';
 import type { z } from 'zod';
 
 import type { PropsWithClassName } from '@repo/types';
 
 import { cn } from '../../../lib/utils';
+
 import type { AnyValue } from './types';
 import { getDefaultValues } from './utils';
 
+export * from './create-typed-fields';
 export * from './types';
 export * from './utils';
-export * from './create-typed-fields';
 
 type FormProps = PropsWithChildren &
   PropsWithClassName & {
@@ -31,9 +35,8 @@ type FormProps = PropsWithChildren &
   };
 
 export function useAutoFormPrime<
-  Schema extends z.ZodObject<AnyValue, 'strip', AnyValue, AnyValue, AnyValue>,
+  Schema extends z.ZodObject<AnyValue, AnyValue>,
   Input extends z.input<Schema>,
-  Output extends z.output<Schema>,
 >({
   schema,
   data,
@@ -43,10 +46,10 @@ export function useAutoFormPrime<
   data?: DefaultValues<Input>;
   mode?: Mode;
 }) {
-  const form = useForm<Input, undefined, Output>({
+  const form = useForm<Input>({
     mode,
     defaultValues: data ?? getDefaultValues<Schema, Input>(schema),
-    resolver: zodResolver<Input, undefined, Output>(schema),
+    resolver: zodResolver(schema) as Resolver<Input>,
   });
 
   const Form: React.FC<FormProps> = useCallback(
@@ -55,14 +58,12 @@ export function useAutoFormPrime<
       className,
       containerElement: Container = 'form',
       baseClasses = 'flex flex-col gap-6',
-    }) => {
-      return (
-        <FormProvider {...form}>
-          <Container className={cn(baseClasses, className)}>{children}</Container>
-        </FormProvider>
-      );
-    },
-    [form],
+    }) => (
+      <FormProvider {...form}>
+        <Container className={cn(baseClasses, className)}>{children}</Container>
+      </FormProvider>
+    ),
+    [form]
   );
   Form.displayName = 'AutoFormPrimeForm';
 

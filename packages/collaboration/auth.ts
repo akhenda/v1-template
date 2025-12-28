@@ -1,5 +1,7 @@
 import 'server-only';
+
 import { Liveblocks as LiveblocksNode } from '@liveblocks/node';
+
 import { keys } from './keys';
 
 type AuthenticateOptions = {
@@ -10,11 +12,7 @@ type AuthenticateOptions = {
 
 const secret = keys().LIVEBLOCKS_SECRET;
 
-export const authenticate = async ({
-  userId,
-  orgId,
-  userInfo,
-}: AuthenticateOptions) => {
+export const authenticate = async ({ userId, orgId, userInfo }: AuthenticateOptions) => {
   if (!secret) {
     throw new Error('LIVEBLOCKS_SECRET is not set');
   }

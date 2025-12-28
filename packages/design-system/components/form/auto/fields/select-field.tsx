@@ -35,14 +35,14 @@ export function SelectFieldComponent<Schema extends FieldValues>({
 }: SelectFieldProps<Schema>) {
   return (
     <FormField
-      name={name}
       control={control}
+      name={name}
       render={({ field }) => (
         <FormItem className={className}>
           <FormLabel markAsRequired={markAsRequired} tooltip={tooltip}>
             {label}
           </FormLabel>
-          <Select onValueChange={field.onChange} defaultValue={field.value}>
+          <Select defaultValue={field.value} onValueChange={field.onChange}>
             <FormControl>
               <SelectTrigger className="w-full bg-muted">
                 <SelectValue placeholder={placeholder} />

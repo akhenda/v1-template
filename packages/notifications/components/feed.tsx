@@ -2,6 +2,4 @@
 
 import { NotificationFeed } from '@knocklabs/react';
 
-export const NotificationsFeed = () => {
-  return <NotificationFeed />;
-};
+export const NotificationsFeed = () => <NotificationFeed />;

@@ -4,10 +4,11 @@
  * @see https://ui-x.junwen-k.dev/docs/utilities/virtualizer#introduction
  */
 
+import * as React from 'react';
+
 import { useComposedRefs } from '@radix-ui/react-compose-refs';
 import { Primitive } from '@radix-ui/react-primitive';
-import * as React from 'react';
-import { experimental_VGrid as VGrid, VList, Virtualizer } from 'virtua';
+import { experimental_VGrid as VGrid, Virtualizer, VList } from 'virtua';
 
 const VirtualizedContext = React.createContext<{
   scrollRef: React.RefObject<React.ComponentRef<typeof Primitive.div> | null>;
@@ -72,4 +73,4 @@ function VirtualizedVirtualizer({
   );
 }
 
-export { Virtualized, VirtualizedList, VirtualizedGrid, VirtualizedVirtualizer };
+export { Virtualized, VirtualizedGrid, VirtualizedList, VirtualizedVirtualizer };

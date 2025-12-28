@@ -10,7 +10,8 @@ import { blog } from '@repo/cms';
 import { Body } from '@repo/cms/components/body';
 import { Image } from '@repo/cms/components/image';
 import { TableOfContents } from '@repo/cms/components/toc';
-import { initTranslations, type SupportedLocale } from '@repo/i18n';
+import type { SupportedLocale } from '@repo/i18n';
+import { initTranslations } from '@repo/i18n';
 import { JsonLd } from '@repo/seo/json-ld';
 import { createMetadata } from '@repo/seo/metadata';
 
@@ -83,18 +84,18 @@ export default async function BlogPost({ params }: Props) {
                 <Balancer>{page._title}</Balancer>
               </h1>
               {page.description && (
-                <p className="leading-7 [&:not(:first-child)]:mt-6">
+                <p className="not-first:mt-6 leading-7">
                   <Balancer>{page.description}</Balancer>
                 </p>
               )}
               {page.image ? (
                 <Image
-                  src={page.image.url}
-                  width={page.image.width}
-                  height={page.image.height}
                   alt={page.image.alt ?? ''}
                   className="my-16 h-full w-full rounded-xl"
+                  height={page.image.height}
                   priority
+                  src={page.image.url}
+                  width={page.image.width}
                 />
               ) : undefined}
               <div className="prose mx-auto max-w-none">
@@ -104,9 +105,9 @@ export default async function BlogPost({ params }: Props) {
           </div>
           <div className="sticky top-24 hidden shrink-0 md:block">
             <Sidebar
-              toc={<TableOfContents data={page.content} />}
-              readingTime={page.readingTime}
               date={new Date(page.date)}
+              readingTime={page.readingTime}
+              toc={<TableOfContents data={page.content} />}
             />
           </div>
         </div>

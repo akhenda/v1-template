@@ -1,7 +1,7 @@
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 
-import { analytics } from '@repo/analytics/posthog/server';
+import { analytics } from '@repo/analytics/server';
 import { clerkClient } from '@repo/auth/server';
 import { parseError } from '@repo/observability/error';
 import { log } from '@repo/observability/log';
@@ -14,7 +14,9 @@ const getUserFromCustomerId = async (customerId: string) => {
   const clerk = await clerkClient();
   const users = await clerk.users.getUserList();
 
-  const user = users.data.find((user) => user.privateMetadata.stripeCustomerId === customerId);
+  const user = users.data.find(
+    (currentUser) => currentUser.privateMetadata.stripeCustomerId === customerId
+  );
 
   return user;
 };
@@ -98,7 +100,7 @@ export const POST = async (request: Request): Promise<Response> => {
         message: 'something went wrong',
         ok: false,
       },
-      { status: 500 },
+      { status: 500 }
     );
   }
 };

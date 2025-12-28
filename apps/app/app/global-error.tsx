@@ -32,12 +32,12 @@ export default function GlobalError({ error, reset }: Props) {
             {/* Logo */}
             <div className="mb-16 flex items-center justify-center">
               <Image
+                alt="v1 Template Logo"
+                className="h-20 w-auto dark:invert-30"
+                height={0}
                 priority
                 src="/images/logo.svg"
-                alt="v1 Template Logo"
                 width={0}
-                height={0}
-                className="h-20 w-auto dark:invert-30"
               />
             </div>
 
@@ -70,15 +70,15 @@ export default function GlobalError({ error, reset }: Props) {
 
             {/* Action Buttons */}
             <div className="flex flex-col items-center justify-center space-y-3 sm:flex-row sm:space-x-3 sm:space-y-0">
-              <Button variant="secondary" asChild>
-                <Link href="/" className="flex min-w-32 items-center justify-center">
+              <Button asChild variant="secondary">
+                <Link className="flex min-w-32 items-center justify-center" href="/">
                   <Home className="mr-2 h-4 w-4" />
                   Return Home
                 </Link>
               </Button>
               <Button
+                className="flex min-w-32 items-center justify-center bg-linear-to-r from-emerald-600 to-teal-500 hover:from-emerald-700 hover:to-teal-600"
                 onClick={reset}
-                className="flex min-w-32 items-center justify-center bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-700 hover:to-teal-600"
               >
                 <RefreshCw className="mr-2 h-4 w-4" />
                 Try Again
@@ -92,8 +92,8 @@ export default function GlobalError({ error, reset }: Props) {
                 If the problem persists, please contact our support team.
               </p>
               <a
-                href="mailto:support@v1.com"
                 className="mt-3 inline-flex items-center font-medium text-emerald-600 text-sm hover:text-emerald-700"
+                href="mailto:support@v1.com"
               >
                 <Mail className="mr-2 h-4 w-4" />
                 support@v1.com

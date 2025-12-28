@@ -1,7 +1,8 @@
+import * as React from 'react';
+
 import { CaretDownIcon, ListBulletIcon } from '@radix-ui/react-icons';
 import type { Editor } from '@tiptap/react';
 import type { VariantProps } from 'class-variance-authority';
-import * as React from 'react';
 
 import type { toggleVariants } from '../../../../../ui/toggle';
 import type { FormatAction } from '../../types';
@@ -18,11 +19,11 @@ const formatActions: ListItem[] = [
     label: 'Numbered list',
     icon: (
       <svg
-        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
         height="20px"
         viewBox="0 -960 960 960"
         width="20px"
-        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <path d="M144-144v-48h96v-24h-48v-48h48v-24h-96v-48h120q10.2 0 17.1 6.9 6.9 6.9 6.9 17.1v48q0 10.2-6.9 17.1-6.9 6.9-17.1 6.9 10.2 0 17.1 6.9 6.9 6.9 6.9 17.1v48q0 10.2-6.9 17.1-6.9 6.9-17.1 6.9H144Zm0-240v-96q0-10.2 6.9-17.1 6.9-6.9 17.1-6.9h72v-24h-96v-48h120q10.2 0 17.1 6.9 6.9 6.9 6.9 17.1v72q0 10.2-6.9 17.1-6.9 6.9-17.1 6.9h-72v24h96v48H144Zm48-240v-144h-48v-48h96v192h-48Zm168 384v-72h456v72H360Zm0-204v-72h456v72H360Zm0-204v-72h456v72H360Z" />
       </svg>
@@ -55,25 +56,23 @@ export const SectionFour: React.FC<SectionFourProps> = ({
   mainActionCount = 0,
   size,
   variant,
-}) => {
-  return (
-    <ToolbarSection
-      editor={editor}
-      actions={formatActions}
-      activeActions={activeActions}
-      mainActionCount={mainActionCount}
-      dropdownIcon={
-        <>
-          <ListBulletIcon className="size-5" />
-          <CaretDownIcon className="size-5" />
-        </>
-      }
-      dropdownTooltip="Lists"
-      size={size}
-      variant={variant}
-    />
-  );
-};
+}) => (
+  <ToolbarSection
+    actions={formatActions}
+    activeActions={activeActions}
+    dropdownIcon={
+      <>
+        <ListBulletIcon className="size-5" />
+        <CaretDownIcon className="size-5" />
+      </>
+    }
+    dropdownTooltip="Lists"
+    editor={editor}
+    mainActionCount={mainActionCount}
+    size={size}
+    variant={variant}
+  />
+);
 
 SectionFour.displayName = 'SectionFour';
 

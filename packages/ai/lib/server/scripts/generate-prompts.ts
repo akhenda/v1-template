@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/performance/useTopLevelRegex: TODO: fix me later */
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { basename, dirname, extname, join, relative, resolve } from 'node:path';
 
@@ -46,8 +47,8 @@ function processMdFile(mdPath: string): void {
 }
 
 /**
- * Recursively walks through a directory, finds all '.md' files,
- * and processes them.
+ * Recursively walks through a directory, finds all '.md' files that are
+ * specifically in 'prompts/md/' directory structures, and processes them.
  * @param dir - The directory to start from.
  */
 function findAndProcessMdFiles(dir: string): void {
@@ -60,8 +61,18 @@ function findAndProcessMdFiles(dir: string): void {
       // It's a directory, so we recurse into it.
       findAndProcessMdFiles(fullPath);
     } else if (extname(entry.name) === '.md') {
-      // It's a Markdown file, so we process it.
-      processMdFile(fullPath);
+      // Only process .md files that are in a 'prompts/md/' directory structure
+      const relativePath = relative(startDir, fullPath);
+      const pathParts = relativePath.split('/');
+
+      // Check if the file is in a path that contains 'prompts' followed by 'md'
+      const promptsIndex = pathParts.indexOf('prompts');
+      const mdIndex = pathParts.indexOf('md');
+
+      if (promptsIndex !== -1 && mdIndex === promptsIndex + 1) {
+        // It's a Markdown file in the correct prompts/md/ structure, so we process it.
+        processMdFile(fullPath);
+      }
     }
   }
 }

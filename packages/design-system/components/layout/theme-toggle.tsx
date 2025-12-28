@@ -1,8 +1,9 @@
 'use client';
 
+import { useTheme } from 'next-themes';
+
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import { Monitor, Moon, Sun } from 'lucide-react';
-import { useTheme } from 'next-themes';
 
 import { cn } from '../../lib/utils';
 import { gradients, spacings, supportedThemes, useAppearanceContext } from '../../providers/theme';
@@ -32,7 +33,7 @@ function ColorSchemeToggle({
   const isDark = theme === 'dark';
   const isSystem = theme === 'system';
 
-  const changeTheme = (theme: ColorScheme) => () => setTheme(theme);
+  const changeTheme = (t: ColorScheme) => () => setTheme(t);
 
   if (justIcons) {
     return (
@@ -42,22 +43,22 @@ function ColorSchemeToggle({
         </DropdownMenuLabel>
         <DropdownMenuGroup className="mb-1 flex flex-row justify-around gap-1">
           <DropdownMenuItem
-            className={cn('border-1', isLight && 'bg-accent')}
+            className={cn('border', isLight && 'bg-accent')}
             onClick={changeTheme('light')}
           >
-            <Sun size={16} strokeWidth={2} className="opacity-80" aria-hidden="true" />
+            <Sun aria-hidden="true" className="opacity-80" size={16} strokeWidth={2} />
           </DropdownMenuItem>
           <DropdownMenuItem
-            className={cn('border-1', isDark && 'bg-accent')}
+            className={cn('border', isDark && 'bg-accent')}
             onClick={changeTheme('dark')}
           >
-            <Moon size={16} strokeWidth={2} className="opacity-80" aria-hidden="true" />
+            <Moon aria-hidden="true" className="opacity-80" size={16} strokeWidth={2} />
           </DropdownMenuItem>
           <DropdownMenuItem
-            className={cn('border-1', isSystem && 'bg-accent')}
+            className={cn('border', isSystem && 'bg-accent')}
             onClick={changeTheme('system')}
           >
-            <Monitor size={16} strokeWidth={2} className="opacity-80" aria-hidden="true" />
+            <Monitor aria-hidden="true" className="opacity-80" size={16} strokeWidth={2} />
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </>
@@ -72,34 +73,34 @@ function ColorSchemeToggle({
       <DropdownMenuGroup>
         <DropdownMenuGroup className="flex flex-row justify-around gap-1">
           <DropdownMenuItem
-            className={cn('flex-1 items-center justify-center border-1', isLight && 'bg-accent')}
+            className={cn('flex-1 items-center justify-center border', isLight && 'bg-accent')}
             onClick={changeTheme('light')}
           >
-            <Sun size={16} strokeWidth={2} className="text-primary opacity-80" aria-hidden="true" />
+            <Sun aria-hidden="true" className="text-primary opacity-80" size={16} strokeWidth={2} />
             <span>Light</span>
           </DropdownMenuItem>
           <DropdownMenuItem
-            className={cn('flex-1 items-center justify-center border-1', isDark && 'bg-accent')}
+            className={cn('flex-1 items-center justify-center border', isDark && 'bg-accent')}
             onClick={changeTheme('dark')}
           >
             <Moon
+              aria-hidden="true"
+              className="text-primary opacity-80"
               size={16}
               strokeWidth={2}
-              className="text-primary opacity-80"
-              aria-hidden="true"
             />
             <span>Dark</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuItem
-          className={cn('mt-1 items-center justify-center border-1', isSystem && 'bg-accent')}
+          className={cn('mt-1 items-center justify-center border', isSystem && 'bg-accent')}
           onClick={changeTheme('system')}
         >
           <Monitor
+            aria-hidden="true"
+            className="text-primary opacity-80"
             size={16}
             strokeWidth={2}
-            className="text-primary opacity-80"
-            aria-hidden="true"
           />
           <span>System</span>
         </DropdownMenuItem>
@@ -122,15 +123,15 @@ function ThemeToggle({ label = 'Theme' }: { label?: string }) {
 
           return (
             <DropdownMenuItem
-              key={supportedTheme.value}
               className={cn({ 'bg-accent': isActive })}
+              key={supportedTheme.value}
               onClick={() => setTheme(supportedTheme.value)}
             >
               <div
                 className={cn(
                   'h-4 w-4 rounded-full',
                   supportedTheme.light,
-                  `dark:${supportedTheme.dark}`,
+                  `dark:${supportedTheme.dark}`
                 )}
               />
               <span>{supportedTheme.name}</span>
@@ -156,8 +157,8 @@ function GradientToggle({ label = 'Gradient' }: { label?: string }) {
 
           return (
             <DropdownMenuItem
-              key={gradient.value}
               className={cn({ 'bg-accent': isActive })}
+              key={gradient.value}
               onClick={() => setGradient(gradient.value)}
             >
               <div className={cn('h-4 w-4 rounded-full', gradient.color)} />
@@ -180,8 +181,8 @@ function SpacingToggle() {
 
         return (
           <DropdownMenuItem
+            className={cn('border text-xs', { 'bg-accent': isActive })}
             key={spacing.value}
-            className={cn('border-1 text-xs', { 'bg-accent': isActive })}
             onClick={() => setSpacing(spacing.value)}
           >
             {spacing.name}
@@ -198,14 +199,14 @@ export function AppearanceToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button size="icon" variant="outline" aria-label="Select theme">
+        <Button aria-label="Select theme" size="icon" variant="outline">
           {theme === 'light' && (
             <SunIcon className="dark:-rotate-90 h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:scale-0" />
           )}
           {theme === 'dark' && (
             <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           )}
-          {theme === 'system' && <Monitor size={16} strokeWidth={2} aria-hidden="true" />}
+          {theme === 'system' && <Monitor aria-hidden="true" size={16} strokeWidth={2} />}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="min-w-40">

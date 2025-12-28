@@ -1,7 +1,8 @@
+import * as React from 'react';
+
 import { CaretDownIcon, CheckIcon } from '@radix-ui/react-icons';
 import type { Editor } from '@tiptap/react';
 import type { VariantProps } from 'class-variance-authority';
-import * as React from 'react';
 
 import { Popover, PopoverContent, PopoverTrigger } from '../../../../../ui/popover';
 import type { toggleVariants } from '../../../../../ui/toggle';
@@ -68,15 +69,15 @@ const MemoizedColorButton = React.memo<{
     <Tooltip>
       <TooltipTrigger asChild>
         <ToggleGroupItem
-          tabIndex={0}
-          className="relative size-7 rounded-md p-0"
-          value={color.cssVar}
           aria-label={label}
-          style={{ backgroundColor: color.cssVar }}
+          className="relative size-7 rounded-md p-0"
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             e.preventDefault();
             onClick(color.cssVar);
           }}
+          style={{ backgroundColor: color.cssVar }}
+          tabIndex={0}
+          value={color.cssVar}
         >
           {isSelected && (
             <CheckIcon className="absolute inset-0 m-auto size-6" style={{ color: inverse }} />
@@ -99,19 +100,19 @@ const MemoizedColorPicker = React.memo<{
   onColorChange: (value: string) => void;
 }>(({ palette, selectedColor, inverse, onColorChange }) => (
   <ToggleGroup
-    type="single"
-    value={selectedColor}
+    className="gap-1.5"
     onValueChange={(value: string) => {
       if (value) onColorChange(value);
     }}
-    className="gap-1.5"
+    type="single"
+    value={selectedColor}
   >
     {palette.colors.map((color, index) => (
       <MemoizedColorButton
-        key={index}
-        inverse={inverse}
         color={color}
+        inverse={inverse}
         isSelected={selectedColor === color.cssVar}
+        key={index}
         onClick={onColorChange}
       />
     ))}
@@ -133,7 +134,7 @@ export const SectionThree: React.FC<SectionThreeProps> = ({ editor, size, varian
       setSelectedColor(value);
       editor.chain().setColor(value).run();
     },
-    [editor],
+    [editor]
   );
 
   React.useEffect(() => {
@@ -144,24 +145,24 @@ export const SectionThree: React.FC<SectionThreeProps> = ({ editor, size, varian
     <Popover>
       <PopoverTrigger asChild>
         <ToolbarButton
-          tooltip="Text color"
           aria-label="Text color"
           className="w-12"
           size={size}
+          tooltip="Text color"
           variant={variant}
         >
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
+            className="size-5"
             fill="none"
+            height="24"
             stroke="currentColor"
-            strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="size-5"
+            strokeWidth="2"
             style={{ color: selectedColor }}
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path d="M4 20h16" />
             <path d="m6 16 6-12 6 12" />
@@ -174,11 +175,11 @@ export const SectionThree: React.FC<SectionThreeProps> = ({ editor, size, varian
         <div className="space-y-1.5">
           {COLORS.map((palette, index) => (
             <MemoizedColorPicker
-              key={index}
-              palette={palette}
               inverse={palette.inverse}
-              selectedColor={selectedColor}
+              key={index}
               onColorChange={handleColorChange}
+              palette={palette}
+              selectedColor={selectedColor}
             />
           ))}
         </div>

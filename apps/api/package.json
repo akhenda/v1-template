@@ -2,14 +2,14 @@
   "name": "api",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"npm:next\" \"npm:stripe\"",
-    "next": "next dev -p 3002 --turbopack",
-    "build": "next build",
-    "start": "next start",
     "analyze": "ANALYZE=true npm run build",
-    "test": "NODE_ENV=test vitest run",
-    "stripe": "stripe listen --forward-to localhost:3002/webhooks/payments",
+    "build": "next build",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "concurrently \"npm:next\" \"npm:stripe\"",
+    "next": "next dev -p 3002",
+    "start": "next start",
+    "stripe": "stripe listen --forward-to localhost:3002/webhooks/payments",
+    "test": "NODE_ENV=test vitest run",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
@@ -20,22 +20,24 @@
     "@repo/next-config": "workspace:*",
     "@repo/observability": "workspace:*",
     "@repo/payments": "workspace:*",
-    "@repo/testing": "workspace:*",
-    "@sentry/nextjs": "9.22.0",
-    "@t3-oss/env-nextjs": "0.13.4",
-    "next": "15.4.2",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "svix": "1.66.0",
-    "vitest": "3.2.4",
-    "zod": "3.25.28"
+    "@sentry/nextjs": "^10.29.0",
+    "@t3-oss/env-nextjs": "^0.13.8",
+    "import-in-the-middle": "^2.0.0",
+    "next": "16.0.10",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
+    "require-in-the-middle": "8.0.1",
+    "svix": "^1.82.0",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "22.15.21",
-    "@types/react": "19.1.0",
-    "@types/react-dom": "19.1.0",
-    "concurrently": "9.1.2",
-    "typescript": "5.8.3"
+    "@types/node": "24.10.1",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "concurrently": "^9.2.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.15"
   }
 }

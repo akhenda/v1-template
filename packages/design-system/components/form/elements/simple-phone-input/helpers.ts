@@ -1,10 +1,6 @@
 import i18nIsoCountries from 'i18n-iso-countries';
-import {
-  type CountryCallingCode,
-  type CountryCode,
-  getCountries,
-  getCountryCallingCode,
-} from 'libphonenumber-js';
+import type { CountryCallingCode, CountryCode } from 'libphonenumber-js';
+import { getCountries, getCountryCallingCode } from 'libphonenumber-js';
 
 /**
  * Source: https://grafikart.fr/tutoriels/drapeau-emoji-fonction-2152
@@ -12,11 +8,14 @@ import {
  * @returns the emoji flag (🇫🇷, 🇬🇧, 🇩🇪)
  */
 export function isoToEmoji(code: string) {
-  return code
-    .split('')
-    .map((letter) => (letter.charCodeAt(0) % 32) + 0x1f1e5)
-    .map((emojiCode) => String.fromCodePoint(emojiCode))
-    .join('');
+  return (
+    code
+      .split('')
+      // biome-ignore lint/style/useNumericSeparators: no no no
+      .map((letter) => (letter.charCodeAt(0) % 32) + 0x1f1e5)
+      .map((emojiCode) => String.fromCodePoint(emojiCode))
+      .join('')
+  );
 }
 
 /**
@@ -55,7 +54,7 @@ export function getCountriesOptions() {
  */
 export function replaceNumbersWithZeros(phoneNumber: string): string {
   // Split the phone number into country code and the rest of the number
-  // biome-ignore lint/performance/useTopLevelRegex: <explanation>
+  // biome-ignore lint/performance/useTopLevelRegex: no
   const [countryCode, ...restOfNumber] = phoneNumber.split(/\s+/);
 
   // Replace digits in the rest of the number with zeros

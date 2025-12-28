@@ -1,26 +1,20 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
+import type { CarouselApi } from '@repo/design-system/components/ui/carousel';
 import {
   Carousel,
-  type CarouselApi,
   CarouselContent,
   CarouselItem,
 } from '@repo/design-system/components/ui/carousel';
-import type { Dictionary } from '@repo/internationalization';
-import { useEffect, useState } from 'react';
 
-type CasesProps = {
-  dictionary: Dictionary;
-};
-
-export const Cases = ({ dictionary }: CasesProps) => {
+export const Cases = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    if (!api) {
-      return;
-    }
+    if (!api) return;
 
     setTimeout(() => {
       if (api.selectedScrollSnap() + 1 === api.scrollSnapList().length) {
@@ -38,9 +32,9 @@ export const Cases = ({ dictionary }: CasesProps) => {
       <div className="container mx-auto">
         <div className="flex flex-col gap-10">
           <h2 className="text-left font-regular text-xl tracking-tighter md:text-5xl lg:max-w-xl">
-            {dictionary.web.home.cases.title}
+            Empowering Success Stories Across the Globe
           </h2>
-          <Carousel setApi={setApi} className="w-full">
+          <Carousel className="w-full" setApi={setApi}>
             <CarouselContent>
               {Array.from({ length: 15 }).map((_, index) => (
                 <CarouselItem className="basis-1/4 lg:basis-1/6" key={index}>

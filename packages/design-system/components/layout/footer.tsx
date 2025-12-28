@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import type React from 'react';
+
+import Link from 'next/link';
 
 import { cn } from '../../lib/utils';
 
@@ -38,7 +39,7 @@ export function Footer({
             {socialLinks && (
               <div className="flex space-x-4">
                 {socialLinks.map((link, index) => (
-                  <Link key={index} href={link.href} className="hover:text-white">
+                  <Link className="hover:text-white" href={link.href} key={index}>
                     {link.icon}
                     <span className="sr-only">{link.label}</span>
                   </Link>
@@ -53,7 +54,7 @@ export function Footer({
               <ul className="space-y-2">
                 {group.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
-                    <Link href={link.href} className="hover:text-white">
+                    <Link className="hover:text-white" href={link.href}>
                       {link.label}
                     </Link>
                   </li>
@@ -77,7 +78,7 @@ export function Footer({
             {bottomLinks && (
               <div className="flex space-x-6">
                 {bottomLinks.map((link, index) => (
-                  <Link key={index} href={link.href} className="hover:text-white">
+                  <Link className="hover:text-white" href={link.href} key={index}>
                     {link.label}
                   </Link>
                 ))}

@@ -42,7 +42,7 @@ export function CountryDropdownFieldComponent<Schema extends FieldValues>({
     debounce((country) => {
       if (country.alpha2 !== field.value) field.onChange(country.alpha2);
     }, 300),
-    [field.value, field.onChange],
+    [field.value, field.onChange]
   );
 
   return (
@@ -54,9 +54,9 @@ export function CountryDropdownFieldComponent<Schema extends FieldValues>({
         <CountryDropdown
           {...rest}
           className="h-10 w-full bg-muted"
+          onChange={debouncedOnChange}
           placeholder={placeholder}
           value={field.value}
-          onChange={debouncedOnChange}
         />
       </FormControl>
       {description && <FormDescription>{description}</FormDescription>}

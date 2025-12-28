@@ -1,10 +1,13 @@
 'use client';
 
-import { type LucideIcon, WandSparklesIcon } from 'lucide-react';
 import React from 'react';
 
+import type { LucideIcon } from 'lucide-react';
+import { WandSparklesIcon } from 'lucide-react';
+
 import { cn } from '../../lib/utils';
-import { EnhancedButton, type EnhancedButtonProps } from '../enhanced-button';
+import type { EnhancedButtonProps } from '../enhanced-button';
+import { EnhancedButton } from '../enhanced-button';
 import { Spinner } from '../spinner';
 
 export type AIActionButtonProps = EnhancedButtonProps & {
@@ -24,7 +27,7 @@ export function AIActionButtonComponent({
   ...rest
 }: AIActionButtonProps) {
   return (
-    <EnhancedButton size={size} effect={effect} className={className} {...rest}>
+    <EnhancedButton className={className} effect={effect} size={size} {...rest}>
       {loading && <Spinner size="xs" />}
       {!loading && (
         <>

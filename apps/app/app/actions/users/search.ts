@@ -1,40 +1,26 @@
 'use server';
 
-import {
-  type OrganizationMembership,
-  auth,
-  clerkClient,
-} from '@repo/auth/server';
 import Fuse from 'fuse.js';
+
+import type { OrganizationMembership } from '@repo/auth/server';
+import { auth, clerkClient } from '@repo/auth/server';
 
 const getName = (user: OrganizationMembership): string | undefined => {
   let name = user.publicUserData?.firstName;
 
-  if (name && user.publicUserData?.lastName) {
-    name = `${name} ${user.publicUserData.lastName}`;
-  } else if (!name) {
-    name = user.publicUserData?.identifier;
-  }
+  if (name && user.publicUserData?.lastName) name = `${name} ${user.publicUserData.lastName}`;
+  else if (!name) name = user.publicUserData?.identifier;
 
   return name;
 };
 
 export const searchUsers = async (
   query: string
-): Promise<
-  | {
-      data: string[];
-    }
-  | {
-      error: unknown;
-    }
-> => {
+): Promise<{ data: string[] } | { error: unknown }> => {
   try {
     const { orgId } = await auth();
 
-    if (!orgId) {
-      throw new Error('Not logged in');
-    }
+    if (!orgId) throw new Error('Not logged in');
 
     const clerk = await clerkClient();
 
@@ -49,11 +35,7 @@ export const searchUsers = async (
       imageUrl: user.publicUserData?.imageUrl,
     }));
 
-    const fuse = new Fuse(users, {
-      keys: ['name'],
-      minMatchCharLength: 1,
-      threshold: 0.3,
-    });
+    const fuse = new Fuse(users, { keys: ['name'], minMatchCharLength: 1, threshold: 0.3 });
 
     const results = fuse.search(query);
     const data = results.map((result) => result.item.id);

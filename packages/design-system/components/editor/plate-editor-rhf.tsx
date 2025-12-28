@@ -1,9 +1,9 @@
 'use client';
 
-import { Plate } from '@udecode/plate/react';
-import * as React from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+
+import { Plate } from '@udecode/plate/react';
 
 import { useCreateRHFEditor } from '@repo/design-system/components/editor/use-create-rhf-editor';
 
@@ -16,7 +16,7 @@ export function PlateEditorRHF() {
     <DndProvider backend={HTML5Backend}>
       <Plate editor={editor}>
         <EditorContainer variant="select">
-          <Editor variant="select" className="bg-muted" />
+          <Editor className="bg-muted" variant="select" />
         </EditorContainer>
       </Plate>
     </DndProvider>

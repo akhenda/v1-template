@@ -1,10 +1,12 @@
 'use client';
 
-import React, { useCallback, useState, forwardRef, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 // assets
 import { CheckIcon, ChevronDown, Globe } from 'lucide-react';
 
+// utils
+import { cn } from '../../../../lib/utils';
 // shadcn
 import {
   Command,
@@ -17,14 +19,12 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '../../../ui/popover';
 import { VirtualizedList } from '../../../virtualized';
 
-// utils
-import { cn } from '../../../../lib/utils';
-
-// data
-import { type Country, countries } from './countries';
+import type { Country } from './countries';
+import { countries } from './countries';
 
 // Dropdown props
 type CountryDropdownProps = {
+  ref: React.ForwardedRef<HTMLButtonElement>;
   onChange?: (country: Country) => void;
   defaultValue?: string;
   disabled?: boolean;
@@ -44,34 +44,32 @@ type RowItemProps = {
 const ITEM_HEIGHT = 35;
 const WINDOW_HEIGHT = 250;
 
-const RowItem = React.memo(({ country, onSelect, selected, style }: RowItemProps) => {
-  return (
-    <CommandItem
-      style={style}
-      key={country.alpha2}
-      className="flex w-full items-center gap-2 rounded-sm"
-      onSelect={() => onSelect(country)}
-    >
-      <div className="flex w-0 flex-grow items-center space-x-2 overflow-hidden">
-        <span className="text-2xl">{country.emoji}</span>
-        <span className="overflow-hidden text-ellipsis whitespace-nowrap">{country.name}</span>
-      </div>
-      <CheckIcon
-        className={cn(
-          'ml-auto h-4 w-4 shrink-0',
-          country.alpha2 === selected?.alpha2 ? 'opacity-100' : 'opacity-0',
-        )}
-      />
-    </CommandItem>
-  );
-});
+const RowItem = React.memo(({ country, onSelect, selected, style }: RowItemProps) => (
+  <CommandItem
+    className="flex w-full items-center gap-2 rounded-sm"
+    key={country.alpha2}
+    onSelect={() => onSelect(country)}
+    style={style}
+  >
+    <div className="flex w-0 grow items-center space-x-2 overflow-hidden">
+      <span className="text-2xl">{country.emoji}</span>
+      <span className="overflow-hidden text-ellipsis whitespace-nowrap">{country.name}</span>
+    </div>
+    <CheckIcon
+      className={cn(
+        'ml-auto h-4 w-4 shrink-0',
+        country.alpha2 === selected?.alpha2 ? 'opacity-100' : 'opacity-0'
+      )}
+    />
+  </CommandItem>
+));
 RowItem.displayName = 'RowItem';
 
 const CountryDropdownTrigger = React.memo(
   ({ selected, slim = false, placeholder = 'Select a country' }: CountryDropdownTriggerProps) => {
     if (selected) {
       return (
-        <div className="flex w-0 flex-grow items-center gap-2 overflow-hidden">
+        <div className="flex w-0 grow items-center gap-2 overflow-hidden">
           <span className="text-2xl">{selected.emoji}</span>
           {!slim && (
             <span className="overflow-hidden text-ellipsis whitespace-nowrap">{selected.name}</span>
@@ -86,22 +84,20 @@ const CountryDropdownTrigger = React.memo(
         <span>{placeholder}</span>
       </div>
     );
-  },
+  }
 );
 CountryDropdownTrigger.displayName = 'CountryDropdownTrigger';
 
-const CountryDropdownComponent = (
-  {
-    onChange,
-    value,
-    disabled = false,
-    placeholder = 'Select a country',
-    slim = false,
-    className,
-    ...props
-  }: Omit<CountryDropdownProps, 'defaultValue'> & { value?: string },
-  ref: React.ForwardedRef<HTMLButtonElement>,
-) => {
+const CountryDropdownComponent = ({
+  ref,
+  onChange,
+  value,
+  disabled = false,
+  placeholder = 'Select a country',
+  slim = false,
+  className,
+  ...props
+}: Omit<CountryDropdownProps, 'defaultValue'> & { value?: string }) => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
 
@@ -110,46 +106,47 @@ const CountryDropdownComponent = (
     if (value && countries) {
       return countries.find((c) => c.alpha2 === value);
     }
-    return undefined;
+    return;
   }, [value]);
 
   // Filtered list
-  const filtered = useMemo(() => {
-    return countries.filter((c) => c.name.toLowerCase().includes(search.toLowerCase()));
-  }, [search]);
+  const filtered = useMemo(
+    () => countries.filter((c) => c.name.toLowerCase().includes(search.toLowerCase())),
+    [search]
+  );
 
   const handleSelect = useCallback(
     (country: Country) => {
       onChange?.(country);
       setOpen(false);
     },
-    [onChange],
+    [onChange]
   );
 
   const triggerClasses = cn(
     'flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
     slim === true && 'w-20',
-    className,
+    className
   );
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger ref={ref} className={triggerClasses} disabled={disabled} {...props}>
-        <CountryDropdownTrigger selected={selected} slim={slim} placeholder={placeholder} />
+    <Popover onOpenChange={setOpen} open={open}>
+      <PopoverTrigger className={triggerClasses} disabled={disabled} ref={ref} {...props}>
+        <CountryDropdownTrigger placeholder={placeholder} selected={selected} slim={slim} />
         <ChevronDown size={16} />
       </PopoverTrigger>
       <PopoverContent
-        side="bottom"
-        collisionPadding={10}
         className="min-w-[--radix-popper-anchor-width] p-0"
+        collisionPadding={10}
+        side="bottom"
       >
-        <Command shouldFilter={false} className="max-h-[200px] w-full sm:max-h-[270px]">
+        <Command className="max-h-50 w-full sm:max-h-67.5" shouldFilter={false}>
           <CommandList>
             <div className="sticky top-0 z-10 bg-popover">
               <CommandInput
-                value={search}
                 onValueChange={setSearch}
                 placeholder="Search country..."
+                value={search}
               />
             </div>
 
@@ -160,8 +157,8 @@ const CountryDropdownComponent = (
                   <VirtualizedList>
                     {filtered.map((country) => (
                       <RowItem
-                        key={country.alpha3}
                         country={country}
+                        key={country.alpha3}
                         onSelect={handleSelect}
                         selected={selected}
                         style={{ height: ITEM_HEIGHT }}
@@ -178,6 +175,5 @@ const CountryDropdownComponent = (
   );
 };
 
-const CountryDropdownForwarded = forwardRef(CountryDropdownComponent);
-CountryDropdownForwarded.displayName = 'CountryDropdown';
-export const CountryDropdown = React.memo(CountryDropdownForwarded);
+CountryDropdownComponent.displayName = 'CountryDropdown';
+export const CountryDropdown = React.memo(CountryDropdownComponent);

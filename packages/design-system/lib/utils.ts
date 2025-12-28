@@ -1,6 +1,6 @@
 import { parseError } from '@repo/observability/error';
-import { clsx } from 'clsx';
 import type { ClassValue } from 'clsx';
+import { clsx } from 'clsx';
 import { toast } from 'sonner';
 import { twMerge } from 'tailwind-merge';
 
@@ -13,9 +13,7 @@ import { twMerge } from 'tailwind-merge';
  */
 export const cn = (...inputs: ClassValue[]): string => twMerge(clsx(inputs));
 
-export function capitalize(str: string) {
-  return  str.charAt(0).toUpperCase() + str.slice(1);
-}
+export const capitalize = (str: string) =>  str.charAt(0).toUpperCase() + str.slice(1);
 
 export function handleError (error: unknown): void {
   const message = parseError(error);
@@ -23,6 +21,4 @@ export function handleError (error: unknown): void {
   toast.error(message);
 };
 
-export function getAvatarUrl(seed: string) {
-  return `https://api.dicebear.com/9.x/glass/svg?seed=${seed}`;
-}
+export const getAvatarUrl = (seed: string) => `https://api.dicebear.com/9.x/glass/svg?seed=${seed}`;

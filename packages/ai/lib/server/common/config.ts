@@ -2,14 +2,20 @@ import { createAnthropic } from '@ai-sdk/anthropic';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { createOpenAI } from '@ai-sdk/openai';
 import { withTracing } from '@posthog/ai';
-import type { LanguageModelV1 } from 'ai';
 import { PostHog } from 'posthog-node';
 
 import type { Plan } from '@repo/types';
 
 import { keys } from '../../../keys';
 
-import type { AIConfig, AIConfigMap, AIProvider, GoogleModel, ProviderModelMap } from './types';
+import type {
+  AIConfig,
+  AIConfigMap,
+  AIProvider,
+  GoogleModel,
+  LanguageModelV2,
+  ProviderModelMap,
+} from './types';
 
 export type AIOpts<T extends AIProvider, U extends Plan = Plan> = {
   aiProvider?: T;
@@ -31,14 +37,14 @@ export type AIOpts<T extends AIProvider, U extends Plan = Plan> = {
 
 /**
  * My Preferred Models
- * Open AI - gpt-4.1-mini
- * Anthropic - claude-3-haiku-latest
- * Google - gemini-2.5-flash-preview
+ * Open AI - gpt-5-mini
+ * Anthropic - claude-4.5-haiku-latest
+ * Google - gemini-2.5-flash
  */
 
 export const DEFAULT_AI_PROVIDER: AIProvider = 'google';
-export const DEFAULT_AI_MODEL: GoogleModel = 'gemini-2.5-flash-preview-04-17';
-export const CHEAP_AI_MODEL: GoogleModel = 'gemini-2.5-flash-preview-04-17';
+export const DEFAULT_AI_MODEL: GoogleModel = 'gemini-2.5-flash';
+export const CHEAP_AI_MODEL: GoogleModel = 'gemini-2.5-flash';
 export const DEFAULT_AI_API_KEY: string = keys().GEMINI_API_KEY;
 export const DEFAULT_AI_TEMPERATURE: number = 0;
 
@@ -105,9 +111,9 @@ export function getAIConfig<T extends AIProvider = AIProvider, U extends Plan = 
  * @returns The wrapped language model.
  */
 export function wrapModelWithAnalytics(
-  model: LanguageModelV1,
+  model: LanguageModelV2,
   options: { clerkId?: string; traceId?: string; conversationId?: string; paid?: boolean },
-) {
+): LanguageModelV2 {
   return withTracing(model, phClient, {
     posthogPrivacyMode: false,
     posthogDistinctId: options.clerkId, // optional
@@ -147,14 +153,14 @@ export function getAIModel<T extends AIProvider = AIProvider, U extends Plan = P
   clerkId,
   traceId,
   conversationId,
-}: AIOpts<T, U>) {
+}: AIOpts<T, U>): LanguageModelV2 {
   const {
     provider,
     model: modelId,
     apiKey,
   } = getAIConfig({ aiProvider, aiModel, apiKey: aiAPIKey, plan, cheapAIModel, useCheapAIModel });
 
-  let model = createOpenAI({ apiKey, compatibility: 'strict' })(modelId);
+  let model = createOpenAI({ apiKey })(modelId);
 
   if (provider === 'anthropic') model = createAnthropic({ apiKey })(modelId);
   if (provider === 'google') model = createGoogleGenerativeAI({ apiKey })(modelId);

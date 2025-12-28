@@ -1,11 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 
 import type { PropsWithClassName } from '@repo/types';
 
 import { cn } from '../../lib/utils';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 
 type FAQItem = { question: string; answer: string };
 
@@ -30,12 +30,12 @@ export function FAQAccordion({
           <div className="mx-auto max-w-3xl text-center">
             {title && (
               <motion.h2
-                id="faq"
                 className="font-bold text-3xl text-foreground tracking-tight sm:text-4xl"
+                id="faq"
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                whileInView={{ opacity: 1, y: 0 }}
               >
                 {title}
               </motion.h2>
@@ -44,9 +44,9 @@ export function FAQAccordion({
               <motion.p
                 className="mt-4 text-lg text-muted-foreground"
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                whileInView={{ opacity: 1, y: 0 }}
               >
                 {description}
               </motion.p>
@@ -57,11 +57,11 @@ export function FAQAccordion({
         <motion.div
           className={cn('mx-auto mt-16 max-w-3xl', accordionClassName)}
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+          whileInView={{ opacity: 1, y: 0 }}
         >
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion className="w-full" collapsible type="single">
             {items.map((item, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
                 <AccordionTrigger className="text-left font-medium text-foreground text-lg">

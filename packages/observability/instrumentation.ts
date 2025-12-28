@@ -1,11 +1,17 @@
-import { captureRequestError, init } from '@sentry/nextjs';
-import { keys } from './keys';
+import { captureRequestError } from '@sentry/nextjs';
 
-const opts = { dsn: keys().NEXT_PUBLIC_SENTRY_DSN };
+export const initializeSentry = async () => {
+  if (process.env.NEXT_RUNTIME === 'nodejs') {
+    const { initializeSentry: initServer } = await import('./server');
 
-export const initializeSentry = () => {
-  if (process.env.NEXT_RUNTIME === 'nodejs') init(opts);
-  if (process.env.NEXT_RUNTIME === 'edge') init(opts);
+    initServer();
+  }
+
+  if (process.env.NEXT_RUNTIME === 'edge') {
+    const { initializeSentry: initEdge } = await import('./edge');
+
+    initEdge();
+  }
 };
 
 /**

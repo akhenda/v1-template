@@ -1,9 +1,13 @@
 'use client';
-import { Slot } from '@radix-ui/react-slot';
-import { type VariantProps, cva } from 'class-variance-authority';
-import { LinkIcon } from 'lucide-react';
-import Link from 'next/link';
+
 import React from 'react';
+
+import Link from 'next/link';
+
+import { Slot } from '@radix-ui/react-slot';
+import type { VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
+import { LinkIcon } from 'lucide-react';
 
 import { cn } from '../lib/utils';
 
@@ -25,7 +29,7 @@ const Anchor = ({
     const currentUrl = window.location.href.replace(ANCHOR_REGEX, '');
     const urlWithId = `${currentUrl}#${anchor}`;
 
-    // biome-ignore lint/complexity/noVoid: <explanation>
+    // biome-ignore lint/complexity/noVoid: needed
     void navigator.clipboard.writeText(urlWithId);
   }
 
@@ -35,7 +39,7 @@ const Anchor = ({
         'ms-2 pt-1',
         anchorVisibility === 'always' && 'visible',
         anchorVisibility === 'never' && 'hidden',
-        anchorVisibility === 'hover' && 'invisible group-hover:visible',
+        anchorVisibility === 'hover' && 'invisible group-hover:visible'
       )}
     >
       {/* modify `Link` to `a` if you are not using Next.js */}
@@ -86,27 +90,25 @@ const BaseHeading = ({
 }: BaseHeadingProps) => {
   const Comp = asChild ? Slot : variant;
   return (
-    <>
-      <Comp
-        id={anchor}
-        {...props}
-        className={cn(
-          anchor && 'flex scroll-m-20 items-center gap-1', // modify `scroll-m-20` according to your header height.
-          anchorAlignment === 'spaced' && 'justify-between',
-          anchorVisibility === 'hover' && 'group',
-          headingVariants({ variant, className }),
-        )}
-      >
-        {children}
-        {anchor && (
-          <Anchor
-            anchor={anchor}
-            anchorVisibility={anchorVisibility}
-            disableCopyToClipboard={disableCopyToClipboard}
-          />
-        )}
-      </Comp>
-    </>
+    <Comp
+      id={anchor}
+      {...props}
+      className={cn(
+        anchor && 'flex scroll-m-20 items-center gap-1', // modify `scroll-m-20` according to your header height.
+        anchorAlignment === 'spaced' && 'justify-between',
+        anchorVisibility === 'hover' && 'group',
+        headingVariants({ variant, className })
+      )}
+    >
+      {children}
+      {anchor && (
+        <Anchor
+          anchor={anchor}
+          anchorVisibility={anchorVisibility}
+          disableCopyToClipboard={disableCopyToClipboard}
+        />
+      )}
+    </Comp>
   );
 };
 

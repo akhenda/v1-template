@@ -2,12 +2,6 @@
 
 import { withProps } from '@udecode/cn';
 import type { Value } from '@udecode/plate';
-import {
-  type CreatePlateEditorOptions,
-  ParagraphPlugin,
-  PlateLeaf,
-  usePlateEditor,
-} from '@udecode/plate/react';
 import { AIPlugin } from '@udecode/plate-ai/react';
 import {
   BoldPlugin,
@@ -51,6 +45,8 @@ import {
   TableRowPlugin,
 } from '@udecode/plate-table/react';
 import { TogglePlugin } from '@udecode/plate-toggle/react';
+import type { CreatePlateEditorOptions } from '@udecode/plate/react';
+import { ParagraphPlugin, PlateLeaf, usePlateEditor } from '@udecode/plate/react';
 
 import { copilotPlugins } from '@repo/design-system/components/editor/plugins/copilot-plugins';
 import { editorPlugins } from '@repo/design-system/components/editor/plugins/editor-plugins';
@@ -166,9 +162,9 @@ export const useCreateEditor = (
     readOnly?: boolean;
   } & Omit<CreatePlateEditorOptions, 'plugins'> = {},
   // biome-ignore lint/suspicious/noExplicitAny: TODO: we'll fix later
-  deps: any[] = [],
-) => {
-  return usePlateEditor<Value, (typeof editorPlugins)[number]>(
+  deps: any[] = []
+) =>
+  usePlateEditor<Value, (typeof editorPlugins)[number]>(
     {
       override: {
         components: {
@@ -197,6 +193,5 @@ export const useCreateEditor = (
       ],
       ...options,
     },
-    deps,
+    deps
   );
-};

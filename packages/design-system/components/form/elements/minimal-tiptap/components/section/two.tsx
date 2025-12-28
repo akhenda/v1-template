@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import {
   CodeIcon,
   DotsHorizontalIcon,
@@ -9,7 +11,6 @@ import {
 } from '@radix-ui/react-icons';
 import type { Editor } from '@tiptap/react';
 import type { VariantProps } from 'class-variance-authority';
-import * as React from 'react';
 
 import type { toggleVariants } from '../../../../../ui/toggle';
 import type { FormatAction } from '../../types';
@@ -102,21 +103,19 @@ export const SectionTwo: React.FC<SectionTwoProps> = ({
   mainActionCount = 2,
   size,
   variant,
-}) => {
-  return (
-    <ToolbarSection
-      editor={editor}
-      actions={formatActions}
-      activeActions={activeActions}
-      mainActionCount={mainActionCount}
-      dropdownIcon={<DotsHorizontalIcon className="size-5" />}
-      dropdownTooltip="More formatting"
-      dropdownClassName="w-8"
-      size={size}
-      variant={variant}
-    />
-  );
-};
+}) => (
+  <ToolbarSection
+    actions={formatActions}
+    activeActions={activeActions}
+    dropdownClassName="w-8"
+    dropdownIcon={<DotsHorizontalIcon className="size-5" />}
+    dropdownTooltip="More formatting"
+    editor={editor}
+    mainActionCount={mainActionCount}
+    size={size}
+    variant={variant}
+  />
+);
 
 SectionTwo.displayName = 'SectionTwo';
 

@@ -1,7 +1,9 @@
 'use client';
+
+import type { ReactNode } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
 import { motion, useScroll, useTransform } from 'framer-motion';
-import type React from 'react';
-import { type ReactNode, useEffect, useRef, useState } from 'react';
 
 interface TimelineEntry {
   title: string;
@@ -32,16 +34,16 @@ export const Timeline = ({ header, data }: { header: ReactNode; data: TimelineEn
     <div className="w-full font-sans md:px-10" ref={containerRef}>
       {header}
 
-      <div ref={ref} className="relative mx-auto max-w-7xl pb-20">
+      <div className="relative mx-auto max-w-7xl pb-20" ref={ref}>
         {data.map((item, index) => (
-          <div key={index} className="flex justify-start pt-10 md:gap-10 md:pt-32">
+          <div className="flex justify-start pt-10 md:gap-10 md:pt-32" key={index}>
             <div className="sticky top-40 z-20 flex max-w-xs flex-col items-center self-start md:w-full md:flex-row lg:max-w-sm">
               <div className="absolute left-3 flex h-6 w-6 items-center justify-center rounded-full bg-background md:left-3">
                 <motion.div
                   className="h-3 w-3 rounded-full border border-primary/70 bg-primary/60 p-1 dark:border-primary/40 dark:bg-primary/50"
                   initial={{ scale: 0.8 }}
-                  whileInView={{ scale: 1 }}
                   transition={{ duration: 0.3 }}
+                  whileInView={{ scale: 1 }}
                 />
               </div>
               <h3 className="hidden font-bold text-base text-primary/70 md:block md:pl-14 md:text-2xl dark:text-primary/50">
@@ -58,15 +60,15 @@ export const Timeline = ({ header, data }: { header: ReactNode; data: TimelineEn
           </div>
         ))}
         <div
+          className="mask-[linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] absolute top-0 left-6 w-0.5 overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-0% from-transparent via-neutral-200 to-99% to-transparent md:left-6 dark:via-neutral-700"
           style={{ height: `${height}px` }}
-          className="absolute top-0 left-6 w-[2px] overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-[0%] from-transparent via-neutral-200 to-[99%] to-transparent [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] md:left-6 dark:via-neutral-700 "
         >
           <motion.div
+            className="absolute inset-x-0 top-0 w-0.5 rounded-full bg-linear-to-b from-secondary/90 to-primary/70"
             style={{
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0 w-[2px] rounded-full bg-gradient-to-b from-secondary/90 to-primary/70"
           />
         </div>
       </div>

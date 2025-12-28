@@ -1,12 +1,14 @@
+/** biome-ignore-all lint/style/noNestedTernary: TODO: we'll fix later */
 'use client';
 
 import React, { useEffect, useState } from 'react';
 
+import type { Transition, Variants } from 'framer-motion';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { cn } from '../lib/utils';
 
-export interface FullScreenLoaderProps {
+export type FullScreenLoaderProps = {
   /**
    * Whether the loader is visible
    */
@@ -55,7 +57,7 @@ export interface FullScreenLoaderProps {
    * Optional callback when animation completes one cycle
    */
   onAnimationComplete?: () => void;
-}
+};
 
 export function FullScreenLoaderComponent({
   isLoading = true,
@@ -101,7 +103,7 @@ export function FullScreenLoaderComponent({
     backgroundColor || (fullScreen ? 'rgba(255, 255, 255, 0.9)' : 'transparent');
 
   // Animation variants for the main container
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0, scale: fullScreen ? 1 : 0.95 },
     visible: {
       opacity: 1,
@@ -116,7 +118,7 @@ export function FullScreenLoaderComponent({
   };
 
   // Animation variants for the message (slide up from bottom, exit to top)
-  const messageVariants = {
+  const messageVariants: Variants = {
     hidden: { opacity: 0, y: fullScreen ? 50 : 30, scale: 0.9 },
     visible: {
       opacity: 1,
@@ -133,7 +135,7 @@ export function FullScreenLoaderComponent({
   };
 
   // Animation variants for the sub-message (fade in/out)
-  const subMessageVariants = {
+  const subMessageVariants: Variants = {
     hidden: { opacity: 0, scale: 0.95 },
     visible: {
       opacity: 1,
@@ -148,7 +150,7 @@ export function FullScreenLoaderComponent({
   };
 
   // Animation variants for the loading elements container
-  const elementsContainerVariants = {
+  const elementsContainerVariants: Variants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: {
       opacity: 1,
@@ -163,7 +165,7 @@ export function FullScreenLoaderComponent({
   };
 
   // Animation variants for individual loading elements
-  const elementVariants = {
+  const elementVariants: Variants = {
     hidden: { opacity: 0, scale: 0 },
     visible: {
       opacity: 1,
@@ -173,8 +175,8 @@ export function FullScreenLoaderComponent({
   };
 
   // Animation variants based on style for the loading elements
-  const getAnimationVariants = () => {
-    const baseTransition = {
+  const getAnimationVariants = (): Variants => {
+    const baseTransition: Transition = {
       duration: 2.5 / speed,
       repeat: Number.POSITIVE_INFINITY,
       ease: 'easeInOut',
@@ -247,6 +249,7 @@ export function FullScreenLoaderComponent({
   const variants = getAnimationVariants();
 
   // Get element shape based on animation style and mode
+  // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: TODO: we'll fix later
   const getElementShape = (index: number) => {
     const baseSize = animationStyle === 'orbit' ? (fullScreen ? 12 : 8) : fullScreen ? 16 : 12;
     const size = baseSize - (index % 3) * 2;
@@ -262,53 +265,53 @@ export function FullScreenLoaderComponent({
       case 'pulse':
         return (
           <motion.div
-            className="rounded-full"
-            style={baseStyle}
-            custom={index}
-            variants={{ ...elementVariants, ...variants }}
-            initial="initial"
             animate={['visible', 'animate']}
+            className="rounded-full"
+            custom={index}
+            initial="initial"
             onAnimationComplete={index === 0 ? onAnimationComplete : undefined}
+            style={baseStyle}
+            variants={{ ...elementVariants, ...variants }}
           />
         );
       case 'wave':
         return (
           <motion.div
+            animate={['visible', 'animate']}
             className="rounded-md"
+            custom={index}
+            initial="initial"
+            onAnimationComplete={index === 0 ? onAnimationComplete : undefined}
             style={{
               ...baseStyle,
               width: fullScreen ? 8 : 6,
               height: (fullScreen ? 24 : 18) + (index % 3) * (fullScreen ? 8 : 6),
             }}
-            custom={index}
             variants={{ ...elementVariants, ...variants }}
-            initial="initial"
-            animate={['visible', 'animate']}
-            onAnimationComplete={index === 0 ? onAnimationComplete : undefined}
           />
         );
       case 'orbit':
         return (
           <motion.div
-            className="rounded-full"
-            style={baseStyle}
-            custom={index}
-            variants={{ ...elementVariants, ...variants }}
-            initial="initial"
             animate={['visible', 'animate']}
+            className="rounded-full"
+            custom={index}
+            initial="initial"
             onAnimationComplete={index === 0 ? onAnimationComplete : undefined}
+            style={baseStyle}
+            variants={{ ...elementVariants, ...variants }}
           />
         );
       default:
         return (
           <motion.div
-            className="rounded-full"
-            style={baseStyle}
-            custom={index}
-            variants={{ ...elementVariants, ...variants }}
-            initial="initial"
             animate={['visible', 'animate']}
+            className="rounded-full"
+            custom={index}
+            initial="initial"
             onAnimationComplete={index === 0 ? onAnimationComplete : undefined}
+            style={baseStyle}
+            variants={{ ...elementVariants, ...variants }}
           />
         );
     }
@@ -345,12 +348,12 @@ export function FullScreenLoaderComponent({
     <AnimatePresence mode="wait">
       {isLoading && (
         <motion.div
+          animate="visible"
           className={cn(getContainerClasses(), className)}
+          exit="exit"
+          initial="hidden"
           style={{ backgroundColor: finalBackgroundColor }}
           variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
         >
           <motion.div
             className={cn('flex flex-col items-center justify-center', getContentSpacing())}
@@ -366,7 +369,7 @@ export function FullScreenLoaderComponent({
                     : 'space-x-1'
                   : fullScreen
                     ? 'space-x-4'
-                    : 'space-x-3',
+                    : 'space-x-3'
               )}
               variants={elementsContainerVariants}
             >
@@ -384,12 +387,12 @@ export function FullScreenLoaderComponent({
               {/* Main Message - Slides up from bottom, exits to top */}
               <AnimatePresence mode="wait">
                 <motion.h3
-                  key={message} // Key ensures re-animation when message changes
+                  animate="visible" // Key ensures re-animation when message changes
                   className={textSizes.message}
-                  variants={messageVariants}
-                  initial="hidden"
-                  animate="visible"
                   exit="exit"
+                  initial="hidden"
+                  key={message}
+                  variants={messageVariants}
                 >
                   {message}
                 </motion.h3>
@@ -399,12 +402,12 @@ export function FullScreenLoaderComponent({
               <AnimatePresence mode="wait">
                 {subMessage && (
                   <motion.p
-                    key={subMessage} // Key ensures re-animation when subMessage changes
+                    animate="visible" // Key ensures re-animation when subMessage changes
                     className={textSizes.subMessage}
-                    variants={subMessageVariants}
-                    initial="hidden"
-                    animate="visible"
                     exit="exit"
+                    initial="hidden"
+                    key={subMessage}
+                    variants={subMessageVariants}
                   >
                     {subMessage}
                   </motion.p>

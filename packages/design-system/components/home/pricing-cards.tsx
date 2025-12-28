@@ -1,11 +1,12 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
 import type React from 'react';
 
-import { cn } from '../../lib/utils';
+import Link from 'next/link';
 
+import { motion } from 'framer-motion';
+
+import { cn } from '../../lib/utils';
 import { Button } from '../ui/button';
 
 type Plan = {
@@ -49,12 +50,12 @@ export function PricingCards({
           <div className="mx-auto max-w-3xl text-center">
             {title && (
               <motion.h2
-                id="pricing"
                 className="font-bold text-3xl text-foreground tracking-tight sm:text-4xl"
+                id="pricing"
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                whileInView={{ opacity: 1, y: 0 }}
               >
                 {title}
               </motion.h2>
@@ -63,9 +64,9 @@ export function PricingCards({
               <motion.p
                 className="mt-4 text-lg text-muted-foreground"
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                whileInView={{ opacity: 1, y: 0 }}
               >
                 {description}
               </motion.p>
@@ -76,21 +77,21 @@ export function PricingCards({
         <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {plans.map((plan, index) => (
             <motion.div
-              key={index}
               className={cn(
                 'relative flex flex-col rounded-xl border border-gray-200 p-6',
-                typeof cardClassName === 'function' ? cardClassName(plan) : cardClassName,
+                typeof cardClassName === 'function' ? cardClassName(plan) : cardClassName
               )}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              key={index}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileInView={{ opacity: 1, y: 0 }}
             >
               {plan.popular && (
                 <div
                   className={cn(
                     '-top-4 -translate-x-1/2 absolute left-1/2 rounded-full bg-primary px-4 py-1 font-medium text-primary-foreground text-sm',
-                    popularBadgeClassName,
+                    popularBadgeClassName
                   )}
                 >
                   Most Popular
@@ -108,21 +109,21 @@ export function PricingCards({
               </div>
               <ul className="mb-6 flex-1 space-y-3">
                 {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-center">
+                  <li className="flex items-center" key={i}>
                     <span className={cn('mr-2', featureIconClassName)}>{featureIcon}</span>
                     <span className="text-muted-foreground">{feature}</span>
                   </li>
                 ))}
               </ul>
-              <Link href={plan.cta.href} className={cn({ 'cursor-not-allowed': plan.disabled })}>
+              <Link className={cn({ 'cursor-not-allowed': plan.disabled })} href={plan.cta.href}>
                 <Button
-                  disabled={plan.disabled}
-                  variant={plan.popular ? 'default' : 'outline'}
                   className={cn(
                     'w-full',
                     typeof ctaClassName === 'function' ? ctaClassName(plan) : ctaClassName,
-                    { 'cursor-not-allowed': plan.disabled },
+                    { 'cursor-not-allowed': plan.disabled }
                   )}
+                  disabled={plan.disabled}
+                  variant={plan.popular ? 'default' : 'outline'}
                 >
                   {plan.cta.text}
                 </Button>

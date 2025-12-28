@@ -1,6 +1,8 @@
-import { type NextRequest, NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
-import { type ApiData, verifyAccess } from 'flags';
+import type { ApiData } from 'flags';
+import { verifyAccess } from 'flags';
 
 import * as flags from './index';
 
@@ -13,7 +15,7 @@ export const getFlags = async (request: NextRequest) => {
     Object.values(flags).map((flag) => [
       flag.key,
       { origin: flag.origin, description: flag.description, options: flag.options },
-    ]),
+    ])
   );
 
   return NextResponse.json<ApiData>({ definitions });

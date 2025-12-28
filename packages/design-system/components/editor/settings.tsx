@@ -2,8 +2,6 @@
 
 import * as React from 'react';
 
-import { CopilotPlugin } from '@udecode/plate-ai/react';
-import { useEditorPlugin } from '@udecode/plate/react';
 import {
   Check,
   ChevronsUpDown,
@@ -13,6 +11,9 @@ import {
   Settings,
   Wand2Icon,
 } from 'lucide-react';
+
+import { CopilotPlugin } from '@udecode/plate-ai/react';
+import { useEditorPlugin } from '@udecode/plate/react';
 
 import { Button } from '@repo/design-system/components/ui/button';
 import {
@@ -35,17 +36,14 @@ import { Input } from '@repo/design-system/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@repo/design-system/components/ui/popover';
 import { cn } from '@repo/design-system/lib/utils';
 
-interface Model {
-  label: string;
-  value: string;
-}
+type Model = { label: string; value: string };
 
-interface SettingsContextType {
+type SettingsContextType = {
   keys: Record<string, string>;
   model: Model;
   setKey: (service: string, key: string) => void;
   setModel: (model: Model) => void;
-}
+};
 
 export const models: Model[] = [
   { label: 'gpt-4o-mini', value: 'gpt-4o-mini' },
@@ -59,10 +57,7 @@ export const models: Model[] = [
 const SettingsContext = React.createContext<SettingsContextType | undefined>(undefined);
 
 export function SettingsProvider({ children }: { children: React.ReactNode }) {
-  const [keys, setKeys] = React.useState({
-    openai: '',
-    uploadthing: '',
-  });
+  const [keys, setKeys] = React.useState({ openai: '', uploadthing: '' });
   const [model, setModel] = React.useState<Model>(models[0]);
 
   const setKey = (service: string, key: string) => {
@@ -81,10 +76,7 @@ export function useSettings() {
 
   return (
     context ?? {
-      keys: {
-        openai: '',
-        uploadthing: '',
-      },
+      keys: { openai: '', uploadthing: '' },
       model: models[0],
       setKey: () => null,
       setModel: () => null,
@@ -133,7 +125,7 @@ export function SettingsDialog() {
         >
           <span className="inline-flex bg-background px-2">{label}</span>
         </label>
-        <Button asChild size="icon" variant="ghost" className="absolute top-0 right-[28px] h-full">
+        <Button asChild className="absolute top-0 right-7 h-full" size="icon" variant="ghost">
           <a
             className="flex items-center"
             href={
@@ -151,20 +143,20 @@ export function SettingsDialog() {
       </div>
 
       <Input
-        id={label}
         className="pr-10"
-        value={tempKeys[service]}
+        data-1p-ignore
+        id={label}
         onChange={(e) => setTempKeys((prev) => ({ ...prev, [service]: e.target.value }))}
         placeholder=""
-        data-1p-ignore
         type={showKey[service] ? 'text' : 'password'}
+        value={tempKeys[service]}
       />
       <Button
-        size="icon"
-        variant="ghost"
         className="absolute top-0 right-0 h-full"
         onClick={() => toggleKeyVisibility(service)}
+        size="icon"
         type="button"
+        variant="ghost"
       >
         {showKey[service] ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
         <span className="sr-only">
@@ -175,16 +167,16 @@ export function SettingsDialog() {
   );
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog onOpenChange={setOpen} open={open}>
       <DialogTrigger asChild>
         <Button
-          size="icon"
-          variant="default"
           className={cn(
             'group fixed right-4 bottom-4 z-50 size-10 overflow-hidden',
-            'rounded-full shadow-md hover:shadow-lg',
+            'rounded-full shadow-md hover:shadow-lg'
           )}
           data-block-hide
+          size="icon"
+          variant="default"
         >
           <Settings className="size-4" />
         </Button>
@@ -215,15 +207,14 @@ export function SettingsDialog() {
                 >
                   Model
                 </label>
-                <Popover open={openModel} onOpenChange={setOpenModel}>
-                  <PopoverTrigger id="select-model" asChild>
+                <Popover onOpenChange={setOpenModel} open={openModel}>
+                  <PopoverTrigger asChild id="select-model">
                     <Button
+                      aria-expanded={openModel}
+                      className="w-full justify-between"
+                      role="combobox"
                       size="lg"
                       variant="outline"
-                      className="w-full justify-between"
-                      aria-expanded={openModel}
-                      // biome-ignore lint/a11y/useSemanticElements: <explanation>
-                      role="combobox"
                     >
                       <code>{model.label}</code>
                       <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
@@ -238,16 +229,16 @@ export function SettingsDialog() {
                           {models.map((m) => (
                             <CommandItem
                               key={m.value}
-                              value={m.value}
                               onSelect={() => {
                                 setModel(m);
                                 setOpenModel(false);
                               }}
+                              value={m.value}
                             >
                               <Check
                                 className={cn(
                                   'mr-2 size-4',
-                                  model.value === m.value ? 'opacity-100' : 'opacity-0',
+                                  model.value === m.value ? 'opacity-100' : 'opacity-0'
                                 )}
                               />
                               <code>{m.label}</code>
@@ -276,7 +267,7 @@ export function SettingsDialog() {
             </div>
           </div> */}
 
-          <Button size="lg" className="w-full" type="submit">
+          <Button className="w-full" size="lg" type="submit">
             Save changes
           </Button>
         </form>

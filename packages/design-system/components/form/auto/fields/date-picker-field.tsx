@@ -1,6 +1,9 @@
-import { CalendarIcon } from 'lucide-react';
-import React, { type ComponentProps, useState } from 'react';
+import type React from 'react';
+import type { ComponentProps } from 'react';
+import { memo, useState } from 'react';
 import type { Control, FieldPath, FieldValues } from 'react-hook-form';
+
+import { CalendarIcon } from 'lucide-react';
 
 import { formatDate } from '@repo/date';
 
@@ -43,30 +46,30 @@ export function DatePickerFieldComponent<Schema extends FieldValues>({
 
   return (
     <FormField
-      name={name}
       control={control}
+      name={name}
       render={({ field }) => {
         const selected = field.value ? new Date(field.value) : undefined;
 
         return (
           <FormItem className={cn('flex flex-col', { 'cursor-not-allowed': disabled }, className)}>
             <FormLabel
+              className={cn({ 'pointer-events-none': disabled })}
               markAsRequired={markAsRequired}
               tooltip={tooltip}
-              className={cn({ 'pointer-events-none': disabled })}
             >
               {label}
             </FormLabel>
-            <Popover open={isOpen} onOpenChange={setIsOpen}>
+            <Popover onOpenChange={setIsOpen} open={isOpen}>
               <PopoverTrigger asChild>
                 <FormControl>
                   <Button
-                    variant="outline"
-                    disabled={!!disabled}
                     className={cn(
                       'h-10 w-full bg-muted pl-3 text-left font-normal',
-                      !field.value && 'text-muted-foreground',
+                      !field.value && 'text-muted-foreground'
                     )}
+                    disabled={!!disabled}
+                    variant="outline"
                   >
                     {field.value ? (
                       formatDate(field.value, 'LONG_DATE', false)
@@ -77,16 +80,16 @@ export function DatePickerFieldComponent<Schema extends FieldValues>({
                   </Button>
                 </FormControl>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
+              <PopoverContent align="start" className="w-auto p-0">
                 <Calendar
-                  mode="single"
-                  selected={selected}
                   captionLayout="dropdown"
-                  onSelect={(value) => field.onChange(formatDate(value, 'ISO_8601_DATE', false))}
-                  onDayClick={() => setIsOpen(false)}
-                  startMonth={new Date(1970, 5)}
-                  endMonth={new Date(new Date().getFullYear(), new Date().getMonth())}
                   defaultMonth={selected}
+                  endMonth={new Date(new Date().getFullYear(), new Date().getMonth())}
+                  mode="single"
+                  onDayClick={() => setIsOpen(false)}
+                  onSelect={(value) => field.onChange(formatDate(value, 'ISO_8601_DATE', false))}
+                  selected={selected}
+                  startMonth={new Date(1970, 5)}
                   {...rest}
                 />
               </PopoverContent>
@@ -100,4 +103,4 @@ export function DatePickerFieldComponent<Schema extends FieldValues>({
   );
 }
 
-export const DatePickerField = React.memo(DatePickerFieldComponent);
+export const DatePickerField = memo(DatePickerFieldComponent);

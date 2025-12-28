@@ -1,4 +1,3 @@
-import React from 'react';
 import type { FieldError } from 'react-hook-form';
 
 export function ErrorMessage({ error }: { error?: FieldError }) {

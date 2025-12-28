@@ -1,8 +1,7 @@
 'use client';
 
-import type { PlateEditor } from '@udecode/plate/react';
-
-import { type NodeEntry, type Path, PathApi, type TElement } from '@udecode/plate';
+import type { NodeEntry, Path, TElement } from '@udecode/plate';
+import { PathApi } from '@udecode/plate';
 import { insertCallout } from '@udecode/plate-callout';
 import { CalloutPlugin } from '@udecode/plate-callout/react';
 import { insertCodeBlock } from '@udecode/plate-code-block';
@@ -33,6 +32,7 @@ import {
 } from '@udecode/plate-media/react';
 import { SuggestionPlugin } from '@udecode/plate-suggestion/react';
 import { TableCellPlugin, TablePlugin, TableRowPlugin } from '@udecode/plate-table/react';
+import type { PlateEditor } from '@udecode/plate/react';
 
 export const STRUCTURAL_TYPES: string[] = [
   ColumnPlugin.key,
@@ -50,7 +50,7 @@ const insertList = (editor: PlateEditor, type: string) => {
       indent: 1,
       listStyleType: type,
     }),
-    { select: true },
+    { select: true }
   );
 };
 
@@ -121,7 +121,7 @@ const setList = (editor: PlateEditor, type: string, entry: NodeEntry<TElement>) 
     }),
     {
       at: entry[1],
-    },
+    }
   );
 };
 
@@ -163,7 +163,9 @@ export const setBlockType = (editor: PlateEditor, type: string, { at }: { at?: P
 
     const entries = editor.api.blocks({ mode: 'lowest' });
 
-    entries.forEach((entry) => setEntry(entry));
+    entries.forEach((entry) => {
+      setEntry(entry);
+    });
   });
 };
 

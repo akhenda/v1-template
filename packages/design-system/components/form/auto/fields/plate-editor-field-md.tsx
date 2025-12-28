@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import type { Control, FieldPath, FieldValues } from 'react-hook-form';
 
 import { debounce } from '../../../../lib/debounce';
-
 import { cn } from '../../../../lib/utils';
 import { PlateEditorMinimalMD } from '../../../editor/plate-editor-minimal-md';
 import { FormControl, FormDescription, FormField, FormItem, FormMessage } from '../../../ui/form';
@@ -72,13 +71,13 @@ export function PlateEditorFieldMDComponent<Schema extends FieldValues>({
       aiActionButtonText,
       aiActionTooltipText,
       aiActionClassName,
-    ],
+    ]
   );
 
   return (
     <FormField
-      name={name}
       control={control}
+      name={name}
       render={({ field }) => {
         // Debounce the onChange handler for the Plate editor
         const debouncedOnChange = debounce((value: string) => {
@@ -94,17 +93,17 @@ export function PlateEditorFieldMDComponent<Schema extends FieldValues>({
             )}
             <FormControl>
               <PlateEditorMinimalMD
-                id={name}
-                placeholder={placeholder}
                 className={cn(
-                  'mmax-h-80 min-h-[10rem] resize-none bg-muted text-sm',
+                  'mmax-h-80 min-h-40 resize-none bg-muted text-sm',
                   'aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
                   { 'resize-y': resizable },
-                  editorClassName,
+                  editorClassName
                 )}
-                value={field.value} // Explicitly pass value
-                onChange={debouncedOnChange} // Use debounced onChange
-                onAIAction={memoizedOnAIAction} // Pass memoized onAIAction
+                id={name}
+                onAIAction={memoizedOnAIAction}
+                onChange={debouncedOnChange} // Explicitly pass value
+                placeholder={placeholder} // Use debounced onChange
+                value={field.value} // Pass memoized onAIAction
                 {...memoizedAIActionProps} // Pass memoized AI action props
                 {...rest} // Spread remaining props
               />
@@ -120,7 +119,7 @@ export function PlateEditorFieldMDComponent<Schema extends FieldValues>({
 
 const _areEqual = <Schema extends FieldValues>(
   prevProps: PlateEditorFieldMDProps<Schema>,
-  nextProps: PlateEditorFieldMDProps<Schema>,
+  nextProps: PlateEditorFieldMDProps<Schema>
 ) => {
   return (
     prevProps.name === nextProps.name &&

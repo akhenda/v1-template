@@ -1,8 +1,14 @@
-import type { AnthropicProvider } from '@ai-sdk/anthropic';
-import type { GoogleGenerativeAIProvider } from '@ai-sdk/google';
-import type { OpenAIProvider } from '@ai-sdk/openai';
+import type { AnthropicProvider, createAnthropic } from '@ai-sdk/anthropic';
+import type { createGoogleGenerativeAI, GoogleGenerativeAIProvider } from '@ai-sdk/google';
+import type { createOpenAI, OpenAIProvider } from '@ai-sdk/openai';
 
 // import type { LooseToStrict } from '@repo/types';
+
+export type LanguageModelV2 = ReturnType<
+  ReturnType<
+    typeof createOpenAI | typeof createGoogleGenerativeAI | typeof createAnthropic
+  >['languageModel']
+>;
 
 export type AIProvider = 'openai' | 'anthropic' | 'google';
 // export type OpenAIModel = LooseToStrict<Parameters<OpenAIProvider['languageModel']>[0]>;

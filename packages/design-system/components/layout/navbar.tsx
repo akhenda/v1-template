@@ -1,9 +1,11 @@
 'use client';
 
-import { Menu, X } from 'lucide-react';
-import Link from 'next/link';
 import type React from 'react';
 import { useEffect, useState } from 'react';
+
+import Link from 'next/link';
+
+import { Menu, X } from 'lucide-react';
 
 import { cn } from '../../lib/utils';
 
@@ -25,7 +27,8 @@ export function Navbar({ logo, links, actions, className, showBanner }: NavbarPr
   // detect whether user has scrolled the page down by 10px
   useEffect(() => {
     const scrollHandler = () => {
-      window.scrollY > 10 ? setTop(false) : setTop(true);
+      if (window.scrollY > 10) setTop(false);
+      else setTop(true);
     };
 
     window.addEventListener('scroll', scrollHandler);
@@ -38,36 +41,36 @@ export function Navbar({ logo, links, actions, className, showBanner }: NavbarPr
       className={cn(
         'fixed z-30 w-full transition duration-100 ease-in-out',
         { 'bg-background/70 shadow-lg backdrop-blur-sm': !top && !mobileNavOpen },
-        className,
+        className
       )}
     >
       <nav
-        className="container mx-auto flex items-center justify-between p-4 lg:px-6"
         aria-label="Global"
+        className="container mx-auto flex items-center justify-between p-4 lg:px-6"
       >
         <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">ResumeMoto Logo</span>
+          <Link className="-m-1.5 p-1.5" href="/">
+            <span className="sr-only">Logo</span>
             {logo}
           </Link>
         </div>
         <div className="flex lg:hidden">
           <button
-            type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-muted-foreground"
             onClick={() => setMobileNavOpen(true)}
+            type="button"
           >
             <span className="sr-only">Open main menu</span>
-            <Menu className="h-6 w-6" aria-hidden="true" />
+            <Menu aria-hidden="true" className="h-6 w-6" />
           </button>
         </div>
         {links && (
           <div className="hidden lg:flex lg:gap-x-12">
             {links.map((link, index) => (
               <Link
-                key={index}
-                href={link.href}
                 className="text-foreground text-sm leading-6 hover:text-emerald-600"
+                href={link.href}
+                key={index}
               >
                 {link.label}
               </Link>
@@ -86,19 +89,19 @@ export function Navbar({ logo, links, actions, className, showBanner }: NavbarPr
             <div className="container relative mx-auto flex w-full flex-1 flex-col bg-background pt-0 pb-4">
               <div className="flex items-center justify-between p-4 lg:p-6">
                 <div className="flex">
-                  <Link href="/" className="-m-1.5 p-1.5">
+                  <Link className="-m-1.5 p-1.5" href="/">
                     <span className="sr-only">Logo</span>
                     {logo}
                   </Link>
                 </div>
                 <div className="flex">
                   <button
-                    type="button"
                     className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-muted-foreground"
                     onClick={() => setMobileNavOpen(false)}
+                    type="button"
                   >
                     <span className="sr-only">Close menu</span>
-                    <X className="h-6 w-6" aria-hidden="true" />
+                    <X aria-hidden="true" className="h-6 w-6" />
                   </button>
                 </div>
               </div>
@@ -108,9 +111,9 @@ export function Navbar({ logo, links, actions, className, showBanner }: NavbarPr
                     <div className="space-y-2 py-6">
                       {links.map((link, index) => (
                         <Link
-                          key={index}
-                          href={link.href}
                           className="-mx-3 block rounded-lg px-3 py-2 text-base text-foreground leading-7 hover:bg-gray-50"
+                          href={link.href}
+                          key={index}
                           onClick={() => setMobileNavOpen(false)}
                         >
                           {link.label}

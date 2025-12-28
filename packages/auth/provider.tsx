@@ -1,6 +1,6 @@
 'use client';
 
-import { type ComponentProps, useMemo } from 'react';
+import type { ComponentProps } from 'react';
 
 import { useTheme } from 'next-themes';
 
@@ -26,40 +26,37 @@ export const AuthProvider = ({
   const { resolvedTheme } = useTheme();
 
   const isDark = resolvedTheme === 'dark';
+  const baseTheme = isDark ? dark : undefined;
 
-  const appearance = useMemo(() => {
-    const variables: Theme['variables'] = {
-      fontFamily: 'var(--font-sans)',
-      fontFamilyButtons: 'var(--font-sans)',
-      fontWeight: {
-        bold: 'var(--font-weight-bold)',
-        normal: 'var(--font-weight-normal)',
-        medium: 'var(--font-weight-medium)',
-      },
-    };
+  const variables: Theme['variables'] = {
+    fontFamily: 'var(--font-sans)',
+    fontFamilyButtons: 'var(--font-sans)',
+    fontWeight: {
+      bold: 'var(--font-weight-bold)',
+      normal: 'var(--font-weight-normal)',
+      medium: 'var(--font-weight-medium)',
+    },
+  };
 
-    const elements: Theme['elements'] = {
-      dividerLine: 'bg-border',
-      socialButtonsIconButton: 'bg-card',
-      navbarButton: 'text-foreground',
-      organizationSwitcherTrigger__open: 'bg-background',
-      organizationPreviewMainIdentifier: 'text-foreground',
-      organizationSwitcherTriggerIcon: 'text-muted-foreground',
-      organizationPreview__organizationSwitcherTrigger: 'gap-2',
-      organizationPreviewAvatarContainer: 'shrink-0',
-    };
+  const elements: Theme['elements'] = {
+    dividerLine: 'bg-border',
+    socialButtonsIconButton: 'bg-card',
+    navbarButton: 'text-foreground',
+    organizationSwitcherTrigger__open: 'bg-background',
+    organizationPreviewMainIdentifier: 'text-foreground',
+    organizationSwitcherTriggerIcon: 'text-muted-foreground',
+    organizationPreview__organizationSwitcherTrigger: 'gap-2',
+    organizationPreviewAvatarContainer: 'shrink-0',
+  };
 
-    const layout: Theme['layout'] = {
-      privacyPageUrl: privacyUrl,
-      termsPageUrl: termsUrl,
-      helpPageUrl: helpUrl,
-    };
-
-    return { layout, baseTheme: isDark ? dark : undefined, elements, variables };
-  }, [isDark, privacyUrl, termsUrl, helpUrl]);
+  const layout: Theme['layout'] = {
+    privacyPageUrl: privacyUrl,
+    termsPageUrl: termsUrl,
+    helpPageUrl: helpUrl,
+  };
 
   return (
-    <ClerkProvider {...props} appearance={appearance}>
+    <ClerkProvider {...props} appearance={{ layout, baseTheme, elements, variables }}>
       <ConvexClientProvider>{children}</ConvexClientProvider>
     </ClerkProvider>
   );

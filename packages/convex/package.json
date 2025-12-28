@@ -1,9 +1,9 @@
 {
   "name": "@repo/convex",
-  "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "private": true,
   "sideEffects": false,
+  "type": "module",
   "exports": {
     "./generated/*": "./convex/_generated/*.js",
     "./api": "./convex/_generated/api.js",
@@ -18,13 +18,13 @@
     "format": "biome format --write .",
     "generate-ai-prompts": "turbo run generate-prompts --filter=@repo/ai --ui=stream",
     "lint": "biome check .",
-    "setup": "convex dev --once && convex env set VALIDATE_ENV=true",
     "seed": "convex dev --once && convex run init",
+    "setup": "convex dev --once && convex env set VALIDATE_ENV=true",
     "test": "vitest",
+    "test:coverage": "vitest run --coverage --coverage.reporter=text",
+    "test:debug": "vitest --inspect-brk --no-file-parallelism",
     "test:run": "vitest run",
     "test:ui": "vitest --ui --watch",
-    "test:debug": "vitest --inspect-brk --no-file-parallelism",
-    "test:coverage": "vitest run --coverage --coverage.reporter=text",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false --project convex/tsconfig.json"
   },
   "dependencies": {

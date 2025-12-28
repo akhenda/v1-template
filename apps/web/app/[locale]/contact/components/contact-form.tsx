@@ -47,7 +47,7 @@ export const ContactForm = () => {
                 </h4>
                 <p className="max-w-sm text-left text-lg text-muted-foreground leading-relaxed tracking-tight">
                   {t(
-                    'Schedule a consultation with our team to discuss how we can help streamline your operations and drive growth for your business.',
+                    'Schedule a consultation with our team to discuss how we can help streamline your operations and drive growth for your business.'
                   )}
                 </p>
               </div>
@@ -71,18 +71,18 @@ export const ContactForm = () => {
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button
-                      variant="outline"
                       className={cn(
                         'w-full max-w-sm justify-start text-left font-normal',
-                        !date && 'text-muted-foreground',
+                        !date && 'text-muted-foreground'
                       )}
+                      variant="outline"
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       {date ? format(date, 'PPP') : <span>{t('Date')}</span>}
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0">
-                    <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+                    <Calendar initialFocus mode="single" onSelect={setDate} selected={date} />
                   </PopoverContent>
                 </Popover>
               </div>

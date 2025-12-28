@@ -1,8 +1,9 @@
 'use client';
 
-import { Cloud, File, Loader2 } from 'lucide-react';
 import * as React from 'react';
 import { useDropzone } from 'react-dropzone';
+
+import { Cloud, File, Loader2 } from 'lucide-react';
 
 import type { AnyValue } from '@repo/types';
 
@@ -61,7 +62,7 @@ export function FileUpload({
         }
       }
     },
-    [maxFiles, maxSize, onFilesSelected],
+    [maxFiles, maxSize, onFilesSelected]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -73,11 +74,11 @@ export function FileUpload({
   });
 
   const removeFile = (name: string) => {
-    setFiles((files) => files.filter((file) => file.name !== name));
+    setFiles((_files) => _files.filter((file) => file.name !== name));
   };
 
   const _removeRejected = (name: string) => {
-    setRejected((files) => files.filter((file) => file.name !== name));
+    setRejected((_files) => _files.filter((file) => file.name !== name));
   };
 
   const _removeAll = () => {
@@ -94,7 +95,7 @@ export function FileUpload({
           'relative flex flex-col items-center justify-center rounded-lg border-2 border-gray-300 border-dashed p-12 text-center transition-colors',
           isDragActive ? 'border-primary bg-primary/5' : 'hover:bg-gray-50 dark:hover:bg-gray-800',
           disabled || isUploading ? 'cursor-not-allowed opacity-60' : 'cursor-pointer',
-          error ? 'border-red-500' : '',
+          error ? 'border-red-500' : ''
         )}
       >
         <input {...getInputProps()} />
@@ -112,10 +113,10 @@ export function FileUpload({
               PDF (max {maxSize / (1024 * 1024)}MB)
             </p>
             <Button
-              type="button"
-              variant="outline"
               className="mt-4"
               disabled={disabled || isUploading}
+              type="button"
+              variant="outline"
             >
               Select File
             </Button>
@@ -133,18 +134,18 @@ export function FileUpload({
           <ul className="mt-2 divide-y divide-gray-200 rounded-md border border-gray-200">
             {files.map((file) => (
               <li
-                key={file.name}
                 className="flex items-center justify-between py-3 pr-4 pl-3 text-sm"
+                key={file.name}
               >
                 <div className="flex w-0 flex-1 items-center">
-                  <File className="h-5 w-5 flex-shrink-0 text-gray-400" />
+                  <File className="h-5 w-5 shrink-0 text-gray-400" />
                   <span className="ml-2 w-0 flex-1 truncate">{file.name}</span>
                 </div>
-                <div className="ml-4 flex-shrink-0">
+                <div className="ml-4 shrink-0">
                   <button
-                    type="button"
-                    onClick={() => removeFile(file.name)}
                     className="font-medium text-blue-600 hover:text-blue-500"
+                    onClick={() => removeFile(file.name)}
+                    type="button"
                   >
                     Remove
                   </button>

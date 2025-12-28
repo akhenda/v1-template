@@ -11,7 +11,8 @@ import { fonts } from '@repo/design-system/lib/fonts';
 import { cn } from '@repo/design-system/lib/utils';
 import { showBetaFeature } from '@repo/feature-flags';
 import { Toolbar } from '@repo/feature-flags/components/toolbar';
-import { I18nProvider, i18nConfig, initTranslations, type SupportedLocale } from '@repo/i18n';
+import type { SupportedLocale } from '@repo/i18n';
+import { I18nProvider, i18nConfig, initTranslations } from '@repo/i18n';
 import { createMetadata } from '@repo/seo/metadata';
 
 import { Footer } from './components/footer';
@@ -33,10 +34,10 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   return createMetadata({
     title: t('Ignite Your Job Search'),
     description: t(
-      'ResumeMoto is an AI-powered resume and CV builder designed to help job seekers create tailored, ATS-friendly resumes, streamline job applications, and track progress. Transform your job search today!',
+      'ResumeMoto is an AI-powered resume and CV builder designed to help job seekers create tailored, ATS-friendly resumes, streamline job applications, and track progress. Transform your job search today!'
     ),
     keywords: t(
-      'resume builder, CV generator, ATS resume, AI resume tool, job search, career, resume optimization, ResumeMoto',
+      'resume builder, CV generator, ATS resume, AI resume tool, job search, career, resume optimization, ResumeMoto'
     ),
     authors: [{ name: t('ResumeMoto Team') }],
   });
@@ -49,7 +50,7 @@ export default async function RootLayout({ children, params }: Props) {
   const _betaFeature = await showBetaFeature();
 
   return (
-    <html lang={locale} className={cn(fonts, 'scroll-smooth')} suppressHydrationWarning>
+    <html className={cn(fonts, 'scroll-smooth')} lang={locale} suppressHydrationWarning>
       <body>
         <I18nProvider locale={locale} resources={resources}>
           <DesignSystemProvider>

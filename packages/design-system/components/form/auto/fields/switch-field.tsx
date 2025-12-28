@@ -35,13 +35,13 @@ export function SwitchFieldComponent<Schema extends FieldValues>({
   return (
     <FormField
       control={control}
-      name={name}
       defaultValue={defaultValue}
+      name={name}
       render={({ field }) => (
         <FormItem
           className={cn(
             'flex flex-row items-center justify-between rounded-lg border bg-muted p-4',
-            className,
+            className
           )}
         >
           <div className="m-0">

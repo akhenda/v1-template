@@ -1,14 +1,15 @@
-import type { Editor } from '@tiptap/react';
 import * as React from 'react';
+
+import type { Editor } from '@tiptap/react';
 
 import { Button } from '../../../../../ui/button';
 import { Input } from '../../../../../ui/input';
 import { Label } from '../../../../../ui/label';
 
-interface ImageEditBlockProps {
+type ImageEditBlockProps = {
   editor: Editor;
   close: () => void;
-}
+};
 
 export const ImageEditBlock: React.FC<ImageEditBlockProps> = ({ editor, close }) => {
   const fileInputRef = React.useRef<HTMLInputElement>(null);
@@ -38,7 +39,7 @@ export const ImageEditBlock: React.FC<ImageEditBlockProps> = ({ editor, close })
       await insertImages();
       close();
     },
-    [editor, close],
+    [editor, close]
   );
 
   const handleSubmit = React.useCallback(
@@ -51,38 +52,38 @@ export const ImageEditBlock: React.FC<ImageEditBlockProps> = ({ editor, close })
         close();
       }
     },
-    [editor, link, close],
+    [editor, link, close]
   );
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form className="space-y-6" onSubmit={handleSubmit}>
       <div className="space-y-1">
         <Label htmlFor="image-link">Attach an image link</Label>
         <div className="flex">
           <Input
-            id="image-link"
-            type="url"
-            required
-            placeholder="https://example.com"
-            value={link}
             className="grow"
+            id="image-link"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLink(e.target.value)}
+            placeholder="https://example.com"
+            required
+            type="url"
+            value={link}
           />
-          <Button type="submit" className="ml-2">
+          <Button className="ml-2" type="submit">
             Submit
           </Button>
         </div>
       </div>
-      <Button type="button" className="w-full" onClick={handleClick}>
+      <Button className="w-full" onClick={handleClick} type="button">
         Upload from your computer
       </Button>
       <input
-        type="file"
         accept="image/*"
-        ref={fileInputRef}
-        multiple
         className="hidden"
+        multiple
         onChange={handleFile}
+        ref={fileInputRef}
+        type="file"
       />
     </form>
   );

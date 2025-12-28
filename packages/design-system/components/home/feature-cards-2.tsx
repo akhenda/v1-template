@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
+
+import { motion } from 'framer-motion';
 
 import type { PropsWithClassName } from '@repo/types';
 
@@ -25,48 +26,46 @@ type FeatureCardsProps = PropsWithClassName<{
   descriptionClassName?: string;
 }>;
 
-const Feature = ({ className, title, description, icon, iconClassName, index }: FeatureProps) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+const Feature = ({ className, title, description, icon, iconClassName, index }: FeatureProps) => (
+  <motion.div
+    className={cn(
+      'group/feature relative flex flex-col py-10 lg:border-r dark:border-neutral-800',
+      (index === 0 || index === 4) && 'lg:border-l dark:border-neutral-800',
+      index < 4 && 'lg:border-b dark:border-neutral-800',
+      className
+    )}
+    initial={{ opacity: 0, y: 20 }}
+    transition={{ duration: 0.5, delay: index * 0.1 }}
+    viewport={{ once: true }}
+    whileInView={{ opacity: 1, y: 0 }}
+  >
+    {index < 4 && (
+      <div className="pointer-events-none absolute inset-0 h-full w-full bg-linear-to-t from-neutral-100 to-transparent opacity-0 transition duration-200 group-hover/feature:opacity-100 dark:from-neutral-800" />
+    )}
+    {index >= 4 && (
+      <div className="pointer-events-none absolute inset-0 h-full w-full bg-linear-to-b from-neutral-100 to-transparent opacity-0 transition duration-200 group-hover/feature:opacity-100 dark:from-neutral-800" />
+    )}
+    <div
       className={cn(
-        'group/feature relative flex flex-col py-10 lg:border-r dark:border-neutral-800',
-        (index === 0 || index === 4) && 'lg:border-l dark:border-neutral-800',
-        index < 4 && 'lg:border-b dark:border-neutral-800',
-        className,
+        'relative z-10 mb-4 px-10 text-neutral-600 dark:text-neutral-400',
+        iconClassName
       )}
     >
-      {index < 4 && (
-        <div className="pointer-events-none absolute inset-0 h-full w-full bg-gradient-to-t from-neutral-100 to-transparent opacity-0 transition duration-200 group-hover/feature:opacity-100 dark:from-neutral-800" />
-      )}
-      {index >= 4 && (
-        <div className="pointer-events-none absolute inset-0 h-full w-full bg-gradient-to-b from-neutral-100 to-transparent opacity-0 transition duration-200 group-hover/feature:opacity-100 dark:from-neutral-800" />
-      )}
-      <div
-        className={cn(
-          'relative z-10 mb-4 px-10 text-neutral-600 dark:text-neutral-400',
-          iconClassName,
-        )}
-      >
-        <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-accent/60 to-white/50 text-primary/70">
-          {icon}
-        </div>
+      <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-linear-to-br from-accent/60 to-white/50 text-primary/70">
+        {icon}
       </div>
-      <div className="relative z-10 mb-2 px-10 font-bold text-lg">
-        <div className="absolute inset-y-0 left-0 h-6 w-1 origin-center rounded-tr-full rounded-br-full bg-neutral-300 transition-all duration-200 group-hover/feature:h-8 group-hover/feature:bg-primary dark:bg-neutral-700" />
-        <span className="inline-block text-neutral-800 transition duration-200 group-hover/feature:translate-x-2 dark:text-neutral-100">
-          {title}
-        </span>
-      </div>
-      <p className="relative z-10 max-w-lg px-10 text-base text-neutral-600 dark:text-neutral-400">
-        {description}
-      </p>
-    </motion.div>
-  );
-};
+    </div>
+    <div className="relative z-10 mb-2 px-10 font-bold text-lg">
+      <div className="absolute inset-y-0 left-0 h-6 w-1 origin-center rounded-tr-full rounded-br-full bg-neutral-300 transition-all duration-200 group-hover/feature:h-8 group-hover/feature:bg-primary dark:bg-neutral-700" />
+      <span className="inline-block text-neutral-800 transition duration-200 group-hover/feature:translate-x-2 dark:text-neutral-100">
+        {title}
+      </span>
+    </div>
+    <p className="relative z-10 max-w-lg px-10 text-base text-neutral-600 dark:text-neutral-400">
+      {description}
+    </p>
+  </motion.div>
+);
 
 export function FeatureCards({
   title,
@@ -93,15 +92,15 @@ export function FeatureCards({
           <div className="mx-auto max-w-3xl text-center">
             {title && (
               <motion.h2
-                id="features"
                 className={cn(
                   'font-bold text-3xl text-foreground tracking-tight sm:text-4xl',
-                  titleClassName,
+                  titleClassName
                 )}
+                id="features"
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                whileInView={{ opacity: 1, y: 0 }}
               >
                 {title}
               </motion.h2>
@@ -110,9 +109,9 @@ export function FeatureCards({
               <motion.p
                 className={cn('mt-4 text-lg text-muted-foreground', descriptionClassName)}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                whileInView={{ opacity: 1, y: 0 }}
               >
                 {description}
               </motion.p>
@@ -120,14 +119,14 @@ export function FeatureCards({
           </div>
         )}
 
-        <div className={cn('relative z-10 mt-16 grid ', gridCols[columns])}>
+        <div className={cn('relative z-10 mt-16 grid', gridCols[columns])}>
           {features.map((feature, index) => (
             <Feature
               key={feature.title}
               {...feature}
-              index={index}
               className={cardClassName}
               iconClassName={iconClassName}
+              index={index}
             />
           ))}
         </div>

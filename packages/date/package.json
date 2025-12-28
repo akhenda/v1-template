@@ -5,8 +5,8 @@
   "main": "./src/index.ts",
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
-    "lint": "biome check src",
     "format": "biome format --write src",
+    "lint": "biome check src",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {

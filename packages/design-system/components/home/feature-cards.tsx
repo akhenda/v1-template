@@ -1,8 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { useId } from 'react';
+
+import { motion } from 'framer-motion';
 
 import { cn } from '../../lib/utils';
 
@@ -46,27 +47,27 @@ export function GridPattern({
     <svg aria-hidden="true" {...props}>
       <defs>
         <pattern
-          id={patternId}
-          width={width}
           height={height}
+          id={patternId}
           patternUnits="userSpaceOnUse"
+          width={width}
           x={x}
           y={y}
         >
           <path d={`M.5 ${height}V.5H${width}`} fill="none" />
         </pattern>
       </defs>
-      <rect width="100%" height="100%" strokeWidth={0} fill={`url(#${patternId})`} />
+      <rect fill={`url(#${patternId})`} height="100%" strokeWidth={0} width="100%" />
       {squares && (
-        <svg x={x} y={y} className="overflow-visible">
-          {squares.map(([x, y]: [number, number], index) => (
+        <svg className="overflow-visible" x={x} y={y}>
+          {squares.map(([_x, _y]: [number, number], index) => (
             <rect
-              strokeWidth="0"
-              key={`${index}-${x}-${y}`}
-              width={width + 1}
               height={height + 1}
-              x={x * width}
-              y={y * height}
+              key={`${index}-${_x}-${_y}`}
+              strokeWidth="0"
+              width={width + 1}
+              x={_x * width}
+              y={_y * height}
             />
           ))}
         </svg>
@@ -94,18 +95,18 @@ export const Grid = ({
   return (
     <div
       className={cn(
-        '-ml-20 -mt-2 pointer-events-none absolute top-0 left-1/2 h-full w-full [mask-image:linear-gradient(white,transparent)]',
-        className,
+        '-ml-20 -mt-2 mask-[linear-gradient(white,transparent)] pointer-events-none absolute top-0 left-1/2 h-full w-full',
+        className
       )}
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-zinc-100/30 to-zinc-300/30 opacity-100 [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] dark:from-zinc-900/30 dark:to-zinc-900/30">
+      <div className="mask-[radial-gradient(farthest-side_at_top,white,transparent)] absolute inset-0 bg-linear-to-r from-zinc-100/30 to-zinc-300/30 opacity-100 dark:from-zinc-900/30 dark:to-zinc-900/30">
         <GridPattern
-          width={size ?? 20}
+          className="absolute inset-0 h-full w-full fill-black/10 stroke-black/10 mix-blend-overlay dark:fill-white/10 dark:stroke-white/10"
           height={size ?? 20}
+          squares={p}
+          width={size ?? 20}
           x={-12}
           y={4}
-          squares={p}
-          className="absolute inset-0 h-full w-full fill-black/10 stroke-black/10 mix-blend-overlay dark:fill-white/10 dark:stroke-white/10"
         />
       </div>
     </div>
@@ -137,15 +138,15 @@ export function FeatureCards({
           <div className="mx-auto max-w-3xl text-center">
             {title && (
               <motion.h2
-                id="features"
                 className={cn(
                   'font-bold text-3xl text-foreground tracking-tight sm:text-4xl',
-                  titleClassName,
+                  titleClassName
                 )}
+                id="features"
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                whileInView={{ opacity: 1, y: 0 }}
               >
                 {title}
               </motion.h2>
@@ -154,9 +155,9 @@ export function FeatureCards({
               <motion.p
                 className={cn('mt-4 text-lg text-muted-foreground', descriptionClassName)}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                whileInView={{ opacity: 1, y: 0 }}
               >
                 {description}
               </motion.p>
@@ -167,22 +168,22 @@ export function FeatureCards({
         <div className={cn('mt-16 grid gap-8', gridCols[columns])}>
           {features.map((feature, index) => (
             <motion.div
-              key={index}
               className={cn(
-                'relative overflow-hidden rounded-3xl border border-gray-200 bg-gradient-to-b from-neutral-100 to-white p-6 shadow-xs transition-all hover:shadow-lg dark:border-neutral-800 dark:from-neutral-900 dark:to-neutral-950',
-                cardClassName,
+                'relative overflow-hidden rounded-3xl border border-gray-200 bg-linear-to-b from-neutral-100 to-white p-6 shadow-xs transition-all hover:shadow-lg dark:border-neutral-800 dark:from-neutral-900 dark:to-neutral-950',
+                cardClassName
               )}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              key={index}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileInView={{ opacity: 1, y: 0 }}
             >
               <Grid size={20} />
               {feature.icon && (
                 <div
                   className={cn(
-                    'mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10 text-primary/70 dark:bg-gradient-to-br dark:from-primary/30 dark:to-secondary/30 dark:text-primary/50',
-                    iconClassName,
+                    'mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-linear-to-br from-primary/10 to-secondary/10 text-primary/70 dark:bg-linear-to-br dark:from-primary/30 dark:to-secondary/30 dark:text-primary/50',
+                    iconClassName
                   )}
                 >
                   {feature.icon}

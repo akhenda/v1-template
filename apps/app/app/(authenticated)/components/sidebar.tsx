@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 
 import { OrganizationSwitcher, UserButton } from '@repo/auth/client';
-import { ModeToggle } from '@repo/design-system/components/layout/mode-toggle';
+import { ModeToggle } from '@repo/design-system/components/mode-toggle';
 import { Button } from '@repo/design-system/components/ui/button';
 import {
   Collapsible,
@@ -204,11 +204,11 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
             <SidebarMenuItem>
               <div
                 className={cn(
-                  'h-[36px] overflow-hidden transition-all [&>div]:w-full',
-                  sidebar.open ? '' : '-mx-1',
+                  'h-9 overflow-hidden transition-all [&>div]:w-full',
+                  sidebar.open ? '' : '-mx-1'
                 )}
               >
-                <OrganizationSwitcher hidePersonal afterSelectOrganizationUrl="/" />
+                <OrganizationSwitcher afterSelectOrganizationUrl="/" hidePersonal />
               </div>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -219,7 +219,7 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
             <SidebarGroupLabel>Platform</SidebarGroupLabel>
             <SidebarMenu>
               {data.navMain.map((item) => (
-                <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
+                <Collapsible asChild defaultOpen={item.isActive} key={item.title}>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild tooltip={item.title}>
                       <Link href={item.url}>
@@ -273,7 +273,7 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
                         <span className="sr-only">More</span>
                       </SidebarMenuAction>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-48" side="bottom" align="end">
+                    <DropdownMenuContent align="end" className="w-48" side="bottom">
                       <DropdownMenuItem>
                         <FolderIcon className="text-muted-foreground" />
                         <span>View Project</span>
@@ -320,7 +320,6 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
           <SidebarMenu>
             <SidebarMenuItem className="flex items-center gap-2">
               <UserButton
-                showName
                 appearance={{
                   elements: {
                     rootBox: 'flex overflow-hidden w-full',
@@ -328,10 +327,11 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
                     userButtonOuterIdentifier: 'truncate pl-0',
                   },
                 }}
+                showName
               />
               <div className="flex shrink-0 items-center gap-px">
                 <ModeToggle />
-                <Button variant="ghost" size="icon" className="shrink-0" asChild>
+                <Button asChild className="shrink-0" size="icon" variant="ghost">
                   <div className="h-4 w-4">
                     <NotificationsTrigger />
                   </div>

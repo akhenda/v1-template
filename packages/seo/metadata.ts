@@ -18,6 +18,9 @@ const shortDescription =
   'TODO: Write a short description for v1 that highlights its features and benefits.';
 const twitterDescription = 'TODO: Write a Twitter description for v1 that is concise and engaging.';
 const keywords = 'TODO: Write keywords for v1 that are relevant to its content and purpose.';
+const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
+const productionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+const metadataBase = productionUrl ? new URL(`${protocol}://${productionUrl}`) : undefined;
 
 export const createMetadata = ({
   title,
@@ -27,11 +30,11 @@ export const createMetadata = ({
 }: MetadataGenerator): Metadata => {
   const parsedTitle = `${title} | ${applicationName}`;
   const defaultMetadata: Metadata = {
-    metadataBase: new URL(url),
     title: parsedTitle,
     description,
-    keywords,
     applicationName,
+    metadataBase,
+    keywords,
     authors: [author],
     creator: author.name,
     formatDetection: { telephone: false },

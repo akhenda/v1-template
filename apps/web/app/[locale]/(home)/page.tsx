@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 import { showBetaFeature } from '@repo/feature-flags';
-import { initTranslations, type SupportedLocale } from '@repo/i18n';
-import { getDictionary } from '@repo/internationalization';
+import type { SupportedLocale } from '@repo/i18n';
+import { initTranslations } from '@repo/i18n';
 import { createMetadata } from '@repo/seo/metadata';
 
 import { Cases } from './components/cases';
@@ -22,14 +22,12 @@ export const generateMetadata = async ({ params }: HomeProps): Promise<Metadata>
   return createMetadata({
     title: t('Transform Your Business Operations Today'),
     description: t(
-      "In today's fast-paced world, your business deserves better than outdated trading systems. Our innovative platform streamlines operations, reduces complexity, and helps small businesses thrive in the modern economy.",
+      "In today's fast-paced world, your business deserves better than outdated trading systems. Our innovative platform streamlines operations, reduces complexity, and helps small businesses thrive in the modern economy."
     ),
   });
 };
 
-const Home = async ({ params }: HomeProps) => {
-  const { locale } = await params;
-  const dictionary = await getDictionary(locale);
+const Home = async () => {
   const betaFeature = await showBetaFeature();
 
   return (
@@ -39,13 +37,13 @@ const Home = async ({ params }: HomeProps) => {
           Beta feature now available
         </div>
       )}
-      <Hero dictionary={dictionary} />
-      <Cases dictionary={dictionary} />
-      <Features dictionary={dictionary} />
-      <Stats dictionary={dictionary} />
-      <Testimonials dictionary={dictionary} />
-      <FAQ dictionary={dictionary} />
-      <CTA dictionary={dictionary} />
+      <Hero />
+      <Cases />
+      <Features />
+      <Stats />
+      <Testimonials />
+      <FAQ />
+      <CTA />
     </>
   );
 };

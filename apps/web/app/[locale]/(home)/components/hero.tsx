@@ -3,15 +3,10 @@ import Link from 'next/link';
 import { MoveRight, PhoneCall } from 'lucide-react';
 
 import { Button } from '@repo/design-system/components/ui/button';
-import type { Dictionary } from '@repo/internationalization';
 
 import { env } from '@/env';
 
-type HeroProps = {
-  dictionary: Dictionary;
-};
-
-export const Hero = async ({ dictionary }: HeroProps) => (
+export const Hero = async () => (
   <div className="w-full">
     <div className="container mx-auto">
       <div className="flex flex-col items-center justify-center gap-8 py-20 lg:py-40">
@@ -22,31 +17,34 @@ export const Hero = async ({ dictionary }: HeroProps) => (
               'use server';
 
               return (
-                <Button variant="secondary" size="sm" className="gap-4" asChild>
+                <Button asChild className="gap-4" size="sm" variant="secondary">
                   <Link href={`/blog/${data.blog.posts.item?._slug}`}>
-                    {dictionary.web.home.hero.announcement}{' '}
-                    <MoveRight className="h-4 w-4" />
+                    Read our latest article <MoveRight className="h-4 w-4" />
                   </Link>
                 </Button>
               );
             }}
           </Feed> */}
         </div>
+
         <div className="flex flex-col gap-4">
           <h1 className="max-w-2xl text-center font-regular text-5xl tracking-tighter md:text-7xl">
-            {dictionary.web.home.meta.title}
+            Transform Your Business Operations Today
           </h1>
           <p className="max-w-2xl text-center text-lg text-muted-foreground leading-relaxed tracking-tight md:text-xl">
-            {dictionary.web.home.meta.description}
+            In today's fast-paced world, your business deserves better than outdated trading
+            systems. Our innovative platform streamlines operations, reduces complexity, and helps
+            small businesses thrive in the modern economy.
           </p>
         </div>
+
         <div className="flex flex-row gap-3">
-          <Button size="lg" className="gap-4" variant="outline" asChild>
+          <Button asChild className="gap-4" size="lg" variant="outline">
             <Link href="/contact">
               Get in touch <PhoneCall className="h-4 w-4" />
             </Link>
           </Button>
-          <Button size="lg" className="gap-4" asChild>
+          <Button asChild className="gap-4" size="lg">
             <Link href={env.NEXT_PUBLIC_APP_URL}>
               Sign up <MoveRight className="h-4 w-4" />
             </Link>

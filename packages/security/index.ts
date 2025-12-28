@@ -1,10 +1,5 @@
-import arcjet, {
-  type ArcjetBotCategory,
-  type ArcjetWellKnownBot,
-  detectBot,
-  request,
-  shield,
-} from '@arcjet/next';
+import type { ArcjetBotCategory, ArcjetWellKnownBot } from '@arcjet/next';
+import arcjet, { detectBot, request, shield } from '@arcjet/next';
 
 import { logger } from '@repo/observability/logger';
 
@@ -14,7 +9,7 @@ const arcjetKey = keys().ARCJET_KEY;
 
 export const secure = async (
   allow: (ArcjetWellKnownBot | ArcjetBotCategory)[],
-  sourceRequest?: Request,
+  sourceRequest?: Request
 ) => {
   if (!arcjetKey) return;
 

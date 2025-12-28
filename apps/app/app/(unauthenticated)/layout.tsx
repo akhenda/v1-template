@@ -4,9 +4,7 @@ import { CommandIcon } from 'lucide-react';
 
 import { ModeToggle } from '@repo/design-system/components/layout/mode-toggle';
 
-type AuthLayoutProps = {
-  readonly children: ReactNode;
-};
+type AuthLayoutProps = { readonly children: ReactNode };
 
 const AuthLayout = ({ children }: AuthLayoutProps) => (
   <div className="container relative grid h-dvh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
@@ -30,7 +28,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => (
       </div>
     </div>
     <div className="lg:p-8">
-      <div className="mx-auto flex w-full max-w-[400px] flex-col justify-center space-y-6">
+      <div className="mx-auto flex w-full max-w-100 flex-col justify-center space-y-6">
         {children}
       </div>
     </div>

@@ -1,18 +1,10 @@
 'use client';
 
-import * as React from 'react';
-
 import type { Value } from '@udecode/plate';
-
 import { BasicElementsPlugin } from '@udecode/plate-basic-elements/react';
 import { BasicMarksPlugin } from '@udecode/plate-basic-marks/react';
-import {
-  Plate,
-  type PlateElementProps,
-  PlateLeaf,
-  type PlateLeafProps,
-  usePlateEditor,
-} from '@udecode/plate/react';
+import type { PlateElementProps, PlateLeafProps } from '@udecode/plate/react';
+import { Plate, PlateLeaf, usePlateEditor } from '@udecode/plate/react';
 
 import { BlockquoteElement } from './ui/blockquote-element';
 import { Editor, EditorContainer } from './ui/editor';
@@ -40,29 +32,29 @@ export function PlateEditorSimple() {
     components: {
       blockquote: BlockquoteElement,
       p: ParagraphElement,
-      bold: function Bold(props: PlateLeafProps) {
+      bold(props: PlateLeafProps) {
         return <PlateLeaf {...props} as="strong" />;
       },
-      h1: function H1(props: PlateElementProps) {
+      h1(props: PlateElementProps) {
         return <HeadingElement {...props} variant="h1" />;
       },
-      h2: function H2(props: PlateElementProps) {
+      h2(props: PlateElementProps) {
         return <HeadingElement {...props} variant="h2" />;
       },
-      h3: function H3(props: PlateElementProps) {
+      h3(props: PlateElementProps) {
         return <HeadingElement {...props} variant="h3" />;
       },
-      italic: function Italic(props: PlateLeafProps) {
+      italic(props: PlateLeafProps) {
         return <PlateLeaf {...props} as="em" />;
       },
-      underline: function Underline(props: PlateLeafProps) {
+      underline(props: PlateLeafProps) {
         return <PlateLeaf {...props} as="u" />;
       },
     },
     plugins: [BasicElementsPlugin, BasicMarksPlugin],
     value: () => {
       const savedValue = localStorage.getItem(
-        `nextjs-plate-value-demo-${new Date().toISOString().split('T')[0]}`,
+        `nextjs-plate-value-demo-${new Date().toISOString().split('T')[0]}`
       );
 
       if (savedValue) return JSON.parse(savedValue);
@@ -77,13 +69,13 @@ export function PlateEditorSimple() {
 
   return (
     <Plate
+      editor={editor}
       onChange={({ value }) => {
         localStorage.setItem(
           `nextjs-plate-value-demo-${new Date().toISOString().split('T')[0]}`,
-          JSON.stringify(value),
+          JSON.stringify(value)
         );
       }}
-      editor={editor}
     >
       <FixedToolbar className="flex justify-start gap-1 rounded-t-lg">
         <ToolbarButton onClick={() => editor.tf.toggleBlock('h1')}>H1</ToolbarButton>
@@ -115,7 +107,7 @@ export function PlateEditorSimple() {
       </FixedToolbar>
 
       <EditorContainer>
-        <Editor variant="select" placeholder="Type your amazing content here..." />
+        <Editor placeholder="Type your amazing content here..." variant="select" />
       </EditorContainer>
     </Plate>
   );

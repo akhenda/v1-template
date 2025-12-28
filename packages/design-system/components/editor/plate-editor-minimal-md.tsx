@@ -1,5 +1,16 @@
 'use client';
 
+import React, { useCallback, useEffect, useMemo } from 'react';
+
+import {
+  BoldIcon,
+  Code2Icon,
+  HighlighterIcon,
+  ItalicIcon,
+  StrikethroughIcon,
+  UnderlineIcon,
+} from 'lucide-react';
+
 import { cn, withProps } from '@udecode/cn';
 import type { Value } from '@udecode/plate';
 import {
@@ -19,22 +30,13 @@ import { HighlightPlugin } from '@udecode/plate-highlight/react';
 import { KbdPlugin } from '@udecode/plate-kbd/react';
 import { LinkPlugin } from '@udecode/plate-link/react';
 import {
+  createPlatePlugin,
   ParagraphPlugin,
   Plate,
   PlateLeaf,
   usePlateEditor,
   usePluginOption,
 } from '@udecode/plate/react';
-import { createPlatePlugin } from '@udecode/plate/react';
-import {
-  BoldIcon,
-  Code2Icon,
-  HighlighterIcon,
-  ItalicIcon,
-  StrikethroughIcon,
-  UnderlineIcon,
-} from 'lucide-react';
-import React, { useMemo, useCallback, useEffect } from 'react';
 
 import { useUpdateEffect } from '@repo/design-system/hooks/use-update-effect';
 
@@ -188,20 +190,20 @@ const FixedToolbarPlugin = createPlatePlugin({
             <Tooltip>
               <TooltipTrigger asChild>
                 <AIAction
-                  size="icon"
-                  credits={aiActionCredits}
-                  cost={aiActionCost}
-                  title={aiActionTitle}
                   actionText={aiActionText}
                   buttonText={aiActionButtonText}
-                  onAction={onAIAction}
                   className={cn(
                     '-translate-y-1/2 absolute top-1/2 right-2 z-50 h-8 w-8',
-                    aiActionClassName,
+                    aiActionClassName
                   )}
+                  cost={aiActionCost}
+                  credits={aiActionCredits}
+                  onAction={onAIAction}
+                  size="icon"
+                  title={aiActionTitle}
                 />
               </TooltipTrigger>
-              <TooltipContent side="top" className="max-w-xs">
+              <TooltipContent className="max-w-xs" side="top">
                 <p>{aiActionTooltipText}</p>
               </TooltipContent>
             </Tooltip>
@@ -310,7 +312,7 @@ function PlateEditorMinimalMDComponent({
       aiActionTooltipText,
       aiActionClassName,
       onAIAction,
-    ],
+    ]
   );
 
   const plugins = useMemo(
@@ -325,7 +327,7 @@ function PlateEditorMinimalMDComponent({
       FixedToolbarPlugin.configure(fixedToolbarPluginConfig),
       FloatingToolbarPlugin,
     ],
-    [fixedToolbarPluginConfig],
+    [fixedToolbarPluginConfig]
   );
 
   const editor = usePlateEditor(
@@ -334,24 +336,23 @@ function PlateEditorMinimalMDComponent({
       components: editorComponents,
       plugins,
       skipInitialization: true,
-      value: (editor) => {
-        return value
+      value: (editor) =>
+        value
           ? editor.getApi(markdownPlugin).markdown.deserialize(value)
-          : [{ children: [{ text: 'Is this it?' }], type: 'p' }];
-      },
+          : [{ children: [{ text: 'Is this it?' }], type: 'p' }],
     },
-    [id],
+    [id]
   );
 
   const debouncedOnChange = useMemo(
     () => (onChange ? debounce(onChange, 50) : null), // Debounce by 50ms
-    [onChange],
+    [onChange]
   );
 
   // Memoize the onChange handler to prevent unnecessary re-renders
   const handleChange = useCallback(
     () => debouncedOnChange?.(editor.api.markdown.serialize({ value: editor.children })),
-    [debouncedOnChange, editor],
+    [debouncedOnChange, editor]
   );
 
   useEffect(() => {
@@ -396,18 +397,18 @@ function PlateEditorMinimalMDComponent({
   }, [value]);
 
   return (
-    <Plate primary={false} editor={editor} onValueChange={handleChange} readOnly={readOnly}>
+    <Plate editor={editor} onValueChange={handleChange} primary={false} readOnly={readOnly}>
       <EditorContainer
-        variant="select"
         className="aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40"
+        variant="select"
         {...rest}
       >
         <Editor
-          variant="select"
-          spellCheck={false}
+          className={cn('rounded-md rounded-t-none bg-muted', className)}
           disabled={disabled}
           placeholder={placeholder}
-          className={cn('rounded-md rounded-t-none bg-muted', className)}
+          spellCheck={false}
+          variant="select"
         />
       </EditorContainer>
     </Plate>
@@ -415,28 +416,25 @@ function PlateEditorMinimalMDComponent({
 }
 PlateEditorMinimalMDComponent.displayName = 'PlateEditorMinimalMD';
 
-const areEqual = (prevProps: PlateEditorMinimalMDProps, nextProps: PlateEditorMinimalMDProps) => {
-  return (
-    prevProps.id === nextProps.id &&
-    prevProps.value === nextProps.value &&
-    prevProps.onChange === nextProps.onChange &&
-    prevProps.onBlur === nextProps.onBlur &&
-    prevProps.placeholder === nextProps.placeholder &&
-    prevProps.className === nextProps.className &&
-    prevProps.disabled === nextProps.disabled &&
-    prevProps.readOnly === nextProps.readOnly &&
-    prevProps.extended === nextProps.extended &&
-    prevProps.aiAction === nextProps.aiAction &&
-    prevProps.aiActionCredits === nextProps.aiActionCredits &&
-    prevProps.aiActionCost === nextProps.aiActionCost &&
-    prevProps.aiActionTitle === nextProps.aiActionTitle &&
-    prevProps.aiActionText === nextProps.aiActionText &&
-    prevProps.aiActionButtonText === nextProps.aiActionButtonText &&
-    prevProps.aiActionTooltipText === nextProps.aiActionTooltipText &&
-    prevProps.aiActionClassName === nextProps.aiActionClassName &&
-    prevProps.onAIAction === nextProps.onAIAction
-  );
-};
+const areEqual = (prevProps: PlateEditorMinimalMDProps, nextProps: PlateEditorMinimalMDProps) =>
+  prevProps.id === nextProps.id &&
+  prevProps.value === nextProps.value &&
+  prevProps.onChange === nextProps.onChange &&
+  prevProps.onBlur === nextProps.onBlur &&
+  prevProps.placeholder === nextProps.placeholder &&
+  prevProps.className === nextProps.className &&
+  prevProps.disabled === nextProps.disabled &&
+  prevProps.readOnly === nextProps.readOnly &&
+  prevProps.extended === nextProps.extended &&
+  prevProps.aiAction === nextProps.aiAction &&
+  prevProps.aiActionCredits === nextProps.aiActionCredits &&
+  prevProps.aiActionCost === nextProps.aiActionCost &&
+  prevProps.aiActionTitle === nextProps.aiActionTitle &&
+  prevProps.aiActionText === nextProps.aiActionText &&
+  prevProps.aiActionButtonText === nextProps.aiActionButtonText &&
+  prevProps.aiActionTooltipText === nextProps.aiActionTooltipText &&
+  prevProps.aiActionClassName === nextProps.aiActionClassName &&
+  prevProps.onAIAction === nextProps.onAIAction;
 
 // export const PlateEditorMinimalMD = PlateEditorMinimalMDComponent;
 export const PlateEditorMinimalMD = React.memo(PlateEditorMinimalMDComponent, areEqual);

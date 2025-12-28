@@ -7,7 +7,7 @@ import { Label } from '../../ui/label';
 import { Textarea } from '../../ui/textarea';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../../ui/tooltip';
 
-interface FormFieldProps {
+type FormFieldProps = {
   id: string;
   label: string;
   type?: 'text' | 'email' | 'tel' | 'date' | 'url' | 'textarea' | 'number';
@@ -20,7 +20,7 @@ interface FormFieldProps {
   error?: string;
   min?: string;
   max?: string;
-}
+};
 
 export function FormField({
   id,
@@ -39,7 +39,7 @@ export function FormField({
   return (
     <div className={`space-y-2 ${className}`}>
       <div className="flex items-center gap-2">
-        <Label htmlFor={id} className="font-semibold text-sm">
+        <Label className="font-semibold text-sm" htmlFor={id}>
           {label}
           {required && <span className="ml-1 text-red-500">*</span>}
         </Label>
@@ -48,7 +48,7 @@ export function FormField({
             <TooltipTrigger asChild>
               <HelpCircle className="ml-1.5 h-3.5 w-3.5 cursor-help text-gray-400" />
             </TooltipTrigger>
-            <TooltipContent side="top" className="max-w-xs">
+            <TooltipContent className="max-w-xs" side="top">
               <p>{tooltip}</p>
             </TooltipContent>
           </Tooltip>
@@ -57,30 +57,30 @@ export function FormField({
 
       {type === 'textarea' ? (
         <Textarea
+          aria-describedby={error ? `${id}-error` : undefined}
+          aria-invalid={!!error}
+          className="min-h-25"
           id={id}
+          onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className="min-h-[100px]"
-          aria-invalid={!!error}
-          aria-describedby={error ? `${id}-error` : undefined}
         />
       ) : (
         <Input
-          id={id}
-          type={type}
-          placeholder={placeholder}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          min={min}
-          max={max}
-          aria-invalid={!!error}
           aria-describedby={error ? `${id}-error` : undefined}
+          aria-invalid={!!error}
+          id={id}
+          max={max}
+          min={min}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          type={type}
+          value={value}
         />
       )}
 
       {error && (
-        <p id={`${id}-error`} className="mt-1 text-red-500 text-sm">
+        <p className="mt-1 text-red-500 text-sm" id={`${id}-error`}>
           {error}
         </p>
       )}

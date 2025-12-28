@@ -1,15 +1,16 @@
 'use client';
 
 import type React from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { AlertCircle, AlertTriangle, Wifi, XCircle } from 'lucide-react';
-import { useEffect, useState } from 'react';
 
 import { cn } from '../lib/utils';
+
 import { Button } from './ui/button';
 
-export interface FullScreenErrorProps {
+export type FullScreenErrorProps = {
   /**
    * Whether the error screen is visible
    */
@@ -84,9 +85,8 @@ export interface FullScreenErrorProps {
    * Callback when error screen is dismissed
    */
   onDismiss?: () => void;
-}
+};
 
-// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: <explanation>
 export function FullScreenError({
   isVisible = true,
   fullScreen = true,
@@ -216,7 +216,7 @@ export function FullScreenError({
   };
 
   // Background decoration elements
-  const BackgroundElements = () => {
+  const BackgroundElements = useCallback(() => {
     if (!showBackgroundElements) return null;
 
     const elementCount = fullScreen ? 6 : 3;
@@ -226,18 +226,18 @@ export function FullScreenError({
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {Array.from({ length: elementCount }, (_, i) => (
           <motion.div
-            key={i}
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.05, 0.15, 0.05],
+            }}
             className="absolute rounded-full opacity-10"
+            key={i}
             style={{
               backgroundColor: i % 2 === 0 ? finalPrimaryColor : finalSecondaryColor,
               width: baseSize + i * (fullScreen ? 20 : 10),
               height: baseSize + i * (fullScreen ? 20 : 10),
               left: `${10 + i * 15}%`,
               top: `${5 + i * 10}%`,
-            }}
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.05, 0.15, 0.05],
             }}
             transition={{
               duration: 4 + i,
@@ -249,7 +249,7 @@ export function FullScreenError({
         ))}
       </div>
     );
-  };
+  }, []);
 
   // Get responsive classes based on fullScreen prop
   const getContainerClasses = () => {
@@ -290,11 +290,11 @@ export function FullScreenError({
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className={cn(getContainerClasses(), className)}
-          style={{ backgroundColor: finalBackgroundColor }}
-          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
+          className={cn(getContainerClasses(), className)}
           exit={{ opacity: 0 }}
+          initial={{ opacity: 0 }}
+          style={{ backgroundColor: finalBackgroundColor }}
           transition={{ duration: 0.3 }}
         >
           <BackgroundElements />
@@ -302,15 +302,15 @@ export function FullScreenError({
           <div
             className={cn(
               'relative flex flex-col items-center justify-center text-center',
-              getContentSpacing(),
+              getContentSpacing()
             )}
           >
             {/* Error Icon */}
             <motion.div
-              className={cn('flex items-center justify-center', iconSizeMap[iconSize])}
-              style={{ color: finalPrimaryColor }}
-              initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1, ...getIconAnimation() }}
+              className={cn('flex items-center justify-center', iconSizeMap[iconSize])}
+              initial={{ scale: 0, opacity: 0 }}
+              style={{ color: finalPrimaryColor }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               {customIcon || config.defaultIcon}
@@ -318,9 +318,9 @@ export function FullScreenError({
 
             {/* Error Content */}
             <motion.div
+              animate={{ opacity: 1, y: 0 }}
               className={cn('flex flex-col items-center', fullScreen ? 'space-y-4' : 'space-y-3')}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <h1 className={textSizes.title}>{finalTitle}</h1>
@@ -329,9 +329,9 @@ export function FullScreenError({
 
               {details && (
                 <motion.details
+                  animate={{ opacity: 1 }}
                   className={textSizes.details}
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
                   transition={{ delay: 0.5 }}
                 >
                   <summary className="cursor-pointer transition-colors hover:text-gray-700">
@@ -340,7 +340,7 @@ export function FullScreenError({
                   <div
                     className={cn(
                       'mt-2 rounded-md bg-gray-100 p-3 text-left font-mono',
-                      fullScreen ? 'text-xs' : 'text-[10px]',
+                      fullScreen ? 'text-xs' : 'text-[10px]'
                     )}
                   >
                     {details}
@@ -352,18 +352,18 @@ export function FullScreenError({
             {/* Action Buttons */}
             {actions.length > 0 && (
               <motion.div
+                animate={{ opacity: 1, y: 0 }}
                 className={cn('flex flex-wrap justify-center gap-3', !fullScreen && 'gap-2')}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
                 {actions.map((action, index) => (
                   <Button
+                    className="flex items-center gap-2"
                     key={index}
-                    variant={action.variant || (action.primary ? 'default' : 'outline')}
                     onClick={action.onClick}
                     size={fullScreen ? 'default' : 'sm'}
-                    className="flex items-center gap-2"
+                    variant={action.variant || (action.primary ? 'default' : 'outline')}
                   >
                     {action.icon}
                     {action.label}
@@ -375,13 +375,13 @@ export function FullScreenError({
             {/* Dismiss Button */}
             {onDismiss && (
               <motion.button
+                animate={{ opacity: 1 }}
                 className={cn(
                   'absolute p-2 text-gray-400 transition-colors hover:text-gray-600',
-                  fullScreen ? 'top-4 right-4' : 'top-2 right-2',
+                  fullScreen ? 'top-4 right-4' : 'top-2 right-2'
                 )}
-                onClick={onDismiss}
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                onClick={onDismiss}
                 transition={{ delay: 0.7 }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}

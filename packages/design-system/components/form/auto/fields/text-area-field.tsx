@@ -58,8 +58,8 @@ export function TextAreaFieldComponent<Schema extends FieldValues>({
 }: TextAreaFieldProps<Schema>) {
   return (
     <FormField
-      name={name}
       control={control}
+      name={name}
       render={({ field }) => (
         <FormItem className={cn('relative', className)}>
           {label && (
@@ -70,8 +70,8 @@ export function TextAreaFieldComponent<Schema extends FieldValues>({
           <FormControl>
             <Textarea
               {...rest}
-              placeholder={placeholder}
               className={cn('resize-none bg-muted', { 'resize-y': resizable, 'pb-10': aiAction })}
+              placeholder={placeholder}
               {...field}
             />
           </FormControl>
@@ -79,20 +79,20 @@ export function TextAreaFieldComponent<Schema extends FieldValues>({
             <Tooltip>
               <TooltipTrigger asChild>
                 <AIAction
-                  size="sm"
-                  credits={aiActionCredits}
-                  cost={aiActionCost}
-                  title={aiActionTitle}
                   actionText={aiActionText}
                   buttonText={aiActionButtonText}
-                  onAction={onAIAction}
                   className={cn(
                     'absolute right-2 bottom-2 z-50 h-7 px-2 text-xs',
-                    aiActionClassName,
+                    aiActionClassName
                   )}
+                  cost={aiActionCost}
+                  credits={aiActionCredits}
+                  onAction={onAIAction}
+                  size="sm"
+                  title={aiActionTitle}
                 />
               </TooltipTrigger>
-              <TooltipContent side="top" className="max-w-xs">
+              <TooltipContent className="max-w-xs" side="top">
                 <p>{aiActionTooltipText}</p>
               </TooltipContent>
             </Tooltip>

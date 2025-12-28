@@ -25,16 +25,13 @@ export const POST = async () => {
   const user = await currentUser();
   const { orgId } = await auth();
 
-  if (!user || !orgId) {
-    return new Response('Unauthorized', { status: 401 });
-  }
+  if (!(user && orgId)) return new Response('Unauthorized', { status: 401 });
 
   return authenticate({
     userId: user.id,
     orgId,
     userInfo: {
-      name:
-        user.fullName ?? user.emailAddresses.at(0)?.emailAddress ?? undefined,
+      name: user.fullName ?? user.emailAddresses.at(0)?.emailAddress ?? undefined,
       avatar: user.imageUrl ?? undefined,
       color: COLORS[Math.floor(Math.random() * COLORS.length)],
     },

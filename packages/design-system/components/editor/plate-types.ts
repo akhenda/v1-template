@@ -26,9 +26,7 @@ import type { ParagraphPlugin } from '@udecode/plate/react';
 
 export type EmptyText = { text: '' };
 
-export interface MyAlignProps {
-  align?: React.CSSProperties['textAlign'];
-}
+export type MyAlignProps = { align?: React.CSSProperties['textAlign'] };
 
 export interface MyBlockElement extends MyIndentListProps, MyLineHeightProps, TElement {
   id?: string;
@@ -89,9 +87,7 @@ export interface MyIndentListProps extends MyIndentProps {
   listStyleType?: string;
 }
 
-export interface MyIndentProps {
-  indent?: number;
-}
+export type MyIndentProps = { indent?: number };
 
 /** Blocks */
 
@@ -101,9 +97,7 @@ export type MyInlineDescendant = MyInlineElement | RichText;
 
 export type MyInlineElement = MyLinkElement | MyMentionElement | MyMentionInputElement;
 
-export interface MyLineHeightProps {
-  lineHeight?: React.CSSProperties['lineHeight'];
-}
+export type MyLineHeightProps = { lineHeight?: React.CSSProperties['lineHeight'] };
 
 export interface MyLinkElement extends TLinkElement {
   children: RichText[];

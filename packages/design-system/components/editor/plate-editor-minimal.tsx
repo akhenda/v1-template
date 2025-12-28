@@ -1,5 +1,16 @@
 'use client';
 
+import { useCallback, useMemo } from 'react';
+
+import {
+  BoldIcon,
+  Code2Icon,
+  HighlighterIcon,
+  ItalicIcon,
+  StrikethroughIcon,
+  UnderlineIcon,
+} from 'lucide-react';
+
 import { cn, withProps } from '@udecode/cn';
 import type { Value } from '@udecode/plate';
 import {
@@ -18,22 +29,18 @@ import { HEADING_KEYS } from '@udecode/plate-heading';
 import { HighlightPlugin } from '@udecode/plate-highlight/react';
 import { KbdPlugin } from '@udecode/plate-kbd/react';
 import { LinkPlugin } from '@udecode/plate-link/react';
-import { ParagraphPlugin, Plate, PlateLeaf, usePlateEditor } from '@udecode/plate/react';
-import { createPlatePlugin } from '@udecode/plate/react';
 import {
-  BoldIcon,
-  Code2Icon,
-  HighlighterIcon,
-  ItalicIcon,
-  StrikethroughIcon,
-  UnderlineIcon,
-} from 'lucide-react';
-import React, { useMemo, useCallback } from 'react';
+  createPlatePlugin,
+  ParagraphPlugin,
+  Plate,
+  PlateLeaf,
+  usePlateEditor,
+} from '@udecode/plate/react';
 
 import { debounce } from '../../lib/debounce';
 import { AIAction } from '../ai-action';
-
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
+
 import { basicNodesPlugins } from './plugins/basic-nodes-plugins';
 import { indentListPlugins } from './plugins/indent-list-plugins';
 import { linkPlugin } from './plugins/link-plugin';
@@ -160,20 +167,20 @@ const FixedToolbarPlugin = createPlatePlugin({
           <Tooltip>
             <TooltipTrigger asChild>
               <AIAction
-                size="icon"
-                credits={getOption('aiActionCredits')}
-                cost={getOption('aiActionCost')}
-                title={getOption('aiActionTitle')}
                 actionText={getOption('aiActionText')}
                 buttonText={getOption('aiActionButtonText')}
-                onAction={getOption('onAIAction')}
                 className={cn(
                   '-translate-y-1/2 absolute top-1/2 right-2 z-50 h-8 w-8',
-                  getOption('aiActionClassName'),
+                  getOption('aiActionClassName')
                 )}
+                cost={getOption('aiActionCost')}
+                credits={getOption('aiActionCredits')}
+                onAction={getOption('onAIAction')}
+                size="icon"
+                title={getOption('aiActionTitle')}
               />
             </TooltipTrigger>
-            <TooltipContent side="top" className="max-w-xs">
+            <TooltipContent className="max-w-xs" side="top">
               <p>{getOption('aiActionTooltipText')}</p>
             </TooltipContent>
           </Tooltip>
@@ -276,19 +283,19 @@ export function PlateEditorMinimal({
       aiActionTooltipText,
       aiActionClassName,
       onAIAction,
-    ],
+    ]
   );
 
   const debouncedOnChange = useMemo(
     // Debounce by 300ms
     () => (onChange ? debounce(onChange, 300) : null),
-    [onChange],
+    [onChange]
   );
 
   // Memoize the onChange handler to prevent unnecessary re-renders
   const handleChange = useCallback(
     ({ value: newValue }: { value: Value }) => debouncedOnChange?.(newValue),
-    [debouncedOnChange],
+    [debouncedOnChange]
   );
 
   const editor = usePlateEditor({
@@ -304,11 +311,11 @@ export function PlateEditorMinimal({
     <Plate editor={editor} onChange={handleChange} readOnly={readOnly}>
       <EditorContainer variant="select">
         <Editor
-          variant="select"
-          disabled={disabled}
-          placeholder={placeholder}
-          onBlur={handleBlur}
           className={cn('rounded-md rounded-t-none bg-muted', className)}
+          disabled={disabled}
+          onBlur={handleBlur}
+          placeholder={placeholder}
+          variant="select"
         />
       </EditorContainer>
     </Plate>

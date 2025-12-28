@@ -3,7 +3,7 @@
   "globalDependencies": [
     "**/.env.*local",
     "**/.env",
-    "biome.json",
+    "biome.jsonc",
     "tsconfig.json"
   ],
   "ui": "tui",

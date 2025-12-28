@@ -1,10 +1,14 @@
 'use client';
 
-import { ArrowRightIcon, CoinsIcon } from 'lucide-react';
 import React, { useCallback, useEffect, useState } from 'react';
+
+import { ArrowRightIcon, CoinsIcon } from 'lucide-react';
+
+import { useUpdateEffect } from '@repo/design-system/hooks/use-update-effect';
 
 import { cn } from '../../lib/utils';
 import { EnhancedButton } from '../enhanced-button';
+import { Loader } from '../loader';
 import { Button } from '../ui/button';
 import {
   Dialog,
@@ -18,9 +22,8 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { Textarea } from '../ui/textarea';
 
-import { useUpdateEffect } from '@repo/design-system/hooks/use-update-effect';
-import { Loader } from '../loader';
-import { AIActionButton, type AIActionButtonProps } from './button';
+import type { AIActionButtonProps } from './button';
+import { AIActionButton } from './button';
 
 export type AIActionDialogStatus = 'init' | 'instructions' | 'dialog' | 'results';
 export type AIActionDialogProps = AIActionButtonProps & {
@@ -81,7 +84,7 @@ export function AIActionDialogComponent({
   const [openDialog, setOpenDialog] = useState(false);
   const [openPopover, setOpenPopover] = useState(false);
   const [step, setStep] = useState<AIActionDialogStatus>(() =>
-    credits < 10 ? 'init' : 'instructions',
+    credits < 10 ? 'init' : 'instructions'
   );
 
   useUpdateEffect(() => {
@@ -134,14 +137,14 @@ export function AIActionDialogComponent({
   }, [step]);
 
   return (
-    <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-      <Popover open={openPopover} onOpenChange={setOpenPopover}>
+    <Dialog onOpenChange={setOpenDialog} open={openDialog}>
+      <Popover onOpenChange={setOpenPopover} open={openPopover}>
         <PopoverTrigger asChild>
           <AIActionButton
-            size={size}
-            loading={loading}
             actionText={actionText}
             className={className}
+            loading={loading}
+            size={size}
             // onClick={skipInstructions && credits > 10 ? onConfirm : undefined}
             {...rest}
           />
@@ -172,11 +175,11 @@ export function AIActionDialogComponent({
                   )}
                 </div>
                 <div className="flex w-full flex-col gap-2">
-                  <Button variant="outline" className="border-2 border-primary bg-transparent">
+                  <Button className="border-2 border-primary bg-transparent" variant="outline">
                     ⚡ Upgrade
                   </Button>
                   <div className={cn('w-full', { 'cursor-not-allowed': credits < cost })}>
-                    <Button disabled={credits < cost} className="w-full" onClick={onContinue}>
+                    <Button className="w-full" disabled={credits < cost} onClick={onContinue}>
                       {buttonText} ({cost} {cost > 1 ? 'Credits' : 'Credit'})
                     </Button>
                   </div>
@@ -206,7 +209,7 @@ export function AIActionDialogComponent({
                   })}
                 >
                   <DialogTrigger asChild>
-                    <Button disabled={credits < cost} className="w-fit" onClick={onConfirm}>
+                    <Button className="w-fit" disabled={credits < cost} onClick={onConfirm}>
                       {buttonText}
                     </Button>
                   </DialogTrigger>
@@ -225,25 +228,25 @@ export function AIActionDialogComponent({
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4">
-          <AIActionCredits credits={credits} className="justify-end" />
+          <AIActionCredits className="justify-end" credits={credits} />
           {step === 'dialog' && (
             <div className="flex flex-col items-center justify-center gap-2">
-              <Loader type="ellipsis" className="my-4" />
+              <Loader className="my-4" type="ellipsis" />
               <span>Enhancing with AI...</span>
             </div>
           )}
           {step === 'results' && (
             <div className="flex flex-col gap-4">
               {resultOptions.map((result, index) => (
-                <div key={index} className="flex flex-col space-y-2 rounded-md border-1 p-3">
+                <div className="flex flex-col space-y-2 rounded-md border p-3" key={index}>
                   <p className="text-sm">{result}</p>
                   <EnhancedButton
-                    size="sm"
-                    variant="secondary"
+                    className="h-7 w-fit self-end"
                     effect="ringHover"
                     icon={ArrowRightIcon}
                     iconPlacement="right"
-                    className="h-7 w-fit self-end"
+                    size="sm"
+                    variant="secondary"
                   >
                     Use
                   </EnhancedButton>

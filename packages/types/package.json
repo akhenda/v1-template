@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "sideEffects": false,
-  "main": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
     "./common": "./src/common.ts",
@@ -12,6 +11,7 @@
     "./helpers": "./src/helpers.ts",
     "./navigation": "./src/navigation.ts"
   },
+  "main": "./src/index.ts",
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf .turbo dist node_modules coverage",

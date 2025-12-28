@@ -1,8 +1,8 @@
-import type { GenerateObjectResult, LanguageModelUsage, LanguageModelV1 } from 'ai';
+import type { GenerateObjectResult, LanguageModelUsage } from 'ai';
 import { generateObject, generateText } from 'ai';
 
 import { DEFAULT_AI_TEMPERATURE } from './config';
-import type { AIProvider } from './types';
+import type { AIProvider, LanguageModelV2 } from './types';
 
 export type Metadata = {
   id: string;
@@ -23,14 +23,14 @@ export async function callAIGenerateObject<T>({
   system,
   user,
   model,
-  maxTokens,
+  maxOutputTokens,
   temperature = DEFAULT_AI_TEMPERATURE,
 }: {
   system: string;
   user: string;
-  model: LanguageModelV1;
+  model: LanguageModelV2;
   temperature?: number;
-  maxTokens?: number;
+  maxOutputTokens?: number;
   stop?: string[];
   stream?: boolean;
 }) {
@@ -39,12 +39,12 @@ export async function callAIGenerateObject<T>({
     system,
     output: 'no-schema',
     temperature,
-    maxTokens,
+    maxOutputTokens,
     messages: [{ role: 'user', content: [{ type: 'text', text: user }] }],
   })) as GenerateObjectResult<T>;
 
   const { object: parsed, usage, response } = result;
-  const metadata = {
+  const metadata: Metadata = {
     id: response.id,
     provider: model.provider as AIProvider,
     model: response.modelId,
@@ -70,7 +70,7 @@ export async function callAIGenerateText({
 }: {
   system: string;
   user: string;
-  model: LanguageModelV1;
+  model: LanguageModelV2;
   temperature?: number;
 }) {
   const result = await generateText({
@@ -81,7 +81,7 @@ export async function callAIGenerateText({
   });
 
   const { text, usage, response } = result;
-  const metadata = {
+  const metadata: Metadata = {
     id: response.id,
     provider: model.provider as AIProvider,
     model: response.modelId,

@@ -1,11 +1,9 @@
+import React, { useMemo, useState } from 'react';
+
 import i18nIsoCountries from 'i18n-iso-countries';
 import enCountries from 'i18n-iso-countries/langs/en.json';
-import {
-  type CountryCallingCode,
-  type E164Number,
-  parsePhoneNumberWithError,
-} from 'libphonenumber-js';
-import React, { useMemo, useState } from 'react';
+import type { CountryCallingCode, E164Number } from 'libphonenumber-js';
+import { parsePhoneNumberWithError } from 'libphonenumber-js';
 import ReactPhoneInput, { type Country } from 'react-phone-number-input/input';
 
 import { Input } from '../../../ui/input';
@@ -19,18 +17,17 @@ i18nIsoCountries.registerLocale(enCountries);
 
 export const PhoneInput = ({
   inputClassName,
-  inputContainerClassName,
 }: {
   inputClassName?: string;
   inputContainerClassName?: string;
 }) => {
-  const MemoizedInput = useMemo(() => {
-    return function PhoneInput(props: React.ComponentProps<typeof Input>) {
-      return (
-        <Input className={inputClassName} containerClassName={inputContainerClassName} {...props} />
-      );
-    };
-  }, [inputClassName]);
+  const MemoizedInput = useMemo(
+    () =>
+      function PhoneInputInner(props: React.ComponentProps<typeof Input>) {
+        return <Input className={inputClassName} {...props} />;
+      },
+    [inputClassName]
+  );
 
   const options = getCountriesOptions();
 
@@ -50,25 +47,25 @@ export const PhoneInput = ({
     <div className="not-prose flex flex-col gap-4">
       <div className="flex gap-2">
         <ComboboxCountryInput
-          value={country}
+          emptyMessage="No country found."
           onValueChange={onCountryChange}
           options={options}
           placeholder="Find your country..."
           renderOption={({ option }) => `${isoToEmoji(option.value)} ${option.label}`}
           renderValue={(option) => option.label}
-          emptyMessage="No country found."
+          value={country}
         />
         <ReactPhoneInput
-          international
-          withCountryCallingCode
-          country={country.value.toUpperCase() as Country}
-          value={phoneNumber}
-          inputComponent={MemoizedInput}
-          placeholder="Enter phone number"
           className="flex-1"
+          country={country.value.toUpperCase() as Country}
+          inputComponent={MemoizedInput}
+          international
           onChange={(value) => {
             setPhoneNumber(value);
           }}
+          placeholder="Enter phone number"
+          value={phoneNumber}
+          withCountryCallingCode
         />
       </div>
     </div>

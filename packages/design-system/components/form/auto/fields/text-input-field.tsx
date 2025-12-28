@@ -31,10 +31,10 @@ export function TextInputFieldComponent<Schema extends FieldValues>({
 }: TextInputFieldProps<Schema>) {
   return (
     <FormField
-      name={name}
       control={control}
+      name={name}
       render={({ field }) => (
-        <FormItem key={`text-input-field-${name}`} className={className}>
+        <FormItem className={className} key={`text-input-field-${name}`}>
           <FormLabel markAsRequired={markAsRequired} tooltip={tooltip}>
             {label}
           </FormLabel>

@@ -1,19 +1,15 @@
-import { capitalize } from '@repo/design-system/lib/utils';
 import type { ReactNode } from 'react';
 
-type SidebarProperties = {
+import { capitalize } from '@repo/design-system/lib/utils';
+
+type SidebarProps = {
   readonly date: Date;
   readonly readingTime: string;
   readonly tags?: string[];
   readonly toc?: ReactNode;
 };
 
-export const Sidebar = async ({
-  date,
-  readingTime,
-  tags,
-  toc: Toc,
-}: SidebarProperties) => (
+export const Sidebar = async ({ date, readingTime, tags, toc: Toc }: SidebarProps) => (
   <div className="col-span-4 flex w-72 flex-col items-start gap-8 border-foreground/10 border-l px-6 lg:col-span-2">
     <div className="grid gap-2">
       <p className="text-muted-foreground text-sm">Published</p>
@@ -33,9 +29,7 @@ export const Sidebar = async ({
     {tags && (
       <div className="grid gap-2">
         <p className="text-muted-foreground text-sm">Tags</p>
-        <p className="rounded-sm text-foreground text-sm">
-          {tags.map(capitalize).join(', ')}
-        </p>
+        <p className="rounded-sm text-foreground text-sm">{tags.map(capitalize).join(', ')}</p>
       </div>
     )}
     {Toc ? (

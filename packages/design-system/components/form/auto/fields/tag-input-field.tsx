@@ -1,14 +1,10 @@
 'use client';
 
-import { SquarePenIcon } from 'lucide-react';
 import React, { useCallback, useState } from 'react';
-import {
-  type Control,
-  type FieldPath,
-  type FieldValues,
-  useController,
-  useFormContext,
-} from 'react-hook-form';
+import type { Control, FieldPath, FieldValues } from 'react-hook-form';
+import { useController, useFormContext } from 'react-hook-form';
+
+import { SquarePenIcon } from 'lucide-react';
 
 import { Button } from '@repo/design-system/components/ui/button';
 import {
@@ -76,9 +72,9 @@ export function EditTag<Schema extends FieldValues>({
           <FormField
             id={name}
             label={label}
-            value={text}
             onChange={setText}
             placeholder={placeholder}
+            value={text}
           />
         </div>
         <DialogFooter>
@@ -88,7 +84,7 @@ export function EditTag<Schema extends FieldValues>({
             </Button>
           </DialogClose>
           <DialogClose asChild>
-            <Button size="sm" onClick={onSave}>
+            <Button onClick={onSave} size="sm">
               Save changes
             </Button>
           </DialogClose>
@@ -113,12 +109,12 @@ export function TagInputFieldComponent<Schema extends FieldValues>({
   const setTags = useCallback((tags: string[]) => field.onChange(tags), [field.onChange]);
 
   return (
-    <FormItem key={`tag-input-field-${name}`} className={className}>
+    <FormItem className={className} key={`tag-input-field-${name}`}>
       <FormLabel markAsRequired={markAsRequired} tooltip={tooltip}>
         {label}
       </FormLabel>
       <FormControl>
-        <TagInput {...rest} placeholder={placeholder} {...field} setTags={setTags} name={name} />
+        <TagInput {...rest} placeholder={placeholder} {...field} name={name} setTags={setTags} />
       </FormControl>
       <FormMessage className="font-normal text-xs" />
       {description && <FormDescription className="text-xs">{description}</FormDescription>}

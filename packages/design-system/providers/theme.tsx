@@ -1,22 +1,18 @@
 'use client';
 
-import type { Prettify } from '@repo/types';
+import type { Dispatch, PropsWithChildren, SetStateAction } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+
 import type { ThemeProviderProps } from 'next-themes';
 import { ThemeProvider as NextThemeProvider } from 'next-themes';
-import {
-  type Dispatch,
-  type PropsWithChildren,
-  type SetStateAction,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+
+import type { Prettify } from '@repo/types';
 
 import { createCtx } from '../hooks/utils';
 
-const THEME_STORAGE_KEY = 'resume-moto-storage@theme';
-const GRADIENT_STORAGE_KEY = 'resume-moto-storage@gradient';
-const SPACING_STORAGE_KEY = 'resume-moto-storage@spacing';
+const THEME_STORAGE_KEY = 'ds@theme';
+const GRADIENT_STORAGE_KEY = 'ds@gradient';
+const SPACING_STORAGE_KEY = 'ds@spacing';
 const THEME_THEME_PREFIX = 'theme';
 const GRADIENT_THEME_PREFIX = 'theme-gradient';
 const SPACING_THEME_PREFIX = 'theme-spacing';
@@ -216,11 +212,11 @@ export const ThemeProvider = ({ children, ...properties }: ThemeProviderProps) =
 
   return (
     <NextThemeProvider
-      enableSystem
-      enableColorScheme
       attribute="class"
       defaultTheme="system"
       disableTransitionOnChange
+      enableColorScheme
+      enableSystem
       {...properties}
     >
       <AppearanceProvider>{children}</AppearanceProvider>

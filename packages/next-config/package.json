@@ -6,16 +6,15 @@
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
-  "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
-    "next": "15.4.2"
-  },
   "dependencies": {
     "@million/lint": "1.0.14",
-    "@next/bundle-analyzer": "15.4.2",
-    "@prisma/nextjs-monorepo-workaround-plugin": "^6.8.2",
-    "@t3-oss/env-core": "0.13.4",
-    "@t3-oss/env-nextjs": "0.13.4",
-    "zod": "3.25.28"
+    "@next/bundle-analyzer": "16.0.7",
+    "@t3-oss/env-core": "^0.13.8",
+    "@t3-oss/env-nextjs": "^0.13.8",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "next": "16.0.10"
   }
 }

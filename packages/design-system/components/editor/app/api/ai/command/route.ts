@@ -1,10 +1,11 @@
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
+
 import { createOpenAI } from '@ai-sdk/openai';
 import { InvalidArgumentError } from '@ai-sdk/provider';
 import { delay as originalDelay } from '@ai-sdk/provider-utils';
 import type { TextStreamPart, ToolSet } from 'ai';
 import { convertToCoreMessages, streamText } from 'ai';
-import type { NextRequest } from 'next/server';
-import { NextResponse } from 'next/server';
 
 import { logger } from '@repo/observability/logger';
 
@@ -50,7 +51,7 @@ function smoothStream<TOOLS extends ToolSet>({
       if (match.length === 0) throw new Error('Chunking function must return a non-empty string.');
       if (!buffer.startsWith(match)) {
         throw new Error(
-          `Chunking function must return a match that is a prefix of the buffer. Received: "${match}" expected to start with "${buffer}"`,
+          `Chunking function must return a match that is a prefix of the buffer. Received: "${match}" expected to start with "${buffer}"`
         );
       }
 
@@ -179,7 +180,7 @@ export async function POST(req: NextRequest) {
       maxTokens: 2048,
       messages: convertToCoreMessages(messages),
       model: openai('gpt-4o'),
-      system: system,
+      system,
     });
 
     return result.toDataStreamResponse();

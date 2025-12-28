@@ -1,12 +1,7 @@
 import { defineCollection, defineConfig } from '@content-collections/core';
 import { compileMDX } from '@content-collections/mdx';
-import {
-  type RehypeCodeOptions,
-  rehypeCode,
-  remarkGfm,
-  remarkHeading,
-  remarkImage,
-} from 'fumadocs-core/mdx-plugins';
+import type { RehypeCodeOptions } from 'fumadocs-core/mdx-plugins';
+import { rehypeCode, remarkGfm, remarkHeading, remarkImage } from 'fumadocs-core/mdx-plugins';
 import readingTime from 'reading-time';
 
 const rehypeCodeOptions: RehypeCodeOptions = {
@@ -30,7 +25,7 @@ const posts = defineCollection({
         image: z.string(),
         url: z.string().optional(),
         email: z.string().optional(),
-      }),
+      })
     ),
     tags: z.array(z.string()),
     isPublished: z.boolean(),
@@ -40,7 +35,7 @@ const posts = defineCollection({
       compileMDX(context, page, {
         remarkPlugins: [remarkGfm, remarkHeading, [remarkImage, { useImport: false }]],
         rehypePlugins: [[rehypeCode, rehypeCodeOptions]],
-      }),
+      })
     );
 
     /**

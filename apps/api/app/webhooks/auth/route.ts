@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 import { Webhook } from 'svix';
 
-import { analytics } from '@repo/analytics/posthog/server';
+import { analytics } from '@repo/analytics/server';
 import type {
   DeletedObjectJSON,
   OrganizationJSON,
@@ -155,7 +155,7 @@ export const POST = async (request: Request): Promise<Response> => {
   const svixSignature = headerPayload.get('svix-signature');
 
   // If there are no headers, error out
-  if (!svixId || !svixTimestamp || !svixSignature) {
+  if (!(svixId && svixTimestamp && svixSignature)) {
     return new Response('Error occured -- no svix headers', {
       status: 400,
     });

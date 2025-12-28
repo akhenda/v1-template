@@ -1,4 +1,5 @@
 import { expect, test } from 'vitest';
+
 import { GET } from '../app/health/route';
 
 test('Health Check', async () => {

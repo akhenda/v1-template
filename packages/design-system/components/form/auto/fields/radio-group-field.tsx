@@ -37,8 +37,8 @@ export function RadioGroupFieldComponent<Schema extends FieldValues>({
 }: RadioGroupFieldProps<Schema>) {
   return (
     <FormField
-      name={name}
       control={control}
+      name={name}
       render={({ field }) => (
         <FormItem className={cn('space-y-2', className)}>
           <div className="mb-4">
@@ -49,14 +49,14 @@ export function RadioGroupFieldComponent<Schema extends FieldValues>({
           </div>
           <FormControl>
             <RadioGroup
-              onValueChange={field.onChange}
-              defaultValue={field.value}
               className="flex flex-col space-y-1"
+              defaultValue={field.value}
+              onValueChange={field.onChange}
             >
               {options.map((item) => (
-                <FormItem key={item.value} className="flex items-center space-x-3 space-y-0">
+                <FormItem className="flex items-center space-x-3 space-y-0" key={item.value}>
                   <FormControl>
-                    <RadioGroupItem {...rest} value={item.value} className="bg-muted" />
+                    <RadioGroupItem {...rest} className="bg-muted" value={item.value} />
                   </FormControl>
                   <FormLabel className="font-normal">{item.label}</FormLabel>
                 </FormItem>

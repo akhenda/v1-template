@@ -3,12 +3,6 @@
 import { withProps } from '@udecode/cn';
 import type { Value } from '@udecode/plate';
 import {
-  type CreatePlateEditorOptions,
-  ParagraphPlugin,
-  PlateLeaf,
-  usePlateEditor,
-} from '@udecode/plate/react';
-import {
   BoldPlugin,
   CodePlugin,
   ItalicPlugin,
@@ -34,6 +28,8 @@ import { ColumnItemPlugin, ColumnPlugin } from '@udecode/plate-layout/react';
 import { LinkPlugin } from '@udecode/plate-link/react';
 import { PlaceholderPlugin } from '@udecode/plate-media/react';
 import { TogglePlugin } from '@udecode/plate-toggle/react';
+import type { CreatePlateEditorOptions } from '@udecode/plate/react';
+import { ParagraphPlugin, PlateLeaf, usePlateEditor } from '@udecode/plate/react';
 
 import { alignPlugin } from './plugins/align-plugin';
 import { basicNodesPlugins } from './plugins/basic-nodes-plugins';
@@ -110,7 +106,7 @@ export const useCreateRHFEditor = (
     readOnly?: boolean;
   } & Omit<CreatePlateEditorOptions, 'plugins'> = {},
   // biome-ignore lint/suspicious/noExplicitAny: TODO: we'll fix later
-  deps: any[] = [],
+  deps: any[] = []
 ) => {
   return usePlateEditor<Value, (typeof editorPlugins)[number]>(
     {
@@ -165,6 +161,6 @@ export const useCreateRHFEditor = (
       ],
       ...options,
     },
-    deps,
+    deps
   );
 };
