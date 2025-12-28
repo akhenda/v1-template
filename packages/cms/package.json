@@ -21,9 +21,9 @@
   },
   "dependencies": {
     "@content-collections/mdx": "0.2.2",
-    "@t3-oss/env-nextjs": "^0.13.8",
+    "@t3-oss/env-nextjs": "0.13.8",
     "basehub": "^9.5.3",
-    "fumadocs-core": "15.4.0",
+    "fumadocs-core": "16.2.3",
     "fumadocs-docgen": "2.0.0",
     "react": "19.2.1",
     "reading-time": "1.5.0",
@@ -31,7 +31,7 @@
     "sqip-plugin-data-uri": "1.0.0-alpha.52",
     "sqip-plugin-primitive": "1.0.0-alpha.53",
     "sqip-plugin-svgo": "1.0.0-alpha.54",
-    "zod": "^4.1.13"
+    "zod": "4.1.13"
   },
   "devDependencies": {
     "@content-collections/cli": "0.1.6",

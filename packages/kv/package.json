@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@repo/observability": "workspace:*",
-    "@upstash/ratelimit": "2.0.5",
-    "@upstash/redis": "1.34.7",
+    "@upstash/ratelimit": "2.0.7",
+    "@upstash/redis": "1.35.7",
     "remeda": "2.19.0",
     "server-only": "0.0.1"
   }

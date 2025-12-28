@@ -16,22 +16,22 @@
   "dependencies": {
     "@ai-sdk/anthropic": "1.2.11",
     "@ai-sdk/google": "1.2.18",
-    "@ai-sdk/openai": "^2.0.77",
+    "@ai-sdk/openai": "2.0.77",
     "@posthog/ai": "4.4.0",
-    "@t3-oss/env-nextjs": "^0.13.8",
-    "ai": "^5.0.107",
+    "@t3-oss/env-nextjs": "0.13.8",
+    "ai": "5.0.107",
     "react": "19.2.1",
     "react-markdown": "10.1.0",
-    "streamdown": "^1.6.10",
-    "tailwind-merge": "^3.4.0",
-    "zod": "^4.1.13"
+    "streamdown": "1.6.10",
+    "tailwind-merge": "3.4.0",
+    "zod": "4.1.13"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "24.10.1",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
-    "@vitest/ui": "3.2.4",
-    "vitest": "3.2.4"
+    "@vitest/ui": "4.0.15",
+    "vitest": "4.0.15"
   }
 }

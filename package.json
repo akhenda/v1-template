@@ -61,7 +61,7 @@
     "@commitlint/cli": "19.6.0",
     "@commitlint/config-conventional": "19.6.0",
     "@repo/typescript-config": "workspace:*",
-    "@t3-oss/env-nextjs": "0.13.4",
+    "@t3-oss/env-nextjs": "0.13.8",
     "@turbo/gen": "2.6.3",
     "@turbo/workspaces": "2.3.3",
     "@types/node": "24.10.1",
