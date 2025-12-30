@@ -19,7 +19,7 @@ export const ShortcutKey = ({ ref, className, keys, ...props }: ShortcutKeyProps
           className={cn(
             'inline-block min-w-2.5 text-center align-baseline font-medium font-sans text-[rgb(156,157,160)] text-xs capitalize',
 
-            className
+            className,
           )}
           key={shortcut.symbol}
           {...props}

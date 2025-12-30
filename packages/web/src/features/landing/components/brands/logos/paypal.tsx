@@ -5,22 +5,22 @@ import type { LogoProps } from '../types';
 export function PayPal({ className, overrideColor, ...rest }: LogoProps) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink" // Retain namespace for xlinkHref
+      className={cn('text-gray-600', className)}
+      fill="currentColor" // Retain namespace for xlinkHref
       version="1.0"
       viewBox="2.028 2.004 292.499 65.321"
-      fill="currentColor"
-      className={cn('text-gray-600', className)}
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
       {...rest}
     >
       <g transform="matrix(2.07675 0 0 -2.07675 -11.153 92.77)">
         <defs>
           {/* ID for the clipping path shape */}
-          <path id="a" d="M-84.525-27.457h326.05V78.457h-326.05z" />
+          <path d="M-84.525-27.457h326.05V78.457h-326.05z" id="a" />
         </defs>
         <clipPath id="b">
           {/* Use camelCase xlinkHref for React */}
-          <use xlinkHref="#a" overflow="visible" />
+          <use overflow="visible" xlinkHref="#a" />
         </clipPath>
         {/*
         This group applies the clipping path.

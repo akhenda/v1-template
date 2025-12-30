@@ -63,7 +63,7 @@ export function useAutoFormPrime<
         <Container className={cn(baseClasses, className)}>{children}</Container>
       </FormProvider>
     ),
-    [form]
+    [form],
   );
   Form.displayName = 'AutoFormPrimeForm';
 

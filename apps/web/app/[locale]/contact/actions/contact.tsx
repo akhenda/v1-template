@@ -12,7 +12,7 @@ import { env } from '@/env';
 export const contact = async (
   name: string,
   email: string,
-  message: string
+  message: string,
 ): Promise<{
   error?: string;
 }> => {

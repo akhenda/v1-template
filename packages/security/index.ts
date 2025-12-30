@@ -9,7 +9,7 @@ const arcjetKey = keys().ARCJET_KEY;
 
 export const secure = async (
   allow: (ArcjetWellKnownBot | ArcjetBotCategory)[],
-  sourceRequest?: Request
+  sourceRequest?: Request,
 ) => {
   if (!arcjetKey) return;
 

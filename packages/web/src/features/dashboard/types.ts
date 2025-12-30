@@ -14,14 +14,14 @@ export type ApplicationStatus = (typeof ApplicationStatuses)[keyof typeof Applic
 /**
  * A single job-application record
  */
-export interface Application {
+export type Application = {
   id: number;
   company: string;
   position: string;
   date: string; // ISO-8601 date (yyyy-MM-dd)
   status: ApplicationStatus;
   atsScore: number;
-}
+};
 
 export type KPICardName =
   | 'Applications'
@@ -33,7 +33,7 @@ export type KPICardName =
 export type KPICardTrend = 'up' | 'down';
 export type KPICardColor = 'success' | 'danger';
 
-export interface KPICard {
+export type KPICard = {
   name: KPICardName;
   stat: string; // current-week value
   prevStat: string; // prior-week value
@@ -41,4 +41,4 @@ export interface KPICard {
   trend: KPICardTrend;
   color: KPICardColor;
   Icon?: LucideIcon;
-}
+};

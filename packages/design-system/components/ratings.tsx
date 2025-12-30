@@ -46,7 +46,7 @@ const Ratings = ({
           key: i,
           size,
           className: cn(fill ? 'fill-current' : 'fill-transparent', ratingVariants[variant].star),
-        })
+        }),
       )}
       {partialStar}
       {[...new Array(totalStars - fullStars - (partialStar ? 1 : 0))].map((_, i) =>
@@ -54,7 +54,7 @@ const Ratings = ({
           key: i + fullStars + 1,
           size,
           className: cn(ratingVariants[variant].emptyStar),
-        })
+        }),
       )}
     </div>
   );

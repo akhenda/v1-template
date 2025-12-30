@@ -131,7 +131,7 @@ function ThemeToggle({ label = 'Theme' }: { label?: string }) {
                 className={cn(
                   'h-4 w-4 rounded-full',
                   supportedTheme.light,
-                  `dark:${supportedTheme.dark}`
+                  `dark:${supportedTheme.dark}`,
                 )}
               />
               <span>{supportedTheme.name}</span>

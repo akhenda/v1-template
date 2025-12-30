@@ -25,7 +25,7 @@ export default internalAction(async () => {
     name: 'Pro',
     description: 'All the things for one low yearly price.',
     recurringInterval: 'year',
-    prices: [{ priceAmount: 20000, amountType: 'fixed' }],
+    prices: [{ priceAmount: 20_000, amountType: 'fixed' }],
   });
 
   // biome-ignore lint/suspicious/noConsole: This is allowed in Convex

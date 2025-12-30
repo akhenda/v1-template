@@ -302,7 +302,7 @@ export function FullScreenError({
           <div
             className={cn(
               'relative flex flex-col items-center justify-center text-center',
-              getContentSpacing()
+              getContentSpacing(),
             )}
           >
             {/* Error Icon */}
@@ -340,7 +340,7 @@ export function FullScreenError({
                   <div
                     className={cn(
                       'mt-2 rounded-md bg-gray-100 p-3 text-left font-mono',
-                      fullScreen ? 'text-xs' : 'text-[10px]'
+                      fullScreen ? 'text-xs' : 'text-[10px]',
                     )}
                   >
                     {details}
@@ -378,7 +378,7 @@ export function FullScreenError({
                 animate={{ opacity: 1 }}
                 className={cn(
                   'absolute p-2 text-gray-400 transition-colors hover:text-gray-600',
-                  fullScreen ? 'top-4 right-4' : 'top-2 right-2'
+                  fullScreen ? 'top-4 right-4' : 'top-2 right-2',
                 )}
                 initial={{ opacity: 0 }}
                 onClick={onDismiss}

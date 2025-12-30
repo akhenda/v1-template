@@ -51,7 +51,7 @@ const useCurrentLocale = (i18nConfig: Config, documentCookie?: string): string |
   });
 
   if (locale) return locale;
-  if (i18nConfig.prefixDefault) return undefined;
+  if (i18nConfig.prefixDefault) return;
 
   return i18nConfig.defaultLocale;
 };

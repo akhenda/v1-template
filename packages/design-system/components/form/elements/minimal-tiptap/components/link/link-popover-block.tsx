@@ -25,7 +25,7 @@ export const LinkPopoverBlock: React.FC<LinkPopoverBlockProps> = ({ url, onClear
         })
         .catch(console.error);
     },
-    [url]
+    [url],
   );
 
   const handleOpenLink = React.useCallback(() => {

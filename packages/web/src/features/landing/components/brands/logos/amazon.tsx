@@ -5,11 +5,11 @@ import type { LogoProps } from '../types';
 export function Amazon({ className, overrideColor, ...rest }: LogoProps) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
+      className={cn('text-gray-600', className)}
+      fill="currentColor"
       version="1.0"
       viewBox="0 0 1000 301.35401"
-      fill="currentColor"
-      className={cn('text-gray-600', className)}
+      xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
       <path

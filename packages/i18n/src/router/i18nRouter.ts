@@ -1,4 +1,5 @@
-import { type NextRequest, NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
 import defaultLocaleDetector from './localeDetector';
 import type { Config } from './types';
@@ -23,7 +24,7 @@ function i18nRouter(request: NextRequest, config: Config): NextResponse {
     cookieOptions = {
       path: request.nextUrl.basePath || undefined,
       sameSite: 'strict',
-      maxAge: 31536000, // one year
+      maxAge: 31_536_000, // one year
     },
   } = config;
 

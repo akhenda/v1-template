@@ -38,7 +38,7 @@ describe('Shared Error Utilities', () => {
   it('should create an assertion function that includes cause', () => {
     const cause = new Error('root cause');
     try {
-      // @ts-ignore: Testing with a cause
+      // @ts-expect-error: Testing with a cause
       assert(false, 'with cause', cause);
     } catch (e: unknown) {
       expect((e as TestError).cause).toBe(cause);

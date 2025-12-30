@@ -40,7 +40,7 @@ export const LinkBubbleMenu: React.FC<LinkBubbleMenuProps> = ({ editor }) => {
 
       return false;
     },
-    [updateLinkState]
+    [updateLinkState],
   );
 
   const handleEdit = React.useCallback(() => {
@@ -63,7 +63,7 @@ export const LinkBubbleMenu: React.FC<LinkBubbleMenuProps> = ({ editor }) => {
       setShowEdit(false);
       updateLinkState();
     },
-    [editor, updateLinkState]
+    [editor, updateLinkState],
   );
 
   const onUnsetLink = React.useCallback(() => {

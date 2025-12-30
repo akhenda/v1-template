@@ -1,16 +1,17 @@
-import { Textarea } from "@repo/design-system/components/ui/textarea";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
+
+import { Textarea } from '@repo/design-system/components/ui/textarea';
 
 /**
  * Displays a form textarea or a component that looks like a textarea.
  */
 const meta = {
-  title: "ui/Textarea",
+  title: 'ui/Textarea',
   component: Textarea,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
-    placeholder: "Type your message here.",
+    placeholder: 'Type your message here.',
     disabled: false,
   },
 } satisfies Meta<typeof Textarea>;
@@ -55,9 +56,7 @@ export const WithText: Story = {
     <div className="grid w-full gap-1.5">
       <label htmlFor="message-2">Your Message</label>
       <Textarea {...args} id="message-2" />
-      <p className="text-slate-500 text-sm">
-        Your message will be copied to the support team.
-      </p>
+      <p className="text-slate-500 text-sm">Your message will be copied to the support team.</p>
     </div>
   ),
 };
@@ -70,10 +69,7 @@ export const WithButton: Story = {
   render: (args) => (
     <div className="grid w-full gap-2">
       <Textarea {...args} />
-      <button
-        className="rounded bg-primary px-4 py-2 text-primary-foreground"
-        type="submit"
-      >
+      <button className="rounded bg-primary px-4 py-2 text-primary-foreground" type="submit">
         Send Message
       </button>
     </div>

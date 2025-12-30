@@ -14,7 +14,7 @@ export const rateLimiter = new RateLimiter(components.rateLimiter, {
   failedLogins: { kind: 'token bucket', rate: 10, period: HOUR },
 
   // Use sharding to increase throughput without compromising on correctness.
-  llmTokens: { kind: 'token bucket', rate: 40000, period: MINUTE, shards: 10 },
+  llmTokens: { kind: 'token bucket', rate: 40_000, period: MINUTE, shards: 10 },
 
   llmRequests: { kind: 'fixed window', rate: 1000, period: MINUTE, shards: 10 },
 

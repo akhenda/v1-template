@@ -1,21 +1,22 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import { Info } from 'lucide-react';
+
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@repo/design-system/components/ui/collapsible";
-import type { Meta, StoryObj } from "@storybook/react";
-import { Info } from "lucide-react";
+} from '@repo/design-system/components/ui/collapsible';
 
 /**
  * An interactive component which expands/collapses a panel.
  */
 const meta = {
-  title: "ui/Collapsible",
+  title: 'ui/Collapsible',
   component: Collapsible,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
-    className: "w-96",
+    className: 'w-96',
     disabled: false,
   },
   render: (args) => (
@@ -25,13 +26,12 @@ const meta = {
         <Info className="size-6" />
       </CollapsibleTrigger>
       <CollapsibleContent>
-        Yes. Free to use for personal and commercial projects. No attribution
-        required.
+        Yes. Free to use for personal and commercial projects. No attribution required.
       </CollapsibleContent>
     </Collapsible>
   ),
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof Collapsible>;
 

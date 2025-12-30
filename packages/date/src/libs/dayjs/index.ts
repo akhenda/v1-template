@@ -3,7 +3,8 @@ import advancedFormat from 'dayjs/plugin/advancedFormat';
 import dayjsLocalizedFormat from 'dayjs/plugin/localizedFormat';
 import dayjsUtc from 'dayjs/plugin/utc';
 
-import { type DateFormats, dateFormats } from './types';
+import type { DateFormats } from './types';
+import { dateFormats } from './types';
 
 import 'dayjs/locale/en';
 import 'dayjs/locale/sw';

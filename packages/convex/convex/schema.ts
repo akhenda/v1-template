@@ -1,5 +1,6 @@
 import { defineSchema, defineTable } from 'convex/server';
-import { type Infer, v } from 'convex/values';
+import type { Infer } from 'convex/values';
+import { v } from 'convex/values';
 import { literals, typedV } from 'convex-helpers/validators';
 
 export const aiProviderEnum = literals('openai', 'anthropic', 'google');

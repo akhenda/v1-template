@@ -1,6 +1,7 @@
 'use node';
 
-import { type Infer, v } from 'convex/values';
+import type { Infer } from 'convex/values';
+import { v } from 'convex/values';
 import { nullable } from 'convex-helpers/validators';
 
 import { PostHog } from 'posthog-node';

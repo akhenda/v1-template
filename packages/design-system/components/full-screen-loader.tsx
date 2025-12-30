@@ -369,7 +369,7 @@ export function FullScreenLoaderComponent({
                     : 'space-x-1'
                   : fullScreen
                     ? 'space-x-4'
-                    : 'space-x-3'
+                    : 'space-x-3',
               )}
               variants={elementsContainerVariants}
             >

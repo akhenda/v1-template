@@ -3,7 +3,8 @@ import postgres from 'postgres';
 
 import { keys } from '../keys';
 
-import { type DB, schema } from './schema/index.js';
+import type { DB } from './schema/index.js';
+import { schema } from './schema/index.js';
 
 const env = keys();
 

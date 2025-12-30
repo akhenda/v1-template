@@ -22,7 +22,7 @@ export const generateMetadata = async ({ params }: HomeProps): Promise<Metadata>
   return createMetadata({
     title: t('Transform Your Business Operations Today'),
     description: t(
-      "In today's fast-paced world, your business deserves better than outdated trading systems. Our innovative platform streamlines operations, reduces complexity, and helps small businesses thrive in the modern economy."
+      "In today's fast-paced world, your business deserves better than outdated trading systems. Our innovative platform streamlines operations, reduces complexity, and helps small businesses thrive in the modern economy.",
     ),
   });
 };

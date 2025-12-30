@@ -1,3 +1,5 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import {
   Dialog,
   DialogClose,
@@ -7,17 +9,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@repo/design-system/components/ui/dialog";
-import type { Meta, StoryObj } from "@storybook/react";
+} from '@repo/design-system/components/ui/dialog';
 
 /**
  * A window overlaid on either the primary window or another dialog window,
  * rendering the content underneath inert.
  */
 const meta = {
-  title: "ui/Dialog",
+  title: 'ui/Dialog',
   component: Dialog,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   render: (args) => (
     <Dialog {...args}>
@@ -26,8 +27,8 @@ const meta = {
         <DialogHeader>
           <DialogTitle>Are you absolutely sure?</DialogTitle>
           <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            This action cannot be undone. This will permanently delete your account and remove your
+            data from our servers.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="gap-4">
@@ -35,10 +36,7 @@ const meta = {
             Cancel
           </button>
           <DialogClose>
-            <button
-              className="rounded bg-primary px-4 py-2 text-primary-foreground"
-              type="button"
-            >
+            <button className="rounded bg-primary px-4 py-2 text-primary-foreground" type="button">
               Continue
             </button>
           </DialogClose>
@@ -47,7 +45,7 @@ const meta = {
     </Dialog>
   ),
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof Dialog>;
 

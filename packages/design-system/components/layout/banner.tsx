@@ -71,7 +71,7 @@ function SaleBanner({ className }: PropsWithClassName) {
         themeClass,
         gradientClass,
         spacingClass,
-        className
+        className,
       )}
     >
       <div className="container mx-auto flex gap-2 px-5 md:items-center">
@@ -146,7 +146,7 @@ function NewFeatureBanner({ className }: PropsWithClassName) {
         themeClass,
         gradientClass,
         spacingClass,
-        className
+        className,
       )}
     >
       <div className="container mx-auto flex gap-2 px-5 md:items-center">
@@ -201,7 +201,7 @@ function AnnouncementBanner({ className }: PropsWithClassName) {
         themeClass,
         gradientClass,
         spacingClass,
-        className
+        className,
       )}
     >
       <div className="flex gap-2 md:items-center">
@@ -245,7 +245,7 @@ function BasicBanner({ className }: PropsWithClassName) {
         themeClass,
         gradientClass,
         spacingClass,
-        className
+        className,
       )}
     >
       <p className="flex justify-center text-sm">

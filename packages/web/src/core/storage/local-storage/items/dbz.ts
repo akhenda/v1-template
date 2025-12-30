@@ -32,9 +32,8 @@ export const setCollected = (dragonBalls: DragonBall[]) => setItem(DBZ_COLLECTED
  *
  * @param id The ID of the dragon ball to delete.
  */
-export const deleteCollectedBall = (id: string) => {
-  return removeItemFromArray<DragonBall, string>(DBZ_COLLECTED_KEY, 'id', id);
-};
+export const deleteCollectedBall = (id: string) =>
+  removeItemFromArray<DragonBall, string>(DBZ_COLLECTED_KEY, 'id', id);
 
 /**
  * Retrieves the user's liked planets from the device storage.
@@ -56,9 +55,8 @@ export const setLikedPlanets = (planets: Planet[]) => setItem(DBZ_LIKED_PLANETS_
  * @param id The ID of the planet to delete.
  * @returns A promise that resolves when the planet is deleted.
  */
-export const deleteLikedPlanet = (id: number) => {
-  return removeItemFromArray<Planet, number>(DBZ_LIKED_PLANETS_KEY, 'id', id);
-};
+export const deleteLikedPlanet = (id: number) =>
+  removeItemFromArray<Planet, number>(DBZ_LIKED_PLANETS_KEY, 'id', id);
 
 /**
  * Clears all liked planets from the device storage.
@@ -88,9 +86,8 @@ export const setLikedCharacters = (characters: Character[]) =>
  * @param id The ID of the character to delete.
  * @returns A promise that resolves when the character is deleted.
  */
-export const deleteLikedCharacter = (id: number) => {
-  return removeItemFromArray<Character, number>(DBZ_LIKED_CHARACTERS_KEY, 'id', id);
-};
+export const deleteLikedCharacter = (id: number) =>
+  removeItemFromArray<Character, number>(DBZ_LIKED_CHARACTERS_KEY, 'id', id);
 
 /**
  * Clears all liked characters from the device storage.

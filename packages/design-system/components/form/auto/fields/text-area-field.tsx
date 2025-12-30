@@ -83,7 +83,7 @@ export function TextAreaFieldComponent<Schema extends FieldValues>({
                   buttonText={aiActionButtonText}
                   className={cn(
                     'absolute right-2 bottom-2 z-50 h-7 px-2 text-xs',
-                    aiActionClassName
+                    aiActionClassName,
                   )}
                   cost={aiActionCost}
                   credits={aiActionCredits}

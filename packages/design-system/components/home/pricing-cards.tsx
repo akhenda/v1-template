@@ -79,7 +79,7 @@ export function PricingCards({
             <motion.div
               className={cn(
                 'relative flex flex-col rounded-xl border border-gray-200 p-6',
-                typeof cardClassName === 'function' ? cardClassName(plan) : cardClassName
+                typeof cardClassName === 'function' ? cardClassName(plan) : cardClassName,
               )}
               initial={{ opacity: 0, y: 20 }}
               key={index}
@@ -91,7 +91,7 @@ export function PricingCards({
                 <div
                   className={cn(
                     '-top-4 -translate-x-1/2 absolute left-1/2 rounded-full bg-primary px-4 py-1 font-medium text-primary-foreground text-sm',
-                    popularBadgeClassName
+                    popularBadgeClassName,
                   )}
                 >
                   Most Popular
@@ -120,7 +120,7 @@ export function PricingCards({
                   className={cn(
                     'w-full',
                     typeof ctaClassName === 'function' ? ctaClassName(plan) : ctaClassName,
-                    { 'cursor-not-allowed': plan.disabled }
+                    { 'cursor-not-allowed': plan.disabled },
                   )}
                   disabled={plan.disabled}
                   variant={plan.popular ? 'default' : 'outline'}

@@ -25,11 +25,12 @@ type PickOne<T> = InferContra<InferContra<Contra<Contra<T>>>>;
 /**
  * Extracts the element type of an array
  */
-export type Union2Tuple<T> = PickOne<T> extends infer U // assign PickOne<T> to U
-  ? Exclude<T, U> extends never // T and U are the same
-    ? [T]
-    : [...Union2Tuple<Exclude<T, U>>, U] // recursion
-  : never;
+export type Union2Tuple<T> =
+  PickOne<T> extends infer U // assign PickOne<T> to U
+    ? Exclude<T, U> extends never // T and U are the same
+      ? [T]
+      : [...Union2Tuple<Exclude<T, U>>, U] // recursion
+    : never;
 
 /**
  * Prettifies a type

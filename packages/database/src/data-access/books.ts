@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm';
+import { eq as equal } from 'drizzle-orm';
 
 import { db } from '../drizzle';
 import type { InsertedRecord } from '../schema';
@@ -72,7 +72,7 @@ async function update(id: number, data: InsertedRecord<TableName>) {
   logger.debug('update book', { id, data });
 
   try {
-    const [updatedBook] = await db.update(table).set(data).where(eq(table.id, id)).returning();
+    const [updatedBook] = await db.update(table).set(data).where(equal(table.id, id)).returning();
 
     logger.debug('updated book', updatedBook);
 
@@ -95,7 +95,7 @@ async function deleteById(id: number) {
   logger.debug('delete book by id', { id });
 
   try {
-    const [deletedBook] = await db.delete(table).where(eq(table.id, id)).returning();
+    const [deletedBook] = await db.delete(table).where(equal(table.id, id)).returning();
 
     return deletedBook;
   } catch (error) {
@@ -120,7 +120,7 @@ async function updateBorrower(id: number, borrowerId: number) {
     const [updatedBook] = await db
       .update(table)
       .set({ borrowerId })
-      .where(eq(table.id, id))
+      .where(equal(table.id, id))
       .returning();
 
     return updatedBook;

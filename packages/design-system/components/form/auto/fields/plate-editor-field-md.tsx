@@ -71,7 +71,7 @@ export function PlateEditorFieldMDComponent<Schema extends FieldValues>({
       aiActionButtonText,
       aiActionTooltipText,
       aiActionClassName,
-    ]
+    ],
   );
 
   return (
@@ -97,7 +97,7 @@ export function PlateEditorFieldMDComponent<Schema extends FieldValues>({
                   'mmax-h-80 min-h-40 resize-none bg-muted text-sm',
                   'aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
                   { 'resize-y': resizable },
-                  editorClassName
+                  editorClassName,
                 )}
                 id={name}
                 onAIAction={memoizedOnAIAction}
@@ -119,7 +119,7 @@ export function PlateEditorFieldMDComponent<Schema extends FieldValues>({
 
 const _areEqual = <Schema extends FieldValues>(
   prevProps: PlateEditorFieldMDProps<Schema>,
-  nextProps: PlateEditorFieldMDProps<Schema>
+  nextProps: PlateEditorFieldMDProps<Schema>,
 ) => {
   return (
     prevProps.name === nextProps.name &&

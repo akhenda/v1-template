@@ -1,4 +1,5 @@
-import { type StoreApi, useStore } from 'zustand';
+import type { StoreApi } from 'zustand';
+import { useStore } from 'zustand';
 
 export type WithSelectors<S> = S extends { getState: () => infer T }
   ? S & { use: { [K in keyof T]: () => T[K] } }

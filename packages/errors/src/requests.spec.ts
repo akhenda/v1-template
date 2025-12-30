@@ -4,7 +4,7 @@ import { ERROR_REGISTRY } from './registry';
 import { RequestError } from './requests';
 import { RequestError as BaseRequestError } from './requests/base';
 
-type ErrorClass = new (message: string) => BaseRequestError;
+type ErrorClassType = new (message: string) => BaseRequestError;
 type IsErrorFn = (err: unknown) => boolean;
 
 const requestErrorNames = Object.keys(ERROR_REGISTRY).filter(
@@ -13,7 +13,7 @@ const requestErrorNames = Object.keys(ERROR_REGISTRY).filter(
 
 describe('Request Errors', () => {
   for (const errorName of requestErrorNames) {
-    const ErrorClass = RequestError[errorName as keyof typeof RequestError] as ErrorClass;
+    const ErrorClass = RequestError[errorName as keyof typeof RequestError] as ErrorClassType;
     const errorInfo = ERROR_REGISTRY[errorName as keyof typeof ERROR_REGISTRY];
     const isErrorFn = RequestError[`is${errorName}` as keyof typeof RequestError] as IsErrorFn;
 
@@ -34,12 +34,12 @@ describe('Request Errors', () => {
             expect(isErrorFn(new Error('Generic error'))).toBe(false);
           });
         } else {
-          it.skip(`Type guard is${errorName} not found or not a function`, () => {});
+          // it.skip(`Type guard is${errorName} not found or not a function`, () => {});
         }
       });
     } else {
       describe(errorName, () => {
-        it.skip('tests skipped (class not found)', () => {});
+        // it.skip('tests skipped (class not found)', () => {});
       });
     }
   }

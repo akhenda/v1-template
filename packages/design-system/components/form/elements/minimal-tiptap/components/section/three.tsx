@@ -134,7 +134,7 @@ export const SectionThree: React.FC<SectionThreeProps> = ({ editor, size, varian
       setSelectedColor(value);
       editor.chain().setColor(value).run();
     },
-    [editor]
+    [editor],
   );
 
   React.useEffect(() => {

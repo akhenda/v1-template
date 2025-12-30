@@ -32,7 +32,7 @@ export const LinkEditBlock = ({
       e.preventDefault();
       if (formRef.current) {
         const isValid = Array.from(formRef.current.querySelectorAll('input')).every((input) =>
-          input.checkValidity()
+          input.checkValidity(),
         );
 
         if (isValid) {
@@ -46,7 +46,7 @@ export const LinkEditBlock = ({
         }
       }
     },
-    [onSave, url, text, isNewTab]
+    [onSave, url, text, isNewTab],
   );
 
   React.useImperativeHandle(ref, () => formRef.current as HTMLDivElement);

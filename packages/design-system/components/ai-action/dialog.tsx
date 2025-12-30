@@ -84,7 +84,7 @@ export function AIActionDialogComponent({
   const [openDialog, setOpenDialog] = useState(false);
   const [openPopover, setOpenPopover] = useState(false);
   const [step, setStep] = useState<AIActionDialogStatus>(() =>
-    credits < 10 ? 'init' : 'instructions'
+    credits < 10 ? 'init' : 'instructions',
   );
 
   useUpdateEffect(() => {

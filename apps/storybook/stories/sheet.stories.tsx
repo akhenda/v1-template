@@ -1,3 +1,5 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import {
   Sheet,
   SheetClose,
@@ -7,27 +9,26 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@repo/design-system/components/ui/sheet";
-import type { Meta, StoryObj } from "@storybook/react";
+} from '@repo/design-system/components/ui/sheet';
 
 /**
  * Extends the Dialog component to display content that complements the main
  * content of the screen.
  */
 const meta: Meta<typeof SheetContent> = {
-  title: "ui/Sheet",
+  title: 'ui/Sheet',
   component: Sheet,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     side: {
-      options: ["top", "bottom", "left", "right"],
+      options: ['top', 'bottom', 'left', 'right'],
       control: {
-        type: "radio",
+        type: 'radio',
       },
     },
   },
   args: {
-    side: "right",
+    side: 'right',
   },
   render: (args) => (
     <Sheet>
@@ -36,8 +37,8 @@ const meta: Meta<typeof SheetContent> = {
         <SheetHeader>
           <SheetTitle>Are you absolutely sure?</SheetTitle>
           <SheetDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            This action cannot be undone. This will permanently delete your account and remove your
+            data from our servers.
           </SheetDescription>
         </SheetHeader>
         <SheetFooter>
@@ -46,10 +47,7 @@ const meta: Meta<typeof SheetContent> = {
               Cancel
             </button>
           </SheetClose>
-          <button
-            className="rounded bg-primary px-4 py-2 text-primary-foreground"
-            type="button"
-          >
+          <button className="rounded bg-primary px-4 py-2 text-primary-foreground" type="button">
             Submit
           </button>
         </SheetFooter>
@@ -57,7 +55,7 @@ const meta: Meta<typeof SheetContent> = {
     </Sheet>
   ),
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof SheetContent>;
 

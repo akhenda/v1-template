@@ -25,7 +25,7 @@ const posts = defineCollection({
         image: z.string(),
         url: z.string().optional(),
         email: z.string().optional(),
-      })
+      }),
     ),
     tags: z.array(z.string()),
     isPublished: z.boolean(),
@@ -35,7 +35,7 @@ const posts = defineCollection({
       compileMDX(context, page, {
         remarkPlugins: [remarkGfm, remarkHeading, [remarkImage, { useImport: false }]],
         rehypePlugins: [[rehypeCode, rehypeCodeOptions]],
-      })
+      }),
     );
 
     /**

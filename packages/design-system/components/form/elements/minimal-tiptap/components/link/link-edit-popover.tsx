@@ -36,7 +36,7 @@ const LinkEditPopover = ({ editor, size, variant }: LinkEditPopoverProps) => {
 
       editor.commands.enter();
     },
-    [editor]
+    [editor],
   );
 
   return (

@@ -5,11 +5,11 @@ import type { LogoProps } from '../types';
 export function Microsoft({ className, overrideColor, ...rest }: LogoProps) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
+      className={cn('text-gray-600', className)}
+      fill="currentColor"
       version="1.0"
       viewBox="0 0 1033.746 220.695"
-      fill="currentColor"
-      className={cn('text-gray-600', className)}
+      xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
       <path

@@ -54,7 +54,7 @@ export function TestimonialCards({
               <motion.h2
                 className={cn(
                   'font-bold text-3xl text-foreground tracking-tight sm:text-4xl',
-                  titleClassName
+                  titleClassName,
                 )}
                 initial={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.5 }}
@@ -83,7 +83,7 @@ export function TestimonialCards({
             <motion.div
               className={cn(
                 'rounded-xl border-primary/20 bg-primary/10 p-6 dark:border-background/50 dark:bg-background',
-                cardClassName
+                cardClassName,
               )}
               initial={{ opacity: 0, y: 20 }}
               key={index}

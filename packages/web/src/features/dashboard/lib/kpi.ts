@@ -10,11 +10,10 @@ const removeTrailingZeroRegex = /\.0$/;
 /* -------------  helpers ------------- */
 
 // Round to one decimal unless it’s an integer.
-const pct = (curr: number, prev: number) => {
-  return prev === 0
+const pct = (curr: number, prev: number) =>
+  prev === 0
     ? '—'
     : `${(((curr - prev) * 100) / Number.parseFloat(prev.toFixed(1).replace(removeTrailingZeroRegex, ''))).toFixed(1)}%`;
-};
 
 // Monday of the week containing the given date
 const mondayOf = (iso: string) => {
@@ -27,7 +26,7 @@ const mondayOf = (iso: string) => {
 };
 
 // One-week-earlier Monday
-const previousMonday = (m: Date) => new Date(m.getTime() - 7 * 24 * 3600_000);
+const previousMonday = (m: Date) => new Date(m.getTime() - 7 * 24 * 3_600_000);
 
 /* -------------  main function ------------- */
 
@@ -54,7 +53,7 @@ export function buildWeeklyKPI(
   const prev = { ...init };
 
   const isInWeek = (d: Date, start: Date) =>
-    d >= start && d < new Date(start.getTime() + 7 * 24 * 3600_000);
+    d >= start && d < new Date(start.getTime() + 7 * 24 * 3_600_000);
 
   for (const app of apps) {
     let bucket: typeof curr | typeof prev | null;
@@ -71,14 +70,14 @@ export function buildWeeklyKPI(
 
     switch (app.status) {
       case 'applied':
-        bucket.applied++;
+        bucket.applied += 1;
         break;
       case 'rejected':
-        bucket.rejected++;
+        bucket.rejected += 1;
         break;
       case 'interview':
       case 'offer':
-        bucket.interviews++;
+        bucket.interviews += 1;
         break;
       default:
         break;

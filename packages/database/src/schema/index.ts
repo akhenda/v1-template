@@ -1,6 +1,7 @@
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 
-import { relations, type TableNames, tables } from './tables';
+import type { TableNames } from './tables';
+import { relations, tables } from './tables';
 
 export * from './tables';
 

@@ -1,4 +1,5 @@
-import { ConvexError, type Validator, v } from 'convex/values';
+import type { Validator } from 'convex/values';
+import { ConvexError, v } from 'convex/values';
 
 import type { UserJSON } from '@repo/auth/server';
 

@@ -78,7 +78,7 @@ type LogFunctionMap = Partial<Record<LogLevel, (...args: AnyValue[]) => void>>;
 // Helper to create bound function maps
 function createBoundMap(
   loggerInstance: AnyValue,
-  levelMap: Partial<Record<LogLevel, keyof typeof loggerInstance>>
+  levelMap: Partial<Record<LogLevel, keyof typeof loggerInstance>>,
 ): LogFunctionMap {
   const boundMap: LogFunctionMap = {};
   for (const level in levelMap) {

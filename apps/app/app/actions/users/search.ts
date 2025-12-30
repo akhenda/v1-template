@@ -15,7 +15,7 @@ const getName = (user: OrganizationMembership): string | undefined => {
 };
 
 export const searchUsers = async (
-  query: string
+  query: string,
 ): Promise<{ data: string[] } | { error: unknown }> => {
   try {
     const { orgId } = await auth();

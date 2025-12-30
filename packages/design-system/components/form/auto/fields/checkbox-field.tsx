@@ -37,7 +37,7 @@ export function CheckboxFieldComponent<Schema extends FieldValues>({
         <FormItem
           className={cn(
             'flex flex-row items-start space-x-3 space-y-0 rounded-md border bg-muted p-4',
-            className
+            className,
           )}
         >
           <FormControl>

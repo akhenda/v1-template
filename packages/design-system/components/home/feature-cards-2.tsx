@@ -32,7 +32,7 @@ const Feature = ({ className, title, description, icon, iconClassName, index }: 
       'group/feature relative flex flex-col py-10 lg:border-r dark:border-neutral-800',
       (index === 0 || index === 4) && 'lg:border-l dark:border-neutral-800',
       index < 4 && 'lg:border-b dark:border-neutral-800',
-      className
+      className,
     )}
     initial={{ opacity: 0, y: 20 }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -48,7 +48,7 @@ const Feature = ({ className, title, description, icon, iconClassName, index }: 
     <div
       className={cn(
         'relative z-10 mb-4 px-10 text-neutral-600 dark:text-neutral-400',
-        iconClassName
+        iconClassName,
       )}
     >
       <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-linear-to-br from-accent/60 to-white/50 text-primary/70">
@@ -94,7 +94,7 @@ export function FeatureCards({
               <motion.h2
                 className={cn(
                   'font-bold text-3xl text-foreground tracking-tight sm:text-4xl',
-                  titleClassName
+                  titleClassName,
                 )}
                 id="features"
                 initial={{ opacity: 0, y: 20 }}

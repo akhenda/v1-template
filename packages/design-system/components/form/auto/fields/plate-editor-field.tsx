@@ -72,7 +72,7 @@ export function PlateEditorFieldComponent<Schema extends FieldValues>({
                 className={cn(
                   'mmax-h-80 min-h-40 resize-none bg-muted text-sm',
                   { 'resize-y': resizable },
-                  editorClassName
+                  editorClassName,
                 )}
                 onChange={onChangeValue}
                 placeholder={placeholder}

@@ -45,7 +45,7 @@ const arcjetMiddleware = async (request: NextRequest) => {
         'CATEGORY:PREVIEW', // Allow preview links to show OG images
         'CATEGORY:MONITOR', // Allow uptime monitoring services
       ],
-      request
+      request,
     );
   } catch (error) {
     const message = parseError(error);

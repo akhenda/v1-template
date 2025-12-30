@@ -62,7 +62,7 @@ export function FileUpload({
         }
       }
     },
-    [maxFiles, maxSize, onFilesSelected]
+    [maxFiles, maxSize, onFilesSelected],
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -95,7 +95,7 @@ export function FileUpload({
           'relative flex flex-col items-center justify-center rounded-lg border-2 border-gray-300 border-dashed p-12 text-center transition-colors',
           isDragActive ? 'border-primary bg-primary/5' : 'hover:bg-gray-50 dark:hover:bg-gray-800',
           disabled || isUploading ? 'cursor-not-allowed opacity-60' : 'cursor-pointer',
-          error ? 'border-red-500' : ''
+          error ? 'border-red-500' : '',
         )}
       >
         <input {...getInputProps()} />

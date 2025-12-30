@@ -4,7 +4,10 @@ import type { Attrs } from '@tiptap/pm/model';
 import { ReplaceStep } from '@tiptap/pm/transform';
 import type { Editor } from '@tiptap/react';
 import { ReactNodeViewRenderer } from '@tiptap/react';
-import { type FileError, type FileValidationOptions, filterFiles, randomId } from '../../utils';
+
+import type { FileError, FileValidationOptions } from '../../utils';
+import { filterFiles, randomId } from '../../utils';
+
 import { ImageViewBlock } from './components/image-view-block';
 
 type ImageAction = 'download' | 'copyImage' | 'copyLink';
@@ -78,12 +81,11 @@ const handleImageUrl = async (src: string): Promise<{ blob: Blob; extension: str
   return { blob, extension };
 };
 
-const fetchImageBlob = async (src: string): Promise<{ blob: Blob; extension: string }> => {
-  return src.startsWith('data:') ? handleDataUrl(src) : await handleImageUrl(src);
-};
+const fetchImageBlob = async (src: string): Promise<{ blob: Blob; extension: string }> =>
+  src.startsWith('data:') ? handleDataUrl(src) : await handleImageUrl(src);
 
-const saveImage = (blob: Blob, name: string, extension: string): Promise<void> => {
-  return new Promise((resolve) => {
+const saveImage = (blob: Blob, name: string, extension: string): Promise<void> =>
+  new Promise((resolve) => {
     const imageURL = URL.createObjectURL(blob);
     const link = document.createElement('a');
 
@@ -96,7 +98,6 @@ const saveImage = (blob: Blob, name: string, extension: string): Promise<void> =
 
     resolve();
   });
-};
 
 const downloadImage = async (
   props: ImageActionProps,

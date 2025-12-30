@@ -8,7 +8,7 @@
 @source "../**/*.{ts,tsx}";
 @source "../../web/**/*.{ts,tsx}";
 
-@plugin '@tailwindcss/typography';
+@plugin "@tailwindcss/typography";
 
 /*
   ---break---

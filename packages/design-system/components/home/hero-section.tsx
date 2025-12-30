@@ -46,7 +46,7 @@ export function HeroSection({
     <div
       className={cn(
         'relative overflow-hidden bg-linear-to-b from-background to-background/50',
-        className
+        className,
       )}
     >
       <div className="absolute inset-x-0 top-0 opacity-5 dark:opacity-45">
@@ -103,7 +103,7 @@ export function HeroSection({
             className={cn(
               'z-10 flex flex-col justify-center',
               alignmentClasses[align],
-              contentClassName
+              contentClassName,
             )}
             initial={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
@@ -126,7 +126,7 @@ export function HeroSection({
               animate={{ opacity: 1, scale: 1 }}
               className={cn(
                 'relative z-10 flex items-center justify-center lg:justify-end',
-                imageClassName
+                imageClassName,
               )}
               initial={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.5, delay: 0.2 }}

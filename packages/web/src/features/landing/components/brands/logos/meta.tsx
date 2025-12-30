@@ -5,11 +5,11 @@ import type { LogoProps } from '../types';
 export function Meta({ className, overrideColor, ...rest }: LogoProps) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
+      className={cn('text-gray-600', className)}
+      fill={overrideColor ? 'currentColor' : '#000000'}
       version="1.0"
       viewBox="1000 1000 4962.3646 1000"
-      fill={overrideColor ? 'currentColor' : '#000000'}
-      className={cn('text-gray-600', className)}
+      xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
       <g>

@@ -66,7 +66,7 @@ export function DatePickerFieldComponent<Schema extends FieldValues>({
                   <Button
                     className={cn(
                       'h-10 w-full bg-muted pl-3 text-left font-normal',
-                      !field.value && 'text-muted-foreground'
+                      !field.value && 'text-muted-foreground',
                     )}
                     disabled={!!disabled}
                     variant="outline"

@@ -26,7 +26,7 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
     <div
       className={cn(
         '-top-1/4 -translate-x-1/2 -translate-y-1/2 absolute left-1/4 z-0 flex h-full w-full p-4',
-        className
+        className,
       )}
       style={{
         transform:

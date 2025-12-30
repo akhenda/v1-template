@@ -65,7 +65,7 @@ export const ToolbarSection: React.FC<ToolbarSectionProps> = ({
         {action.icon}
       </ToolbarButton>
     ),
-    [editor, size, variant]
+    [editor, size, variant],
   );
 
   const renderDropdownMenuItem = React.useCallback(
@@ -83,12 +83,12 @@ export const ToolbarSection: React.FC<ToolbarSectionProps> = ({
         <ShortcutKey keys={action.shortcuts} />
       </DropdownMenuItem>
     ),
-    [editor]
+    [editor],
   );
 
   const isDropdownActive = React.useMemo(
     () => dropdownActions.some((action) => action.isActive(editor)),
-    [dropdownActions, editor]
+    [dropdownActions, editor],
   );
 
   return (

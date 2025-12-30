@@ -33,7 +33,7 @@ const colors = [
 ];
 
 export const getUsers = async (
-  userIds: string[]
+  userIds: string[],
 ): Promise<{ data: Liveblocks['UserMeta']['info'][] } | { error: unknown }> => {
   try {
     const { orgId } = await auth();

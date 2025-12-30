@@ -131,7 +131,8 @@
   "javascript": {
     "formatter": {
       "arrowParentheses": "always",
-      "quoteStyle": "single"
+      "quoteStyle": "single",
+      "trailingCommas": "all"
     },
     "globals": [
       "__DEV__",
@@ -169,7 +170,7 @@
   },
   "overrides": [
     {
-      "includes": ["convex/**/*"],
+      "includes": ["packages/convex/**/*"],
       "linter": {
         "rules": {
           "style": {

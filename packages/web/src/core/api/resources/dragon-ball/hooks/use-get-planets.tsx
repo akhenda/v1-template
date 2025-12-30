@@ -2,16 +2,16 @@
 
 import { useEffect } from 'react';
 
+import type { InfiniteData, QueryKey } from '@tanstack/react-query';
 import {
-  type InfiniteData,
   keepPreviousData,
-  type QueryKey,
   useInfiniteQuery,
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
 
-import { getDragonBallPlanets, type Page, type Planet } from '../endpoints';
+import type { Page, Planet } from '../endpoints';
+import { getDragonBallPlanets } from '../endpoints';
 
 const QUERY_KEY = 'planets';
 
@@ -54,9 +54,8 @@ export function useGetInfinitePlanets() {
     queryKey: getQueryKey(),
     queryFn: ({ signal, pageParam }) => getDragonBallPlanets(pageParam, {}, { signal }),
     initialPageParam: 1,
-    getNextPageParam: (lastPage) => {
-      return lastPage?.links.next ? lastPage.meta.currentPage + 1 : undefined;
-    },
+    getNextPageParam: (lastPage) =>
+      lastPage?.links.next ? lastPage.meta.currentPage + 1 : undefined,
   });
 
   return query;

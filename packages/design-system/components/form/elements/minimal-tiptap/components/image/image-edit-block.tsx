@@ -39,7 +39,7 @@ export const ImageEditBlock: React.FC<ImageEditBlockProps> = ({ editor, close })
       await insertImages();
       close();
     },
-    [editor, close]
+    [editor, close],
   );
 
   const handleSubmit = React.useCallback(
@@ -52,7 +52,7 @@ export const ImageEditBlock: React.FC<ImageEditBlockProps> = ({ editor, close })
         close();
       }
     },
-    [editor, link, close]
+    [editor, link, close],
   );
 
   return (

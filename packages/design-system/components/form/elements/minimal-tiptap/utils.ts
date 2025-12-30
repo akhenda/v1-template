@@ -1,4 +1,5 @@
 import type { Editor } from '@tiptap/react';
+
 import type { MinimalTiptapProps } from './minimal-tiptap';
 
 type ShortcutKeyResult = { symbol: string; readable: string };
@@ -82,7 +83,7 @@ export const sanitizeUrl = (
   url: string | null | undefined,
   options: { allowBase64?: boolean } = {},
 ): string | undefined => {
-  if (!url) return undefined;
+  if (!url) return;
 
   if (options.allowBase64 && url.startsWith('data:image')) {
     return isUrl(url, { requireHostname: false, allowBase64: true }) ? url : undefined;
@@ -114,8 +115,8 @@ export const blobUrlToBase64 = async (blobUrl: string): Promise<string> => {
 
 export const randomId = (): string => Math.random().toString(36).slice(2, 11);
 
-export const fileToBase64 = (file: File | Blob): Promise<string> => {
-  return new Promise((resolve, reject) => {
+export const fileToBase64 = (file: File | Blob): Promise<string> =>
+  new Promise((resolve, reject) => {
     const reader = new FileReader();
 
     reader.onloadend = () => {
@@ -125,7 +126,6 @@ export const fileToBase64 = (file: File | Blob): Promise<string> => {
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
-};
 
 const validateFileOrBase64 = <T extends FileInput>(
   input: File | string,

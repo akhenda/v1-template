@@ -9,11 +9,8 @@ export const noop = R.doNothing;
  * @param value - The value to be checked.
  * @returns A boolean indicating if the value is a promise.
  */
-export const isPromise = (value: unknown): value is Promise<unknown> => {
-  return (
-    typeof value === 'object' &&
-    value !== null &&
-    'then' in value &&
-    typeof (value as { then: unknown }).then === 'function'
-  );
-};
+export const isPromise = (value: unknown): value is Promise<unknown> =>
+  typeof value === 'object' &&
+  value !== null &&
+  'then' in value &&
+  typeof (value as { then: unknown }).then === 'function';

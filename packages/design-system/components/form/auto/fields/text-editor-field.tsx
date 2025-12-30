@@ -14,7 +14,7 @@ export type TextEditorFieldProps<Schema extends FieldValues> =
   | (PlateEditorFieldMDProps<Schema> & { type: 'plate-md' });
 
 export function TextEditorFieldComponent<Schema extends FieldValues>(
-  props: TextEditorFieldProps<Schema>
+  props: TextEditorFieldProps<Schema>,
 ) {
   switch (props.type) {
     case 'plate': {

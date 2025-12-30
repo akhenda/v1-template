@@ -29,32 +29,32 @@ const Toolbar = ({ editor }: { editor: Editor }) => (
   <div className="shrink-0 overflow-x-auto border-border border-b p-2">
     <div className="flex w-max items-center gap-px">
       <SectionTwo
-        editor={editor}
         activeActions={['bold', 'italic', 'underline', 'strikethrough', 'clearFormatting']}
+        editor={editor}
         mainActionCount={3}
       />
 
-      <Separator orientation="vertical" className="mx-2 h-7" />
+      <Separator className="mx-2 h-7" orientation="vertical" />
 
-      <SectionOne editor={editor} activeLevels={[1, 2, 3, 4, 5, 6]} />
+      <SectionOne activeLevels={[1, 2, 3, 4, 5, 6]} editor={editor} />
 
-      <Separator orientation="vertical" className="mx-2 h-7" />
+      <Separator className="mx-2 h-7" orientation="vertical" />
 
       <SectionThree editor={editor} />
 
-      <Separator orientation="vertical" className="mx-2 h-7" />
+      <Separator className="mx-2 h-7" orientation="vertical" />
 
       <SectionFour
-        editor={editor}
         activeActions={['orderedList', 'bulletList']}
+        editor={editor}
         mainActionCount={0}
       />
 
-      <Separator orientation="vertical" className="mx-2 h-7" />
+      <Separator className="mx-2 h-7" orientation="vertical" />
 
       <SectionFive
-        editor={editor}
         activeActions={['blockquote', 'horizontalRule']}
+        editor={editor}
         mainActionCount={0}
       />
     </div>
@@ -70,17 +70,17 @@ export const MinimalTiptapEditor = React.forwardRef<HTMLDivElement, MinimalTipta
     return (
       <MeasuredContainer
         as="div"
-        name="editor"
-        ref={ref}
         className={cn(
           'flex h-auto min-h-72 w-full flex-col rounded-md border border-input shadow-sm focus-within:border-primary',
           className,
         )}
+        name="editor"
+        ref={ref}
       >
         <Toolbar editor={editor} />
         <EditorContent
-          editor={editor}
           className={cn('minimal-tiptap-editor', editorContentClassName)}
+          editor={editor}
         />
         <LinkBubbleMenu editor={editor} />
       </MeasuredContainer>

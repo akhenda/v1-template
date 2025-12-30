@@ -53,11 +53,11 @@ export function createTypedFormFields<TFieldValues extends FieldValues>() {
   // CheckboxField for this specific TFieldValues
   const TypedCheckboxField = React.memo(
     (
-      props: Omit<CheckboxFieldProps<TFieldValues>, 'control'> & { name: FieldPath<TFieldValues> }
+      props: Omit<CheckboxFieldProps<TFieldValues>, 'control'> & { name: FieldPath<TFieldValues> },
     ) => {
       const { control } = useTypedFormContext(); // Get the control typed as TFieldValues
       return <CheckboxFieldComponent control={control} {...props} />;
-    }
+    },
   );
   TypedCheckboxField.displayName = 'TypedCheckboxField'; // For React DevTools
 
@@ -66,11 +66,11 @@ export function createTypedFormFields<TFieldValues extends FieldValues>() {
     (
       props: Omit<CountryDropdownFieldProps<TFieldValues>, 'control'> & {
         name: FieldPath<TFieldValues>;
-      }
+      },
     ) => {
       const { control } = useTypedFormContext(); // Get the control typed as TFieldValues
       return <CountryDropdownFieldComponent control={control} {...props} />;
-    }
+    },
   );
   TypedCountryDropdownField.displayName = 'TypedCountryDropdownField'; // For React DevTools
 
@@ -79,11 +79,11 @@ export function createTypedFormFields<TFieldValues extends FieldValues>() {
     (
       props: Omit<DatePickerFieldProps<TFieldValues>, 'control'> & {
         name: FieldPath<TFieldValues>;
-      }
+      },
     ) => {
       const { control } = useTypedFormContext(); // Get the control typed as TFieldValues
       return <DatePickerFieldComponent control={control} {...props} />;
-    }
+    },
   );
   TypedDatePickerField.displayName = 'TypedDatePickerField'; // For React DevTools
 
@@ -92,11 +92,11 @@ export function createTypedFormFields<TFieldValues extends FieldValues>() {
     (
       props: Omit<MultiCheckboxFieldProps<TFieldValues>, 'control'> & {
         name: FieldPath<TFieldValues>;
-      }
+      },
     ) => {
       const { control } = useTypedFormContext(); // Get the control typed as TFieldValues
       return <MultiCheckboxFieldComponent control={control} {...props} />;
-    }
+    },
   );
   TypedMultiCheckboxField.displayName = 'TypedMultiCheckboxField'; // For React DevTools
 
@@ -105,11 +105,11 @@ export function createTypedFormFields<TFieldValues extends FieldValues>() {
     (
       props: Omit<PhoneInputFieldProps<TFieldValues>, 'control'> & {
         name: FieldPath<TFieldValues>;
-      }
+      },
     ) => {
       const { control } = useTypedFormContext(); // Get the control typed as TFieldValues
       return <PhoneInputFieldComponent control={control} {...props} />;
-    }
+    },
   );
   TypedPhoneInputField.displayName = 'TypedPhoneInputField'; // For React DevTools
 
@@ -118,11 +118,11 @@ export function createTypedFormFields<TFieldValues extends FieldValues>() {
     (
       props: Omit<PlateEditorFieldMDProps<TFieldValues>, 'control'> & {
         name: FieldPath<TFieldValues>;
-      }
+      },
     ) => {
       const { control } = useTypedFormContext(); // Get the control typed as TFieldValues
       return <PlateEditorFieldMDComponent control={control} {...props} />;
-    }
+    },
   );
   TypedPlateEditorFieldMD.displayName = 'TypedPlateEditorFieldMD'; // For React DevTools
 
@@ -131,11 +131,11 @@ export function createTypedFormFields<TFieldValues extends FieldValues>() {
     (
       props: Omit<PlateEditorFieldProps<TFieldValues>, 'control'> & {
         name: FieldPath<TFieldValues>;
-      }
+      },
     ) => {
       const { control } = useTypedFormContext(); // Get the control typed as TFieldValues
       return <PlateEditorFieldComponent control={control} {...props} />;
-    }
+    },
   );
   TypedPlateEditorField.displayName = 'TypedPlateEditorField'; // For React DevTools
 
@@ -144,55 +144,55 @@ export function createTypedFormFields<TFieldValues extends FieldValues>() {
     (
       props: Omit<RadioGroupFieldProps<TFieldValues>, 'control'> & {
         name: FieldPath<TFieldValues>;
-      }
+      },
     ) => {
       const { control } = useTypedFormContext(); // Get the control typed as TFieldValues
       return <RadioGroupFieldComponent control={control} {...props} />;
-    }
+    },
   );
   TypedRadioGroupField.displayName = 'TypedRadioGroupField'; // For React DevTools
 
   // SelectField for this specific TFieldValues
   const TypedSelectField = React.memo(
     (
-      props: Omit<SelectFieldProps<TFieldValues>, 'control'> & { name: FieldPath<TFieldValues> }
+      props: Omit<SelectFieldProps<TFieldValues>, 'control'> & { name: FieldPath<TFieldValues> },
     ) => {
       const { control } = useTypedFormContext(); // Get the control typed as TFieldValues
       return <SelectFieldComponent control={control} {...props} />;
-    }
+    },
   );
   TypedSelectField.displayName = 'TypedSelectField'; // For React DevTools
 
   // SwitchField for this specific TFieldValues
   const TypedSwitchField = React.memo(
     (
-      props: Omit<SwitchFieldProps<TFieldValues>, 'control'> & { name: FieldPath<TFieldValues> }
+      props: Omit<SwitchFieldProps<TFieldValues>, 'control'> & { name: FieldPath<TFieldValues> },
     ) => {
       const { control } = useTypedFormContext(); // Get the control typed as TFieldValues
       return <SwitchFieldComponent control={control} {...props} />;
-    }
+    },
   );
   TypedSwitchField.displayName = 'TypedSwitchField'; // For React DevTools
 
   // TagInputField for this specific TFieldValues
   const TypedTagInputField = React.memo(
     (
-      props: Omit<TagInputFieldProps<TFieldValues>, 'control'> & { name: FieldPath<TFieldValues> }
+      props: Omit<TagInputFieldProps<TFieldValues>, 'control'> & { name: FieldPath<TFieldValues> },
     ) => {
       const { control } = useTypedFormContext(); // Get the control typed as TFieldValues
       return <TagInputFieldComponent control={control} {...props} />;
-    }
+    },
   );
   TypedTagInputField.displayName = 'TypedTagInputField'; // For React DevTools
 
   // TextAreaField for this specific TFieldValues
   const TypedTextAreaField = React.memo(
     (
-      props: Omit<TextAreaFieldProps<TFieldValues>, 'control'> & { name: FieldPath<TFieldValues> }
+      props: Omit<TextAreaFieldProps<TFieldValues>, 'control'> & { name: FieldPath<TFieldValues> },
     ) => {
       const { control } = useTypedFormContext(); // Get the control typed as TFieldValues
       return <TextAreaFieldComponent control={control} {...props} />;
-    }
+    },
   );
   TypedTextAreaField.displayName = 'TypedTextAreaField'; // For React DevTools
 
@@ -211,7 +211,7 @@ export function createTypedFormFields<TFieldValues extends FieldValues>() {
         | (Omit<PlateEditorFieldMDProps<TFieldValues>, 'control'> & {
             name: FieldPath<TFieldValues>;
             type: 'plate-md';
-          })
+          }),
     ) => {
       const { control } = useTypedFormContext(); // Get the control typed as TFieldValues
 
@@ -234,7 +234,7 @@ export function createTypedFormFields<TFieldValues extends FieldValues>() {
           return <TextAreaFieldComponent control={control} {...rest} />;
         }
       }
-    }
+    },
   );
   TypedTextEditorField.displayName = 'TypedTextEditorField'; // For React DevTools
 
@@ -243,12 +243,12 @@ export function createTypedFormFields<TFieldValues extends FieldValues>() {
     (
       props: Omit<TextInputFieldProps<TFieldValues>, 'control'> & {
         name: FieldPath<TFieldValues>; // The strict type for 'name'
-      }
+      },
     ) => {
       const { control } = useTypedFormContext(); // Get the control typed as TFieldValues
 
       return <TextInputFieldComponent control={control} {...props} />;
-    }
+    },
   );
   TypedTextInputField.displayName = 'TypedTextInputField'; // For React DevTools
 

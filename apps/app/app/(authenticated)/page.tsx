@@ -6,7 +6,7 @@ import { createMetadata } from '@repo/seo/metadata';
 // import { Dashboard } from '@repo/web/features/dashboard/index';
 
 const Dashboard = dynamic(() =>
-  import('@repo/web/features/dashboard/index').then((mod) => mod.Dashboard)
+  import('@repo/web/features/dashboard/index').then((mod) => mod.Dashboard),
 );
 
 const title = 'Dashboard';

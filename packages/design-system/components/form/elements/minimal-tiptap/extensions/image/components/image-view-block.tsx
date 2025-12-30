@@ -1,8 +1,11 @@
-import { InfoCircledIcon, TrashIcon } from '@radix-ui/react-icons';
-import { type NodeViewProps, NodeViewWrapper } from '@tiptap/react';
-import Image from 'next/image';
 import * as React from 'react';
 import { Controlled as ControlledZoom } from 'react-medium-image-zoom';
+
+import Image from 'next/image';
+
+import { InfoCircledIcon, TrashIcon } from '@radix-ui/react-icons';
+import type { NodeViewProps } from '@tiptap/react';
+import { NodeViewWrapper } from '@tiptap/react';
 
 import { cn } from '../../../../../../../lib/utils';
 import { Spinner } from '../../../components/spinner';
@@ -175,9 +178,9 @@ export const ImageViewBlock: React.FC<NodeViewProps> = ({
 
   return (
     <NodeViewWrapper
-      ref={containerRef}
-      data-drag-handle
       className="relative text-center leading-none"
+      data-drag-handle
+      ref={containerRef}
     >
       <div
         className="group/node-image relative mx-auto rounded-md object-contain"
@@ -213,22 +216,22 @@ export const ImageViewBlock: React.FC<NodeViewProps> = ({
                 onZoomChange={() => setImageState((prev) => ({ ...prev, isZoomed: false }))}
               >
                 <Image
+                  alt={node.attrs.alt || ''}
                   className={cn('h-auto rounded object-contain transition-shadow', {
                     'opacity-0': !imageState.imageLoaded || imageState.error,
                   })}
+                  height={currentHeight}
+                  id={node.attrs.id}
+                  onError={handleImageError}
+                  onLoad={handleImageLoad}
+                  src={imageState.src}
                   style={{
                     maxWidth: `min(100%, ${maxWidth}px)`,
                     minWidth: `${MIN_WIDTH}px`,
                     maxHeight: MAX_HEIGHT,
                   }}
-                  width={currentWidth}
-                  height={currentHeight}
-                  src={imageState.src}
-                  onError={handleImageError}
-                  onLoad={handleImageLoad}
-                  alt={node.attrs.alt || ''}
                   title={node.attrs.title || ''}
-                  id={node.attrs.id}
+                  width={currentWidth}
                 />
               </ControlledZoom>
             </div>
@@ -241,18 +244,18 @@ export const ImageViewBlock: React.FC<NodeViewProps> = ({
               !imageState.isServerUploading && (
                 <>
                   <ResizeHandle
-                    onPointerDown={handleResizeStart('left')}
                     className={cn('left-1', {
                       hidden: isResizing && activeResizeHandle === 'right',
                     })}
                     isResizing={isResizing && activeResizeHandle === 'left'}
+                    onPointerDown={handleResizeStart('left')}
                   />
                   <ResizeHandle
-                    onPointerDown={handleResizeStart('right')}
                     className={cn('right-1', {
                       hidden: isResizing && activeResizeHandle === 'left',
                     })}
                     isResizing={isResizing && activeResizeHandle === 'right'}
+                    onPointerDown={handleResizeStart('right')}
                   />
                 </>
               )}
@@ -262,20 +265,20 @@ export const ImageViewBlock: React.FC<NodeViewProps> = ({
             <ActionWrapper>
               <ActionButton
                 icon={<TrashIcon className="size-4" />}
-                tooltip="Remove image"
                 onClick={onRemoveImg}
+                tooltip="Remove image"
               />
             </ActionWrapper>
           )}
 
           {!isResizing && !imageState.error && !imageState.isServerUploading && (
             <ImageActions
-              shouldMerge={shouldMerge}
               isLink={isLink}
-              onView={onView}
-              onDownload={onDownload}
               onCopy={onCopy}
               onCopyLink={onCopyLink}
+              onDownload={onDownload}
+              onView={onView}
+              shouldMerge={shouldMerge}
             />
           )}
         </div>

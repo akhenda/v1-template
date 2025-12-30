@@ -58,7 +58,7 @@ const RowItem = React.memo(({ country, onSelect, selected, style }: RowItemProps
     <CheckIcon
       className={cn(
         'ml-auto h-4 w-4 shrink-0',
-        country.alpha2 === selected?.alpha2 ? 'opacity-100' : 'opacity-0'
+        country.alpha2 === selected?.alpha2 ? 'opacity-100' : 'opacity-0',
       )}
     />
   </CommandItem>
@@ -84,7 +84,7 @@ const CountryDropdownTrigger = React.memo(
         <span>{placeholder}</span>
       </div>
     );
-  }
+  },
 );
 CountryDropdownTrigger.displayName = 'CountryDropdownTrigger';
 
@@ -112,7 +112,7 @@ const CountryDropdownComponent = ({
   // Filtered list
   const filtered = useMemo(
     () => countries.filter((c) => c.name.toLowerCase().includes(search.toLowerCase())),
-    [search]
+    [search],
   );
 
   const handleSelect = useCallback(
@@ -120,13 +120,13 @@ const CountryDropdownComponent = ({
       onChange?.(country);
       setOpen(false);
     },
-    [onChange]
+    [onChange],
   );
 
   const triggerClasses = cn(
     'flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
     slim === true && 'w-20',
-    className
+    className,
   );
 
   return (

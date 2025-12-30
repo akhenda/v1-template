@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 import { SaveIcon } from 'lucide-react';
 
 import { Button } from '@repo/design-system/components/ui/button';
@@ -57,7 +55,7 @@ export function AISettingsPage() {
 
             <div>
               <Label className="mb-2 font-semibold">API Key</Label>
-              <Input type="password" placeholder="Enter your API key" />
+              <Input placeholder="Enter your API key" type="password" />
             </div>
 
             <div className="flex justify-end pt-4">

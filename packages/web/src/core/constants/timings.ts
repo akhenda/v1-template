@@ -1,4 +1,4 @@
-export const ONE_SECOND = 1_000;
+export const ONE_SECOND = 1000;
 export const ONE_MINUTE = ONE_SECOND * 60;
 export const FIVE_MINUTES = 5 * ONE_MINUTE;
 export const FIFTEEN_MINUTES = 15 * ONE_MINUTE;

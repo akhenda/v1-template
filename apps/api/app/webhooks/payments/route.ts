@@ -15,7 +15,7 @@ const getUserFromCustomerId = async (customerId: string) => {
   const users = await clerk.users.getUserList();
 
   const user = users.data.find(
-    (currentUser) => currentUser.privateMetadata.stripeCustomerId === customerId
+    (currentUser) => currentUser.privateMetadata.stripeCustomerId === customerId,
   );
 
   return user;
@@ -100,7 +100,7 @@ export const POST = async (request: Request): Promise<Response> => {
         message: 'something went wrong',
         ok: false,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

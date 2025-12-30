@@ -222,7 +222,7 @@ const MultipleSelector = ({
 
   const [selected, setSelected] = useState<Option[]>(value || []);
   const [options, setOptions] = useState<GroupOption>(
-    transToGroupOption(arrayDefaultOptions, groupBy)
+    transToGroupOption(arrayDefaultOptions, groupBy),
   );
   const [inputValue, setInputValue] = useState('');
   const debouncedSearchTerm = useDebounce(inputValue, delay || 500);
@@ -235,7 +235,7 @@ const MultipleSelector = ({
       focus: () => inputRef?.current?.focus(),
       reset: () => setSelected([]),
     }),
-    [selected]
+    [selected],
   );
 
   const handleClickOutside = (event: MouseEvent | TouchEvent) => {
@@ -256,7 +256,7 @@ const MultipleSelector = ({
       setSelected(newOptions);
       onChange?.(newOptions);
     },
-    [onChange, selected]
+    [onChange, selected],
   );
 
   const handleKeyDown = useCallback(
@@ -279,7 +279,7 @@ const MultipleSelector = ({
         if (e.key === 'Escape') input.blur();
       }
     },
-    [handleUnselect, selected]
+    [handleUnselect, selected],
   );
 
   useEffect(() => {
@@ -410,7 +410,7 @@ const MultipleSelector = ({
 
   const selectables = useMemo<GroupOption>(
     () => removePickedOption(options, selected),
-    [options, selected]
+    [options, selected],
   );
 
   /** Avoid Creatable Selector freezing or lagging when paste a long string. */
@@ -446,7 +446,7 @@ const MultipleSelector = ({
             'px-3 py-2': selected.length !== 0,
             'cursor-text': !disabled && selected.length !== 0,
           },
-          className
+          className,
         )}
         onClick={() => {
           if (disabled) return;
@@ -466,7 +466,7 @@ const MultipleSelector = ({
               className={cn(
                 'data-disabled:bg-muted-foreground data-disabled:text-muted data-disabled:hover:bg-muted-foreground',
                 'data-fixed:bg-muted-foreground data-fixed:text-muted data-fixed:hover:bg-muted-foreground',
-                badgeClassName
+                badgeClassName,
               )}
               data-disabled={disabled || undefined}
               data-fixed={option.fixed}
@@ -476,7 +476,7 @@ const MultipleSelector = ({
               <button
                 className={cn(
                   'ml-1 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2',
-                  (disabled || option.fixed) && 'hidden'
+                  (disabled || option.fixed) && 'hidden',
                 )}
                 onClick={() => handleUnselect(option)}
                 onKeyDown={(e) => {
@@ -503,7 +503,7 @@ const MultipleSelector = ({
                 'px-3 py-2': selected.length === 0,
                 'ml-1': selected.length !== 0,
               },
-              inputProps?.className
+              inputProps?.className,
             )}
             disabled={disabled}
             onBlur={(event) => {
@@ -530,7 +530,7 @@ const MultipleSelector = ({
                 disabled ||
                 selected.length < 1 ||
                 selected.filter((s) => s.fixed).length === selected.length) &&
-                'hidden'
+                'hidden',
             )}
             onClick={() => {
               setSelected(selected.filter((s) => s.fixed));
@@ -569,7 +569,7 @@ const MultipleSelector = ({
                       <CommandItem
                         className={cn(
                           'cursor-pointer',
-                          option.disable && 'cursor-default text-muted-foreground'
+                          option.disable && 'cursor-default text-muted-foreground',
                         )}
                         disabled={option.disable}
                         key={option.value}

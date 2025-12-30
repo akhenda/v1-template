@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm';
+import { eq as equal } from 'drizzle-orm';
 
 import { db } from '../drizzle';
 import type { InsertedRecord } from '../schema';
@@ -88,7 +88,7 @@ async function update(id: number, data: InsertedRecord<TableName>) {
   logger.debug('update user', { id, data });
 
   try {
-    const [updatedUser] = await db.update(table).set(data).where(eq(table.id, id)).returning();
+    const [updatedUser] = await db.update(table).set(data).where(equal(table.id, id)).returning();
 
     logger.debug('updated user', updatedUser);
 
@@ -111,7 +111,7 @@ async function deleteById(id: number) {
   logger.debug('delete user by id', { id });
 
   try {
-    const [deletedUser] = await db.delete(table).where(eq(table.id, id)).returning();
+    const [deletedUser] = await db.delete(table).where(equal(table.id, id)).returning();
 
     return deletedUser;
   } catch (error) {

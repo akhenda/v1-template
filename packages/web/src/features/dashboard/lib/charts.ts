@@ -9,7 +9,7 @@ type Period = 'day' | 'week' | 'month';
 /**
  * One data point for the chart
  */
-interface ChartRow {
+type ChartRow = {
   /**
    * yyyy-MM-dd  → daily
    * yyyy-MM     → monthly
@@ -19,7 +19,7 @@ interface ChartRow {
   applied: number;
   rejected: number;
   interview: number;
-}
+};
 
 /**
  * Build chart-ready, time-bucketed statistics from a list of applications.
@@ -71,14 +71,14 @@ export function buildChartData(apps: Application[], period: Period = 'day'): Cha
 
     switch (app.status) {
       case 'applied':
-        row.applied++;
+        row.applied += 1;
         break;
       case 'rejected':
-        row.rejected++;
+        row.rejected += 1;
         break;
       case 'interview':
       case 'offer': // treat “offer” as having reached interview stage
-        row.interview++;
+        row.interview += 1;
         break;
       default:
         // ignore any other custom statuses, or handle as you wish

@@ -132,7 +132,7 @@ type UploadProgress = { fileId: string; progress: number; completed: boolean };
 const simulateUpload = (
   totalBytes: number,
   onProgress: (progress: number) => void,
-  onComplete: () => void
+  onComplete: () => void,
 ) => {
   let timeoutId: NodeJS.Timeout;
   let uploadedBytes = 0;
@@ -209,15 +209,15 @@ export function FileUploader() {
         // Progress callback
         (progress) => {
           setUploadProgress((prev) =>
-            prev.map((item) => (item.fileId === file.id ? { ...item, progress } : item))
+            prev.map((item) => (item.fileId === file.id ? { ...item, progress } : item)),
           );
         },
         // Complete callback
         () => {
           setUploadProgress((prev) =>
-            prev.map((item) => (item.fileId === file.id ? { ...item, completed: true } : item))
+            prev.map((item) => (item.fileId === file.id ? { ...item, completed: true } : item)),
           );
-        }
+        },
       );
 
       cleanupFunctions.push(cleanup);
@@ -318,7 +318,7 @@ export function FileUploader() {
                           </p>
                           <p className="text-muted-foreground text-xs">
                             {formatBytes(
-                              file.file instanceof File ? file.file.size : file.file.size
+                              file.file instanceof File ? file.file.size : file.file.size,
                             )}
                           </p>
                         </div>

@@ -5,11 +5,11 @@ import type { LogoProps } from '../types';
 export function Lenovo({ className, overrideColor, ...rest }: LogoProps) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
+      className={cn('text-gray-600', className)}
+      fill="currentColor"
       version="1.0"
       viewBox="35.435 35.355 1062.991 150.415"
-      fill="currentColor"
-      className={cn('text-gray-600', className)}
+      xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
       <g fill={overrideColor ? 'currentColor' : '#005e9d'}>

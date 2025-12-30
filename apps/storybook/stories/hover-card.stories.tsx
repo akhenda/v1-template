@@ -1,29 +1,28 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@repo/design-system/components/ui/hover-card";
-import type { Meta, StoryObj } from "@storybook/react";
+} from '@repo/design-system/components/ui/hover-card';
 
 /**
  * For sighted users to preview content available behind a link.
  */
 const meta = {
-  title: "ui/HoverCard",
+  title: 'ui/HoverCard',
   component: HoverCard,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {},
   render: (args) => (
     <HoverCard {...args}>
       <HoverCardTrigger>Hover</HoverCardTrigger>
-      <HoverCardContent>
-        The React Framework - created and maintained by @vercel.
-      </HoverCardContent>
+      <HoverCardContent>The React Framework - created and maintained by @vercel.</HoverCardContent>
     </HoverCard>
   ),
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof HoverCard>;
 

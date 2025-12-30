@@ -1,33 +1,28 @@
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@repo/design-system/components/ui/alert";
-import type { Meta, StoryObj } from "@storybook/react";
-import { AlertCircle } from "lucide-react";
+import type { Meta, StoryObj } from '@storybook/react';
+import { AlertCircle } from 'lucide-react';
+
+import { Alert, AlertDescription, AlertTitle } from '@repo/design-system/components/ui/alert';
 
 /**
  * Displays a callout for user attention.
  */
 const meta = {
-  title: "ui/Alert",
+  title: 'ui/Alert',
   component: Alert,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     variant: {
-      options: ["default", "destructive"],
-      control: { type: "radio" },
+      options: ['default', 'destructive'],
+      control: { type: 'radio' },
     },
   },
   args: {
-    variant: "default",
+    variant: 'default',
   },
   render: (args) => (
     <Alert {...args}>
       <AlertTitle>Heads up!</AlertTitle>
-      <AlertDescription>
-        You can add components to your app using the cli.
-      </AlertDescription>
+      <AlertDescription>You can add components to your app using the cli.</AlertDescription>
     </Alert>
   ),
 } satisfies Meta<typeof Alert>;
@@ -48,12 +43,10 @@ export const Destructive: Story = {
     <Alert {...args}>
       <AlertCircle className="h-4 w-4" />
       <AlertTitle>Error</AlertTitle>
-      <AlertDescription>
-        Your session has expired. Please log in again.
-      </AlertDescription>
+      <AlertDescription>Your session has expired. Please log in again.</AlertDescription>
     </Alert>
   ),
   args: {
-    variant: "destructive",
+    variant: 'destructive',
   },
 };

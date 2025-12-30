@@ -2,6 +2,7 @@
 
 import type { AnyValue } from '@repo/types';
 
+// biome-ignore lint/style/useConsistentTypeDefinitions: allowed here
 export interface ErrorConstructor<T> {
   new (message: AnyValue): T;
 }

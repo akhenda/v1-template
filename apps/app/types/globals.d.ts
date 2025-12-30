@@ -1,5 +1,5 @@
 /** biome-ignore-all lint/style/useConsistentTypeDefinitions: allowed */
-export { };
+export {};
 
 declare global {
   interface CustomJwtSessionClaims {

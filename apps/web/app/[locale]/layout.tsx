@@ -34,10 +34,10 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   return createMetadata({
     title: t('Ignite Your Job Search'),
     description: t(
-      'ResumeMoto is an AI-powered resume and CV builder designed to help job seekers create tailored, ATS-friendly resumes, streamline job applications, and track progress. Transform your job search today!'
+      'ResumeMoto is an AI-powered resume and CV builder designed to help job seekers create tailored, ATS-friendly resumes, streamline job applications, and track progress. Transform your job search today!',
     ),
     keywords: t(
-      'resume builder, CV generator, ATS resume, AI resume tool, job search, career, resume optimization, ResumeMoto'
+      'resume builder, CV generator, ATS resume, AI resume tool, job search, career, resume optimization, ResumeMoto',
     ),
     authors: [{ name: t('ResumeMoto Team') }],
   });

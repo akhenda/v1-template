@@ -11,14 +11,14 @@ export function ClientPageLayout({ children }: PropsWithChildren) {
     <>
       <ClerkLoading>
         <FullScreenLoader
-          isLoading
-          speed={0.8}
-          fullScreen={false}
-          elementCount={6}
           animationStyle="pulse"
-          message="Loading"
-          subMessage="Please wait..."
           className="h-full"
+          elementCount={6}
+          fullScreen={false}
+          isLoading
+          message="Loading"
+          speed={0.8}
+          subMessage="Please wait..."
         />
       </ClerkLoading>
       <SignedIn>{children}</SignedIn>

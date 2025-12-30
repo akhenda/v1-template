@@ -26,7 +26,7 @@ export const PhoneInput = ({
       function PhoneInputInner(props: React.ComponentProps<typeof Input>) {
         return <Input className={inputClassName} {...props} />;
       },
-    [inputClassName]
+    [inputClassName],
   );
 
   const options = getCountriesOptions();

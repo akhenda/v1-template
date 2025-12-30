@@ -31,7 +31,7 @@ export default function InfiniteScroll({
       let safeThreshold = threshold;
       if (threshold < 0 || threshold > 1) {
         logger.warn(
-          'threshold should be between 0 and 1. You are exceed the range. will use default value: 1'
+          'threshold should be between 0 and 1. You are exceed the range. will use default value: 1',
         );
         safeThreshold = 1;
       }
@@ -48,11 +48,11 @@ export default function InfiniteScroll({
         (entries) => {
           if (entries[0].isIntersecting && hasMore) next();
         },
-        { threshold: safeThreshold, root, rootMargin }
+        { threshold: safeThreshold, root, rootMargin },
       );
       observer.current.observe(element);
     },
-    [hasMore, isLoading, next, threshold, root, rootMargin]
+    [hasMore, isLoading, next, threshold, root, rootMargin],
   );
 
   const flattenChildren = React.useMemo(() => React.Children.toArray(children), [children]);

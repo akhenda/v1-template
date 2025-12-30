@@ -47,7 +47,7 @@ export const ContactForm = () => {
                 </h4>
                 <p className="max-w-sm text-left text-lg text-muted-foreground leading-relaxed tracking-tight">
                   {t(
-                    'Schedule a consultation with our team to discuss how we can help streamline your operations and drive growth for your business.'
+                    'Schedule a consultation with our team to discuss how we can help streamline your operations and drive growth for your business.',
                   )}
                 </p>
               </div>
@@ -73,7 +73,7 @@ export const ContactForm = () => {
                     <Button
                       className={cn(
                         'w-full max-w-sm justify-start text-left font-normal',
-                        !date && 'text-muted-foreground'
+                        !date && 'text-muted-foreground',
                       )}
                       variant="outline"
                     >

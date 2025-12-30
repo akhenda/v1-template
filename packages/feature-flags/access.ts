@@ -15,7 +15,7 @@ export const getFlags = async (request: NextRequest) => {
     Object.values(flags).map((flag) => [
       flag.key,
       { origin: flag.origin, description: flag.description, options: flag.options },
-    ])
+    ]),
   );
 
   return NextResponse.json<ApiData>({ definitions });

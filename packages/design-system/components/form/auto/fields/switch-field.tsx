@@ -41,7 +41,7 @@ export function SwitchFieldComponent<Schema extends FieldValues>({
         <FormItem
           className={cn(
             'flex flex-row items-center justify-between rounded-lg border bg-muted p-4',
-            className
+            className,
           )}
         >
           <div className="m-0">

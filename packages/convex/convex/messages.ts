@@ -10,7 +10,5 @@ export const send = mutation({
 });
 
 export const list = query({
-  handler: async (ctx) => {
-    return await ctx.db.query('messages').collect();
-  },
+  handler: async (ctx) => await ctx.db.query('messages').collect(),
 });

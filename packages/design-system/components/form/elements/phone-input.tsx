@@ -44,14 +44,14 @@ const PhoneInput = ({
         {..._props}
       />
     ),
-    [inputClassName]
+    [inputClassName],
   );
 
   const MemoizedFlagComponent = React.useCallback(
     (_props: React.ComponentProps<typeof FlagComponent>) => (
       <FlagComponent className={flagClassName} {..._props} />
     ),
-    [flagClassName]
+    [flagClassName],
   );
 
   return (
@@ -107,7 +107,7 @@ const CountrySelect = ({
   const [search, setSearch] = React.useState('');
   const filtered = React.useMemo(
     () => countryList.filter((c) => c.label.toLowerCase().includes(search.toLowerCase())),
-    [search]
+    [search],
   );
 
   return (
@@ -184,7 +184,7 @@ const FlagComponent = ({ country, className }: RPNInput.FlagProps & { className?
   <span
     className={cn(
       'flex items-center justify-center overflow-hidden rounded-xs text-2xl',
-      className
+      className,
     )}
   >
     {!country && <PhoneIcon size={20} />}

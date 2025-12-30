@@ -1,52 +1,6 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@repo/design-system/components/ui/avatar";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@repo/design-system/components/ui/breadcrumb";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@repo/design-system/components/ui/collapsible";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from "@repo/design-system/components/ui/dropdown-menu";
-import { Separator } from "@repo/design-system/components/ui/separator";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarInset,
-  SidebarMenu,
-  SidebarMenuAction,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-  SidebarProvider,
-  SidebarRail,
-  SidebarTrigger,
-} from "@repo/design-system/components/ui/sidebar";
-import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from 'react';
+
+import type { Meta, StoryObj } from '@storybook/react';
 import {
   AudioWaveform,
   BadgeCheck,
@@ -71,13 +25,57 @@ import {
   Sparkles,
   SquareTerminal,
   Trash2,
-} from "lucide-react";
-import { useState } from "react";
+} from 'lucide-react';
+
+import { Avatar, AvatarFallback, AvatarImage } from '@repo/design-system/components/ui/avatar';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@repo/design-system/components/ui/breadcrumb';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@repo/design-system/components/ui/collapsible';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from '@repo/design-system/components/ui/dropdown-menu';
+import { Separator } from '@repo/design-system/components/ui/separator';
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarProvider,
+  SidebarRail,
+  SidebarTrigger,
+} from '@repo/design-system/components/ui/sidebar';
 
 const meta: Meta<typeof Sidebar> = {
-  title: "ui/Sidebar",
+  title: 'ui/Sidebar',
   component: Sidebar,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
 };
 export default meta;
@@ -86,128 +84,128 @@ type Story = StoryObj<typeof Sidebar>;
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: 'shadcn',
+    email: 'm@example.com',
+    avatar: '/avatars/shadcn.jpg',
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: 'Acme Inc',
       logo: GalleryVerticalEnd,
-      plan: "Enterprise",
+      plan: 'Enterprise',
     },
     {
-      name: "Acme Corp.",
+      name: 'Acme Corp.',
       logo: AudioWaveform,
-      plan: "Startup",
+      plan: 'Startup',
     },
     {
-      name: "Evil Corp.",
+      name: 'Evil Corp.',
       logo: Command,
-      plan: "Free",
+      plan: 'Free',
     },
   ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
+      title: 'Playground',
+      url: '#',
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "#",
+          title: 'History',
+          url: '#',
         },
         {
-          title: "Starred",
-          url: "#",
+          title: 'Starred',
+          url: '#',
         },
         {
-          title: "Settings",
-          url: "#",
+          title: 'Settings',
+          url: '#',
         },
       ],
     },
     {
-      title: "Models",
-      url: "#",
+      title: 'Models',
+      url: '#',
       icon: Bot,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: 'Genesis',
+          url: '#',
         },
         {
-          title: "Explorer",
-          url: "#",
+          title: 'Explorer',
+          url: '#',
         },
         {
-          title: "Quantum",
-          url: "#",
+          title: 'Quantum',
+          url: '#',
         },
       ],
     },
     {
-      title: "Documentation",
-      url: "#",
+      title: 'Documentation',
+      url: '#',
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
-          url: "#",
+          title: 'Introduction',
+          url: '#',
         },
         {
-          title: "Get Started",
-          url: "#",
+          title: 'Get Started',
+          url: '#',
         },
         {
-          title: "Tutorials",
-          url: "#",
+          title: 'Tutorials',
+          url: '#',
         },
         {
-          title: "Changelog",
-          url: "#",
+          title: 'Changelog',
+          url: '#',
         },
       ],
     },
     {
-      title: "Settings",
-      url: "#",
+      title: 'Settings',
+      url: '#',
       icon: Settings2,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: 'General',
+          url: '#',
         },
         {
-          title: "Team",
-          url: "#",
+          title: 'Team',
+          url: '#',
         },
         {
-          title: "Billing",
-          url: "#",
+          title: 'Billing',
+          url: '#',
         },
         {
-          title: "Limits",
-          url: "#",
+          title: 'Limits',
+          url: '#',
         },
       ],
     },
   ],
   projects: [
     {
-      name: "Design Engineering",
-      url: "#",
+      name: 'Design Engineering',
+      url: '#',
       icon: Frame,
     },
     {
-      name: "Sales & Marketing",
-      url: "#",
+      name: 'Sales & Marketing',
+      url: '#',
       icon: PieChart,
     },
     {
-      name: "Travel",
-      url: "#",
+      name: 'Travel',
+      url: '#',
       icon: Map,
     },
   ],
@@ -233,12 +231,8 @@ export const Base: Story = {
                         <activeTeam.logo className="size-4" />
                       </div>
                       <div className="grid flex-1 text-left text-sm leading-tight">
-                        <span className="truncate font-semibold">
-                          {activeTeam.name}
-                        </span>
-                        <span className="truncate text-xs">
-                          {activeTeam.plan}
-                        </span>
+                        <span className="truncate font-semibold">{activeTeam.name}</span>
+                        <span className="truncate text-xs">{activeTeam.plan}</span>
                       </div>
                       <ChevronsUpDown className="ml-auto" />
                     </SidebarMenuButton>
@@ -262,9 +256,7 @@ export const Base: Story = {
                           <team.logo className="size-4 shrink-0" />
                         </div>
                         {team.name}
-                        <DropdownMenuShortcut>
-                          ⌘{index + 1}
-                        </DropdownMenuShortcut>
+                        <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
                       </DropdownMenuItem>
                     ))}
                     <DropdownMenuSeparator />
@@ -272,9 +264,7 @@ export const Base: Story = {
                       <div className="flex size-6 items-center justify-center rounded-md border bg-background">
                         <Plus className="size-4" />
                       </div>
-                      <div className="font-medium text-muted-foreground">
-                        Add team
-                      </div>
+                      <div className="font-medium text-muted-foreground">Add team</div>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -336,11 +326,7 @@ export const Base: Story = {
                           <span className="sr-only">More</span>
                         </SidebarMenuAction>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent
-                        align="end"
-                        className="w-48 rounded-lg"
-                        side="bottom"
-                      >
+                      <DropdownMenuContent align="end" className="w-48 rounded-lg" side="bottom">
                         <DropdownMenuItem>
                           <Folder className="text-muted-foreground" />
                           <span>View Project</span>
@@ -377,21 +363,12 @@ export const Base: Story = {
                       size="lg"
                     >
                       <Avatar className="h-8 w-8 rounded-lg">
-                        <AvatarImage
-                          alt={data.user.name}
-                          src={data.user.avatar}
-                        />
-                        <AvatarFallback className="rounded-lg">
-                          CN
-                        </AvatarFallback>
+                        <AvatarImage alt={data.user.name} src={data.user.avatar} />
+                        <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                       </Avatar>
                       <div className="grid flex-1 text-left text-sm leading-tight">
-                        <span className="truncate font-semibold">
-                          {data.user.name}
-                        </span>
-                        <span className="truncate text-xs">
-                          {data.user.email}
-                        </span>
+                        <span className="truncate font-semibold">{data.user.name}</span>
+                        <span className="truncate text-xs">{data.user.email}</span>
                       </div>
                       <ChevronsUpDown className="ml-auto size-4" />
                     </SidebarMenuButton>
@@ -405,21 +382,12 @@ export const Base: Story = {
                     <DropdownMenuLabel className="p-0 font-normal">
                       <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                         <Avatar className="h-8 w-8 rounded-lg">
-                          <AvatarImage
-                            alt={data.user.name}
-                            src={data.user.avatar}
-                          />
-                          <AvatarFallback className="rounded-lg">
-                            CN
-                          </AvatarFallback>
+                          <AvatarImage alt={data.user.name} src={data.user.avatar} />
+                          <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                         </Avatar>
                         <div className="grid flex-1 text-left text-sm leading-tight">
-                          <span className="truncate font-semibold">
-                            {data.user.name}
-                          </span>
-                          <span className="truncate text-xs">
-                            {data.user.email}
-                          </span>
+                          <span className="truncate font-semibold">{data.user.name}</span>
+                          <span className="truncate text-xs">{data.user.email}</span>
                         </div>
                       </div>
                     </DropdownMenuLabel>
@@ -465,9 +433,7 @@ export const Base: Story = {
               <Breadcrumb>
                 <BreadcrumbList>
                   <BreadcrumbItem className="hidden md:block">
-                    <BreadcrumbLink href="#">
-                      Building Your Application
-                    </BreadcrumbLink>
+                    <BreadcrumbLink href="#">Building Your Application</BreadcrumbLink>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator className="hidden md:block" />
                   <BreadcrumbItem>

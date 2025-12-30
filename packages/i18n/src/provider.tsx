@@ -3,7 +3,8 @@
 import type { PropsWithChildren } from 'react';
 import { I18nextProvider } from 'react-i18next';
 
-import { createInstance, type Resource } from 'i18next';
+import type { Resource } from 'i18next';
+import { createInstance } from 'i18next';
 
 import type { SupportedLocale } from './config';
 import initTranslations from './i18next';

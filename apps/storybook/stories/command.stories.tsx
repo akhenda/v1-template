@@ -1,3 +1,6 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import { CommandSeparator } from 'cmdk';
+
 import {
   Command,
   CommandEmpty,
@@ -5,20 +8,18 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@repo/design-system/components/ui/command";
-import type { Meta, StoryObj } from "@storybook/react";
-import { CommandSeparator } from "cmdk";
+} from '@repo/design-system/components/ui/command';
 
 /**
  * Fast, composable, unstyled command menu for React.
  */
 const meta = {
-  title: "ui/Command",
+  title: 'ui/Command',
   component: Command,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
-    className: "rounded-lg w-96 border shadow-md",
+    className: 'rounded-lg w-96 border shadow-md',
   },
   render: (args) => (
     <Command {...args}>
@@ -40,7 +41,7 @@ const meta = {
     </Command>
   ),
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof Command>;
 

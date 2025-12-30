@@ -1,25 +1,26 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@repo/design-system/components/ui/resizable";
-import type { Meta, StoryObj } from "@storybook/react";
+} from '@repo/design-system/components/ui/resizable';
 
 /**
  * Accessible resizable panel groups and layouts with keyboard support.
  */
 const meta: Meta<typeof ResizablePanelGroup> = {
-  title: "ui/ResizablePanelGroup",
+  title: 'ui/ResizablePanelGroup',
   component: ResizablePanelGroup,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     onLayout: {
       control: false,
     },
   },
   args: {
-    className: "max-w-96 rounded-lg border",
-    direction: "horizontal",
+    className: 'max-w-96 rounded-lg border',
+    direction: 'horizontal',
   },
   render: (args) => (
     <ResizablePanelGroup {...args}>

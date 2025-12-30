@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm';
+import { eq as equal } from 'drizzle-orm';
 
 import { db } from '../drizzle';
 import { tables } from '../schema';
@@ -46,7 +46,7 @@ function deleteById(id: number) {
   logger.debug('delete book author', { id });
 
   try {
-    return db.delete(table).where(eq(table.bookId, id));
+    return db.delete(table).where(equal(table.bookId, id));
   } catch (error) {
     logger.error('failed to delete book author', error as Error);
 
@@ -61,7 +61,7 @@ function deleteById(id: number) {
  *
  * @returns The book authors found.
  */
-async function findByBookIds(bookIds: number[]) {
+function findByBookIds(bookIds: number[]) {
   logger.debug('find book authors by book ids', bookIds);
 
   return query.findMany({ where: (t, { inArray }) => inArray(t.bookId, bookIds) });

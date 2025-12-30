@@ -1,12 +1,12 @@
+import * as React from 'react';
+
 import { Placeholder } from '@tiptap/extension-placeholder';
 import { TextStyle } from '@tiptap/extension-text-style';
 import { Typography } from '@tiptap/extension-typography';
 import { Underline } from '@tiptap/extension-underline';
-import type { Editor } from '@tiptap/react';
-import type { Content, UseEditorOptions } from '@tiptap/react';
+import type { Content, Editor, UseEditorOptions } from '@tiptap/react';
 import { useEditor } from '@tiptap/react';
 import { StarterKit } from '@tiptap/starter-kit';
-import * as React from 'react';
 import { toast } from 'sonner';
 
 import { cn } from '../../../../../lib/utils';

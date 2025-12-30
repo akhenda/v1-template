@@ -67,7 +67,7 @@ export function MultiCheckboxFieldComponent<Schema extends FieldValues>({
                         checked
                           ? field.onChange([...field.value, item.value])
                           : field.onChange(
-                              field.value?.filter((value: string) => value !== item.value)
+                              field.value?.filter((value: string) => value !== item.value),
                             )
                       }
                     />

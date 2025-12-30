@@ -79,7 +79,7 @@ export const SectionOne: React.FC<SectionOneProps> = React.memo(
   ({ editor, activeLevels = [1, 2, 3, 4, 5, 6], size, variant }) => {
     const filteredActions = React.useMemo(
       () => formatActions.filter((action) => !action.level || activeLevels.includes(action.level)),
-      [activeLevels]
+      [activeLevels],
     );
 
     const handleStyleChange = React.useCallback(
@@ -87,7 +87,7 @@ export const SectionOne: React.FC<SectionOneProps> = React.memo(
         if (level) editor.chain().focus().toggleHeading({ level }).run();
         else editor.chain().focus().setParagraph().run();
       },
-      [editor]
+      [editor],
     );
 
     const renderMenuItem = React.useCallback(
@@ -106,7 +106,7 @@ export const SectionOne: React.FC<SectionOneProps> = React.memo(
           <ShortcutKey keys={shortcuts} />
         </DropdownMenuItem>
       ),
-      [editor, handleStyleChange]
+      [editor, handleStyleChange],
     );
 
     return (
@@ -131,7 +131,7 @@ export const SectionOne: React.FC<SectionOneProps> = React.memo(
         </DropdownMenuContent>
       </DropdownMenu>
     );
-  }
+  },
 );
 
 SectionOne.displayName = 'SectionOne';

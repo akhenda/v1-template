@@ -96,7 +96,7 @@ export const Grid = ({
     <div
       className={cn(
         '-ml-20 -mt-2 mask-[linear-gradient(white,transparent)] pointer-events-none absolute top-0 left-1/2 h-full w-full',
-        className
+        className,
       )}
     >
       <div className="mask-[radial-gradient(farthest-side_at_top,white,transparent)] absolute inset-0 bg-linear-to-r from-zinc-100/30 to-zinc-300/30 opacity-100 dark:from-zinc-900/30 dark:to-zinc-900/30">
@@ -140,7 +140,7 @@ export function FeatureCards({
               <motion.h2
                 className={cn(
                   'font-bold text-3xl text-foreground tracking-tight sm:text-4xl',
-                  titleClassName
+                  titleClassName,
                 )}
                 id="features"
                 initial={{ opacity: 0, y: 20 }}
@@ -170,7 +170,7 @@ export function FeatureCards({
             <motion.div
               className={cn(
                 'relative overflow-hidden rounded-3xl border border-gray-200 bg-linear-to-b from-neutral-100 to-white p-6 shadow-xs transition-all hover:shadow-lg dark:border-neutral-800 dark:from-neutral-900 dark:to-neutral-950',
-                cardClassName
+                cardClassName,
               )}
               initial={{ opacity: 0, y: 20 }}
               key={index}
@@ -183,7 +183,7 @@ export function FeatureCards({
                 <div
                   className={cn(
                     'mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-linear-to-br from-primary/10 to-secondary/10 text-primary/70 dark:bg-linear-to-br dark:from-primary/30 dark:to-secondary/30 dark:text-primary/50',
-                    iconClassName
+                    iconClassName,
                   )}
                 >
                   {feature.icon}

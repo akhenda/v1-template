@@ -41,7 +41,7 @@ export function Navbar({ logo, links, actions, className, showBanner }: NavbarPr
       className={cn(
         'fixed z-30 w-full transition duration-100 ease-in-out',
         { 'bg-background/70 shadow-lg backdrop-blur-sm': !top && !mobileNavOpen },
-        className
+        className,
       )}
     >
       <nav

@@ -79,7 +79,7 @@ function getObjectShape(schema: z.ZodTypeAny): Record<string, z.ZodTypeAny> | un
 }
 
 export function getDefaultValues<Schema extends z.ZodObject, Inputs = z.infer<Schema>>(
-  schema: Schema
+  schema: Schema,
 ): DefaultValues<Inputs> {
   // In v3, people often had to unwrap transforms/effects to get `.shape`. :contentReference[oaicite:4]{index=4}
   // In v4, we walk wrappers until we find `_zod.def.shape`. :contentReference[oaicite:5]{index=5}
@@ -102,7 +102,7 @@ export function phoneNumberSchema(schema: z.ZodString) {
   return schema
     .refine(
       isValidPhoneNumber,
-      'Please specify a valid phone number (include the international prefix).'
+      'Please specify a valid phone number (include the international prefix).',
     )
     .transform((value) => parsePhoneNumberWithError(value).number.toString());
 }

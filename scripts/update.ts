@@ -1,15 +1,7 @@
-import { copyFile, mkdir, readFile, rm } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { copyFile, mkdir, readFile, rm } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
 
-import {
-  cancel,
-  intro,
-  isCancel,
-  log,
-  outro,
-  select,
-  spinner,
-} from "@clack/prompts";
+import { cancel, intro, isCancel, log, outro, select, spinner } from '@clack/prompts';
 
 import {
   allInternalContent,
@@ -18,11 +10,11 @@ import {
   getAvailableVersions,
   tempDirName,
   url,
-} from "./utils.js";
+} from './utils.js';
 
 const compareVersions = (a: string, b: string) => {
-  const [aMajor, aMinor, aPatch] = a.split(".").map(Number);
-  const [bMajor, bMinor, bPatch] = b.split(".").map(Number);
+  const [aMajor, aMinor, aPatch] = a.split('.').map(Number);
+  const [bMajor, bMinor, bPatch] = b.split('.').map(Number);
   if (aMajor !== bMajor) {
     return aMajor - bMajor;
   }
@@ -40,14 +32,13 @@ const createTemporaryDirectory = async (name: string) => {
   await mkdir(tempDir, { recursive: true });
 };
 
-const cloneRepository = async (name: string) =>
-  await exec(`git clone ${url} ${name}`);
+const cloneRepository = async (name: string) => await exec(`git clone ${url} ${name}`);
 
 const getFiles = async (version: string) => {
   await exec(`git checkout ${version}`);
 
-  const response = await exec("git ls-files");
-  const files = response.stdout.toString().trim().split("\n");
+  const response = await exec('git ls-files');
+  const files = response.stdout.toString().trim().split('\n');
 
   return files;
 };
@@ -71,8 +62,8 @@ const deleteTemporaryDirectory = async () =>
   await rm(tempDirName, { recursive: true, force: true });
 
 const getCurrentVersion = async (): Promise<string | undefined> => {
-  const packageJsonPath = join(process.cwd(), "package.json");
-  const packageJsonContents = await readFile(packageJsonPath, "utf-8");
+  const packageJsonPath = join(process.cwd(), 'package.json');
+  const packageJsonContents = await readFile(packageJsonPath, 'utf-8');
   const packageJson = JSON.parse(packageJsonContents) as { version?: string };
 
   return packageJson.version;
@@ -81,7 +72,7 @@ const getCurrentVersion = async (): Promise<string | undefined> => {
 const selectVersion = async (
   label: string,
   availableVersions: string[],
-  initialValue: string | undefined
+  initialValue: string | undefined,
 ) => {
   const version = await select({
     message: `Select a version to update ${label}:`,
@@ -91,7 +82,7 @@ const selectVersion = async (
   });
 
   if (isCancel(version)) {
-    cancel("Operation cancelled.");
+    cancel('Operation cancelled.');
     process.exit(0);
   }
 
@@ -100,7 +91,7 @@ const selectVersion = async (
 
 const getDiff = async (
   from: { version: string; files: string[] },
-  to: { version: string; files: string[] }
+  to: { version: string; files: string[] },
 ) => {
   const filesToUpdate: string[] = [];
 
@@ -113,13 +104,12 @@ const getDiff = async (
     const hasChanged =
       !from.files.includes(file) ||
       (
-        await exec(
-          `git diff ${from.version} ${to.version} -- "${cleanFileName(file)}"`,
-          { maxBuffer: 1024 * 1024 * 1024 }
-        )
+        await exec(`git diff ${from.version} ${to.version} -- "${cleanFileName(file)}"`, {
+          maxBuffer: 1024 * 1024 * 1024,
+        })
       )
         .toString()
-        .trim() !== "";
+        .trim() !== '';
 
     if (hasChanged) {
       filesToUpdate.push(file);
@@ -143,23 +133,20 @@ export const update = async (options: { from?: string; to?: string }) => {
     }
 
     const fromVersion =
-      options.from ||
-      (await selectVersion("from", availableVersions, currentVersion));
+      options.from || (await selectVersion('from', availableVersions, currentVersion));
 
     if (fromVersion === availableVersions[0]) {
-      outro("You are already on the latest version!");
+      outro('You are already on the latest version!');
       return;
     }
 
     const upgradeableVersions = availableVersions.filter(
-      (v) => compareVersions(v, fromVersion) > 0
+      (v) => compareVersions(v, fromVersion) > 0,
     );
 
     const [nextVersion] = upgradeableVersions;
 
-    const toVersion =
-      options.to ||
-      (await selectVersion("to", upgradeableVersions, nextVersion));
+    const toVersion = options.to || (await selectVersion('to', upgradeableVersions, nextVersion));
 
     const from = `v${fromVersion}`;
     const to = `v${toVersion}`;
@@ -168,13 +155,13 @@ export const update = async (options: { from?: string; to?: string }) => {
 
     s.start(`Preparing to update from ${from} to ${to}...`);
 
-    s.message("Creating temporary directory...");
+    s.message('Creating temporary directory...');
     await createTemporaryDirectory(tempDirName);
 
-    s.message("Cloning next-forge...");
+    s.message('Cloning next-forge...');
     await cloneRepository(tempDirName);
 
-    s.message("Moving into repository...");
+    s.message('Moving into repository...');
     process.chdir(tempDirName);
 
     s.message(`Getting files from version ${from}...`);
@@ -192,21 +179,21 @@ export const update = async (options: { from?: string; to?: string }) => {
       {
         version: to,
         files: toFiles,
-      }
+      },
     );
 
-    s.message("Moving back to original directory...");
+    s.message('Moving back to original directory...');
     process.chdir(cwd);
 
     s.message(`Updating ${diff.length} files...`);
     await updateFiles(diff);
 
-    s.message("Cleaning up...");
+    s.message('Cleaning up...');
     await deleteTemporaryDirectory();
 
     s.stop(`Successfully updated project from ${from} to ${to}!`);
 
-    outro("Please review and test the changes carefully.");
+    outro('Please review and test the changes carefully.');
   } catch (error) {
     const message = error instanceof Error ? error.message : `${error}`;
 

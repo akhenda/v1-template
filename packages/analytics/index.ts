@@ -1,1 +1,1 @@
-export { posthog as analytics } from "posthog-js";
+export { posthog as analytics } from 'posthog-js';

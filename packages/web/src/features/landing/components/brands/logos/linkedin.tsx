@@ -5,11 +5,11 @@ import type { LogoProps } from '../types';
 export function LinkedIn({ className, overrideColor, ...rest }: LogoProps) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
+      className={cn('text-gray-600', className)}
+      fill="currentColor"
       version="1.0"
       viewBox="1.786 1.783 287.865 76.248"
-      fill="currentColor"
-      className={cn('text-gray-600', className)}
+      xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
       {/* Blue Square Background */}
