@@ -14,12 +14,13 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
-    "@ai-sdk/anthropic": "1.2.11",
-    "@ai-sdk/google": "1.2.18",
-    "@ai-sdk/openai": "2.0.77",
-    "@posthog/ai": "4.4.0",
+    "@ai-sdk/anthropic": "2.0.56",
+    "@ai-sdk/google": "2.0.51",
+    "@ai-sdk/openai": "2.0.88",
+    "@posthog/ai": "7.3.0",
     "@t3-oss/env-nextjs": "0.13.8",
     "ai": "5.0.107",
+    "posthog-node": "5.17.2",
     "react": "19.2.1",
     "react-markdown": "10.1.0",
     "streamdown": "1.6.10",
