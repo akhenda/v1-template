@@ -40,6 +40,7 @@
     "migrate": "cd packages/database && npx prisma format && npx prisma generate && npx prisma db push",
     "prepare": "husky",
     "release": "turbo release --concurrency=1",
+    "sort-packages": "npx sort-package-json 'package.json' 'packages/*/package.json' 'apps/*/package.json'",
     "test": "turbo test --parallel",
     "test:run": "turbo test:run --parallel",
     "translate": "turbo translate",
