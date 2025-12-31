@@ -1,14 +1,19 @@
 import * as React from 'react';
 
-import type { OurFileRouter } from '@repo/design-system/lib/uploadthing';
 import type {
   ClientUploadedFileData,
   UploadFilesOptions,
 } from 'uploadthing/types';
+import type { OurFileRouter } from '../lib/uploadthing';
 
 import { generateReactHelpers } from '@uploadthing/react';
 import { toast } from 'sonner';
 import { z } from 'zod';
+
+type UploadHelpers = ReturnType<typeof generateReactHelpers<OurFileRouter>>;
+
+// Export the type for external use
+export type { UploadHelpers };
 
 export type UploadedFile<T = unknown> = ClientUploadedFileData<T>;
 
@@ -37,9 +42,8 @@ export function useUploadFile({
 
     try {
       const res = await uploadFiles('editorUploader', {
-        ...props,
         files: [file],
-        onUploadProgress: ({ progress }) => {
+        onUploadProgress: ({ progress }: { progress: number }) => {
           setProgress(Math.min(progress, 100));
         },
       });
@@ -48,7 +52,7 @@ export function useUploadFile({
 
       onUploadComplete?.(res[0]);
 
-      return uploadedFile;
+      return res[0];
     } catch (error) {
       const errorMessage = getErrorMessage(error);
 
@@ -104,8 +108,14 @@ export function useUploadFile({
   };
 }
 
-export const { uploadFiles, useUploadThing } =
-  generateReactHelpers<OurFileRouter>();
+const uploadHelpers = generateReactHelpers<OurFileRouter>();
+
+// Export individual functions with explicit types
+export const uploadFiles: UploadHelpers['uploadFiles'] = uploadHelpers.uploadFiles;
+export const useUploadThing: UploadHelpers['useUploadThing'] = uploadHelpers.useUploadThing;
+
+// Export types for external use
+export type { OurFileRouter } from '../lib/uploadthing';
 
 export function getErrorMessage(err: unknown) {
   const unknownError = 'Something went wrong, please try again later.';

@@ -12,7 +12,6 @@ import {
   type TElement,
   TextApi,
 } from '@udecode/plate';
-import { ParagraphPlugin, useEditorPlugin, usePluginOption } from '@udecode/plate/react';
 import { BlockquotePlugin } from '@udecode/plate-block-quote/react';
 import { CalloutPlugin } from '@udecode/plate-callout/react';
 import { CodeBlockPlugin } from '@udecode/plate-code-block/react';
@@ -44,15 +43,16 @@ import {
 import { SuggestionPlugin } from '@udecode/plate-suggestion/react';
 import { TablePlugin } from '@udecode/plate-table/react';
 import { TogglePlugin } from '@udecode/plate-toggle/react';
+import { ParagraphPlugin, useEditorPlugin, usePluginOption } from '@udecode/plate/react';
 
+import { cn } from '../../../lib/utils';
+import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
+import { Button } from '../../ui/button';
 import {
   discussionPlugin,
   type TDiscussion,
-} from '@repo/design-system/components/editor/plugins/discussion-plugin';
-import { suggestionPlugin } from '@repo/design-system/components/editor/plugins/suggestion-plugin';
-import { Avatar, AvatarFallback, AvatarImage } from '@repo/design-system/components/ui/avatar';
-import { Button } from '@repo/design-system/components/ui/button';
-import { cn } from '@repo/design-system/lib/utils';
+} from '../plugins/discussion-plugin';
+import { suggestionPlugin } from '../plugins/suggestion-plugin';
 
 import { Comment, formatCommentDate, type TComment } from './comment';
 import { CommentCreateForm } from './comment-create-form';
@@ -149,7 +149,7 @@ export const BlockSuggestionCard = ({
           </div>
         </div>
 
-        <div className="relative mt-1 mb-4 pl-[32px]">
+        <div className="relative mt-1 mb-4 pl-8">
           <div className="flex flex-col gap-2">
             {suggestion.type === 'remove' &&
               suggestionText2Array(suggestion.text!).map((text, index) => (
@@ -483,7 +483,7 @@ export function BlockSuggestion({ element }: { element: TSuggestionElement }) {
   return (
     <div
       className={cn(
-        'pointer-events-none absolute inset-0 z-1 border-2 border-brand/[0.8] transition-opacity',
+        'pointer-events-none absolute inset-0 z-1 border-2 border-brand/80 transition-opacity',
         isRemove && 'border-gray-300',
       )}
       contentEditable={false}

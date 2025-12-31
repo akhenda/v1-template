@@ -5,10 +5,10 @@ import type { DropdownMenuProps } from '@radix-ui/react-dropdown-menu';
 import { useColorDropdownMenu, useColorDropdownMenuState } from '@udecode/plate-font/react';
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuTrigger,
+} from '../../ui/dropdown-menu';
 
 import { DEFAULT_COLORS, DEFAULT_CUSTOM_COLORS } from './color-constants';
 import { ColorPicker } from './color-picker';

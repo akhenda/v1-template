@@ -4,15 +4,15 @@ import * as React from 'react';
 
 import { useComposedRef } from '@udecode/cn';
 import {
-  type FloatingToolbarState,
-  flip,
-  offset,
-  useFloatingToolbar,
-  useFloatingToolbarState,
+    type FloatingToolbarState,
+    flip,
+    offset,
+    useFloatingToolbar,
+    useFloatingToolbarState,
 } from '@udecode/plate-floating';
 import { useEditorId, useEventEditorValue, usePluginOption } from '@udecode/plate/react';
 
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
 
 import { Toolbar } from './toolbar';
 

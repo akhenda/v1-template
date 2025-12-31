@@ -1,6 +1,5 @@
 import * as R from 'remeda';
 
-import { log } from '@repo/observability/log';
+export { logger } from '@repo/observability/logger';
 
 export const noop = R.doNothing;
-export const logger = log;

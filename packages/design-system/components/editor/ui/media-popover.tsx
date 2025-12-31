@@ -5,25 +5,25 @@ import * as React from 'react';
 import type { WithRequiredKey } from '@udecode/plate';
 
 import {
-  FloatingMedia as FloatingMediaPrimitive,
-  FloatingMediaStore,
-  useFloatingMediaValue,
-  useImagePreviewValue,
+    FloatingMedia as FloatingMediaPrimitive,
+    FloatingMediaStore,
+    useFloatingMediaValue,
+    useImagePreviewValue,
 } from '@udecode/plate-media/react';
 import {
-  useEditorRef,
-  useEditorSelector,
-  useElement,
-  useReadOnly,
-  useRemoveNodeButton,
-  useSelected,
+    useEditorRef,
+    useEditorSelector,
+    useElement,
+    useReadOnly,
+    useRemoveNodeButton,
+    useSelected,
 } from '@udecode/plate/react';
 import { cva } from 'class-variance-authority';
 import { Link, Trash2Icon } from 'lucide-react';
 
-import { Button, buttonVariants } from '@repo/design-system/components/ui/button';
-import { Popover, PopoverAnchor, PopoverContent } from '@repo/design-system/components/ui/popover';
-import { Separator } from '@repo/design-system/components/ui/separator';
+import { Button, buttonVariants } from '../../ui/button';
+import { Popover, PopoverAnchor, PopoverContent } from '../../ui/popover';
+import { Separator } from '../../ui/separator';
 
 import { CaptionButton } from './caption';
 

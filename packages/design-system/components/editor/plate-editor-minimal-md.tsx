@@ -38,7 +38,7 @@ import {
   usePluginOption,
 } from '@udecode/plate/react';
 
-import { useUpdateEffect } from '@repo/design-system/hooks/use-update-effect';
+import { useUpdateEffect } from '../../hooks/use-update-effect';
 
 import { debounce } from '../../lib/debounce';
 import { AIAction } from '../ai-action';

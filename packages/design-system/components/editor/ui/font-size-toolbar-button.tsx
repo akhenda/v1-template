@@ -10,8 +10,8 @@ import { HEADING_KEYS } from '@udecode/plate-heading';
 import { useEditorPlugin, useEditorSelector } from '@udecode/plate/react';
 import { Minus, Plus } from 'lucide-react';
 
-import { Popover, PopoverContent, PopoverTrigger } from '@repo/design-system/components/ui/popover';
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
+import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover';
 
 import { ToolbarButton } from './toolbar';
 

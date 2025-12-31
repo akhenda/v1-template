@@ -9,60 +9,60 @@ import { PopoverAnchor } from '@radix-ui/react-popover';
 import { BlockSelectionPlugin } from '@udecode/plate-selection/react';
 import { setCellBackground } from '@udecode/plate-table';
 import {
-  TablePlugin,
-  TableProvider,
-  useTableBordersDropdownMenuContentState,
-  useTableElement,
-  useTableMergeState,
+    TablePlugin,
+    TableProvider,
+    useTableBordersDropdownMenuContentState,
+    useTableElement,
+    useTableMergeState,
 } from '@udecode/plate-table/react';
 import {
-  PlateElement,
-  type PlateElementProps,
-  useEditorPlugin,
-  useEditorRef,
-  useEditorSelector,
-  useElement,
-  usePluginOption,
-  useReadOnly,
-  useRemoveNodeButton,
-  useSelected,
-  withHOC,
+    PlateElement,
+    type PlateElementProps,
+    useEditorPlugin,
+    useEditorRef,
+    useEditorSelector,
+    useElement,
+    usePluginOption,
+    useReadOnly,
+    useRemoveNodeButton,
+    useSelected,
+    withHOC,
 } from '@udecode/plate/react';
 import {
-  ArrowDown,
-  ArrowLeft,
-  ArrowRight,
-  ArrowUp,
-  CombineIcon,
-  EraserIcon,
-  Grid2X2Icon,
-  PaintBucketIcon,
-  SquareSplitHorizontalIcon,
-  Trash2Icon,
-  XIcon,
+    ArrowDown,
+    ArrowLeft,
+    ArrowRight,
+    ArrowUp,
+    CombineIcon,
+    EraserIcon,
+    Grid2X2Icon,
+    PaintBucketIcon,
+    SquareSplitHorizontalIcon,
+    Trash2Icon,
+    XIcon,
 } from 'lucide-react';
 
+import { cn } from '../../../lib/utils';
 import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuPortal,
-  DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
-import { Popover, PopoverContent } from '@repo/design-system/components/ui/popover';
-import { cn } from '@repo/design-system/lib/utils';
+    DropdownMenu,
+    DropdownMenuCheckboxItem,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuPortal,
+    DropdownMenuTrigger,
+} from '../../ui/dropdown-menu';
+import { Popover, PopoverContent } from '../../ui/popover';
 
 import { DEFAULT_COLORS } from './color-constants';
 import { ColorDropdownMenuItems } from './color-dropdown-menu-items';
 import {
-  BorderAll,
-  BorderBottom,
-  BorderLeft,
-  BorderNone,
-  BorderRight,
-  BorderTop,
+    BorderAll,
+    BorderBottom,
+    BorderLeft,
+    BorderNone,
+    BorderRight,
+    BorderTop,
 } from './table-icons';
 import { Toolbar, ToolbarButton, ToolbarGroup, ToolbarMenuGroup } from './toolbar';
 

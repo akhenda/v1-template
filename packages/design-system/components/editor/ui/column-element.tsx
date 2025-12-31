@@ -13,14 +13,14 @@ import { BlockSelectionPlugin } from '@udecode/plate-selection/react';
 import { PlateElement, usePluginOption, useReadOnly, withHOC } from '@udecode/plate/react';
 import { GripHorizontal } from 'lucide-react';
 
-import { Button } from '@repo/design-system/components/ui/button';
+import { cn } from '../../../lib/utils';
+import { Button } from '../../ui/button';
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@repo/design-system/components/ui/tooltip';
-import { cn } from '@repo/design-system/lib/utils';
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from '../../ui/tooltip';
 
 export const ColumnElement = withHOC(
   ResizableProvider,

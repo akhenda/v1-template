@@ -6,20 +6,20 @@ import { differenceInDays, differenceInHours, differenceInMinutes, format } from
 import { CheckIcon, MoreHorizontalIcon, PencilIcon, TrashIcon, XIcon } from 'lucide-react';
 
 import type { Value } from '@udecode/plate';
-import { Plate, useEditorPlugin, useEditorRef, usePluginOption } from '@udecode/plate/react';
 import { CommentsPlugin } from '@udecode/plate-comments/react';
+import { Plate, useEditorPlugin, useEditorRef, usePluginOption } from '@udecode/plate/react';
 
-import { discussionPlugin } from '@repo/design-system/components/editor/plugins/discussion-plugin';
-import { Avatar, AvatarFallback, AvatarImage } from '@repo/design-system/components/ui/avatar';
-import { Button } from '@repo/design-system/components/ui/button';
+import { cn } from '../../../lib/utils';
+import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
+import { Button } from '../../ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
-import { cn } from '@repo/design-system/lib/utils';
+} from '../../ui/dropdown-menu';
+import { discussionPlugin } from '../plugins/discussion-plugin';
 
 import { useCommentEditor } from './comment-create-form';
 import { Editor, EditorContainer } from './editor';
@@ -222,7 +222,7 @@ export function Comment(props: {
       </div>
 
       {isFirst && showDocumentContent && (
-        <div className="relative mt-1 flex pl-[32px] text-sm text-subtle-foreground">
+        <div className="relative mt-1 flex pl-8 text-sm text-subtle-foreground">
           {discussionLength > 1 && (
             <div className="absolute top-[5px] left-3 h-full w-0.5 shrink-0 bg-muted" />
           )}
@@ -242,7 +242,7 @@ export function Comment(props: {
                 <Button
                   size="icon"
                   variant="ghost"
-                  className="size-[28px]"
+                  className="size-7"
                   onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                     e.stopPropagation();
                     void onCancel();

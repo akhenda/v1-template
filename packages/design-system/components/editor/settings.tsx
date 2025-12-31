@@ -15,7 +15,7 @@ import {
 import { CopilotPlugin } from '@udecode/plate-ai/react';
 import { useEditorPlugin } from '@udecode/plate/react';
 
-import { Button } from '@repo/design-system/components/ui/button';
+import { Button } from '../../components/ui/button';
 import {
   Command,
   CommandEmpty,
@@ -23,7 +23,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@repo/design-system/components/ui/command';
+} from '../../components/ui/command';
 import {
   Dialog,
   DialogContent,
@@ -31,10 +31,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@repo/design-system/components/ui/dialog';
-import { Input } from '@repo/design-system/components/ui/input';
-import { Popover, PopoverContent, PopoverTrigger } from '@repo/design-system/components/ui/popover';
-import { cn } from '@repo/design-system/lib/utils';
+} from '../../components/ui/dialog';
+import { Input } from '../../components/ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from '../../components/ui/popover';
+import { cn } from '../../lib/utils';
 
 type Model = { label: string; value: string };
 

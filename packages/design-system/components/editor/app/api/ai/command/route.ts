@@ -84,8 +84,10 @@ function smoothStream<TOOLS extends ToolSet>({
         if (chunk.type !== 'text-delta') {
           logger.info(buffer, 'finished');
 
+          let chunkId = 0;
+
           if (buffer.length > 0) {
-            controller.enqueue({ textDelta: buffer, type: 'text-delta' });
+            controller.enqueue({ id: (chunkId++).toString(), text: buffer, type: 'text-delta' });
             buffer = '';
           }
 
@@ -93,13 +95,15 @@ function smoothStream<TOOLS extends ToolSet>({
           return;
         }
 
-        buffer += chunk.textDelta;
+        buffer += chunk.text;
 
         let match: string | null | undefined;
 
+        let bufferId = 0;
+
         // biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
         while ((match = detectChunk(buffer)) != null) {
-          controller.enqueue({ textDelta: match, type: 'text-delta' });
+          controller.enqueue({ id: (bufferId++).toString(), text: match, type: 'text-delta' });
           buffer = buffer.slice(match.length);
 
           const _delayInMs =
@@ -177,13 +181,13 @@ export async function POST(req: NextRequest) {
         },
         delayInMs: () => (isInCodeBlock || isInTable ? 100 : 30),
       }),
-      maxTokens: 2048,
+      maxOutputTokens: 2048,
       messages: convertToCoreMessages(messages),
       model: openai('gpt-4o'),
       system,
     });
 
-    return result.toDataStreamResponse();
+    return result.consumeStream();
   } catch {
     return NextResponse.json({ error: 'Failed to process AI request' }, { status: 500 });
   }

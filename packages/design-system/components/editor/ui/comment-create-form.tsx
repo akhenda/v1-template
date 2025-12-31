@@ -19,18 +19,17 @@ import { EmojiInputPlugin } from '@udecode/plate-emoji/react';
 import { LinkPlugin } from '@udecode/plate-link/react';
 import { InlineEquationPlugin } from '@udecode/plate-math/react';
 import { MentionInputPlugin, MentionPlugin } from '@udecode/plate-mention/react';
-import { Plate, useEditorRef, usePluginOption } from '@udecode/plate/react';
-import { type CreatePlateEditorOptions, PlateLeaf } from '@udecode/plate/react';
+import { type CreatePlateEditorOptions, Plate, PlateLeaf, useEditorRef, usePluginOption } from '@udecode/plate/react';
 import { ArrowUpIcon } from 'lucide-react';
 
+import { cn } from '../../../lib/utils';
+import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
+import { Button } from '../../ui/button';
 import {
   type TDiscussion,
   discussionPlugin,
-} from '@repo/design-system/components/editor/plugins/discussion-plugin';
-import { useCreateEditor } from '@repo/design-system/components/editor/use-create-editor';
-import { Avatar, AvatarFallback, AvatarImage } from '@repo/design-system/components/ui/avatar';
-import { Button } from '@repo/design-system/components/ui/button';
-import { cn } from '@repo/design-system/lib/utils';
+} from '../plugins/discussion-plugin';
+import { useCreateEditor } from '../use-create-editor';
 
 import type { TComment } from './comment';
 

@@ -7,6 +7,13 @@ import {
   AccordionTrigger,
 } from '@repo/design-system/components/ui/accordion';
 
+type Args = {
+  variant?: 'default' | 'outline' | null;
+  size?: 'default' | 'sm' | 'lg' | null | undefined;
+  type: 'multiple' | 'single';
+  disabled?: boolean;
+};
+
 /**
  * A vertically stacked set of interactive headings that each reveal a section
  * of content.
@@ -15,17 +22,9 @@ const meta = {
   title: 'ui/Accordion',
   component: Accordion,
   tags: ['autodocs'],
-  argTypes: {
-    type: {
-      options: ['single', 'multiple'],
-      control: { type: 'radio' },
-    },
-  },
-  args: {
-    type: 'single',
-    collapsible: true,
-  },
-  render: (args) => (
+  argTypes: { type: { options: ['single', 'multiple'], control: { type: 'radio' } } },
+  args: { type: 'single', collapsible: true },
+  render: (args: Args) => (
     <Accordion {...args}>
       <AccordionItem value="item-1">
         <AccordionTrigger>Is it accessible?</AccordionTrigger>

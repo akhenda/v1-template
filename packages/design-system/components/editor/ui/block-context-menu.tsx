@@ -13,6 +13,7 @@ import {
 } from '@udecode/plate-selection/react';
 import { ParagraphPlugin, useEditorPlugin, usePlateState } from '@udecode/plate/react';
 
+import { useIsTouchDevice } from '../../../hooks/use-is-touch-device';
 import {
   ContextMenu,
   ContextMenuContent,
@@ -22,8 +23,7 @@ import {
   ContextMenuSubContent,
   ContextMenuSubTrigger,
   ContextMenuTrigger,
-} from '@repo/design-system/components/ui/context-menu';
-import { useIsTouchDevice } from '@repo/design-system/hooks/use-is-touch-device';
+} from '../../ui/context-menu';
 
 type Value = 'askAI' | null;
 

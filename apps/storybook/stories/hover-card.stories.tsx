@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Args, Meta, StoryObj } from '@storybook/react';
 
 import {
   HoverCard,
@@ -15,7 +15,7 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {},
   args: {},
-  render: (args) => (
+  render: (args: Args) => (
     <HoverCard {...args}>
       <HoverCardTrigger>Hover</HoverCardTrigger>
       <HoverCardContent>The React Framework - created and maintained by @vercel.</HoverCardContent>

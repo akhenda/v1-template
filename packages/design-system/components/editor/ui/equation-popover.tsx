@@ -8,16 +8,16 @@ import type { TEquationElement } from '@udecode/plate-math';
 import { useEquationInput } from '@udecode/plate-math/react';
 import { BlockSelectionPlugin } from '@udecode/plate-selection/react';
 import {
-  createPrimitiveComponent,
-  useEditorRef,
-  useElement,
-  useReadOnly,
+    createPrimitiveComponent,
+    useEditorRef,
+    useElement,
+    useReadOnly,
 } from '@udecode/plate/react';
 import { CornerDownLeftIcon } from 'lucide-react';
 
-import { Button } from '@repo/design-system/components/ui/button';
-import { PopoverContent } from '@repo/design-system/components/ui/popover';
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
+import { Button } from '../../ui/button';
+import { PopoverContent } from '../../ui/popover';
 
 const EquationInput = createPrimitiveComponent(TextareaAutosize)({ propsHook: useEquationInput });
 

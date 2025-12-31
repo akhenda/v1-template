@@ -5,9 +5,13 @@ import * as React from 'react';
 import { useChat as useBaseChat } from '@ai-sdk/react';
 import { faker } from '@faker-js/faker';
 
-import { useSettings } from '@repo/design-system/components/editor/settings';
+import { useSettings } from '../../components/editor/settings';
 
-export const useChat = () => {
+type UseChatResult = ReturnType<typeof useBaseChat> & {
+  _abortFakeStream: () => void;
+};
+
+export const useChat = (): UseChatResult => {
   const { keys, model } = useSettings();
 
   // remove when you implement the route /api/ai/command

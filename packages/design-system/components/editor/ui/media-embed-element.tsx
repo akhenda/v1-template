@@ -1,6 +1,5 @@
 'use client';
 
-import * as React from 'react';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import { Tweet } from 'react-tweet';
 
@@ -12,7 +11,7 @@ import { MediaEmbedPlugin, useMediaState } from '@udecode/plate-media/react';
 import { ResizableProvider, useResizableValue } from '@udecode/plate-resizable';
 import { PlateElement, withHOC } from '@udecode/plate/react';
 
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
 
 import { Caption, CaptionTextarea } from './caption';
 import { MediaPopover } from './media-popover';

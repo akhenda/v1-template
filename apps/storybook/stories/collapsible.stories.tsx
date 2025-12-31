@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Args, Meta, StoryObj } from '@storybook/react';
 import { Info } from 'lucide-react';
 
 import {
@@ -19,7 +19,7 @@ const meta = {
     className: 'w-96',
     disabled: false,
   },
-  render: (args) => (
+  render: (args: Args) => (
     <Collapsible {...args}>
       <CollapsibleTrigger className="flex gap-2">
         <h3 className="font-semibold">Can I use this in my project?</h3>

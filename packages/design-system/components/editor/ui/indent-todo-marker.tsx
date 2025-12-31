@@ -1,17 +1,16 @@
 'use client';
 
-import * as React from 'react';
 
 import type { SlateRenderElementProps } from '@udecode/plate';
 
 import {
-  useIndentTodoListElement,
-  useIndentTodoListElementState,
+    useIndentTodoListElement,
+    useIndentTodoListElementState,
 } from '@udecode/plate-indent-list/react';
 import { useReadOnly } from '@udecode/plate/react';
 
-import { Checkbox } from '@repo/design-system/components/ui/checkbox';
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
+import { Checkbox } from '../../ui/checkbox';
 
 export function TodoMarker(props: Omit<SlateRenderElementProps, 'children'>) {
   const state = useIndentTodoListElementState({ element: props.element });

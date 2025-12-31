@@ -7,11 +7,11 @@ import type { TSuggestionData } from '@udecode/plate-suggestion';
 import { type RenderNodeWrapper, usePluginOption } from '@udecode/plate/react';
 import { CornerDownLeftIcon } from 'lucide-react';
 
+import { cn } from '../../../lib/utils';
 import {
   type SuggestionConfig,
   suggestionPlugin,
-} from '@repo/design-system/components/editor/plugins/suggestion-plugin';
-import { cn } from '@repo/design-system/lib/utils';
+} from '../plugins/suggestion-plugin';
 
 export const SuggestionBelowNodes: RenderNodeWrapper<SuggestionConfig> = ({ api, element }) => {
   if (!api.suggestion.isBlockSuggestion(element)) return;
@@ -47,8 +47,8 @@ function SuggestionLineBreak({ suggestionData }: { suggestionData: TSuggestionDa
     <span
       ref={spanRef}
       className={cn(
-        'absolute border-b-2 border-b-brand/[.24] bg-brand/[.08] text-justify text-brand/80 no-underline transition-colors duration-200',
-        isInsert && (isActive || isHover) && 'border-b-brand/[.60] bg-brand/[.13]',
+        'absolute border-b-2 border-b-brand/24 bg-brand/8 text-justify text-brand/80 no-underline transition-colors duration-200',
+        isInsert && (isActive || isHover) && 'border-b-brand/60 bg-brand/13',
         isRemove && 'border-b-gray-300 bg-gray-300/25 text-gray-400 line-through',
         isRemove &&
           (isActive || isHover) &&

@@ -4,7 +4,7 @@ import type { SlateRenderElementProps } from '@udecode/plate';
 
 import { CheckIcon } from 'lucide-react';
 
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
 
 export function TodoMarkerStatic(props: Omit<SlateRenderElementProps, 'children'>) {
   return (

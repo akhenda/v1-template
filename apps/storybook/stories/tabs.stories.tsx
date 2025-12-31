@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Args, Meta, StoryObj } from '@storybook/react';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/design-system/components/ui/tabs';
 
@@ -15,7 +15,7 @@ const meta = {
     defaultValue: 'account',
     className: 'w-96',
   },
-  render: (args) => (
+  render: (args: Args) => (
     <Tabs {...args}>
       <TabsList className="grid grid-cols-2">
         <TabsTrigger value="account">Account</TabsTrigger>

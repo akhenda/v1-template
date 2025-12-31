@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Args, Meta, StoryObj } from '@storybook/react';
 import { Mail, Plus, PlusCircle, Search, UserPlus } from 'lucide-react';
 
 import {
@@ -28,7 +28,7 @@ const meta = {
   component: DropdownMenu,
   tags: ['autodocs'],
   argTypes: {},
-  render: (args) => (
+  render: (args: Args) => (
     <DropdownMenu {...args}>
       <DropdownMenuTrigger>Open</DropdownMenuTrigger>
       <DropdownMenuContent className="w-44">

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Args, Meta, StoryObj } from '@storybook/react';
 
 import {
   Menubar,
@@ -28,7 +28,7 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {},
 
-  render: (args) => (
+  render: (args: Args) => (
     <Menubar {...args}>
       <MenubarMenu>
         <MenubarTrigger>File</MenubarTrigger>

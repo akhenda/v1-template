@@ -4,8 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import { ArrowRightIcon, CoinsIcon } from 'lucide-react';
 
-import { useUpdateEffect } from '@repo/design-system/hooks/use-update-effect';
-
+import { useUpdateEffect } from '../../hooks/use-update-effect';
 import { cn } from '../../lib/utils';
 import { EnhancedButton } from '../enhanced-button';
 import { Loader } from '../loader';

@@ -1,6 +1,5 @@
 'use client';
 
-import * as React from 'react';
 
 import type { PlateElementProps } from '@udecode/plate/react';
 
@@ -8,7 +7,7 @@ import { useToggleButton, useToggleButtonState } from '@udecode/plate-toggle/rea
 import { PlateElement } from '@udecode/plate/react';
 import { ChevronRight } from 'lucide-react';
 
-import { Button } from '@repo/design-system/components/ui/button';
+import { Button } from '../../ui/button';
 
 export function ToggleElement(props: PlateElementProps) {
   const element = props.element;

@@ -4,7 +4,7 @@ import { z } from 'zod';
 const stringBoolean = z.coerce
   .string()
   .transform((val) => val === 'true')
-  .default('false');
+  .default(false);
 
 export const keys = () =>
   createEnv({

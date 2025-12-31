@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Args, Meta, StoryObj } from '@storybook/react';
 
 import { Popover, PopoverContent, PopoverTrigger } from '@repo/design-system/components/ui/popover';
 
@@ -11,7 +11,7 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {},
 
-  render: (args) => (
+  render: (args: Args) => (
     <Popover {...args}>
       <PopoverTrigger>Open</PopoverTrigger>
       <PopoverContent>Place content for the popover here.</PopoverContent>

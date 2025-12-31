@@ -5,28 +5,28 @@ import * as React from 'react';
 import type { PointRef, TElement } from '@udecode/plate';
 
 import {
-  Combobox,
-  ComboboxGroup,
-  ComboboxGroupLabel,
-  ComboboxItem,
-  type ComboboxItemProps,
-  ComboboxPopover,
-  ComboboxProvider,
-  ComboboxRow,
-  Portal,
-  useComboboxContext,
-  useComboboxStore,
+    Combobox,
+    ComboboxGroup,
+    ComboboxGroupLabel,
+    ComboboxItem,
+    type ComboboxItemProps,
+    ComboboxPopover,
+    ComboboxProvider,
+    ComboboxRow,
+    Portal,
+    useComboboxContext,
+    useComboboxStore,
 } from '@ariakit/react';
 import { filterWords } from '@udecode/plate-combobox';
 import {
-  type UseComboboxInputResult,
-  useComboboxInput,
-  useHTMLInputCursorState,
+    type UseComboboxInputResult,
+    useComboboxInput,
+    useHTMLInputCursorState,
 } from '@udecode/plate-combobox/react';
 import { useComposedRef, useEditorRef } from '@udecode/plate/react';
 import { cva } from 'class-variance-authority';
 
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
 
 type FilterFn = (
   item: { value: string; group?: string; keywords?: string[]; label?: string },
@@ -346,12 +346,12 @@ function InlineComboboxGroupLabel({
 }
 
 export {
-  InlineCombobox,
-  InlineComboboxContent,
-  InlineComboboxEmpty,
-  InlineComboboxGroup,
-  InlineComboboxGroupLabel,
-  InlineComboboxInput,
-  InlineComboboxItem,
-  InlineComboboxRow,
+    InlineCombobox,
+    InlineComboboxContent,
+    InlineComboboxEmpty,
+    InlineComboboxGroup,
+    InlineComboboxGroupLabel,
+    InlineComboboxInput,
+    InlineComboboxItem,
+    InlineComboboxRow
 };

@@ -8,12 +8,12 @@ import { useEditorRef, usePlateState, usePluginOption } from '@udecode/plate/rea
 import { CheckIcon, EyeIcon, PenIcon, PencilLineIcon } from 'lucide-react';
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuRadioGroup,
+    DropdownMenuRadioItem,
+    DropdownMenuTrigger,
+} from '../../ui/dropdown-menu';
 
 import { ToolbarButton } from './toolbar';
 

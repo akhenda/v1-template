@@ -11,12 +11,12 @@ import { ArrowUpToLineIcon } from 'lucide-react';
 import { useFilePicker } from 'use-file-picker';
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from '../../ui/dropdown-menu';
 
 import { ToolbarButton } from './toolbar';
 

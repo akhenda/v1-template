@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Args, Meta, StoryObj } from '@storybook/react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@repo/design-system/components/ui/avatar';
 
@@ -10,7 +10,7 @@ const meta = {
   component: Avatar,
   tags: ['autodocs'],
   argTypes: {},
-  render: (args) => (
+  render: (args: Args) => (
     <Avatar {...args}>
       <AvatarImage src="https://github.com/shadcn.png" />
       <AvatarFallback>CN</AvatarFallback>

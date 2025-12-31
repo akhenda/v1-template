@@ -8,14 +8,14 @@ import { type Alignment, setAlign } from '@udecode/plate-alignment';
 import { useEditorRef, useSelectionFragmentProp } from '@udecode/plate/react';
 import { AlignCenterIcon, AlignJustifyIcon, AlignLeftIcon, AlignRightIcon } from 'lucide-react';
 
-import { STRUCTURAL_TYPES } from '@repo/design-system/components/editor/transforms';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
+} from '../../ui/dropdown-menu';
+import { STRUCTURAL_TYPES } from '../transforms';
 
 import { ToolbarButton } from './toolbar';
 

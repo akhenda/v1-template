@@ -7,17 +7,17 @@ import { useEditorRef, useEditorSelector } from '@udecode/plate/react';
 import { List, ListOrdered } from 'lucide-react';
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from '../../ui/dropdown-menu';
 
 import {
-  ToolbarSplitButton,
-  ToolbarSplitButtonPrimary,
-  ToolbarSplitButtonSecondary,
+    ToolbarSplitButton,
+    ToolbarSplitButtonPrimary,
+    ToolbarSplitButtonSecondary,
 } from './toolbar';
 
 export function NumberedIndentListToolbarButton() {

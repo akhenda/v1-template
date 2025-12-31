@@ -1,6 +1,5 @@
 'use client';
 
-import * as React from 'react';
 
 import { useDraggable } from '@udecode/plate-dnd';
 import type { TImageElement } from '@udecode/plate-media';
@@ -9,7 +8,7 @@ import { ResizableProvider, useResizableValue } from '@udecode/plate-resizable';
 import type { PlateElementProps } from '@udecode/plate/react';
 import { PlateElement, withHOC } from '@udecode/plate/react';
 
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
 
 import { Caption, CaptionTextarea } from './caption';
 import { MediaPopover } from './media-popover';

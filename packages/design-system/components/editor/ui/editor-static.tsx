@@ -1,11 +1,10 @@
-import * as React from 'react';
 
 import type { VariantProps } from 'class-variance-authority';
 
 import { PlateStatic, type PlateStaticProps } from '@udecode/plate';
 import { cva } from 'class-variance-authority';
 
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
 
 export const editorVariants = cva(
   cn(

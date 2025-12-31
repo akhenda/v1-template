@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Args, Meta, StoryObj } from '@storybook/react';
 
 import { Switch } from '@repo/design-system/components/ui/switch';
 
@@ -13,7 +13,7 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-  render: (args) => (
+  render: (args: Args) => (
     <div className="flex items-center space-x-2">
       <Switch {...args} />
       <label className="peer-disabled:text-foreground/50" htmlFor={args.id}>

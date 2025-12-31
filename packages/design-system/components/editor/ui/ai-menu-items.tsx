@@ -7,22 +7,22 @@ import { AIChatPlugin, AIPlugin } from '@udecode/plate-ai/react';
 import { useIsSelecting } from '@udecode/plate-selection/react';
 import { type PlateEditor, useEditorRef, usePluginOption } from '@udecode/plate/react';
 import {
-  Album,
-  BadgeHelp,
-  BookOpenCheck,
-  Check,
-  CornerUpLeft,
-  FeatherIcon,
-  ListEnd,
-  ListMinus,
-  ListPlus,
-  PenLine,
-  SmileIcon,
-  Wand,
-  X,
+    Album,
+    BadgeHelp,
+    BookOpenCheck,
+    Check,
+    CornerUpLeft,
+    FeatherIcon,
+    ListEnd,
+    ListMinus,
+    ListPlus,
+    PenLine,
+    SmileIcon,
+    Wand,
+    X,
 } from 'lucide-react';
 
-import { CommandGroup, CommandItem } from '@repo/design-system/components/ui/command';
+import { CommandGroup, CommandItem } from '../../ui/command';
 
 export type EditorChatState =
   | 'cursorCommand'

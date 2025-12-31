@@ -73,7 +73,7 @@ export const upsertFromClerk = internalMutation({
     const firstName = data.first_name ?? data.username ?? '';
     const lastName = data.last_name ?? '';
     const fullName = `${firstName} ${lastName}`.trim();
-    const email = data.email_addresses.at(0)?.email_address ?? '';
+    const email = data.email_addresses[0]?.email_address ?? '';
     const onboarded = !!data.public_metadata.onboarded;
 
     const user = await Users.getUserByClerkId(ctx, data.id);

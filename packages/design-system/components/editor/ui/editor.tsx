@@ -8,7 +8,7 @@ import type { VariantProps } from 'class-variance-authority';
 import { PlateContainer, PlateContent } from '@udecode/plate/react';
 import { cva } from 'class-variance-authority';
 
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
 
 const editorContainerVariants = cva(
   'relative w-full cursor-text select-text overflow-y-auto caret-primary selection:bg-brand/25 focus-visible:outline-none [&_.slate-selection-area]:z-50 [&_.slate-selection-area]:border [&_.slate-selection-area]:border-brand/25 [&_.slate-selection-area]:bg-brand/15',

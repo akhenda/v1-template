@@ -3,6 +3,13 @@ import { Bold, Italic, Underline } from 'lucide-react';
 
 import { ToggleGroup, ToggleGroupItem } from '@repo/design-system/components/ui/toggle-group';
 
+type Args = {
+  variant?: 'default' | 'outline' | null;
+  size?: 'default' | 'sm' | 'lg' | null | undefined;
+  type: 'multiple' | 'single';
+  disabled?: boolean;
+};
+
 /**
  * A set of two-state buttons that can be toggled on or off.
  */
@@ -10,19 +17,9 @@ const meta = {
   title: 'ui/ToggleGroup',
   component: ToggleGroup,
   tags: ['autodocs'],
-  argTypes: {
-    type: {
-      options: ['multiple', 'single'],
-      control: { type: 'radio' },
-    },
-  },
-  args: {
-    variant: 'default',
-    size: 'default',
-    type: 'multiple',
-    disabled: false,
-  },
-  render: (args) => (
+  argTypes: { type: { options: ['multiple', 'single'], control: { type: 'radio' } } },
+  args: { variant: 'default', size: 'default', type: 'multiple', disabled: false } as Args,
+  render: (args: Args) => (
     <ToggleGroup {...args}>
       <ToggleGroupItem aria-label="Toggle bold" value="bold">
         <Bold className="h-4 w-4" />

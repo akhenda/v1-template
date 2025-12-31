@@ -19,19 +19,19 @@ import { SuggestionPlugin } from '@udecode/plate-suggestion/react';
 import { useEditorPlugin, useEditorRef, usePluginOption } from '@udecode/plate/react';
 import { MessageSquareTextIcon, MessagesSquareIcon, PencilLineIcon } from 'lucide-react';
 
-import { commentsPlugin } from '@repo/design-system/components/editor/plugins/comments-plugin';
-import {
-  type TDiscussion,
-  discussionPlugin,
-} from '@repo/design-system/components/editor/plugins/discussion-plugin';
-import { suggestionPlugin } from '@repo/design-system/components/editor/plugins/suggestion-plugin';
-import { Button } from '@repo/design-system/components/ui/button';
+import { Button } from '../../ui/button';
 import {
   Popover,
   PopoverAnchor,
   PopoverContent,
   PopoverTrigger,
-} from '@repo/design-system/components/ui/popover';
+} from '../../ui/popover';
+import { commentsPlugin } from '../plugins/comments-plugin';
+import {
+  type TDiscussion,
+  discussionPlugin,
+} from '../plugins/discussion-plugin';
+import { suggestionPlugin } from '../plugins/suggestion-plugin';
 
 import {
   BlockSuggestionCard,

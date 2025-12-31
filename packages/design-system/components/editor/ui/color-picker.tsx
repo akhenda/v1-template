@@ -4,8 +4,8 @@ import * as React from 'react';
 
 import { EraserIcon } from 'lucide-react';
 
-import { DropdownMenuItem } from '@repo/design-system/components/ui/dropdown-menu';
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
+import { DropdownMenuItem } from '../../ui/dropdown-menu';
 
 import { ColorDropdownMenuItems, type TColor } from './color-dropdown-menu-items';
 import { ColorCustom } from './colors-custom';

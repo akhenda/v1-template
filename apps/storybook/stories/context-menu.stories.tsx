@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Args, Meta, StoryObj } from '@storybook/react';
 
 import {
   ContextMenu,
@@ -26,7 +26,7 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {},
   args: {},
-  render: (args) => (
+  render: (args: Args) => (
     <ContextMenu {...args}>
       <ContextMenuTrigger className="flex h-48 w-96 items-center justify-center rounded-md border border-dashed bg-accent text-sm">
         Right click here

@@ -5,14 +5,14 @@ import * as React from 'react';
 import type { VariantProps } from 'class-variance-authority';
 
 import {
-  Resizable as ResizablePrimitive,
-  type ResizeHandle as ResizeHandlePrimitive,
-  useResizeHandle,
-  useResizeHandleState,
+    Resizable as ResizablePrimitive,
+    type ResizeHandle as ResizeHandlePrimitive,
+    useResizeHandle,
+    useResizeHandleState,
 } from '@udecode/plate-resizable';
 import { cva } from 'class-variance-authority';
 
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
 
 export const mediaResizeHandleVariants = cva(
   cn(

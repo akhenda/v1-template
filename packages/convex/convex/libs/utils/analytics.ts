@@ -4,6 +4,7 @@ import type { Infer } from 'convex/values';
 import { v } from 'convex/values';
 import { nullable } from 'convex-helpers/validators';
 
+import { tryCatch } from '@maxmorozoff/try-catch-tuple';
 import { PostHog } from 'posthog-node';
 import { Webhook } from 'svix';
 
@@ -14,7 +15,6 @@ import type {
   UserJSON,
   WebhookEvent,
 } from '@repo/auth/server';
-import { tryCatch } from '@repo/web/core/utils/errors';
 
 import { internal } from '../../_generated/api';
 import type { ActionCtx } from '../../_generated/server';
@@ -49,12 +49,12 @@ const handleUserCreated = async (ctx: ActionCtx, data: UserJSON) => {
   analytics.identify({
     distinctId: data.id,
     properties: {
-      email: data.email_addresses.at(0)?.email_address,
+      email: data.email_addresses[0]?.email_address,
       firstName: data.first_name,
       lastName: data.last_name,
       createdAt: new Date(data.created_at),
       avatar: data.image_url,
-      phoneNumber: data.phone_numbers.at(0)?.phone_number,
+      phoneNumber: data.phone_numbers[0]?.phone_number,
     },
   });
 
@@ -69,12 +69,12 @@ const handleUserUpdated = async (ctx: ActionCtx, data: UserJSON) => {
   analytics.identify({
     distinctId: data.id,
     properties: {
-      email: data.email_addresses.at(0)?.email_address,
+      email: data.email_addresses[0]?.email_address,
       firstName: data.first_name,
       lastName: data.last_name,
       createdAt: new Date(data.created_at),
       avatar: data.image_url,
-      phoneNumber: data.phone_numbers.at(0)?.phone_number,
+      phoneNumber: data.phone_numbers[0]?.phone_number,
     },
   });
 

@@ -5,7 +5,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import { Plate } from '@udecode/plate/react';
 
-import { useCreateRHFEditor } from '@repo/design-system/components/editor/use-create-rhf-editor';
+import { useCreateRHFEditor } from '../../components/editor/use-create-rhf-editor';
 
 import { Editor, EditorContainer } from './ui/editor';
 

@@ -4,14 +4,14 @@ import * as React from 'react';
 
 import { NodeApi } from '@udecode/plate';
 import {
-  type TCodeBlockElement,
-  formatCodeBlock,
-  isLangSupported,
+    type TCodeBlockElement,
+    formatCodeBlock,
+    isLangSupported,
 } from '@udecode/plate-code-block';
 import { PlateElement, type PlateElementProps } from '@udecode/plate/react';
 import { BracesIcon, CheckIcon, CopyIcon } from 'lucide-react';
 
-import { Button } from '@repo/design-system/components/ui/button';
+import { Button } from '../../ui/button';
 
 import { CodeBlockCombobox } from './code-block-combobox';
 

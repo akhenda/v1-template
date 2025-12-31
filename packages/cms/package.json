@@ -22,7 +22,6 @@
   "dependencies": {
     "@content-collections/mdx": "0.2.2",
     "@t3-oss/env-nextjs": "0.13.8",
-    "basehub": "^9.5.3",
     "fumadocs-core": "16.2.3",
     "fumadocs-docgen": "2.0.0",
     "react": "19.2.1",

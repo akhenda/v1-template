@@ -26,13 +26,13 @@ import {
   SquareIcon,
 } from 'lucide-react';
 
-import { insertBlock, insertInlineElement } from '@repo/design-system/components/editor/transforms';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
+} from '../../ui/dropdown-menu';
+import { insertBlock, insertInlineElement } from '../transforms';
 
 import { ToolbarButton, ToolbarMenuGroup } from './toolbar';
 

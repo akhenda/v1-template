@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Args, Meta, StoryObj } from '@storybook/react';
 
 import {
   NavigationMenu,
@@ -18,7 +18,7 @@ const meta = {
   component: NavigationMenu,
   tags: ['autodocs'],
   argTypes: {},
-  render: (args) => (
+  render: (args: Args) => (
     <NavigationMenu {...args}>
       <NavigationMenuList>
         <NavigationMenuItem>

@@ -6,7 +6,7 @@ import type { TTableCellElement } from '@udecode/plate-table';
 import { SlateElement } from '@udecode/plate';
 import { BaseTablePlugin } from '@udecode/plate-table';
 
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
 
 export function TableCellElementStatic({
   isHeader,

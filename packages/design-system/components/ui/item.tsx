@@ -1,9 +1,9 @@
-import * as React from "react"
-import { Slot as SlotPrimitive } from "radix-ui"
 import { cva, type VariantProps } from "class-variance-authority"
+import { Slot as SlotPrimitive } from "radix-ui"
+import * as React from "react"
 
-import { cn } from "@repo/design-system/lib/utils"
-import { Separator } from "@repo/design-system/components/ui/separator"
+import { cn } from "../../lib/utils"
+import { Separator } from "./separator"
 
 function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
@@ -180,14 +180,6 @@ function ItemFooter({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 export {
-  Item,
-  ItemMedia,
-  ItemContent,
-  ItemActions,
-  ItemGroup,
-  ItemSeparator,
-  ItemTitle,
-  ItemDescription,
-  ItemHeader,
-  ItemFooter,
+    Item, ItemActions, ItemContent, ItemDescription, ItemFooter, ItemGroup, ItemHeader, ItemMedia, ItemSeparator,
+    ItemTitle
 }

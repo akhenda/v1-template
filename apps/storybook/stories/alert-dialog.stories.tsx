@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Args, Meta, StoryObj } from '@storybook/react';
 
 import {
   AlertDialog,
@@ -21,7 +21,7 @@ const meta = {
   component: AlertDialog,
   tags: ['autodocs'],
   argTypes: {},
-  render: (args) => (
+  render: (args: Args) => (
     <AlertDialog {...args}>
       <AlertDialogTrigger>Open</AlertDialogTrigger>
       <AlertDialogContent>
@@ -42,9 +42,9 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-} satisfies Meta<typeof AlertDialog>;
+};
 
-export default meta;
+export default meta satisfies Meta<typeof AlertDialog>;
 
 type Story = StoryObj<typeof meta>;
 

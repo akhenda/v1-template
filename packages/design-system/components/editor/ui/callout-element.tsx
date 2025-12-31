@@ -7,7 +7,7 @@ import { useCalloutEmojiPicker } from '@udecode/plate-callout/react';
 import { useEmojiDropdownMenuState } from '@udecode/plate-emoji/react';
 import { PlateElement } from '@udecode/plate/react';
 
-import { Button } from '@repo/design-system/components/ui/button';
+import { Button } from '../../ui/button';
 
 import { emojiCategoryIcons, emojiSearchIcons } from './emoji-icons';
 import { EmojiPicker } from './emoji-picker';

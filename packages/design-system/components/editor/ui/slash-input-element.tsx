@@ -15,8 +15,7 @@ import { INDENT_LIST_KEYS, ListStyleType } from '@udecode/plate-indent-list';
 import { EquationPlugin, InlineEquationPlugin } from '@udecode/plate-math/react';
 import { TablePlugin } from '@udecode/plate-table/react';
 import { TogglePlugin } from '@udecode/plate-toggle/react';
-import { ParagraphPlugin, type PlateEditor, type PlateElementProps } from '@udecode/plate/react';
-import { PlateElement } from '@udecode/plate/react';
+import { ParagraphPlugin, PlateElement, type PlateEditor, type PlateElementProps } from '@udecode/plate/react';
 import {
   CalendarIcon,
   ChevronRightIcon,
@@ -37,7 +36,7 @@ import {
   TableOfContentsIcon,
 } from 'lucide-react';
 
-import { insertBlock, insertInlineElement } from '@repo/design-system/components/editor/transforms';
+import { insertBlock, insertInlineElement } from '../transforms';
 
 import {
   InlineCombobox,

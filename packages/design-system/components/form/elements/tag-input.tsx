@@ -7,7 +7,9 @@ import { useFormContext } from 'react-hook-form';
 
 import { SquarePenIcon, X } from 'lucide-react';
 
-import { Button } from '@repo/design-system/components/ui/button';
+import { cn } from '../../../lib/utils';
+import { Badge } from '../../ui/badge';
+import { Button } from '../../ui/button';
 import {
   Dialog,
   DialogClose,
@@ -17,10 +19,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@repo/design-system/components/ui/dialog';
-import { cn } from '@repo/design-system/lib/utils';
-
-import { Badge } from '../../ui/badge';
+} from '../../ui/dialog';
 import { Input } from '../../ui/input';
 
 import { FormField } from './form-field';

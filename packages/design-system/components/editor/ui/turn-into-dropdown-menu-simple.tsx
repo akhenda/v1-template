@@ -24,16 +24,16 @@ import {
 } from 'lucide-react';
 
 import {
-  STRUCTURAL_TYPES,
-  getBlockType,
-  setBlockType,
-} from '@repo/design-system/components/editor/transforms';
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
+} from '../../ui/dropdown-menu';
+import {
+  STRUCTURAL_TYPES,
+  getBlockType,
+  setBlockType,
+} from '../transforms';
 
 import { ToolbarButton, ToolbarMenuGroup } from './toolbar';
 

@@ -3,15 +3,14 @@
 import * as React from 'react';
 
 import { HEADING_KEYS } from '@udecode/plate-heading';
-import { ParagraphPlugin } from '@udecode/plate/react';
 import {
-  type PlaceholderProps,
-  createNodeHOC,
-  createNodesHOC,
-  usePlaceholderState,
+    ParagraphPlugin, type PlaceholderProps,
+    createNodeHOC,
+    createNodesHOC,
+    usePlaceholderState
 } from '@udecode/plate/react';
 
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
 
 export const Placeholder = (props: PlaceholderProps) => {
   const { attributes, children, placeholder } = props;

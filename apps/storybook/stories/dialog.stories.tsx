@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Args, Meta, StoryObj } from '@storybook/react';
 
 import {
   Dialog,
@@ -20,7 +20,7 @@ const meta = {
   component: Dialog,
   tags: ['autodocs'],
   argTypes: {},
-  render: (args) => (
+  render: (args: Args) => (
     <Dialog {...args}>
       <DialogTrigger>Open</DialogTrigger>
       <DialogContent>

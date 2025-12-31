@@ -7,21 +7,21 @@ import type { PlateElementProps } from '@udecode/plate/react';
 
 import { BlockSelectionPlugin, useBlockSelected } from '@udecode/plate-selection/react';
 import {
-  TablePlugin,
-  TableRowPlugin,
-  useTableCellElement,
-  useTableCellElementResizable,
+    TablePlugin,
+    TableRowPlugin,
+    useTableCellElement,
+    useTableCellElementResizable,
 } from '@udecode/plate-table/react';
 import {
-  PlateElement,
-  useEditorPlugin,
-  useElementSelector,
-  usePluginOption,
-  useReadOnly,
+    PlateElement,
+    useEditorPlugin,
+    useElementSelector,
+    usePluginOption,
+    useReadOnly,
 } from '@udecode/plate/react';
 import { cva } from 'class-variance-authority';
 
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
 
 import { blockSelectionVariants } from './block-selection';
 import { ResizeHandle } from './resize-handle';

@@ -1,12 +1,11 @@
 'use client';
 
-import * as React from 'react';
 
 import type { PlateElementProps } from '@udecode/plate/react';
 
 import { PlateElement } from '@udecode/plate/react';
 
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
 
 export function ParagraphElement(props: PlateElementProps) {
   return (

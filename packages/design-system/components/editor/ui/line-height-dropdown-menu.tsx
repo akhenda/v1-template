@@ -6,18 +6,18 @@ import type { DropdownMenuProps } from '@radix-ui/react-dropdown-menu';
 
 import { DropdownMenuItemIndicator } from '@radix-ui/react-dropdown-menu';
 import {
-  useLineHeightDropdownMenu,
-  useLineHeightDropdownMenuState,
+    useLineHeightDropdownMenu,
+    useLineHeightDropdownMenuState,
 } from '@udecode/plate-line-height/react';
 import { CheckIcon, WrapText } from 'lucide-react';
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuRadioGroup,
+    DropdownMenuRadioItem,
+    DropdownMenuTrigger,
+} from '../../ui/dropdown-menu';
 
 import { ToolbarButton } from './toolbar';
 

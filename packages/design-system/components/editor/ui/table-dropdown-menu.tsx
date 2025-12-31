@@ -4,32 +4,32 @@ import * as React from 'react';
 
 import type { DropdownMenuProps } from '@radix-ui/react-dropdown-menu';
 import {
-  ArrowDown,
-  ArrowLeft,
-  ArrowRight,
-  ArrowUp,
-  Combine,
-  Grid3x3Icon,
-  Table,
-  Trash2Icon,
-  Ungroup,
-  XIcon,
+    ArrowDown,
+    ArrowLeft,
+    ArrowRight,
+    ArrowUp,
+    Combine,
+    Grid3x3Icon,
+    Table,
+    Trash2Icon,
+    Ungroup,
+    XIcon,
 } from 'lucide-react';
 
-import { useEditorPlugin, useEditorSelector } from '@udecode/plate/react';
 import { TablePlugin, useTableMergeState } from '@udecode/plate-table/react';
+import { useEditorPlugin, useEditorSelector } from '@udecode/plate/react';
 
+import { cn } from '../../../lib/utils';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
-import { cn } from '@repo/design-system/lib/utils';
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuSub,
+    DropdownMenuSubContent,
+    DropdownMenuSubTrigger,
+    DropdownMenuTrigger,
+} from '../../ui/dropdown-menu';
 
 import { ToolbarButton } from './toolbar';
 

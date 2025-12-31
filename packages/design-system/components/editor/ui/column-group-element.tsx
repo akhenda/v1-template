@@ -8,17 +8,17 @@ import type { PlateElementProps } from '@udecode/plate/react';
 import { setColumns } from '@udecode/plate-layout';
 import { useDebouncePopoverOpen } from '@udecode/plate-layout/react';
 import {
-  PlateElement,
-  useEditorRef,
-  useElement,
-  useReadOnly,
-  useRemoveNodeButton,
+    PlateElement,
+    useEditorRef,
+    useElement,
+    useReadOnly,
+    useRemoveNodeButton,
 } from '@udecode/plate/react';
 import { type LucideProps, Trash2Icon } from 'lucide-react';
 
-import { Button } from '@repo/design-system/components/ui/button';
-import { Popover, PopoverAnchor, PopoverContent } from '@repo/design-system/components/ui/popover';
-import { Separator } from '@repo/design-system/components/ui/separator';
+import { Button } from '../../ui/button';
+import { Popover, PopoverAnchor, PopoverContent } from '../../ui/popover';
+import { Separator } from '../../ui/separator';
 
 export function ColumnGroupElement(props: PlateElementProps) {
   return (

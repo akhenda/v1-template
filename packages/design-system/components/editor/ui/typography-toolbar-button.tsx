@@ -10,7 +10,7 @@ import {
 import { Heading1Icon, Heading2Icon, Heading3Icon, type LucideIcon, TypeIcon } from 'lucide-react';
 import * as React from 'react';
 
-import { setBlockType } from '@repo/design-system/components/editor/transforms';
+import { setBlockType } from '../transforms';
 
 import { ToolbarButton } from './toolbar';
 

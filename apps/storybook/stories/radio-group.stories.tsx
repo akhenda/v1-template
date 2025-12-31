@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Args, Meta, StoryObj } from '@storybook/react';
 
 import { RadioGroup, RadioGroupItem } from '@repo/design-system/components/ui/radio-group';
 
@@ -15,7 +15,7 @@ const meta = {
     defaultValue: 'comfortable',
     className: 'grid gap-2 grid-cols-[1rem_1fr] items-center',
   },
-  render: (args) => (
+  render: (args: Args) => (
     <RadioGroup {...args}>
       <RadioGroupItem id="r1" value="default" />
       <label htmlFor="r1">Default</label>

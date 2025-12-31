@@ -6,7 +6,7 @@ import { useController, useFormContext } from 'react-hook-form';
 
 import { SquarePenIcon } from 'lucide-react';
 
-import { Button } from '@repo/design-system/components/ui/button';
+import { Button } from '../../../ui/button';
 import {
   Dialog,
   DialogClose,
@@ -16,8 +16,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@repo/design-system/components/ui/dialog';
-
+} from '../../../ui/dialog';
 import { FormControl, FormDescription, FormItem, FormMessage } from '../../../ui/form';
 import { FormField } from '../../elements';
 import { TagInput } from '../../elements/tag-input';

@@ -9,18 +9,18 @@ import { PathApi, type TElement } from '@udecode/plate';
 import { useDraggable, useDropLine } from '@udecode/plate-dnd';
 import { BlockSelectionPlugin } from '@udecode/plate-selection/react';
 import {
-  PlateElement,
-  type PlateElementProps,
-  useEditorRef,
-  useElement,
-  usePluginOption,
-  useReadOnly,
-  useSelected,
+    PlateElement,
+    type PlateElementProps,
+    useEditorRef,
+    useElement,
+    usePluginOption,
+    useReadOnly,
+    useSelected,
 } from '@udecode/plate/react';
 import { GripVertical } from 'lucide-react';
 
-import { Button } from '@repo/design-system/components/ui/button';
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
+import { Button } from '../../ui/button';
 
 export function TableRowElement(props: PlateElementProps<TTableRowElement>) {
   const { element } = props;

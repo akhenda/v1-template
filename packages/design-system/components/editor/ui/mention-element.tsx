@@ -1,6 +1,5 @@
 'use client';
 
-import * as React from 'react';
 
 import type { TMentionElement } from '@udecode/plate-mention';
 import type { PlateElementProps } from '@udecode/plate/react';
@@ -8,8 +7,8 @@ import type { PlateElementProps } from '@udecode/plate/react';
 import { IS_APPLE } from '@udecode/plate';
 import { PlateElement, useFocused, useReadOnly, useSelected } from '@udecode/plate/react';
 
-import { useMounted } from '@repo/design-system/hooks/use-mounted';
-import { cn } from '@repo/design-system/lib/utils';
+import { useMounted } from '../../../hooks/use-mounted';
+import { cn } from '../../../lib/utils';
 
 export function MentionElement(props: PlateElementProps<TMentionElement> & { prefix?: string }) {
   const element = props.element;

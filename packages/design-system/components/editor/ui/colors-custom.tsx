@@ -5,10 +5,10 @@ import * as React from 'react';
 import { useColorsCustom, useColorsCustomState } from '@udecode/plate-font/react';
 import { PlusIcon } from 'lucide-react';
 
-import { buttonVariants } from '@repo/design-system/components/ui/button';
+import { buttonVariants } from '../../ui/button';
 // import { ColorInput } from './color-input';
-import { DropdownMenuItem } from '@repo/design-system/components/ui/dropdown-menu';
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
+import { DropdownMenuItem } from '../../ui/dropdown-menu';
 
 import { ColorDropdownMenuItems, type TColor } from './color-dropdown-menu-items';
 import { ColorInput } from './color-input';

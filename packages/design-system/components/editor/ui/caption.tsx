@@ -13,8 +13,8 @@ import {
 } from '@udecode/plate-caption/react';
 import { cva } from 'class-variance-authority';
 
-import { Button } from '@repo/design-system/components/ui/button';
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
+import { Button } from '../../ui/button';
 
 const captionVariants = cva('max-w-full', {
   defaultVariants: { align: 'center' },
@@ -35,7 +35,7 @@ export function CaptionTextarea(props: React.ComponentProps<typeof CaptionTextar
       {...props}
       className={cn(
         'mt-2 w-full resize-none border-none bg-inherit p-0 font-[inherit] text-inherit',
-        'focus:outline-none focus:[&::placeholder]:opacity-0',
+        'focus:outline-none focus:placeholder:opacity-0',
         'text-center print:placeholder:text-transparent',
         props.className,
       )}
@@ -43,7 +43,7 @@ export function CaptionTextarea(props: React.ComponentProps<typeof CaptionTextar
   );
 }
 
-export const CaptionButton = createPrimitiveComponent(Button)({
+export const CaptionButton: React.ComponentType<React.ComponentProps<typeof Button>> = createPrimitiveComponent(Button)({
   propsHook: useCaptionButton,
   stateHook: useCaptionButtonState,
 });

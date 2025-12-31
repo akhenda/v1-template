@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Args, Meta, StoryObj } from '@storybook/react';
 
 import {
   Drawer,
@@ -14,12 +14,12 @@ import {
 /**
  * A drawer component for React.
  */
-const meta: Meta<typeof Drawer> = {
+const meta = {
   title: 'ui/Drawer',
   component: Drawer,
   tags: ['autodocs'],
   argTypes: {},
-  render: (args) => (
+  render: (args: Args) => (
     <Drawer {...args}>
       <DrawerTrigger>Open</DrawerTrigger>
       <DrawerContent>
@@ -45,7 +45,7 @@ const meta: Meta<typeof Drawer> = {
   },
 };
 
-export default meta;
+export default meta satisfies Meta<typeof Drawer>;
 
 type Story = StoryObj<typeof meta>;
 

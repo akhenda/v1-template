@@ -1,6 +1,5 @@
 'use client';
 
-import * as React from 'react';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import ReactPlayer from 'react-player';
 
@@ -13,7 +12,7 @@ import { useMediaState } from '@udecode/plate-media/react';
 import { ResizableProvider, useResizableValue } from '@udecode/plate-resizable';
 import { PlateElement, useEditorMounted, withHOC } from '@udecode/plate/react';
 
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
 
 import { Caption, CaptionTextarea } from './caption';
 import { Resizable, ResizeHandle, mediaResizeHandleVariants } from './resize-handle';

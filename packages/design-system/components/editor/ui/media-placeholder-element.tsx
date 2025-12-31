@@ -5,8 +5,6 @@ import * as React from 'react';
 import { AudioLines, FileUp, Film, ImageIcon, Loader2Icon } from 'lucide-react';
 import { useFilePicker } from 'use-file-picker';
 
-import type { PlateElementProps } from '@udecode/plate/react';
-import { PlateElement, useEditorPlugin, withHOC } from '@udecode/plate/react';
 import type { TPlaceholderElement } from '@udecode/plate-media';
 import {
   AudioPlugin,
@@ -17,9 +15,11 @@ import {
   updateUploadHistory,
   VideoPlugin,
 } from '@udecode/plate-media/react';
+import type { PlateElementProps } from '@udecode/plate/react';
+import { PlateElement, useEditorPlugin, withHOC } from '@udecode/plate/react';
 
-import { useUploadFile } from '@repo/design-system/hooks/use-upload-file';
-import { cn } from '@repo/design-system/lib/utils';
+import { useUploadFile } from '../../../hooks/use-upload-file';
+import { cn } from '../../../lib/utils';
 
 const CONTENT: Record<
   string,

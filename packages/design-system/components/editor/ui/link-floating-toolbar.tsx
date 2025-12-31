@@ -2,12 +2,6 @@
 
 import * as React from 'react';
 
-import {
-  useEditorRef,
-  useEditorSelection,
-  useFormInputProps,
-  usePluginOption,
-} from '@udecode/plate/react';
 import { flip, offset, type UseVirtualFloatingOptions } from '@udecode/plate-floating';
 import { getLinkAttributes, type TLinkElement } from '@udecode/plate-link';
 import {
@@ -19,12 +13,18 @@ import {
   useFloatingLinkInsert,
   useFloatingLinkInsertState,
 } from '@udecode/plate-link/react';
+import {
+  useEditorRef,
+  useEditorSelection,
+  useFormInputProps,
+  usePluginOption,
+} from '@udecode/plate/react';
 
 import { cva } from 'class-variance-authority';
 import { ExternalLink, Link, Text, Unlink } from 'lucide-react';
 
-import { buttonVariants } from '@repo/design-system/components/ui/button';
-import { Separator } from '@repo/design-system/components/ui/separator';
+import { buttonVariants } from '../../ui/button';
+import { Separator } from '../../ui/separator';
 
 const popoverVariants = cva(
   'z-50 w-auto rounded-md border bg-popover p-1 text-popover-foreground shadow-md outline-hidden',
@@ -143,10 +143,12 @@ export function LinkFloatingToolbarComponent({ state }: { state?: LinkFloatingTo
 
   return (
     <>
+    {/** @ts-ignore */}
       <div ref={insertRef} className={popoverVariants()} {...insertProps}>
         {input}
       </div>
 
+{/** @ts-ignore */}
       <div ref={editRef} className={popoverVariants()} {...editProps}>
         {editContent}
       </div>

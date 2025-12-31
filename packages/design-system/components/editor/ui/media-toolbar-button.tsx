@@ -6,11 +6,11 @@ import type { DropdownMenuProps } from '@radix-ui/react-dropdown-menu';
 
 import { isUrl } from '@udecode/plate';
 import {
-  AudioPlugin,
-  FilePlugin,
-  ImagePlugin,
-  PlaceholderPlugin,
-  VideoPlugin,
+    AudioPlugin,
+    FilePlugin,
+    ImagePlugin,
+    PlaceholderPlugin,
+    VideoPlugin,
 } from '@udecode/plate-media/react';
 import { useEditorRef } from '@udecode/plate/react';
 import { AudioLinesIcon, FileUpIcon, FilmIcon, ImageIcon, LinkIcon } from 'lucide-react';
@@ -18,28 +18,28 @@ import { toast } from 'sonner';
 import { useFilePicker } from 'use-file-picker';
 
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from '@repo/design-system/components/ui/alert-dialog';
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from '../../ui/alert-dialog';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
-import { Input } from '@repo/design-system/components/ui/input';
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from '../../ui/dropdown-menu';
+import { Input } from '../../ui/input';
 
 import {
-  ToolbarSplitButton,
-  ToolbarSplitButtonPrimary,
-  ToolbarSplitButtonSecondary,
+    ToolbarSplitButton,
+    ToolbarSplitButtonPrimary,
+    ToolbarSplitButtonSecondary,
 } from './toolbar';
 
 const MEDIA_CONFIG: Record<

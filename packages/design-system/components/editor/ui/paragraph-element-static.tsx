@@ -1,10 +1,9 @@
-import * as React from 'react';
 
 import type { SlateElementProps } from '@udecode/plate';
 
 import { SlateElement } from '@udecode/plate';
 
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
 
 export function ParagraphElementStatic(props: SlateElementProps) {
   return (

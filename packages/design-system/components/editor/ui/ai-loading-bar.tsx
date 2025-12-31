@@ -4,9 +4,9 @@ import { AIChatPlugin } from '@udecode/plate-ai/react';
 import { useEditorPlugin, usePluginOption } from '@udecode/plate/react';
 import { Pause } from 'lucide-react';
 
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
 
-import { Button } from '@repo/design-system/components/ui/button';
+import { Button } from '../../ui/button';
 
 export const AILoadingBar = () => {
   const chat = usePluginOption(AIChatPlugin, 'chat');

@@ -22,14 +22,14 @@ import {
   useElement,
   usePath,
   usePluginOption,
+  useReadOnly, useSelected,
 } from '@udecode/plate/react';
-import { useReadOnly, useSelected } from '@udecode/plate/react';
 import { GripVertical } from 'lucide-react';
 
-import { STRUCTURAL_TYPES } from '@repo/design-system/components/editor/transforms';
-import { Button } from '@repo/design-system/components/ui/button';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@repo/design-system/components/ui/tooltip';
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
+import { Button } from '../../ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '../../ui/tooltip';
+import { STRUCTURAL_TYPES } from '../transforms';
 
 const UNDRAGGABLE_KEYS = [ColumnItemPlugin.key, TableRowPlugin.key, TableCellPlugin.key];
 
@@ -155,7 +155,7 @@ function Gutter({ children, className, ...props }: React.ComponentProps<'div'>) 
         !selected && 'opacity-0',
         isNodeType(HEADING_KEYS.h1) && 'pb-1 text-[1.875em]',
         isNodeType(HEADING_KEYS.h2) && 'pb-1 text-[1.5em]',
-        isNodeType(HEADING_KEYS.h3) && 'pt-[2px] pb-1 text-[1.25em]',
+        isNodeType(HEADING_KEYS.h3) && 'pt-0.5 pb-1 text-[1.25em]',
         isNodeType([HEADING_KEYS.h4, HEADING_KEYS.h5]) && 'pt-1 pb-0 text-[1.1em]',
         isNodeType(HEADING_KEYS.h6) && 'pb-0',
         isNodeType(ParagraphPlugin.key) && 'pt-1 pb-0',

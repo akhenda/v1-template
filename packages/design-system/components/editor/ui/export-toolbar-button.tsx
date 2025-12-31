@@ -8,32 +8,32 @@ import { withProps } from '@udecode/cn';
 import { BaseParagraphPlugin, SlateLeaf, createSlateEditor, serializeHtml } from '@udecode/plate';
 import { BaseAlignPlugin } from '@udecode/plate-alignment';
 import {
-  BaseBoldPlugin,
-  BaseCodePlugin,
-  BaseItalicPlugin,
-  BaseStrikethroughPlugin,
-  BaseSubscriptPlugin,
-  BaseSuperscriptPlugin,
-  BaseUnderlinePlugin,
+    BaseBoldPlugin,
+    BaseCodePlugin,
+    BaseItalicPlugin,
+    BaseStrikethroughPlugin,
+    BaseSubscriptPlugin,
+    BaseSuperscriptPlugin,
+    BaseUnderlinePlugin,
 } from '@udecode/plate-basic-marks';
 import { BaseBlockquotePlugin } from '@udecode/plate-block-quote';
 import {
-  BaseCodeBlockPlugin,
-  BaseCodeLinePlugin,
-  BaseCodeSyntaxPlugin,
+    BaseCodeBlockPlugin,
+    BaseCodeLinePlugin,
+    BaseCodeSyntaxPlugin,
 } from '@udecode/plate-code-block';
 import { BaseCommentsPlugin } from '@udecode/plate-comments';
 import { BaseDatePlugin } from '@udecode/plate-date';
 import {
-  BaseFontBackgroundColorPlugin,
-  BaseFontColorPlugin,
-  BaseFontSizePlugin,
+    BaseFontBackgroundColorPlugin,
+    BaseFontColorPlugin,
+    BaseFontSizePlugin,
 } from '@udecode/plate-font';
 import {
-  BaseHeadingPlugin,
-  BaseTocPlugin,
-  HEADING_KEYS,
-  HEADING_LEVELS,
+    BaseHeadingPlugin,
+    BaseTocPlugin,
+    HEADING_KEYS,
+    HEADING_LEVELS,
 } from '@udecode/plate-heading';
 import { BaseHighlightPlugin } from '@udecode/plate-highlight';
 import { BaseHorizontalRulePlugin } from '@udecode/plate-horizontal-rule';
@@ -46,18 +46,18 @@ import { BaseLinkPlugin } from '@udecode/plate-link';
 import { MarkdownPlugin } from '@udecode/plate-markdown';
 import { BaseEquationPlugin, BaseInlineEquationPlugin } from '@udecode/plate-math';
 import {
-  BaseAudioPlugin,
-  BaseFilePlugin,
-  BaseImagePlugin,
-  BaseMediaEmbedPlugin,
-  BaseVideoPlugin,
+    BaseAudioPlugin,
+    BaseFilePlugin,
+    BaseImagePlugin,
+    BaseMediaEmbedPlugin,
+    BaseVideoPlugin,
 } from '@udecode/plate-media';
 import { BaseMentionPlugin } from '@udecode/plate-mention';
 import {
-  BaseTableCellHeaderPlugin,
-  BaseTableCellPlugin,
-  BaseTablePlugin,
-  BaseTableRowPlugin,
+    BaseTableCellHeaderPlugin,
+    BaseTableCellPlugin,
+    BaseTablePlugin,
+    BaseTableRowPlugin,
 } from '@udecode/plate-table';
 import { BaseTogglePlugin } from '@udecode/plate-toggle';
 import { useEditorRef } from '@udecode/plate/react';
@@ -65,12 +65,12 @@ import { all, createLowlight } from 'lowlight';
 import { ArrowDownToLineIcon } from 'lucide-react';
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from '../../ui/dropdown-menu';
 
 import { BlockquoteElementStatic } from './blockquote-element-static';
 import { CodeBlockElementStatic } from './code-block-element-static';

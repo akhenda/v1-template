@@ -48,10 +48,10 @@ import { TogglePlugin } from '@udecode/plate-toggle/react';
 import type { CreatePlateEditorOptions } from '@udecode/plate/react';
 import { ParagraphPlugin, PlateLeaf, usePlateEditor } from '@udecode/plate/react';
 
-import { copilotPlugins } from '@repo/design-system/components/editor/plugins/copilot-plugins';
-import { editorPlugins } from '@repo/design-system/components/editor/plugins/editor-plugins';
-import { FixedToolbarPlugin } from '@repo/design-system/components/editor/plugins/fixed-toolbar-plugin';
-import { FloatingToolbarPlugin } from '@repo/design-system/components/editor/plugins/floating-toolbar-plugin';
+import { copilotPlugins } from '../../components/editor/plugins/copilot-plugins';
+import { editorPlugins } from '../../components/editor/plugins/editor-plugins';
+import { FixedToolbarPlugin } from '../../components/editor/plugins/fixed-toolbar-plugin';
+import { FloatingToolbarPlugin } from '../../components/editor/plugins/floating-toolbar-plugin';
 
 import { AILeaf } from './ui/ai-leaf';
 import { BlockquoteElement } from './ui/blockquote-element';

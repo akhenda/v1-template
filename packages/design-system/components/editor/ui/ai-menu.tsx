@@ -9,10 +9,10 @@ import { useEditorPlugin, useHotkeys, usePluginOption } from '@udecode/plate/rea
 import { Command as CommandPrimitive } from 'cmdk';
 import { Loader2Icon } from 'lucide-react';
 
-import { useChat } from '@repo/design-system/components/editor/use-chat';
-import { Command, CommandList } from '@repo/design-system/components/ui/command';
-import { Popover, PopoverAnchor, PopoverContent } from '@repo/design-system/components/ui/popover';
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '../../../lib/utils';
+import { Command, CommandList } from '../../ui/command';
+import { Popover, PopoverAnchor, PopoverContent } from '../../ui/popover';
+import { useChat } from '../use-chat';
 
 import { AIChatEditor } from './ai-chat-editor';
 import { AIMenuItems } from './ai-menu-items';
@@ -31,7 +31,7 @@ export function AIMenu() {
   const { input, messages, setInput, status } = chat;
   const [anchorElement, setAnchorElement] = React.useState<HTMLElement | null>(null);
 
-  const content = useLastAssistantMessage()?.content;
+  const content = useLastAssistantMessage()?.parts.at(-1)?.type;
 
   React.useEffect(() => {
     if (streaming) {
