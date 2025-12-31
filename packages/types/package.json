@@ -23,5 +23,8 @@
   "dependencies": {
     "@repo/release": "workspace:*",
     "react": "19.2.1"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.7"
   }
 }
