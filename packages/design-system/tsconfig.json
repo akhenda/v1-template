@@ -4,7 +4,6 @@
     "baseUrl": ".",
     "plugins": [{ "name": "next" }],
     "paths": {
-      "@repo/*": ["../*"],
       "@repo/design-system/*": ["./*"]
     }
   },
