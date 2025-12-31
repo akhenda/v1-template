@@ -37,7 +37,7 @@ const useCurrentLocale = (i18nConfig: Config, documentCookie?: string): string |
 
   if (i18nConfig.noPrefix) return i18nConfig.defaultLocale;
 
-  const locale = locales.find((locale) => {
+  const locale = locales.find((_locale) => {
     // remove trailing slash if present
     let base = basePath.replace(TRAILING_SLASH_REGEX, '');
 
@@ -46,7 +46,7 @@ const useCurrentLocale = (i18nConfig: Config, documentCookie?: string): string |
     if (typeof window === 'undefined') base = '';
 
     return (
-      currentPathname === `${base}/${locale}` || currentPathname.startsWith(`${base}/${locale}/`)
+      currentPathname === `${base}/${_locale}` || currentPathname.startsWith(`${base}/${_locale}/`)
     );
   });
 
