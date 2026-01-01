@@ -83,7 +83,7 @@
         "@repo/security": "workspace:*",
         "@repo/seo": "workspace:*",
         "@repo/types": "workspace:*",
-        "@repo/web": "workspace:*",
+        "@repo/web-sdk": "workspace:*",
         "@repo/webhooks": "workspace:*",
         "@sentry/nextjs": "10.29.0",
         "@t3-oss/env-nextjs": "0.13.8",
@@ -200,7 +200,7 @@
         "@repo/auth": "workspace:*",
         "@repo/design-system": "workspace:*",
         "@repo/types": "workspace:*",
-        "@repo/web": "workspace:*",
+        "@repo/web-sdk": "workspace:*",
         "@tanstack/react-query": "5.74.3",
         "@webext-core/messaging": "2.3.0",
         "ai": "5.0.107",
@@ -935,8 +935,8 @@
       "name": "@repo/typescript-config",
       "version": "0.0.0",
     },
-    "packages/web": {
-      "name": "@repo/web",
+    "packages/web-sdk": {
+      "name": "@repo/web-sdk",
       "version": "0.0.0",
       "dependencies": {
         "@clerk/nextjs": "6.36.0",
@@ -2443,7 +2443,7 @@
 
     "@repo/typescript-config": ["@repo/typescript-config@workspace:packages/typescript-config"],
 
-    "@repo/web": ["@repo/web@workspace:packages/web"],
+    "@repo/web-sdk": ["@repo/web-sdk@workspace:packages/web-sdk"],
 
     "@repo/webhooks": ["@repo/webhooks@workspace:packages/webhooks"],
 

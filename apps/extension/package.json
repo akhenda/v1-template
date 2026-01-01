@@ -29,7 +29,7 @@
     "@repo/auth": "workspace:*",
     "@repo/design-system": "workspace:*",
     "@repo/types": "workspace:*",
-    "@repo/web": "workspace:*",
+    "@repo/web-sdk": "workspace:*",
     "@tanstack/react-query": "5.74.3",
     "@webext-core/messaging": "2.3.0",
     "ai": "5.0.107",
