@@ -47,6 +47,11 @@
         "dist/**"
       ]
     },
+    "bundle": {
+      "inputs": ["$TURBO_DEFAULT$", ".env", ".env.local", ".env.*local"],
+      "dependsOn": ["^bundle", "test"],
+      "outputs": ["dist/**"]
+    },
     "test": {
       "dependsOn": ["^test"]
     },

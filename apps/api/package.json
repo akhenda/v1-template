@@ -4,7 +4,7 @@
   "scripts": {
     "analyze": "ANALYZE=true npm run build",
     "build": "next build",
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "clean": "git clean -xdf .cache .turbo dist .next .million node_modules",
     "dev": "concurrently \"npm:next\" \"npm:stripe\"",
     "next": "next dev -p 3002",
     "start": "next start",

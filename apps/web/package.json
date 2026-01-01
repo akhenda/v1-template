@@ -4,10 +4,10 @@
   "scripts": {
     "analyze": "ANALYZE=true npm run build",
     "build": "next build",
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "clean": "git clean -xdf .cache .turbo dist .next .million node_modules",
     "dev": "next dev -p 3001",
     "start": "next start",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+    "typecheck": "turbo run bundle --filter='@repo/cms' --ui=stream && tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
     "@arcjet/next": "1.0.0-beta.15",
@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
+    "@tailwindcss/postcss": "4.1.17",
     "@types/node": "24.10.1",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
