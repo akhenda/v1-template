@@ -1,0 +1,1491 @@
+Please analyze the following structure of my monorepo project. It builds on top of https://next-forge.com template.
+
+From the repo organization, you will notice that I value a lot code organization, clean architecture and separation of concerns. Please help me improve it. Also comment and critique it if necessary. Ask for more information if you need more information and give me terminal commands to extract the information for you e.g. `tree -I 'node_modules'`.
+
+I am toying with the idea of moving the package named `convex` from `packages` to `apps`. What do you think? My reasoning is that since it is a deployable entity, it qualifies as an `app` instead of a `package`.
+
+.
+├── apps
+│   ├── api
+│   │   ├── __tests__
+│   │   │   └── health.test.ts
+│   │   ├── app
+│   │   │   ├── apple-icon.png
+│   │   │   ├── cron
+│   │   │   │   └── keep-alive
+│   │   │   │       └── route.ts
+│   │   │   ├── global-error.tsx
+│   │   │   ├── health
+│   │   │   │   └── route.ts
+│   │   │   ├── icon.png
+│   │   │   ├── layout.tsx
+│   │   │   ├── opengraph-image.png
+│   │   │   └── webhooks
+│   │   │       ├── auth
+│   │   │       │   └── route.ts
+│   │   │       └── payments
+│   │   │           └── route.ts
+│   │   ├── env.ts
+│   │   ├── instrumentation-client.ts
+│   │   ├── instrumentation.ts
+│   │   ├── next-env.d.ts
+│   │   ├── next.config.ts
+│   │   ├── package.json
+│   │   ├── scripts
+│   │   │   └── skip-ci.js
+│   │   ├── sentry.edge.config.ts
+│   │   ├── sentry.server.config.ts
+│   │   ├── tsconfig.json
+│   │   ├── vercel.json
+│   │   └── vitest.config.mts
+│   ├── app
+│   │   ├── __tests__
+│   │   │   ├── sign-in.test.tsx
+│   │   │   └── sign-up.test.tsx
+│   │   ├── app
+│   │   │   ├── (authenticated)
+│   │   │   │   ├── components
+│   │   │   │   │   ├── avatar-stack.tsx
+│   │   │   │   │   ├── collaboration-provider.tsx
+│   │   │   │   │   ├── cursors.tsx
+│   │   │   │   │   ├── header.tsx
+│   │   │   │   │   ├── notifications-provider.tsx
+│   │   │   │   │   ├── posthog-identifier.tsx
+│   │   │   │   │   ├── search.tsx
+│   │   │   │   │   └── sidebar.tsx
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── page.tsx
+│   │   │   │   ├── search
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── webhooks
+│   │   │   │       └── page.tsx
+│   │   │   ├── (unauthenticated)
+│   │   │   │   ├── auth.css
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── sign-in
+│   │   │   │   │   └── [[...sign-in]]
+│   │   │   │   │       └── page.tsx
+│   │   │   │   └── sign-up
+│   │   │   │       └── [[...sign-up]]
+│   │   │   │           └── page.tsx
+│   │   │   ├── actions
+│   │   │   │   └── users
+│   │   │   │       ├── get.ts
+│   │   │   │       └── search.ts
+│   │   │   ├── api
+│   │   │   │   └── collaboration
+│   │   │   │       └── auth
+│   │   │   │           └── route.ts
+│   │   │   ├── apple-icon.png
+│   │   │   ├── global-error.tsx
+│   │   │   ├── icon.png
+│   │   │   ├── layout.tsx
+│   │   │   ├── opengraph-image.png
+│   │   │   └── styles.css
+│   │   ├── env.ts
+│   │   ├── instrumentation-client.ts
+│   │   ├── instrumentation.ts
+│   │   ├── liveblocks.config.ts
+│   │   ├── next-env.d.ts
+│   │   ├── next.config.ts
+│   │   ├── package.json
+│   │   ├── postcss.config.mjs
+│   │   ├── proxy.ts
+│   │   ├── scripts
+│   │   │   └── skip-ci.js
+│   │   ├── sentry.edge.config.ts
+│   │   ├── sentry.server.config.ts
+│   │   ├── tsconfig.json
+│   │   ├── types
+│   │   │   └── globals.d.ts
+│   │   ├── vercel.json
+│   │   └── vitest.config.mts
+│   ├── backend
+│   ├── docs
+│   │   ├── api-reference
+│   │   │   ├── endpoint
+│   │   │   │   ├── create.mdx
+│   │   │   │   ├── delete.mdx
+│   │   │   │   └── get.mdx
+│   │   │   ├── introduction.mdx
+│   │   │   └── openapi.json
+│   │   ├── development.mdx
+│   │   ├── essentials
+│   │   │   ├── code.mdx
+│   │   │   ├── images.mdx
+│   │   │   ├── markdown.mdx
+│   │   │   ├── navigation.mdx
+│   │   │   ├── reusable-snippets.mdx
+│   │   │   └── settings.mdx
+│   │   ├── favicon.svg
+│   │   ├── images
+│   │   │   ├── checks-passed.png
+│   │   │   ├── hero-dark.svg
+│   │   │   └── hero-light.svg
+│   │   ├── introduction.mdx
+│   │   ├── logo
+│   │   │   ├── dark.svg
+│   │   │   └── light.svg
+│   │   ├── mint.json
+│   │   ├── package.json
+│   │   ├── quickstart.mdx
+│   │   └── snippets
+│   │       └── snippet-intro.mdx
+│   ├── email
+│   │   ├── emails
+│   │   │   └── contact.tsx
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── extension
+│   │   ├── app.config.ts
+│   │   ├── build
+│   │   │   └── chrome-mv3-dev
+│   │   │       ├── _locales
+│   │   │       │   └── en
+│   │   │       │       └── messages.json
+│   │   │       ├── background.js
+│   │   │       ├── chunks
+│   │   │       │   └── reload-html-CirUOA-8.js
+│   │   │       ├── content-scripts
+│   │   │       │   ├── content.css
+│   │   │       │   └── content.js
+│   │   │       ├── devtools.html
+│   │   │       ├── fonts
+│   │   │       │   ├── Geist-Bold.woff2
+│   │   │       │   ├── Geist-Regular.woff2
+│   │   │       │   ├── GeistMono-Bold.woff2
+│   │   │       │   └── GeistMono-Regular.woff2
+│   │   │       ├── icons
+│   │   │       │   ├── 128.png
+│   │   │       │   ├── 16.png
+│   │   │       │   ├── 32.png
+│   │   │       │   └── 48.png
+│   │   │       ├── manifest.json
+│   │   │       ├── newtab.html
+│   │   │       ├── options.html
+│   │   │       ├── popup.html
+│   │   │       ├── sidepanel.html
+│   │   │       └── tabs.html
+│   │   ├── CLAUDE.md
+│   │   ├── env.config.ts
+│   │   ├── package.json
+│   │   ├── postcss.config.cjs
+│   │   ├── public
+│   │   │   ├── _locales
+│   │   │   │   └── en
+│   │   │   │       └── messages.json
+│   │   │   └── fonts
+│   │   │       ├── Geist-Bold.woff2
+│   │   │       ├── Geist-Regular.woff2
+│   │   │       ├── GeistMono-Bold.woff2
+│   │   │       └── GeistMono-Regular.woff2
+│   │   ├── README.md
+│   │   ├── src
+│   │   │   ├── app
+│   │   │   │   ├── background
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── content
+│   │   │   │   │   ├── google-sidebar.content.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── devtools
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   └── main.tsx
+│   │   │   │   ├── newtab
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   └── main.tsx
+│   │   │   │   ├── options
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   └── main.tsx
+│   │   │   │   ├── popup
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   └── main.tsx
+│   │   │   │   ├── sidepanel
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   └── main.tsx
+│   │   │   │   └── tabs
+│   │   │   │       ├── index.html
+│   │   │   │       └── main.tsx
+│   │   │   ├── assets
+│   │   │   │   ├── icon.png
+│   │   │   │   ├── logo.svg
+│   │   │   │   └── styles
+│   │   │   │       ├── animations.css
+│   │   │   │       └── globals.css
+│   │   │   ├── components
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── sign-in.tsx
+│   │   │   │   │   ├── sign-up.tsx
+│   │   │   │   │   ├── user-profile.tsx
+│   │   │   │   │   └── user.tsx
+│   │   │   │   ├── common
+│   │   │   │   │   ├── error-boundary.tsx
+│   │   │   │   │   ├── main.tsx
+│   │   │   │   │   ├── suspense.tsx
+│   │   │   │   │   └── theme.tsx
+│   │   │   │   └── layout
+│   │   │   │       ├── footer.tsx
+│   │   │   │       ├── header.tsx
+│   │   │   │       ├── popup.tsx
+│   │   │   │       └── root.tsx
+│   │   │   ├── lib
+│   │   │   │   ├── analytics.ts
+│   │   │   │   ├── hooks
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── use-surface.ts
+│   │   │   │   ├── messaging.ts
+│   │   │   │   ├── storage.ts
+│   │   │   │   ├── surface.ts
+│   │   │   │   ├── tests
+│   │   │   │   │   └── utils.test.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── pages
+│   │   │   │   ├── ai.tsx
+│   │   │   │   ├── home.tsx
+│   │   │   │   ├── settings.tsx
+│   │   │   │   ├── sign-in.tsx
+│   │   │   │   └── sign-up.tsx
+│   │   │   ├── types
+│   │   │   │   └── index.ts
+│   │   │   └── typings
+│   │   │       ├── custom.d.ts
+│   │   │       └── reset.d.ts
+│   │   ├── tsconfig.json
+│   │   ├── tsconfig.tsbuildinfo
+│   │   └── wxt.config.ts
+│   ├── storybook
+│   │   ├── debug-storybook.log
+│   │   ├── next.config.ts
+│   │   ├── package.json
+│   │   ├── postcss.config.mjs
+│   │   ├── public
+│   │   │   └── favicon.ico
+│   │   ├── README.md
+│   │   ├── scripts
+│   │   │   └── skip-ci.js
+│   │   ├── stories
+│   │   │   ├── accordion.stories.tsx
+│   │   │   ├── alert-dialog.stories.tsx
+│   │   │   ├── alert.stories.tsx
+│   │   │   ├── aspect-ratio.stories.tsx
+│   │   │   ├── avatar.stories.tsx
+│   │   │   ├── badge.stories.tsx
+│   │   │   ├── breadcrumb.stories.tsx
+│   │   │   ├── button.stories.tsx
+│   │   │   ├── calendar.stories.tsx
+│   │   │   ├── card.stories.tsx
+│   │   │   ├── carousel.stories.tsx
+│   │   │   ├── chart.stories.tsx
+│   │   │   ├── checkbox.stories.tsx
+│   │   │   ├── collapsible.stories.tsx
+│   │   │   ├── command.stories.tsx
+│   │   │   ├── context-menu.stories.tsx
+│   │   │   ├── dialog.stories.tsx
+│   │   │   ├── drawer.stories.tsx
+│   │   │   ├── dropdown-menu.stories.tsx
+│   │   │   ├── form.stories.tsx
+│   │   │   ├── hover-card.stories.tsx
+│   │   │   ├── input-otp.stories.tsx
+│   │   │   ├── input.stories.tsx
+│   │   │   ├── label.stories.tsx
+│   │   │   ├── menubar.stories.tsx
+│   │   │   ├── navigation-menu.stories.tsx
+│   │   │   ├── pagination.stories.tsx
+│   │   │   ├── popover.stories.tsx
+│   │   │   ├── progress.stories.tsx
+│   │   │   ├── radio-group.stories.tsx
+│   │   │   ├── resizable.stories.tsx
+│   │   │   ├── scroll-area.stories.tsx
+│   │   │   ├── select.stories.tsx
+│   │   │   ├── separator.stories.tsx
+│   │   │   ├── sheet.stories.tsx
+│   │   │   ├── sidebar.stories.tsx
+│   │   │   ├── skeleton.stories.tsx
+│   │   │   ├── slider.stories.tsx
+│   │   │   ├── sonner.stories.tsx
+│   │   │   ├── switch.stories.tsx
+│   │   │   ├── table.stories.tsx
+│   │   │   ├── tabs.stories.tsx
+│   │   │   ├── textarea.stories.tsx
+│   │   │   ├── toggle-group.stories.tsx
+│   │   │   ├── toggle.stories.tsx
+│   │   │   └── tooltip.stories.tsx
+│   │   ├── tsconfig.json
+│   │   └── vercel.json
+│   ├── studio
+│   │   └── package.json
+│   └── web
+│       ├── app
+│       │   ├── [locale]
+│       │   │   ├── (home)
+│       │   │   │   ├── components
+│       │   │   │   │   ├── cases.tsx
+│       │   │   │   │   ├── cta.tsx
+│       │   │   │   │   ├── faq.tsx
+│       │   │   │   │   ├── features.tsx
+│       │   │   │   │   ├── hero.tsx
+│       │   │   │   │   ├── stats.tsx
+│       │   │   │   │   └── testimonials.tsx
+│       │   │   │   └── page.tsx
+│       │   │   ├── apple-icon.png
+│       │   │   ├── blog
+│       │   │   │   ├── [slug]
+│       │   │   │   │   └── page.tsx
+│       │   │   │   └── page.tsx
+│       │   │   ├── components
+│       │   │   │   ├── footer.tsx
+│       │   │   │   └── header
+│       │   │   │       ├── index.tsx
+│       │   │   │       ├── language-switcher.tsx
+│       │   │   │       └── logo.svg
+│       │   │   ├── contact
+│       │   │   │   ├── actions
+│       │   │   │   │   └── contact.tsx
+│       │   │   │   ├── components
+│       │   │   │   │   └── contact-form.tsx
+│       │   │   │   └── page.tsx
+│       │   │   ├── global-error.tsx
+│       │   │   ├── icon.png
+│       │   │   ├── layout.tsx
+│       │   │   ├── legal
+│       │   │   │   ├── [slug]
+│       │   │   │   │   └── page.tsx
+│       │   │   │   └── layout.tsx
+│       │   │   ├── opengraph-image.png
+│       │   │   ├── pricing
+│       │   │   │   └── page.tsx
+│       │   │   ├── robots.ts
+│       │   │   ├── sitemap.ts
+│       │   │   └── styles.css
+│       │   └── global-error.tsx
+│       ├── components
+│       │   └── sidebar.tsx
+│       ├── content
+│       │   └── blog
+│       │       ├── my-first-post.mdx
+│       │       ├── my-second-post.mdx
+│       │       └── my-third-post.mdx
+│       ├── content-collections.ts
+│       ├── env.ts
+│       ├── instrumentation-client.ts
+│       ├── instrumentation.ts
+│       ├── next-env.d.ts
+│       ├── next.config.ts
+│       ├── package.json
+│       ├── postcss.config.mjs
+│       ├── proxy.ts
+│       ├── scripts
+│       │   └── skip-ci.js
+│       ├── sentry.edge.config.ts
+│       ├── sentry.server.config.ts
+│       ├── tsconfig.json
+│       ├── types
+│       │   └── global.d.ts
+│       └── vercel.json
+├── biome.jsonc
+├── bun.lock
+├── bunfig.toml
+├── CLAUDE.md
+├── docs
+│   ├── commitlint.md
+│   └── testing.md
+├── package.json
+├── packages
+│   ├── ai
+│   │   ├── components
+│   │   │   ├── message.tsx
+│   │   │   └── thread.tsx
+│   │   ├── index.ts
+│   │   ├── keys.md
+│   │   ├── keys.spec.ts
+│   │   ├── keys.ts
+│   │   ├── lib
+│   │   │   ├── client
+│   │   │   │   ├── index.ts
+│   │   │   │   └── react.ts
+│   │   │   ├── index.ts
+│   │   │   └── server
+│   │   │       ├── common
+│   │   │       │   ├── base.ts
+│   │   │       │   ├── config.ts
+│   │   │       │   ├── models.ts
+│   │   │       │   ├── prompts
+│   │   │       │   │   └── utils.ts
+│   │   │       │   └── types.ts
+│   │   │       ├── features
+│   │   │       │   ├── index.ts
+│   │   │       │   └── parser
+│   │   │       │       └── index.ts
+│   │   │       ├── index.ts
+│   │   │       └── scripts
+│   │   │           └── generate-prompts.ts
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   ├── tsconfig.json
+│   │   └── vitest.config.mts
+│   ├── analytics
+│   │   ├── client.tsx
+│   │   ├── extension.ts
+│   │   ├── index.ts
+│   │   ├── instrumentation-client.ts
+│   │   ├── keys.ts
+│   │   ├── package.json
+│   │   ├── provider.tsx
+│   │   ├── server.ts
+│   │   └── tsconfig.json
+│   ├── auth
+│   │   ├── keys.ts
+│   │   ├── libs
+│   │   │   ├── convex
+│   │   │   │   ├── extension-provider.tsx
+│   │   │   │   ├── nextjs-provider.tsx
+│   │   │   │   └── react-provider.tsx
+│   │   │   ├── extension
+│   │   │   │   ├── components
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── sign-in.tsx
+│   │   │   │   │   └── sign-up.tsx
+│   │   │   │   ├── index.ts
+│   │   │   │   └── provider.tsx
+│   │   │   ├── nextjs
+│   │   │   │   ├── components
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── sign-in.tsx
+│   │   │   │   │   └── sign-up.tsx
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── middleware.ts
+│   │   │   │   ├── provider.tsx
+│   │   │   │   └── proxy.ts
+│   │   │   ├── react
+│   │   │   │   ├── components
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── sign-in.tsx
+│   │   │   │   │   └── sign-up.tsx
+│   │   │   │   ├── index.ts
+│   │   │   │   └── provider.tsx
+│   │   │   ├── server
+│   │   │   │   └── index.ts
+│   │   │   └── shared
+│   │   │       └── types.ts
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   ├── tsconfig.tsbuildinfo
+│   │   └── types
+│   │       └── globals.d.ts
+│   ├── cms
+│   │   ├── components
+│   │   │   ├── body.tsx
+│   │   │   ├── code-block.tsx
+│   │   │   ├── feed.tsx
+│   │   │   ├── image.tsx
+│   │   │   ├── toc.tsx
+│   │   │   └── toolbar.tsx
+│   │   ├── content-collections.ts
+│   │   ├── dist
+│   │   │   ├── components
+│   │   │   │   ├── body.d.ts
+│   │   │   │   ├── body.d.ts.map
+│   │   │   │   ├── body.jsx
+│   │   │   │   ├── code-block.d.ts
+│   │   │   │   ├── code-block.d.ts.map
+│   │   │   │   ├── code-block.jsx
+│   │   │   │   ├── feed.d.ts
+│   │   │   │   ├── feed.d.ts.map
+│   │   │   │   ├── feed.jsx
+│   │   │   │   ├── image.d.ts
+│   │   │   │   ├── image.d.ts.map
+│   │   │   │   ├── image.jsx
+│   │   │   │   ├── toc.d.ts
+│   │   │   │   ├── toc.d.ts.map
+│   │   │   │   ├── toc.jsx
+│   │   │   │   ├── toolbar.d.ts
+│   │   │   │   ├── toolbar.d.ts.map
+│   │   │   │   └── toolbar.jsx
+│   │   │   ├── content-collections.d.ts
+│   │   │   ├── content-collections.d.ts.map
+│   │   │   ├── content-collections.js
+│   │   │   ├── index.d.ts
+│   │   │   ├── index.d.ts.map
+│   │   │   ├── index.js
+│   │   │   ├── keys.d.ts
+│   │   │   ├── keys.d.ts.map
+│   │   │   └── keys.js
+│   │   ├── index.ts
+│   │   ├── keys.ts
+│   │   ├── next-config.ts
+│   │   ├── package.json
+│   │   ├── sqip.d.ts
+│   │   ├── tsconfig.json
+│   │   └── typescript-config.json
+│   ├── collaboration
+│   │   ├── auth.ts
+│   │   ├── config.ts
+│   │   ├── hooks.ts
+│   │   ├── keys.ts
+│   │   ├── package.json
+│   │   ├── room.tsx
+│   │   └── tsconfig.json
+│   ├── convex
+│   │   ├── convex
+│   │   │   ├── _generated
+│   │   │   │   ├── api.d.ts
+│   │   │   │   ├── api.js
+│   │   │   │   ├── dataModel.d.ts
+│   │   │   │   ├── server.d.ts
+│   │   │   │   └── server.js
+│   │   │   ├── auth.config.ts
+│   │   │   ├── billing.ts
+│   │   │   ├── convex.config.ts
+│   │   │   ├── crons.ts
+│   │   │   ├── env.ts
+│   │   │   ├── http.ts
+│   │   │   ├── httpNode.ts
+│   │   │   ├── init.ts
+│   │   │   ├── libs
+│   │   │   │   ├── email
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── templates
+│   │   │   │   │       └── subscriptionEmail.tsx
+│   │   │   │   └── utils
+│   │   │   │       ├── analytics.ts
+│   │   │   │       ├── logger.ts
+│   │   │   │       ├── objects.ts
+│   │   │   │       ├── rateLimiter.ts
+│   │   │   │       ├── strings.ts
+│   │   │   │       └── validators.ts
+│   │   │   ├── messages.spec.ts
+│   │   │   ├── messages.ts
+│   │   │   ├── model
+│   │   │   │   ├── index.ts
+│   │   │   │   └── users.ts
+│   │   │   ├── README.md
+│   │   │   ├── schema.ts
+│   │   │   ├── test.setup.ts
+│   │   │   ├── tsconfig.json
+│   │   │   ├── users.ts
+│   │   │   └── web.ts
+│   │   ├── package.json
+│   │   ├── polar-org-token.png
+│   │   ├── polar-webhook.png
+│   │   ├── types.ts
+│   │   └── vitest.config.mts
+│   ├── database
+│   │   ├── docker-compose.yml
+│   │   ├── drizzle.config.ts
+│   │   ├── index.ts
+│   │   ├── keys.ts
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── data-access
+│   │   │   │   ├── book-authors.ts
+│   │   │   │   ├── books.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   └── users.ts
+│   │   │   ├── drizzle.ts
+│   │   │   ├── index.ts
+│   │   │   ├── migrate.ts
+│   │   │   ├── migrations
+│   │   │   │   ├── 0000_flaky_warbound.sql
+│   │   │   │   └── meta
+│   │   │   │       ├── _journal.json
+│   │   │   │       └── 0000_snapshot.json
+│   │   │   ├── schema
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── tables
+│   │   │   │   │   ├── book
+│   │   │   │   │   │   ├── book.relations.ts
+│   │   │   │   │   │   ├── book.table.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── book-author
+│   │   │   │   │   │   ├── book-author.relations.ts
+│   │   │   │   │   │   ├── book-author.table.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── columns.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── page.ts
+│   │   │   │   │   └── user
+│   │   │   │   │       ├── index.ts
+│   │   │   │   │       ├── user.relations.ts
+│   │   │   │   │       └── user.table.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── seed.ts
+│   │   │   ├── seeds
+│   │   │   │   ├── book.ts
+│   │   │   │   ├── fixtures
+│   │   │   │   │   ├── books.json
+│   │   │   │   │   └── users.json
+│   │   │   │   ├── index.ts
+│   │   │   │   └── user.ts
+│   │   │   ├── types.ts
+│   │   │   └── utils.ts
+│   │   └── tsconfig.json
+│   ├── date
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── index.ts
+│   │   │   └── libs
+│   │   │       └── dayjs
+│   │   │           ├── index.ts
+│   │   │           └── types.ts
+│   │   └── tsconfig.json
+│   ├── design-system
+│   │   ├── components
+│   │   │   ├── ai-action
+│   │   │   │   ├── button.tsx
+│   │   │   │   ├── dialog.tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── datetime-picker.tsx
+│   │   │   ├── editor
+│   │   │   │   ├── app
+│   │   │   │   │   └── api
+│   │   │   │   │       ├── ai
+│   │   │   │   │       │   ├── command
+│   │   │   │   │       │   │   └── route.ts
+│   │   │   │   │       │   └── copilot
+│   │   │   │   │       │       └── route.ts
+│   │   │   │   │       └── uploadthing
+│   │   │   │   │           └── route.ts
+│   │   │   │   ├── plate-editor-minimal-md.tsx
+│   │   │   │   ├── plate-editor-minimal.tsx
+│   │   │   │   ├── plate-editor-rhf.tsx
+│   │   │   │   ├── plate-editor-simple.tsx
+│   │   │   │   ├── plate-editor.tsx
+│   │   │   │   ├── plate-types.ts
+│   │   │   │   ├── plugins
+│   │   │   │   │   ├── ai-plugins.tsx
+│   │   │   │   │   ├── align-plugin.ts
+│   │   │   │   │   ├── autoformat-plugin.ts
+│   │   │   │   │   ├── basic-nodes-plugins.tsx
+│   │   │   │   │   ├── block-menu-plugins.ts
+│   │   │   │   │   ├── block-selection-plugins.tsx
+│   │   │   │   │   ├── comments-plugin.tsx
+│   │   │   │   │   ├── copilot-plugins.tsx
+│   │   │   │   │   ├── cursor-overlay-plugin.tsx
+│   │   │   │   │   ├── delete-plugins.ts
+│   │   │   │   │   ├── discussion-plugin.tsx
+│   │   │   │   │   ├── dnd-plugins.tsx
+│   │   │   │   │   ├── editor-plugins.tsx
+│   │   │   │   │   ├── equation-plugins.ts
+│   │   │   │   │   ├── exit-break-plugin.ts
+│   │   │   │   │   ├── fixed-toolbar-plugin-rhf.tsx
+│   │   │   │   │   ├── fixed-toolbar-plugin.tsx
+│   │   │   │   │   ├── floating-toolbar-plugin-rhf.tsx
+│   │   │   │   │   ├── floating-toolbar-plugin.tsx
+│   │   │   │   │   ├── indent-list-plugins.ts
+│   │   │   │   │   ├── line-height-plugin.ts
+│   │   │   │   │   ├── link-plugin.tsx
+│   │   │   │   │   ├── markdown-plugin.tsx
+│   │   │   │   │   ├── media-plugins.tsx
+│   │   │   │   │   ├── mention-plugin.ts
+│   │   │   │   │   ├── reset-block-type-plugin.ts
+│   │   │   │   │   ├── skip-mark-plugin.ts
+│   │   │   │   │   ├── soft-break-plugin.ts
+│   │   │   │   │   ├── suggestion-plugin.tsx
+│   │   │   │   │   ├── table-plugin.ts
+│   │   │   │   │   └── toc-plugin.ts
+│   │   │   │   ├── settings.tsx
+│   │   │   │   ├── transforms.ts
+│   │   │   │   ├── ui
+│   │   │   │   │   ├── ai-anchor-element.tsx
+│   │   │   │   │   ├── ai-chat-editor.tsx
+│   │   │   │   │   ├── ai-leaf.tsx
+│   │   │   │   │   ├── ai-loading-bar.tsx
+│   │   │   │   │   ├── ai-menu-items.tsx
+│   │   │   │   │   ├── ai-menu.tsx
+│   │   │   │   │   ├── ai-toolbar-button.tsx
+│   │   │   │   │   ├── align-dropdown-menu.tsx
+│   │   │   │   │   ├── block-context-menu.tsx
+│   │   │   │   │   ├── block-discussion.tsx
+│   │   │   │   │   ├── block-selection.tsx
+│   │   │   │   │   ├── block-suggestion.tsx
+│   │   │   │   │   ├── blockquote-element-static.tsx
+│   │   │   │   │   ├── blockquote-element.tsx
+│   │   │   │   │   ├── callout-element-static.tsx
+│   │   │   │   │   ├── callout-element.tsx
+│   │   │   │   │   ├── caption.tsx
+│   │   │   │   │   ├── code-block-combobox.tsx
+│   │   │   │   │   ├── code-block-element-static.tsx
+│   │   │   │   │   ├── code-block-element.tsx
+│   │   │   │   │   ├── code-leaf-static.tsx
+│   │   │   │   │   ├── code-leaf.tsx
+│   │   │   │   │   ├── code-line-element-static.tsx
+│   │   │   │   │   ├── code-line-element.tsx
+│   │   │   │   │   ├── code-syntax-leaf-static.tsx
+│   │   │   │   │   ├── code-syntax-leaf.tsx
+│   │   │   │   │   ├── color-constants.ts
+│   │   │   │   │   ├── color-dropdown-menu-items.tsx
+│   │   │   │   │   ├── color-dropdown-menu.tsx
+│   │   │   │   │   ├── color-input.tsx
+│   │   │   │   │   ├── color-picker.tsx
+│   │   │   │   │   ├── colors-custom.tsx
+│   │   │   │   │   ├── column-element-static.tsx
+│   │   │   │   │   ├── column-element.tsx
+│   │   │   │   │   ├── column-group-element-static.tsx
+│   │   │   │   │   ├── column-group-element.tsx
+│   │   │   │   │   ├── comment-create-form.tsx
+│   │   │   │   │   ├── comment-leaf-static.tsx
+│   │   │   │   │   ├── comment-leaf.tsx
+│   │   │   │   │   ├── comment-toolbar-button.tsx
+│   │   │   │   │   ├── comment.tsx
+│   │   │   │   │   ├── cursor-overlay.tsx
+│   │   │   │   │   ├── date-element-static.tsx
+│   │   │   │   │   ├── date-element.tsx
+│   │   │   │   │   ├── draggable.tsx
+│   │   │   │   │   ├── editor-static.tsx
+│   │   │   │   │   ├── editor.tsx
+│   │   │   │   │   ├── emoji-dropdown-menu.tsx
+│   │   │   │   │   ├── emoji-icons.tsx
+│   │   │   │   │   ├── emoji-input-element.tsx
+│   │   │   │   │   ├── emoji-picker-content.tsx
+│   │   │   │   │   ├── emoji-picker-navigation.tsx
+│   │   │   │   │   ├── emoji-picker-preview.tsx
+│   │   │   │   │   ├── emoji-picker-search-and-clear.tsx
+│   │   │   │   │   ├── emoji-picker-search-bar.tsx
+│   │   │   │   │   ├── emoji-picker.tsx
+│   │   │   │   │   ├── emoji-toolbar-dropdown.tsx
+│   │   │   │   │   ├── equation-element-static.tsx
+│   │   │   │   │   ├── equation-element.tsx
+│   │   │   │   │   ├── equation-popover.tsx
+│   │   │   │   │   ├── excalidraw-element.tsx
+│   │   │   │   │   ├── export-toolbar-button.tsx
+│   │   │   │   │   ├── fixed-toolbar-buttons-rhf.tsx
+│   │   │   │   │   ├── fixed-toolbar-buttons.tsx
+│   │   │   │   │   ├── fixed-toolbar-rhf.tsx
+│   │   │   │   │   ├── fixed-toolbar.tsx
+│   │   │   │   │   ├── floating-toolbar-buttons-rhf.tsx
+│   │   │   │   │   ├── floating-toolbar-buttons.tsx
+│   │   │   │   │   ├── floating-toolbar.tsx
+│   │   │   │   │   ├── font-size-toolbar-button.tsx
+│   │   │   │   │   ├── ghost-text.tsx
+│   │   │   │   │   ├── heading-element-static.tsx
+│   │   │   │   │   ├── heading-element.tsx
+│   │   │   │   │   ├── highlight-leaf-static.tsx
+│   │   │   │   │   ├── highlight-leaf.tsx
+│   │   │   │   │   ├── history-toolbar-button.tsx
+│   │   │   │   │   ├── hr-element-static.tsx
+│   │   │   │   │   ├── hr-element.tsx
+│   │   │   │   │   ├── image-element-static.tsx
+│   │   │   │   │   ├── image-element.tsx
+│   │   │   │   │   ├── image-preview.tsx
+│   │   │   │   │   ├── import-toolbar-button.tsx
+│   │   │   │   │   ├── indent-fire-marker.tsx
+│   │   │   │   │   ├── indent-list-toolbar-button.tsx
+│   │   │   │   │   ├── indent-todo-marker-static.tsx
+│   │   │   │   │   ├── indent-todo-marker.tsx
+│   │   │   │   │   ├── indent-todo-toolbar-button.tsx
+│   │   │   │   │   ├── indent-toolbar-button.tsx
+│   │   │   │   │   ├── inline-combobox.tsx
+│   │   │   │   │   ├── inline-equation-element-static.tsx
+│   │   │   │   │   ├── inline-equation-element.tsx
+│   │   │   │   │   ├── inline-equation-toolbar-button.tsx
+│   │   │   │   │   ├── insert-dropdown-menu-simple.tsx
+│   │   │   │   │   ├── insert-dropdown-menu.tsx
+│   │   │   │   │   ├── kbd-leaf-static.tsx
+│   │   │   │   │   ├── kbd-leaf.tsx
+│   │   │   │   │   ├── line-height-dropdown-menu.tsx
+│   │   │   │   │   ├── link-element-static.tsx
+│   │   │   │   │   ├── link-element.tsx
+│   │   │   │   │   ├── link-floating-toolbar.tsx
+│   │   │   │   │   ├── link-toolbar-button.tsx
+│   │   │   │   │   ├── mark-toolbar-button.tsx
+│   │   │   │   │   ├── media-audio-element-static.tsx
+│   │   │   │   │   ├── media-audio-element.tsx
+│   │   │   │   │   ├── media-embed-element.tsx
+│   │   │   │   │   ├── media-file-element-static.tsx
+│   │   │   │   │   ├── media-file-element.tsx
+│   │   │   │   │   ├── media-placeholder-element.tsx
+│   │   │   │   │   ├── media-popover.tsx
+│   │   │   │   │   ├── media-toolbar-button.tsx
+│   │   │   │   │   ├── media-upload-toast.tsx
+│   │   │   │   │   ├── media-video-element-static.tsx
+│   │   │   │   │   ├── media-video-element.tsx
+│   │   │   │   │   ├── mention-element-static.tsx
+│   │   │   │   │   ├── mention-element.tsx
+│   │   │   │   │   ├── mention-input-element.tsx
+│   │   │   │   │   ├── mode-dropdown-menu.tsx
+│   │   │   │   │   ├── more-dropdown-menu.tsx
+│   │   │   │   │   ├── outdent-toolbar-button.tsx
+│   │   │   │   │   ├── paragraph-element-static.tsx
+│   │   │   │   │   ├── paragraph-element.tsx
+│   │   │   │   │   ├── placeholder.tsx
+│   │   │   │   │   ├── resize-handle.tsx
+│   │   │   │   │   ├── slash-input-element.tsx
+│   │   │   │   │   ├── suggestion-leaf-static.tsx
+│   │   │   │   │   ├── suggestion-leaf.tsx
+│   │   │   │   │   ├── suggestion-line-break.tsx
+│   │   │   │   │   ├── suggestion-toolbar-button.tsx
+│   │   │   │   │   ├── table-cell-element-static.tsx
+│   │   │   │   │   ├── table-cell-element.tsx
+│   │   │   │   │   ├── table-dropdown-menu.tsx
+│   │   │   │   │   ├── table-element-static.tsx
+│   │   │   │   │   ├── table-element.tsx
+│   │   │   │   │   ├── table-icons.tsx
+│   │   │   │   │   ├── table-row-element-static.tsx
+│   │   │   │   │   ├── table-row-element.tsx
+│   │   │   │   │   ├── toc-element-static.tsx
+│   │   │   │   │   ├── toc-element.tsx
+│   │   │   │   │   ├── toggle-element-static.tsx
+│   │   │   │   │   ├── toggle-element.tsx
+│   │   │   │   │   ├── toggle-toolbar-button.tsx
+│   │   │   │   │   ├── toolbar.tsx
+│   │   │   │   │   ├── turn-into-dropdown-menu-simple.tsx
+│   │   │   │   │   ├── turn-into-dropdown-menu.tsx
+│   │   │   │   │   └── typography-toolbar-button.tsx
+│   │   │   │   ├── use-chat.ts
+│   │   │   │   ├── use-create-editor.ts
+│   │   │   │   └── use-create-rhf-editor.ts
+│   │   │   ├── enhanced-button.tsx
+│   │   │   ├── error-page.tsx
+│   │   │   ├── file-uploader.tsx
+│   │   │   ├── form
+│   │   │   │   ├── auto
+│   │   │   │   │   ├── create-typed-fields.tsx
+│   │   │   │   │   ├── field-label
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── label-tooltip.tsx
+│   │   │   │   │   │   └── required-marker.tsx
+│   │   │   │   │   ├── fields
+│   │   │   │   │   │   ├── checkbox-field.tsx
+│   │   │   │   │   │   ├── country-dropdown-field.tsx
+│   │   │   │   │   │   ├── date-picker-field.tsx
+│   │   │   │   │   │   ├── error-message.tsx
+│   │   │   │   │   │   ├── multi-checkbox-field.tsx
+│   │   │   │   │   │   ├── phone-input-field.tsx
+│   │   │   │   │   │   ├── plate-editor-field-md.tsx
+│   │   │   │   │   │   ├── plate-editor-field.tsx
+│   │   │   │   │   │   ├── radio-group-field.tsx
+│   │   │   │   │   │   ├── select-field.tsx
+│   │   │   │   │   │   ├── switch-field.tsx
+│   │   │   │   │   │   ├── tag-input-field.tsx
+│   │   │   │   │   │   ├── text-area-field.tsx
+│   │   │   │   │   │   ├── text-editor-field.tsx
+│   │   │   │   │   │   └── text-input-field.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── provider.tsx
+│   │   │   │   │   ├── submit-button.tsx
+│   │   │   │   │   ├── types.tsx
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── data.tsx
+│   │   │   │   ├── elements
+│   │   │   │   │   ├── country-dropdown
+│   │   │   │   │   │   ├── countries.ts
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── file-upload.tsx
+│   │   │   │   │   ├── form-field.tsx
+│   │   │   │   │   ├── form-select.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── minimal-tiptap
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── bubble-menu
+│   │   │   │   │   │   │   │   └── link-bubble-menu.tsx
+│   │   │   │   │   │   │   ├── image
+│   │   │   │   │   │   │   │   ├── image-edit-block.tsx
+│   │   │   │   │   │   │   │   └── image-edit-dialog.tsx
+│   │   │   │   │   │   │   ├── link
+│   │   │   │   │   │   │   │   ├── link-edit-block.tsx
+│   │   │   │   │   │   │   │   ├── link-edit-popover.tsx
+│   │   │   │   │   │   │   │   └── link-popover-block.tsx
+│   │   │   │   │   │   │   ├── measured-container.tsx
+│   │   │   │   │   │   │   ├── section
+│   │   │   │   │   │   │   │   ├── five.tsx
+│   │   │   │   │   │   │   │   ├── four.tsx
+│   │   │   │   │   │   │   │   ├── one.tsx
+│   │   │   │   │   │   │   │   ├── three.tsx
+│   │   │   │   │   │   │   │   └── two.tsx
+│   │   │   │   │   │   │   ├── shortcut-key.tsx
+│   │   │   │   │   │   │   ├── spinner.tsx
+│   │   │   │   │   │   │   ├── toolbar-button.tsx
+│   │   │   │   │   │   │   └── toolbar-section.tsx
+│   │   │   │   │   │   ├── extensions
+│   │   │   │   │   │   │   ├── code-block-lowlight
+│   │   │   │   │   │   │   │   ├── code-block-lowlight.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── color
+│   │   │   │   │   │   │   │   ├── color.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── file-handler
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── horizontal-rule
+│   │   │   │   │   │   │   │   ├── horizontal-rule.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── image
+│   │   │   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   │   │   ├── image-actions.tsx
+│   │   │   │   │   │   │   │   │   ├── image-overlay.tsx
+│   │   │   │   │   │   │   │   │   ├── image-view-block.tsx
+│   │   │   │   │   │   │   │   │   └── resize-handle.tsx
+│   │   │   │   │   │   │   │   ├── hooks
+│   │   │   │   │   │   │   │   │   ├── use-drag-resize.ts
+│   │   │   │   │   │   │   │   │   └── use-image-actions.ts
+│   │   │   │   │   │   │   │   ├── image.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── link
+│   │   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   │   └── link.ts
+│   │   │   │   │   │   │   ├── reset-marks-on-enter
+│   │   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   │   └── reset-marks-on-enter.ts
+│   │   │   │   │   │   │   ├── selection
+│   │   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   │   └── selection.ts
+│   │   │   │   │   │   │   └── unset-all-marks
+│   │   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │   │       └── unset-all-marks.ts
+│   │   │   │   │   │   ├── hooks
+│   │   │   │   │   │   │   ├── use-container-size.ts
+│   │   │   │   │   │   │   ├── use-minimal-tiptap.ts
+│   │   │   │   │   │   │   ├── use-theme.ts
+│   │   │   │   │   │   │   └── use-throttle.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── minimal-tiptap.tsx
+│   │   │   │   │   │   ├── styles
+│   │   │   │   │   │   │   ├── index.css
+│   │   │   │   │   │   │   └── partials
+│   │   │   │   │   │   │       ├── code.css
+│   │   │   │   │   │   │       ├── lists.css
+│   │   │   │   │   │   │       ├── placeholder.css
+│   │   │   │   │   │   │       ├── typography.css
+│   │   │   │   │   │   │       └── zoom.css
+│   │   │   │   │   │   ├── types.ts
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   ├── phone-input.tsx
+│   │   │   │   │   ├── simple-phone-input
+│   │   │   │   │   │   ├── combobox.tsx
+│   │   │   │   │   │   ├── helpers.ts
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   └── tag-input.tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── full-screen-error.tsx
+│   │   │   ├── full-screen-loader.tsx
+│   │   │   ├── heading-with-anchor.tsx
+│   │   │   ├── home
+│   │   │   │   ├── bg-gradient.tsx
+│   │   │   │   ├── cta-section.tsx
+│   │   │   │   ├── faq-accordion.tsx
+│   │   │   │   ├── feature-cards-2.tsx
+│   │   │   │   ├── feature-cards.tsx
+│   │   │   │   ├── hero-section.tsx
+│   │   │   │   ├── pricing-cards.tsx
+│   │   │   │   ├── testimonial-cards.tsx
+│   │   │   │   └── timeline.tsx
+│   │   │   ├── infinite-scroll.tsx
+│   │   │   ├── interactive-timeline.tsx
+│   │   │   ├── layout
+│   │   │   │   ├── background-boxes.tsx
+│   │   │   │   ├── banner.tsx
+│   │   │   │   ├── flickering-grid.tsx
+│   │   │   │   ├── footer.tsx
+│   │   │   │   ├── interactive-grid-pattern.tsx
+│   │   │   │   ├── language-switcher.tsx
+│   │   │   │   ├── mode-toggle.tsx
+│   │   │   │   ├── navbar.tsx
+│   │   │   │   └── theme-toggle.tsx
+│   │   │   ├── legal
+│   │   │   │   └── page-layout.tsx
+│   │   │   ├── loader.tsx
+│   │   │   ├── loading-button.tsx
+│   │   │   ├── loading-spinner.tsx
+│   │   │   ├── mode-toggle.tsx
+│   │   │   ├── multiple-selector.tsx
+│   │   │   ├── page-with-status-handling.tsx
+│   │   │   ├── ratings.tsx
+│   │   │   ├── spinner.tsx
+│   │   │   ├── suspense.tsx
+│   │   │   ├── ui
+│   │   │   │   ├── accordion.tsx
+│   │   │   │   ├── alert-dialog.tsx
+│   │   │   │   ├── alert.tsx
+│   │   │   │   ├── aspect-ratio.tsx
+│   │   │   │   ├── avatar.tsx
+│   │   │   │   ├── badge.tsx
+│   │   │   │   ├── breadcrumb.tsx
+│   │   │   │   ├── button-group.tsx
+│   │   │   │   ├── button.tsx
+│   │   │   │   ├── calendar.tsx
+│   │   │   │   ├── card.tsx
+│   │   │   │   ├── carousel.tsx
+│   │   │   │   ├── chart.tsx
+│   │   │   │   ├── checkbox.tsx
+│   │   │   │   ├── collapsible.tsx
+│   │   │   │   ├── command.tsx
+│   │   │   │   ├── context-menu.tsx
+│   │   │   │   ├── dialog.tsx
+│   │   │   │   ├── drawer.tsx
+│   │   │   │   ├── dropdown-menu.tsx
+│   │   │   │   ├── empty.tsx
+│   │   │   │   ├── field.tsx
+│   │   │   │   ├── form.tsx
+│   │   │   │   ├── hover-card.tsx
+│   │   │   │   ├── input-group.tsx
+│   │   │   │   ├── input-otp.tsx
+│   │   │   │   ├── input.tsx
+│   │   │   │   ├── item.tsx
+│   │   │   │   ├── kbd.tsx
+│   │   │   │   ├── label.tsx
+│   │   │   │   ├── menubar.tsx
+│   │   │   │   ├── navigation-menu.tsx
+│   │   │   │   ├── pagination.tsx
+│   │   │   │   ├── popover.tsx
+│   │   │   │   ├── progress.tsx
+│   │   │   │   ├── radio-group.tsx
+│   │   │   │   ├── resizable.tsx
+│   │   │   │   ├── scroll-area.tsx
+│   │   │   │   ├── select.tsx
+│   │   │   │   ├── separator.tsx
+│   │   │   │   ├── sheet.tsx
+│   │   │   │   ├── sidebar.tsx
+│   │   │   │   ├── skeleton.tsx
+│   │   │   │   ├── slider.tsx
+│   │   │   │   ├── sonner.tsx
+│   │   │   │   ├── spinner.tsx
+│   │   │   │   ├── switch.tsx
+│   │   │   │   ├── table.tsx
+│   │   │   │   ├── tabs.tsx
+│   │   │   │   ├── textarea.tsx
+│   │   │   │   ├── toast.tsx
+│   │   │   │   ├── toggle-group.tsx
+│   │   │   │   ├── toggle.tsx
+│   │   │   │   ├── tooltip.tsx
+│   │   │   │   └── use-toast.ts
+│   │   │   └── virtualized.tsx
+│   │   ├── components.json
+│   │   ├── hooks
+│   │   │   ├── use-click-outside.ts
+│   │   │   ├── use-color-scheme.ts
+│   │   │   ├── use-debounce.ts
+│   │   │   ├── use-double-check.ts
+│   │   │   ├── use-file-upload.ts
+│   │   │   ├── use-is-touch-device.ts
+│   │   │   ├── use-media-query.tsx
+│   │   │   ├── use-mobile.ts
+│   │   │   ├── use-mobile.tsx
+│   │   │   ├── use-mounted.ts
+│   │   │   ├── use-toast.ts
+│   │   │   ├── use-update-effect.ts
+│   │   │   ├── use-upload-file.ts
+│   │   │   └── utils.tsx
+│   │   ├── index.tsx
+│   │   ├── layouts
+│   │   │   └── root.layout.tsx
+│   │   ├── lib
+│   │   │   ├── components.tsx
+│   │   │   ├── debounce.ts
+│   │   │   ├── errors.ts
+│   │   │   ├── fonts.ts
+│   │   │   ├── index.ts
+│   │   │   ├── uploadthing.ts
+│   │   │   └── utils.ts
+│   │   ├── package.json
+│   │   ├── postcss.config.mjs
+│   │   ├── provider
+│   │   │   ├── extension.tsx
+│   │   │   ├── nextjs.tsx
+│   │   │   ├── providers
+│   │   │   │   └── theme.tsx
+│   │   │   └── react.tsx
+│   │   ├── styles
+│   │   │   └── globals.css
+│   │   └── tsconfig.json
+│   ├── email
+│   │   ├── index.ts
+│   │   ├── keys.ts
+│   │   ├── package.json
+│   │   ├── templates
+│   │   │   └── contact.tsx
+│   │   └── tsconfig.json
+│   ├── errors
+│   │   ├── keys.ts
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   ├── src
+│   │   │   ├── __snapshots__
+│   │   │   │   └── system.spec.ts.snap
+│   │   │   ├── base.ts
+│   │   │   ├── index.ts
+│   │   │   ├── parser
+│   │   │   │   ├── base.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── parser-verification-error.spec.ts
+│   │   │   │   ├── parser-verification-error.ts
+│   │   │   │   ├── parsing-error.spec.ts
+│   │   │   │   └── parsing-error.ts
+│   │   │   ├── registry.ts
+│   │   │   ├── requests
+│   │   │   │   ├── bad-request.ts
+│   │   │   │   ├── base.ts
+│   │   │   │   ├── conflict.ts
+│   │   │   │   ├── forbidden.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── internal-server.ts
+│   │   │   │   ├── not-found.ts
+│   │   │   │   ├── requests.spec.ts
+│   │   │   │   ├── timeout.ts
+│   │   │   │   ├── too-many-requests.ts
+│   │   │   │   └── unauthorized.ts
+│   │   │   ├── system.spec.ts
+│   │   │   └── utils.ts
+│   │   ├── tsconfig.json
+│   │   └── vitest.config.mts
+│   ├── feature-flags
+│   │   ├── access.ts
+│   │   ├── components
+│   │   │   └── toolbar.tsx
+│   │   ├── index.ts
+│   │   ├── keys.ts
+│   │   ├── lib
+│   │   │   ├── create-flag.ts
+│   │   │   └── toolbar.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── i18n
+│   │   ├── babel.config.js
+│   │   ├── index.ts
+│   │   ├── languine.json
+│   │   ├── languine.lock
+│   │   ├── locales
+│   │   │   ├── de.json
+│   │   │   ├── en.json
+│   │   │   ├── es.json
+│   │   │   ├── fr.json
+│   │   │   ├── pt.json
+│   │   │   ├── sw.json
+│   │   │   └── zh.json
+│   │   ├── middleware.ts
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── config.ts
+│   │   │   ├── i18next.ts
+│   │   │   ├── navigation.ts
+│   │   │   ├── provider.tsx
+│   │   │   ├── resources.ts
+│   │   │   ├── router
+│   │   │   │   ├── client
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── useCurrentLocale.ts
+│   │   │   │   ├── i18nRouter.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── localeDetector.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── validateConfig.ts
+│   │   │   └── routing.ts
+│   │   └── tsconfig.json
+│   ├── jobs
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── index.ts
+│   │   │   └── libs
+│   │   │       └── trigger
+│   │   │           ├── example.ts
+│   │   │           └── index.ts
+│   │   └── tsconfig.json
+│   ├── kv
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── index.ts
+│   │   │   └── libs
+│   │   │       └── upstash
+│   │   │           ├── index.ts
+│   │   │           └── redis.ts
+│   │   └── tsconfig.json
+│   ├── next-config
+│   │   ├── index.ts
+│   │   ├── keys.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── notifications
+│   │   ├── components
+│   │   │   ├── feed.tsx
+│   │   │   ├── preferences-center.tsx
+│   │   │   ├── provider.tsx
+│   │   │   └── trigger.tsx
+│   │   ├── index.ts
+│   │   ├── keys.ts
+│   │   ├── package.json
+│   │   ├── styles.css
+│   │   └── tsconfig.json
+│   ├── observability
+│   │   ├── client.ts
+│   │   ├── edge.ts
+│   │   ├── error.ts
+│   │   ├── instrumentation.ts
+│   │   ├── keys.ts
+│   │   ├── log.ts
+│   │   ├── logger.ts
+│   │   ├── Logtail.md
+│   │   ├── next-config.ts
+│   │   ├── package.json
+│   │   ├── server.ts
+│   │   ├── status
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── tsconfig.json
+│   │   └── types.ts
+│   ├── payments
+│   │   ├── ai.ts
+│   │   ├── index.ts
+│   │   ├── keys.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── rate-limit
+│   │   ├── index.ts
+│   │   ├── keys.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── release
+│   │   ├── index.cjs
+│   │   └── package.json
+│   ├── security
+│   │   ├── index.ts
+│   │   ├── keys.ts
+│   │   ├── package.json
+│   │   ├── proxy.ts
+│   │   └── tsconfig.json
+│   ├── seo
+│   │   ├── json-ld.tsx
+│   │   ├── metadata.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── storage
+│   │   ├── client.ts
+│   │   ├── index.ts
+│   │   ├── keys.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── testing
+│   │   ├── dummy-file.ts
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── types
+│   │   ├── package.json
+│   │   ├── release.config.cjs
+│   │   ├── src
+│   │   │   ├── common.ts
+│   │   │   ├── components.ts
+│   │   │   ├── domain.ts
+│   │   │   ├── helpers.ts
+│   │   │   ├── index.ts
+│   │   │   ├── navigation.ts
+│   │   │   └── users.ts
+│   │   └── tsconfig.json
+│   ├── typescript-config
+│   │   ├── base.json
+│   │   ├── nextjs.json
+│   │   ├── package.json
+│   │   ├── react-library.json
+│   │   └── tsconfig.json
+│   ├── web
+│   │   ├── keys.ts
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── assets
+│   │   │   │   ├── brands
+│   │   │   │   │   ├── amazon.svg
+│   │   │   │   │   ├── apple.svg
+│   │   │   │   │   ├── google.svg
+│   │   │   │   │   ├── lenovo.svg
+│   │   │   │   │   ├── linkedin.svg
+│   │   │   │   │   ├── meta.svg
+│   │   │   │   │   ├── microsoft.svg
+│   │   │   │   │   ├── netflix.svg
+│   │   │   │   │   ├── paypal.svg
+│   │   │   │   │   ├── samsung.svg
+│   │   │   │   │   ├── spotify.svg
+│   │   │   │   │   ├── tesla.svg
+│   │   │   │   │   ├── uber.svg
+│   │   │   │   │   └── vercel.svg
+│   │   │   │   └── logo.svg
+│   │   │   ├── core
+│   │   │   │   ├── api
+│   │   │   │   │   ├── config
+│   │   │   │   │   │   ├── axios.ts
+│   │   │   │   │   │   ├── client.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── convex
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── provider.tsx
+│   │   │   │   │   ├── react-query
+│   │   │   │   │   │   ├── client.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── resources
+│   │   │   │   │       ├── countries
+│   │   │   │   │       │   ├── endpoints
+│   │   │   │   │       │   │   ├── arfica.ts
+│   │   │   │   │       │   │   ├── index.ts
+│   │   │   │   │       │   │   ├── README.md
+│   │   │   │   │       │   │   └── types.ts
+│   │   │   │   │       │   ├── hooks
+│   │   │   │   │       │   │   └── index.ts
+│   │   │   │   │       │   ├── index.ts
+│   │   │   │   │       │   └── utils.ts
+│   │   │   │   │       ├── dragon-ball
+│   │   │   │   │       │   ├── endpoints
+│   │   │   │   │       │   │   ├── characters.ts
+│   │   │   │   │       │   │   ├── characters.types.ts
+│   │   │   │   │       │   │   ├── index.ts
+│   │   │   │   │       │   │   ├── planets.ts
+│   │   │   │   │       │   │   ├── planets.types.ts
+│   │   │   │   │       │   │   ├── README.md
+│   │   │   │   │       │   │   └── types.ts
+│   │   │   │   │       │   ├── hooks
+│   │   │   │   │       │   │   ├── index.ts
+│   │   │   │   │       │   │   ├── use-add-character.ts
+│   │   │   │   │       │   │   ├── use-get-character.ts
+│   │   │   │   │       │   │   ├── use-get-characters.ts
+│   │   │   │   │       │   │   ├── use-get-planet.tsx
+│   │   │   │   │       │   │   └── use-get-planets.tsx
+│   │   │   │   │       │   └── index.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── constants
+│   │   │   │   │   ├── assets.ts
+│   │   │   │   │   ├── config.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── storage.ts
+│   │   │   │   │   └── timings.ts
+│   │   │   │   ├── hooks
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── use-did-mount-effect.tsx
+│   │   │   │   │   ├── use-user.tsx
+│   │   │   │   │   └── utils.tsx
+│   │   │   │   ├── providers
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── README.md
+│   │   │   │   ├── services
+│   │   │   │   │   └── bootstrap.ts
+│   │   │   │   ├── storage
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── local-storage
+│   │   │   │   │   │   ├── helpers.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── items
+│   │   │   │   │   │       ├── app-locale.ts
+│   │   │   │   │   │       ├── app.ts
+│   │   │   │   │   │       ├── dbz.ts
+│   │   │   │   │   │       ├── feature-flag.ts
+│   │   │   │   │   │       ├── query-client.ts
+│   │   │   │   │   │       ├── session-token.ts
+│   │   │   │   │   │       └── store.ts
+│   │   │   │   │   └── session-storage.ts
+│   │   │   │   ├── stores
+│   │   │   │   │   ├── app.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── testing
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── setup.ts
+│   │   │   │   │   └── utils.tsx
+│   │   │   │   └── utils
+│   │   │   │       ├── errors.ts
+│   │   │   │       ├── helpers.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       ├── README.md
+│   │   │   │       ├── sleep.ts
+│   │   │   │       └── strings.ts
+│   │   │   ├── features
+│   │   │   │   ├── dashboard
+│   │   │   │   │   ├── client-page-layout.tsx
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── lib
+│   │   │   │   │   │   ├── charts.ts
+│   │   │   │   │   │   └── kpi.ts
+│   │   │   │   │   ├── notifications-page.tsx
+│   │   │   │   │   ├── page.tsx
+│   │   │   │   │   ├── styles
+│   │   │   │   │   │   └── notifications.css
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── fixtures
+│   │   │   │   │   ├── charts.ts
+│   │   │   │   │   └── example.json
+│   │   │   │   ├── landing
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── brands
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── logos
+│   │   │   │   │   │   │   │   ├── amazon.tsx
+│   │   │   │   │   │   │   │   ├── apple.tsx
+│   │   │   │   │   │   │   │   ├── google.tsx
+│   │   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   │   ├── lenovo.tsx
+│   │   │   │   │   │   │   │   ├── linkedin.tsx
+│   │   │   │   │   │   │   │   ├── meta.tsx
+│   │   │   │   │   │   │   │   ├── microsoft.tsx
+│   │   │   │   │   │   │   │   ├── netflix.tsx
+│   │   │   │   │   │   │   │   ├── paypal.tsx
+│   │   │   │   │   │   │   │   ├── samsung.tsx
+│   │   │   │   │   │   │   │   ├── spotify.tsx
+│   │   │   │   │   │   │   │   ├── tesla.tsx
+│   │   │   │   │   │   │   │   ├── uber.tsx
+│   │   │   │   │   │   │   │   └── vercel.tsx
+│   │   │   │   │   │   │   └── types.tsx
+│   │   │   │   │   │   ├── cta.tsx
+│   │   │   │   │   │   ├── faq.tsx
+│   │   │   │   │   │   ├── features.tsx
+│   │   │   │   │   │   ├── footer.tsx
+│   │   │   │   │   │   ├── hero.tsx
+│   │   │   │   │   │   ├── how-it-works-details.tsx
+│   │   │   │   │   │   ├── how-it-works.tsx
+│   │   │   │   │   │   ├── navbar.tsx
+│   │   │   │   │   │   ├── pricing.tsx
+│   │   │   │   │   │   └── testimonials.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── onboarding
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── README.md
+│   │   │   │   └── settings
+│   │   │   │       ├── components
+│   │   │   │       │   └── index.ts
+│   │   │   │       └── pages
+│   │   │   │           ├── account.tsx
+│   │   │   │           ├── ai-settings.tsx
+│   │   │   │           ├── general.tsx
+│   │   │   │           ├── index.ts
+│   │   │   │           └── styles.css
+│   │   │   └── index.ts
+│   │   └── tsconfig.json
+│   └── webhooks
+│       ├── index.ts
+│       ├── keys.ts
+│       ├── lib
+│       │   └── svix.ts
+│       ├── package.json
+│       └── tsconfig.json
+├── README.md
+├── scripts
+│   ├── index.ts
+│   ├── initialize.ts
+│   ├── rename-project.mjs
+│   ├── update.ts
+│   └── utils.ts
+├── tree.txt
+├── tsconfig.json
+├── tsup.config.ts
+├── turbo
+│   └── generators
+│       ├── config.ts
+│       ├── example.ts
+│       ├── init.ts
+│       ├── package.json
+│       ├── templates
+│       │   ├── init
+│       │   │   ├── keys.ts.hbs
+│       │   │   ├── package.json.hbs
+│       │   │   ├── src
+│       │   │   │   └── index.ts.hbs
+│       │   │   └── tsconfig.json.hbs
+│       │   └── turborepo-generators.hbs
+│       └── utils
+│           ├── actions.ts
+│           └── prompts.ts
+└── turbo.json
+
+293 directories, 1190 files

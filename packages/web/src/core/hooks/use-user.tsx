@@ -1,7 +1,7 @@
 import { useConvexAuth } from 'convex/react';
 import { useQuery } from 'convex-helpers/react/cache/hooks';
 
-import { api } from '@repo/convex/api';
+import { api } from '@repo/backend/api';
 
 export function useCurrentUser() {
   const { isLoading, isAuthenticated } = useConvexAuth();

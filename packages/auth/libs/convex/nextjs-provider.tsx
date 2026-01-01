@@ -2,9 +2,9 @@
 
 import type { ReactNode } from 'react';
 
-import { ConvexQueryCacheProvider } from 'convex-helpers/react/cache/provider';
 import { ConvexReactClient } from 'convex/react';
 import { ConvexProviderWithClerk } from 'convex/react-clerk';
+import { ConvexQueryCacheProvider } from 'convex-helpers/react/cache/provider';
 
 import { useAuth } from '@clerk/nextjs';
 

@@ -13,15 +13,15 @@
     "dev:chrome": "wxt",
     "dev:firefox": "wxt -b firefox",
     "format": "biome format --write .",
+    "postinstall": "wxt prepare",
     "lint": "biome check ./src",
     "lint:fix": "biome check ./src --write",
     "preview:envars": "bunx @envin/cli@latest dev",
-    "postinstall": "wxt prepare",
     "test": "vitest",
+    "test:coverage": "vitest run --coverage --coverage.reporter=text",
+    "test:debug": "vitest --inspect-brk --no-file-parallelism",
     "test:run": "vitest run",
     "test:ui": "vitest --ui --watch",
-    "test:debug": "vitest --inspect-brk --no-file-parallelism",
-    "test:coverage": "vitest run --coverage --coverage.reporter=text",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {

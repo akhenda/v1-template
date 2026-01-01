@@ -176,7 +176,12 @@
   },
   "overrides": [
     {
-      "includes": ["packages/convex/**/*"],
+      "includes": [
+        "apps/backend/**/*",
+        "apps/convex/**/*",
+        "packages/backend/**/*",
+        "packages/convex/**/*"
+      ],
       "linter": {
         "rules": {
           "style": {

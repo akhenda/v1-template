@@ -625,7 +625,7 @@ packages/ai/
 
 This package integrates with other workspace packages:
 
-- **`@repo/convex`**: Database schema for ATS results and suggestions
+- **`@repo/backend`**: Database schema for ATS results and suggestions
 - **`@repo/web`**: Resume engine and JSON Resume schema
 - **`@repo/types`**: Shared type definitions for plans and user data
 - **`@repo/observability`**: Logging and error tracking
