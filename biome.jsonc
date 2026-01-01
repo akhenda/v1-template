@@ -144,6 +144,12 @@
     ],
     "jsxRuntime": "reactClassic"
   },
+  "html": {
+    "formatter": {
+      "lineWidth": 80,
+      "selfCloseVoidElements": "always"
+    }
+  },
   "css": {
     "formatter": {
       "lineWidth": 80,

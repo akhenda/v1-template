@@ -10,10 +10,9 @@ export const ERROR_REGISTRY = {
   InternalServerError: { code: 500 },
   RequestTimeoutError: { code: 408 },
 
-  // ATS/Domain-Specific Errors
-  ATSError: { code: 500 },
-  InvalidATSJSONPointerError: { code: 400 },
-  InvalidATSSuggestionValueError: { code: 400 },
+  // Parser Errors
+  ParsingError: { code: 500 },
+  ParserVerificationError: { code: 500 },
 } as const;
 
 export type ErrorName = keyof typeof ERROR_REGISTRY;

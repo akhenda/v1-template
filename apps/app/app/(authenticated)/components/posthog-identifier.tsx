@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 import { useAnalytics } from '@repo/analytics/client';
-import { useUser } from '@repo/auth/client';
+import { useUser } from '@repo/auth/nextjs';
 
 export const PostHogIdentifier = () => {
   const { user } = useUser();

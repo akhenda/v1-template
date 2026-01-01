@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 import { createNEMO } from '@rescale/nemo';
 
-import { authMiddleware } from '@repo/auth/proxy';
+import { authMiddleware } from '@repo/auth/nextjs/proxy';
 import { i18nMiddleware } from '@repo/i18n/middleware';
 import { parseError } from '@repo/observability/error';
 import { secure } from '@repo/security';

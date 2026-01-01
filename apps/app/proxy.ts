@@ -1,6 +1,6 @@
 import type { NextProxy } from 'next/server';
 
-import { authMiddleware } from '@repo/auth/proxy';
+import { authMiddleware } from '@repo/auth/nextjs/proxy';
 import {
   noseconeOptions,
   noseconeOptionsWithToolbar,

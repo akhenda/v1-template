@@ -6,7 +6,12 @@ import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import { Monitor, Moon, Sun } from 'lucide-react';
 
 import { cn } from '../../lib/utils';
-import { gradients, spacings, supportedThemes, useAppearanceContext } from '../../providers/theme';
+import {
+  gradients,
+  spacings,
+  supportedThemes,
+  useAppearanceContext,
+} from '../../provider/providers/theme';
 import { Button } from '../ui/button';
 import {
   DropdownMenu,

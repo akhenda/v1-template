@@ -10,7 +10,7 @@ const Dashboard = dynamic(() =>
 );
 
 const title = 'Dashboard';
-const description = 'Welcome, Stranger!';
+const description = "Here's an overview of...";
 export const metadata: Metadata = createMetadata({ title, description });
 
 export default Dashboard;

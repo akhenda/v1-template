@@ -9,10 +9,10 @@ export const keys = () =>
     },
     client: {
       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().startsWith('pk_').optional(),
-      NEXT_PUBLIC_CLERK_SIGN_IN_URL: z.string().startsWith('/'),
-      NEXT_PUBLIC_CLERK_SIGN_UP_URL: z.string().startsWith('/'),
-      NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL: z.string().startsWith('/'),
-      NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: z.string().startsWith('/'),
+      NEXT_PUBLIC_CLERK_SIGN_IN_URL: z.string().startsWith('/').default('/'),
+      NEXT_PUBLIC_CLERK_SIGN_UP_URL: z.string().startsWith('/').default('/'),
+      NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL: z.string().startsWith('/').default('/'),
+      NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: z.string().startsWith('/').default('/'),
       NEXT_PUBLIC_CONVEX_URL: z.url().nonempty(),
     },
     runtimeEnv: {
