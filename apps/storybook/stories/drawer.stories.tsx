@@ -43,9 +43,9 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-};
+} satisfies Meta<typeof Drawer>;
 
-export default meta satisfies Meta<typeof Drawer>;
+export default meta;
 
 type Story = StoryObj<typeof meta>;
 

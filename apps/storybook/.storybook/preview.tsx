@@ -3,7 +3,7 @@ import type { Preview } from '@storybook/react';
 
 import { Toaster } from '@repo/design-system/components/ui/sonner';
 import { TooltipProvider } from '@repo/design-system/components/ui/tooltip';
-import { ThemeProvider } from '@repo/design-system/providers/theme';
+import { ThemeProvider } from '@repo/design-system/provider/providers/theme';
 
 import '@repo/design-system/styles/globals.css';
 

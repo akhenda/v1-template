@@ -42,9 +42,9 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-};
+} satisfies Meta<typeof AlertDialog>;
 
-export default meta satisfies Meta<typeof AlertDialog>;
+export default meta;
 
 type Story = StoryObj<typeof meta>;
 
