@@ -1,4 +1,4 @@
-@import "@repo/web-design-system/styles/globals.css";
+@import "@repo/web-design-system/globals.css";
 
 .shiki {
   background-color: var(--shiki-light-bg);

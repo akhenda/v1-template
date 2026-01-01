@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "dev": "npx drizzle-kit studio --config=../../packages/database/drizzle.config.ts"
+    "dev": "npx drizzle-kit studio --config=../../packages/modules/database/drizzle.config.ts"
   },
   "devDependencies": {
     "drizzle-kit": "0.30.6"

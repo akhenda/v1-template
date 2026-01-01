@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { Bot } from 'lucide-react';
 
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@repo/auth/extension';
-import { AppearanceToggle } from '@repo/web-design-system/components/layout/theme-toggle';
+import { AppearanceToggle } from '@repo/web-design-system/components/shared/layout/theme-toggle';
 import { Button } from '@repo/web-design-system/components/ui/button';
 
 export const Header = () => (

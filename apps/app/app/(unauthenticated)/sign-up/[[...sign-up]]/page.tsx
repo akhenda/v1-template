@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import { SignUp } from '@repo/auth/nextjs';
 import { createMetadata } from '@repo/seo/metadata';
-import { Loader } from '@repo/web-design-system/components/loader';
+import { Loader } from '@repo/web-design-system/components/shared/loader';
 
 const title = 'Create an account';
 const description = 'Enter your details to get started.';

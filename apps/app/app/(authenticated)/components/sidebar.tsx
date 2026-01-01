@@ -24,7 +24,7 @@ import {
 
 import { OrganizationSwitcher, UserButton } from '@repo/auth/nextjs';
 import { NotificationsTrigger } from '@repo/notifications/components/trigger';
-import { ModeToggle } from '@repo/web-design-system/components/mode-toggle';
+import { ModeToggle } from '@repo/web-design-system/components/shared/mode-toggle';
 import { Button } from '@repo/web-design-system/components/ui/button';
 import {
   Collapsible,

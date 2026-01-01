@@ -5,7 +5,7 @@ import { Toaster } from '@repo/web-design-system/components/ui/sonner';
 import { TooltipProvider } from '@repo/web-design-system/components/ui/tooltip';
 import { ThemeProvider } from '@repo/web-design-system/provider/providers/theme';
 
-import '@repo/web-design-system/styles/globals.css';
+import '@repo/web-design-system/globals.css';
 
 const preview: Preview = {
   parameters: {

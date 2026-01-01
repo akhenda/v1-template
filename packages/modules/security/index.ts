@@ -3,7 +3,7 @@ import arcjet, { detectBot, request, shield } from '@arcjet/next';
 
 import { logger } from '@repo/observability/logger';
 
-import { keys } from './keys.js';
+import { keys } from './keys';
 
 const arcjetKey = keys().ARCJET_KEY;
 

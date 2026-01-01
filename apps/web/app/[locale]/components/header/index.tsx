@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 import { Menu, MoveRight, X } from 'lucide-react';
 
-import { ModeToggle } from '@repo/web-design-system/components/layout/mode-toggle';
+import { ModeToggle } from '@repo/web-design-system/components/shared/layout/mode-toggle';
 import { Button } from '@repo/web-design-system/components/ui/button';
 import {
   NavigationMenu,

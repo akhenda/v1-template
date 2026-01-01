@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 
-import { FlickeringGrid } from '@repo/web-design-system/components/layout/flickering-grid';
-import { ModeToggle } from '@repo/web-design-system/components/layout/mode-toggle';
+import { FlickeringGrid } from '@repo/web-design-system/components/shared/layout/flickering-grid';
+import { ModeToggle } from '@repo/web-design-system/components/shared/layout/mode-toggle';
 
 import './auth.css';
 

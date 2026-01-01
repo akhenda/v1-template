@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "email build --dir ../../packages/email/templates",
+    "build": "email build --dir ../../packages/modules/email/templates",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "dev": "email dev --port 3003 --dir ../../packages/email/templates",
-    "export": "email export --dir ../../packages/email/templates",
+    "dev": "email dev --port 3003 --dir ../../packages/modules/email/templates",
+    "export": "email export --dir ../../packages/modules/email/templates",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {

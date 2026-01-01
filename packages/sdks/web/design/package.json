@@ -4,20 +4,18 @@
   "private": true,
   "exports": {
     ".": "./src/index.tsx",
-    "./components/*": [
-      "./src/components/*.ts",
-      "./src/components/*.tsx",
-      "./src/components/shared/*.tsx"
-    ],
+    "./components/*": "./src/components/*.tsx",
+    "./components/ui/*": "./src/components/ui/*.tsx",
+    "./components/shared/*": "./src/components/shared/*.tsx",
+    "./components/libs/*": "./src/components/libs/*.ts",
     "./hooks/*": "./src/hooks/*.ts",
     "./layouts/*": "./src/layouts/*.tsx",
-    "./lib/*": [
-      "./src/lib/*.ts",
-      "./src/lib/*.tsx"
-    ],
+    "./lib/*": "./src/lib/*.ts",
+    "./lib/components/*": "./src/lib/*.tsx",
     "./provider/*": "./src/provider/*.tsx",
     "./styles/*": "./src/styles/*.css",
-    "./globals.css": "./src/styles/globals.css"
+    "./globals.css": "./src/styles/globals.css",
+    "./postcss.config.mjs": "./postcss.config.mjs"
   },
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",
