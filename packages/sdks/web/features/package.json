@@ -21,7 +21,7 @@
     "@clerk/nextjs": "6.36.0",
     "@repo/auth": "workspace:*",
     "@repo/cms": "workspace:*",
-    "@repo/email": "workspace:*",
+    "@repo/emails": "workspace:*",
     "@repo/feature-flags": "workspace:*",
     "@repo/next-config": "workspace:*",
     "@repo/notifications": "workspace:*",

@@ -2,7 +2,7 @@ import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
 
 import { keys as cms } from '@repo/cms/keys';
-import { keys as email } from '@repo/email/keys';
+import { keys as email } from '@repo/emails/keys';
 import { keys as flags } from '@repo/feature-flags/keys';
 import { keys as core } from '@repo/next-config/keys';
 import { keys as observability } from '@repo/observability/keys';

@@ -2,8 +2,8 @@
 
 import { headers } from 'next/headers';
 
-import { resend } from '@repo/email';
-import { ContactTemplate } from '@repo/email/templates/contact';
+import { resend } from '@repo/emails';
+import { ContactTemplate } from '@repo/emails/templates/contact';
 import { parseError } from '@repo/observability/error';
 import { createRateLimiter, slidingWindow } from '@repo/rate-limit';
 

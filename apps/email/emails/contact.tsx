@@ -1,4 +1,4 @@
-import { ContactTemplate } from '@repo/email/templates/contact';
+import { ContactTemplate } from '@repo/emails/templates/contact';
 
 const ExampleContactEmail = () => (
   <ContactTemplate

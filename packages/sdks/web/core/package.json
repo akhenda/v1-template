@@ -20,7 +20,7 @@
     "@repo/backend": "workspace:*",
     "@repo/cms": "workspace:*",
     "@repo/date": "workspace:*",
-    "@repo/email": "workspace:*",
+    "@repo/emails": "workspace:*",
     "@repo/feature-flags": "workspace:*",
     "@repo/next-config": "workspace:*",
     "@repo/observability": "workspace:*",
