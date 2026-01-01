@@ -1,8 +1,12 @@
 'use client';
 
 import { useOthers, useSelf } from '@repo/collaboration/hooks';
-import { Avatar, AvatarFallback, AvatarImage } from '@repo/design-system/components/ui/avatar';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@repo/design-system/components/ui/tooltip';
+import { Avatar, AvatarFallback, AvatarImage } from '@repo/web-design-system/components/ui/avatar';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@repo/web-design-system/components/ui/tooltip';
 
 type PresenceAvatarProps = {
   info?: Liveblocks['UserMeta']['info'];

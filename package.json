@@ -11,7 +11,11 @@
   ],
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/modules/*",
+    "packages/sdks/extension/*",
+    "packages/sdks/mobile/*",
+    "packages/sdks/web/*",
+    "packages/tooling/*"
   ],
   "scripts": {
     "analyze": "turbo analyze",

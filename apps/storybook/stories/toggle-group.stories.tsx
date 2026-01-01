@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Bold, Italic, Underline } from 'lucide-react';
 
-import { ToggleGroup, ToggleGroupItem } from '@repo/design-system/components/ui/toggle-group';
+import { ToggleGroup, ToggleGroupItem } from '@repo/web-design-system/components/ui/toggle-group';
 
 type Args = {
   variant?: 'default' | 'outline' | null;

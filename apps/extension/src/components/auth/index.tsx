@@ -7,8 +7,8 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@repo/design-system/components/ui/card';
-import { Separator as SeparatorUI } from '@repo/design-system/components/ui/separator';
+} from '@repo/web-design-system/components/ui/card';
+import { Separator as SeparatorUI } from '@repo/web-design-system/components/ui/separator';
 
 import { SignIn } from './sign-in';
 import { SignUp } from './sign-up';

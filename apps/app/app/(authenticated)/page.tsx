@@ -3,10 +3,10 @@ import dynamic from 'next/dynamic';
 
 import { createMetadata } from '@repo/seo/metadata';
 
-// import { Dashboard } from '@repo/web-sdk/features/dashboard/index';
+// import { Dashboard } from '@repo/web-features/features/dashboard/index';
 
 const Dashboard = dynamic(() =>
-  import('../../../../packages/web-sdk/src/features/dashboard/index').then((mod) => mod.Dashboard),
+  import('../../../../packages/sdks/web/features/src/dashboard/index').then((mod) => mod.Dashboard),
 );
 
 const title = 'Dashboard';

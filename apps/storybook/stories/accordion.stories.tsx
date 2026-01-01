@@ -5,7 +5,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@repo/design-system/components/ui/accordion';
+} from '@repo/web-design-system/components/ui/accordion';
 
 type Args = {
   variant?: 'default' | 'outline' | null;

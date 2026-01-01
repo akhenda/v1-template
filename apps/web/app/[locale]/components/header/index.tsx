@@ -8,8 +8,8 @@ import Link from 'next/link';
 
 import { Menu, MoveRight, X } from 'lucide-react';
 
-import { ModeToggle } from '@repo/design-system/components/layout/mode-toggle';
-import { Button } from '@repo/design-system/components/ui/button';
+import { ModeToggle } from '@repo/web-design-system/components/layout/mode-toggle';
+import { Button } from '@repo/web-design-system/components/ui/button';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,7 +17,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from '@repo/design-system/components/ui/navigation-menu';
+} from '@repo/web-design-system/components/ui/navigation-menu';
 
 import { env } from '@/env';
 

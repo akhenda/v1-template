@@ -5,7 +5,7 @@ import { browser } from 'wxt/browser';
 
 import '~/assets/styles/globals.css';
 
-import { DesignSystemProvider } from '@repo/design-system/provider/extension';
+import { DesignSystemProvider } from '@repo/web-design-system/provider/extension';
 
 import { ErrorBoundary } from '~/components/common/error-boundary';
 import { Suspense } from '~/components/common/suspense';

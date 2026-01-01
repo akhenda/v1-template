@@ -249,7 +249,7 @@ bun db:migrate
 
 ```typescript
 // Use cn() utility for conditional classes
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from '@repo/web-design-system/lib/utils';
 
 const buttonClass = cn(
   'btn inline-flex items-center justify-center rounded-md',

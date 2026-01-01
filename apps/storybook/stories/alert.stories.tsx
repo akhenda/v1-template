@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { AlertCircle } from 'lucide-react';
 
-import { Alert, AlertDescription, AlertTitle } from '@repo/design-system/components/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from '@repo/web-design-system/components/ui/alert';
 
 /**
  * Displays a callout for user attention.

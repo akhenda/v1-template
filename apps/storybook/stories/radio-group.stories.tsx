@@ -1,6 +1,6 @@
 import type { Args, Meta, StoryObj } from '@storybook/react';
 
-import { RadioGroup, RadioGroupItem } from '@repo/design-system/components/ui/radio-group';
+import { RadioGroup, RadioGroupItem } from '@repo/web-design-system/components/ui/radio-group';
 
 /**
  * A set of checkable buttons—known as radio buttons—where no more than one of

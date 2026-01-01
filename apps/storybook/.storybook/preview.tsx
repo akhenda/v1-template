@@ -1,11 +1,11 @@
 import { withThemeByClassName } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react';
 
-import { Toaster } from '@repo/design-system/components/ui/sonner';
-import { TooltipProvider } from '@repo/design-system/components/ui/tooltip';
-import { ThemeProvider } from '@repo/design-system/provider/providers/theme';
+import { Toaster } from '@repo/web-design-system/components/ui/sonner';
+import { TooltipProvider } from '@repo/web-design-system/components/ui/tooltip';
+import { ThemeProvider } from '@repo/web-design-system/provider/providers/theme';
 
-import '@repo/design-system/styles/globals.css';
+import '@repo/web-design-system/styles/globals.css';
 
 const preview: Preview = {
   parameters: {

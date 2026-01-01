@@ -27,7 +27,7 @@ import {
   Trash2,
 } from 'lucide-react';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@repo/design-system/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@repo/web-design-system/components/ui/avatar';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -35,12 +35,12 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@repo/design-system/components/ui/breadcrumb';
+} from '@repo/web-design-system/components/ui/breadcrumb';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from '@repo/design-system/components/ui/collapsible';
+} from '@repo/web-design-system/components/ui/collapsible';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -50,8 +50,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
-import { Separator } from '@repo/design-system/components/ui/separator';
+} from '@repo/web-design-system/components/ui/dropdown-menu';
+import { Separator } from '@repo/web-design-system/components/ui/separator';
 import {
   Sidebar,
   SidebarContent,
@@ -70,7 +70,7 @@ import {
   SidebarProvider,
   SidebarRail,
   SidebarTrigger,
-} from '@repo/design-system/components/ui/sidebar';
+} from '@repo/web-design-system/components/ui/sidebar';
 
 const meta: Meta<typeof Sidebar> = {
   title: 'ui/Sidebar',

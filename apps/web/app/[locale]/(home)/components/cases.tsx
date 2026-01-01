@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from 'react';
 
-import type { CarouselApi } from '@repo/design-system/components/ui/carousel';
+import type { CarouselApi } from '@repo/web-design-system/components/ui/carousel';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from '@repo/design-system/components/ui/carousel';
+} from '@repo/web-design-system/components/ui/carousel';
 
 export const Cases = () => {
   const [api, setApi] = useState<CarouselApi>();

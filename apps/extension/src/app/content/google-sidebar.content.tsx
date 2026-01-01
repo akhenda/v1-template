@@ -5,7 +5,7 @@ import { createShadowRootUi, defineContentScript } from '#imports';
 import '~/assets/styles/globals.css';
 
 // import { GoogleSidebar } from './contents/google-sidebar';
-import { Button } from '@repo/design-system/components/ui/button';
+import { Button } from '@repo/web-design-system/components/ui/button';
 
 import { logger } from '@/lib/utils';
 

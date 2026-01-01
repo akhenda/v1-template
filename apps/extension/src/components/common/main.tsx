@@ -1,7 +1,7 @@
 import { LogInIcon } from 'lucide-react';
 
 import { SignedIn, SignedOut, UserButton } from '@repo/auth/extension';
-import { EnhancedButton } from '@repo/design-system/components/enhanced-button';
+import { EnhancedButton } from '@repo/web-design-system/components/enhanced-button';
 
 import { useIsSidepanelSurface } from '@/lib/hooks';
 import Logo from '~/assets/logo.svg?react';

@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react';
 
 import { User } from 'lucide-react';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@repo/design-system/components/ui/avatar';
-import type { CarouselApi } from '@repo/design-system/components/ui/carousel';
+import { Avatar, AvatarFallback, AvatarImage } from '@repo/web-design-system/components/ui/avatar';
+import type { CarouselApi } from '@repo/web-design-system/components/ui/carousel';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from '@repo/design-system/components/ui/carousel';
+} from '@repo/web-design-system/components/ui/carousel';
 
 const testimonials = [
   {

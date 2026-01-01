@@ -23,20 +23,21 @@ import {
 } from 'lucide-react';
 
 import { OrganizationSwitcher, UserButton } from '@repo/auth/nextjs';
-import { ModeToggle } from '@repo/design-system/components/mode-toggle';
-import { Button } from '@repo/design-system/components/ui/button';
+import { NotificationsTrigger } from '@repo/notifications/components/trigger';
+import { ModeToggle } from '@repo/web-design-system/components/mode-toggle';
+import { Button } from '@repo/web-design-system/components/ui/button';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from '@repo/design-system/components/ui/collapsible';
+} from '@repo/web-design-system/components/ui/collapsible';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
+} from '@repo/web-design-system/components/ui/dropdown-menu';
 import {
   Sidebar,
   SidebarContent,
@@ -54,9 +55,8 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   useSidebar,
-} from '@repo/design-system/components/ui/sidebar';
-import { cn } from '@repo/design-system/lib/utils';
-import { NotificationsTrigger } from '@repo/notifications/components/trigger';
+} from '@repo/web-design-system/components/ui/sidebar';
+import { cn } from '@repo/web-design-system/lib/utils';
 
 import { Search } from './search';
 

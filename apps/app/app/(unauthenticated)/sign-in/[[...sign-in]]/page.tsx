@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 import { SignIn } from '@repo/auth/nextjs';
-import { Loader } from '@repo/design-system/components/loader';
 import { createMetadata } from '@repo/seo/metadata';
+import { Loader } from '@repo/web-design-system/components/loader';
 
 const title = 'Welcome back';
 const description = 'Enter your details to sign in.';

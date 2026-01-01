@@ -6,8 +6,8 @@ import type NextError from 'next/error';
 
 import { captureException } from '@sentry/nextjs';
 
-import { Button } from '@repo/design-system/components/ui/button';
-import { fonts } from '@repo/design-system/lib/fonts';
+import { Button } from '@repo/web-design-system/components/ui/button';
+import { fonts } from '@repo/web-design-system/lib/fonts';
 
 type GlobalErrorProperties = {
   readonly error: NextError & { digest?: string };

@@ -1,6 +1,6 @@
 import { browser } from 'wxt/browser';
 
-import { buttonVariants } from '@repo/design-system/components/ui/button';
+import { buttonVariants } from '@repo/web-design-system/components/ui/button';
 
 export const Footer = () => (
   <footer className="flex w-full justify-center gap-2">

@@ -27,9 +27,10 @@
   "dependencies": {
     "@hookform/resolvers": "5.2.2",
     "@repo/auth": "workspace:*",
-    "@repo/design-system": "workspace:*",
     "@repo/types": "workspace:*",
-    "@repo/web-sdk": "workspace:*",
+    "@repo/web-core": "workspace:*",
+    "@repo/web-design-system": "workspace:*",
+    "@repo/web-features": "workspace:*",
     "@tanstack/react-query": "5.74.3",
     "@webext-core/messaging": "2.3.0",
     "ai": "5.0.107",

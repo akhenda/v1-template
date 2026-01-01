@@ -1,6 +1,6 @@
 import type { Args, Meta, StoryObj } from '@storybook/react';
 
-import { Switch } from '@repo/design-system/components/ui/switch';
+import { Switch } from '@repo/web-design-system/components/ui/switch';
 
 /**
  * A control that allows the user to toggle between checked and not checked.

@@ -5,9 +5,9 @@ import './styles.css';
 import type { PropsWithChildren } from 'react';
 
 import { AnalyticsProvider } from '@repo/analytics/provider';
-import { DesignSystemProvider } from '@repo/design-system';
-import { fonts } from '@repo/design-system/lib/fonts';
 import { Toolbar } from '@repo/feature-flags/components/toolbar';
+import { DesignSystemProvider } from '@repo/web-design-system';
+import { fonts } from '@repo/web-design-system/lib/fonts';
 
 const RootLayout = ({ children }: PropsWithChildren) => (
   <html className={fonts} lang="en" suppressHydrationWarning>

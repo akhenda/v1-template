@@ -6,14 +6,14 @@ import type { Metadata } from 'next';
 
 import NextTopLoader from 'nextjs-toploader';
 
-import { DesignSystemProvider } from '@repo/design-system';
-import { fonts } from '@repo/design-system/lib/fonts';
-import { cn } from '@repo/design-system/lib/utils';
 import { showBetaFeature } from '@repo/feature-flags';
 import { Toolbar } from '@repo/feature-flags/components/toolbar';
 import type { SupportedLocale } from '@repo/i18n';
 import { I18nProvider, i18nConfig, initTranslations } from '@repo/i18n';
 import { createMetadata } from '@repo/seo/metadata';
+import { DesignSystemProvider } from '@repo/web-design-system';
+import { fonts } from '@repo/web-design-system/lib/fonts';
+import { cn } from '@repo/web-design-system/lib/utils';
 
 import { Footer } from './components/footer';
 import { Header } from './components/header';

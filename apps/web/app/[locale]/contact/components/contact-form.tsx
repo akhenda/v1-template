@@ -6,12 +6,16 @@ import { useTranslation } from 'react-i18next';
 import { format } from 'date-fns';
 import { CalendarIcon, Check, MoveRight } from 'lucide-react';
 
-import { Button } from '@repo/design-system/components/ui/button';
-import { Calendar } from '@repo/design-system/components/ui/calendar';
-import { Input } from '@repo/design-system/components/ui/input';
-import { Label } from '@repo/design-system/components/ui/label';
-import { Popover, PopoverContent, PopoverTrigger } from '@repo/design-system/components/ui/popover';
-import { cn } from '@repo/design-system/lib/utils';
+import { Button } from '@repo/web-design-system/components/ui/button';
+import { Calendar } from '@repo/web-design-system/components/ui/calendar';
+import { Input } from '@repo/web-design-system/components/ui/input';
+import { Label } from '@repo/web-design-system/components/ui/label';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@repo/web-design-system/components/ui/popover';
+import { cn } from '@repo/web-design-system/lib/utils';
 
 const benefits = [
   {

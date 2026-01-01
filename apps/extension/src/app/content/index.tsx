@@ -4,7 +4,7 @@ import { createShadowRootUi, defineContentScript } from '#imports';
 
 import '~/assets/styles/globals.css';
 
-import { Button } from '@repo/design-system/components/ui/button';
+import { Button } from '@repo/web-design-system/components/ui/button';
 
 import { logger } from '@/lib/utils';
 

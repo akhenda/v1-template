@@ -10,16 +10,16 @@ import { ArrowUp, X } from 'lucide-react';
 import { marked } from 'marked';
 import { z } from 'zod';
 
-import { Button } from '@repo/design-system/components/ui/button';
+import { Button } from '@repo/web-design-system/components/ui/button';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@repo/design-system/components/ui/form';
-import { ScrollArea } from '@repo/design-system/components/ui/scroll-area';
-import { Textarea } from '@repo/design-system/components/ui/textarea';
+} from '@repo/web-design-system/components/ui/form';
+import { ScrollArea } from '@repo/web-design-system/components/ui/scroll-area';
+import { Textarea } from '@repo/web-design-system/components/ui/textarea';
 
 import { cn } from '~/lib/utils';
 

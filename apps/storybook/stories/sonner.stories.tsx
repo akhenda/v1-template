@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { toast } from 'sonner';
 import { action } from 'storybook/actions';
 
-import { Toaster } from '@repo/design-system/components/ui/sonner';
+import { Toaster } from '@repo/web-design-system/components/ui/sonner';
 
 /**
  * An opinionated toast component for React.

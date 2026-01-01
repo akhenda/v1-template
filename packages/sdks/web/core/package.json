@@ -1,0 +1,51 @@
+{
+  "name": "@repo/web-core",
+  "version": "0.0.0",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": "./src/providers/index.tsx",
+    "./core/*": "./src/*.ts",
+    "./core/api": "./src/api/index.ts"
+  },
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "format": "biome format --write .",
+    "lint": "biome check ./src",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@maxmorozoff/try-catch-tuple": "0.1.2",
+    "@repo/backend": "workspace:*",
+    "@repo/cms": "workspace:*",
+    "@repo/date": "workspace:*",
+    "@repo/email": "workspace:*",
+    "@repo/feature-flags": "workspace:*",
+    "@repo/next-config": "workspace:*",
+    "@repo/observability": "workspace:*",
+    "@repo/rate-limit": "workspace:*",
+    "@repo/security": "workspace:*",
+    "@repo/web-design-system": "workspace:*",
+    "@tanstack/query-sync-storage-persister": "5.74.3",
+    "@tanstack/react-query": "5.74.3",
+    "@tanstack/react-query-persist-client": "5.74.3",
+    "@testing-library/react": "16.3.0",
+    "apisauce": "3.2.2",
+    "axios": "1.13.2",
+    "convex": "1.24.1",
+    "convex-helpers": "0.1.95",
+    "next": "16.0.10",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
+    "remeda": "2.19.0",
+    "usehooks-ts": "3.1.1",
+    "zod": "4.1.13",
+    "zustand": "5.0.3",
+    "zustand-x": "6.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3"
+  }
+}

@@ -5,13 +5,13 @@ import { memo } from 'react';
 import { Moon, Sun } from 'lucide-react';
 import { browser } from 'wxt/browser';
 
-import { Button } from '@repo/design-system/components/ui/button';
+import { Button } from '@repo/web-design-system/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
+} from '@repo/web-design-system/components/ui/dropdown-menu';
 
 import { StorageKey, useStorage } from '~/lib/storage';
 import { cn } from '~/lib/utils';

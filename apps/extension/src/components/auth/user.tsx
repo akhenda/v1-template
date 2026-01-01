@@ -2,8 +2,8 @@ import { LogIn, UserRound } from 'lucide-react';
 import { browser } from 'wxt/browser';
 
 import { useClerk, useUser } from '@repo/auth/extension';
-import { Avatar, AvatarFallback, AvatarImage } from '@repo/design-system/components/ui/avatar';
-import { Button } from '@repo/design-system/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@repo/web-design-system/components/ui/avatar';
+import { Button } from '@repo/web-design-system/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,7 +11,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
+} from '@repo/web-design-system/components/ui/dropdown-menu';
 
 import { getAvatar, getName } from '~/lib/utils';
 

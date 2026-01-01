@@ -7,8 +7,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@repo/design-system/components/ui/accordion';
-import { Button } from '@repo/design-system/components/ui/button';
+} from '@repo/web-design-system/components/ui/accordion';
+import { Button } from '@repo/web-design-system/components/ui/button';
 
 export const FAQ = () => (
   <div className="w-full py-20 lg:py-40">

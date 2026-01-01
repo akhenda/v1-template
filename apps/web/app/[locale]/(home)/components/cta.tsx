@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { MoveRight, PhoneCall } from 'lucide-react';
 
-import { Button } from '@repo/design-system/components/ui/button';
+import { Button } from '@repo/web-design-system/components/ui/button';
 
 import { env } from '@/env';
 

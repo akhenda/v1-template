@@ -1,7 +1,7 @@
 import { ArrowRightIcon, SearchIcon } from 'lucide-react';
 
-import { Button } from '@repo/design-system/components/ui/button';
-import { Input } from '@repo/design-system/components/ui/input';
+import { Button } from '@repo/web-design-system/components/ui/button';
+import { Input } from '@repo/web-design-system/components/ui/input';
 
 export const Search = () => (
   <form action="/search" className="flex items-center gap-2 px-4">

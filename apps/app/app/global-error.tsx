@@ -8,8 +8,8 @@ import Link from 'next/link';
 
 import { AlertTriangle, Home, Mail, RefreshCw } from 'lucide-react';
 
-import { Button } from '@repo/design-system/components/ui/button';
 import { logger } from '@repo/observability/logger';
+import { Button } from '@repo/web-design-system/components/ui/button';
 
 import './styles.css';
 

@@ -1,0 +1,21 @@
+{
+  "name": "@repo/metro",
+  "private": true,
+  "version": "0.1.0",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.cjs"
+  },
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "format": "biome format --write .",
+    "lint": "biome check ."
+  },
+  "dependencies": {
+    "@repo/observability": "workspace:*",
+    "remeda": "2.19.0"
+  },
+  "devDependencies": {
+    "metro-cache": "0.83.3"
+  }
+}
