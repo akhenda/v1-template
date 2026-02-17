@@ -51,7 +51,7 @@ const initializeGit = async () => {
 const setupEnvironmentVariables = async () => {
   const files = [
     { source: join('apps', 'api'), target: '.env.local' },
-    { source: join('apps', 'backend'), target: '.env.local' },
+    { source: join('packages', 'modules', 'backend'), target: '.env.local' },
     { source: join('apps', 'app'), target: '.env.local' },
     { source: join('apps', 'web'), target: '.env.local' },
     { source: join('apps', 'studio'), target: '.env.local' },

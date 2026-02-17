@@ -183,7 +183,7 @@
   "overrides": [
     {
       "includes": [
-        "apps/backend/**/*",
+        "packages/modules/backend/**/*",
         "apps/convex/**/*",
         "packages/backend/**/*",
         "packages/convex/**/*"

@@ -101,7 +101,7 @@ bun install
 
 # Copy environment files
 cp apps/api/.env.example apps/api/.env.local
-cp apps/backend/.env.example apps/backend/.env.local
+cp packages/modules/backend/.env.example packages/modules/backend/.env.local
 cp apps/app/.env.example apps/app/.env.local
 cp apps/web/.env.example apps/web/.env.local
 cp apps/studio/.env.example apps/studio/.env.local
@@ -124,13 +124,13 @@ bun db:migrate
 
 ```bash
 # Start Convex backend (this will guide you through setup)
-bun --filter @repo/backend run dev
+bun run --filter @repo/backend dev
 
 # In a new terminal, run setup
-bun --filter @repo/backend run setup
+bun run --filter @repo/backend setup
 
 # Seed with sample data (optional)
-bun --filter @repo/backend run seed
+bun run --filter @repo/backend seed
 ```
 
 ### 4. Start Development
@@ -140,10 +140,10 @@ bun --filter @repo/backend run seed
 bun dev
 
 # Or run individual services
-bun --filter web dev      # Marketing site - http://localhost:3001
-bun --filter app dev      # Dashboard - http://localhost:3000
-bun --filter api dev      # API server - http://localhost:3002
-bun --filter docs dev     # Documentation - http://localhost:3004
+bun run --filter web dev      # Marketing site - http://localhost:3001
+bun run --filter app dev      # Dashboard - http://localhost:3000
+bun run --filter api dev      # API server - http://localhost:3002
+bun run --filter docs dev     # Documentation - http://localhost:3004
 ```
 
 ## 🔑 Required Environment Variables
@@ -325,20 +325,20 @@ This is **essential** for your SaaS to function correctly with subscriptions and
 ```bash
 # Development
 bun dev                           # Start all services
-bun --filter web dev              # Marketing site only
-bun --filter app dev              # Dashboard only
-bun --filter api dev              # API only
-bun --filter docs dev             # Documentation only
+bun run --filter web dev              # Marketing site only
+bun run --filter app dev              # Dashboard only
+bun run --filter api dev              # API only
+bun run --filter docs dev             # Documentation only
 
 # Database
 bun db:generate                   # Generate Drizzle artifacts
 bun db:migrate                    # Run migrations
-bun --filter @repo/database run db:studio  # Open database GUI
+bun run --filter @repo/database db:studio  # Open database GUI
 
 # Convex
-bun --filter @repo/backend run dev   # Start Convex backend
-bun --filter @repo/backend run setup # Initial setup
-bun --filter @repo/backend run seed  # Seed data
+bun run --filter @repo/backend dev   # Start Convex backend
+bun run --filter @repo/backend setup # Initial setup
+bun run --filter @repo/backend seed  # Seed data
 
 # Testing
 bun test                          # Run all tests
@@ -352,7 +352,7 @@ bun format                        # Format code with Biome
 
 # Build
 bun build                         # Build all apps
-bun --filter app build            # Build specific app
+bun run --filter app build            # Build specific app
 ```
 
 ### Project URLs in Development
@@ -402,7 +402,7 @@ Ensure these are set in your production environment:
 
 - Ensure `NEXT_PUBLIC_CONVEX_URL` matches your deployment
 - Check if `CONVEX_DEPLOYMENT` is correctly set
-- Run `bun --filter @repo/backend run dev` to sync local environment
+- Run `bun run --filter @repo/backend dev` to sync local environment
 
 **"Clerk authentication not working"**
 
@@ -430,15 +430,15 @@ bun lint
 bun typecheck
 
 # Debug Convex
-bun --filter @repo/backend run dev
+bun run --filter @repo/backend dev
 
 # Debug database connection
-bun --filter @repo/database run db:studio
+bun run --filter @repo/database db:studio
 ```
 
 ## 📚 Documentation
 
-- **[Convex Documentation](apps/backend/README.md)** - Backend setup and queries
+- **[Convex Documentation](packages/modules/backend/README.md)** - Backend setup and queries
 - **[Database Schema](packages/modules/database/README.md)** - Database design and migrations
 - **[Design System](packages/sdks/web/design/README.md)** - UI components and usage
 - **[AI Features](packages/modules/ai/README.md)** - AI agents and integrations

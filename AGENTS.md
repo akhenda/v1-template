@@ -190,7 +190,7 @@ const className = cn(
 
 ## Convex Backend Patterns
 
-The Convex backend is in `apps/backend/convex/`.
+The Convex backend is in `packages/modules/backend/convex/`.
 
 ### Schema Definition
 
@@ -228,7 +228,7 @@ export const createUser = mutation({
 
 ### Webhooks
 
-Webhooks are HTTP endpoints in `apps/backend/convex/webhooks/`:
+Webhooks are HTTP endpoints in `packages/modules/backend/convex/webhooks/`:
 
 - `/webhooks/clerk/users` - User lifecycle (created, updated, deleted)
 - `/webhooks/polar/events` - Subscription events
