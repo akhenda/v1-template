@@ -83,7 +83,7 @@
 | [React Hook Form](https://react-hook-form.com) | Forms with easy-to-use validation                                             |
 | [Vite](https://vitejs.dev/)                    | Next generation frontend tool                                                 |
 | [Bun](https://bun.sh/)                         | Package manager and build tool                                                |
-| [Husky](https://github.com/typicode/husky)     | Git hooks                                                                     |
+| [Lefthook](https://lefthook.dev/)              | Git hooks                                                                     |
 | [Biome](https://biomejs.dev/)                  | Linting and formatting                                                        |
 
 ## Contributing 🤝 <a name="contributing"></a>

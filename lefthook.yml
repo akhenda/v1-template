@@ -1,0 +1,36 @@
+pre-commit:
+  commands:
+    lint-staged:
+      run: bunx lint-staged --concurrent false --relative
+
+commit-msg:
+  commands:
+    commitlint:
+      run: npx --no -- commitlint --edit {1}
+
+pre-push:
+  parallel: false
+  commands:
+    01-i18n-extract:
+      run: bun run i18n:extract
+    02-boundaries:
+      run: bun run boundaries
+    03-typecheck:
+      run: bun run typecheck
+
+post-merge:
+  commands:
+    sync-lockfile:
+      run: |
+        changed() {
+          git diff --name-only HEAD@{1} HEAD | grep "^$1" >/dev/null 2>&1
+        }
+
+        echo 'Checking for changes in bun.lock...'
+
+        if changed 'bun.lock'; then
+          echo "📦 bun.lock changed. Run bun install to bring your dependencies up to date."
+          bun install
+        fi
+
+        echo '\nYou are up to date :)'

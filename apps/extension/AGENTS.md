@@ -121,7 +121,7 @@ You are an expert in TypeScript, Chrome Extensions API V3, React, WXT framework,
 ### Git and Commits
 
 - Follow Conventional Commits (commitlint configured)
-- Use Husky for pre-commit hooks
+- Use Lefthook for git hooks
 - Keep commits atomic and well-described
 - Use proper branch naming conventions
 
