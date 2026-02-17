@@ -1,85 +1,99 @@
-# CLAUDE.md - v1-template AI Configuration
+# CLAUDE.md
 
-This file provides context and rules for AI assistants working with this codebase.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## 🎯 Project Overview
+## Project Overview
 
-**v1-template** is a production-ready full-stack SaaS template built on:
+**v1-template** is a production-ready full-stack SaaS template using:
 
-- **Turborepo** monorepo structure
-- **Next.js 14** with TypeScript
-- **Convex** real-time backend
-- **Clerk** for authentication
-- **Polar.sh** for payments
-- **PostgreSQL** with Drizzle ORM
-- **shadcn/ui** for components
+- **Turborepo 2.7** monorepo with Bun package manager
+- **Next.js 16** with **React 19** and TypeScript
+- **Convex** real-time backend for queries/mutations
+- **Clerk** authentication with JWT templates for Convex
+- **Polar.sh** for payments/subscriptions
+- **PostgreSQL** with Drizzle ORM (Neon recommended)
+- **Biome** for linting/formatting (not ESLint/Prettier)
+- **Vitest** for testing
 
-## 🔧 Development Setup
-
-### Required Tools
-
-- **Bun** - Package manager and runtime (use instead of npm/yarn)
-- **Node.js 18+** - Required for native tools
-- **PostgreSQL** - Database (Neon recommended for dev)
-
-### Essential Commands
+## Essential Commands
 
 ```bash
 # Development
-bun dev           # Start all services
-bun lint          # Check code quality
-bun typecheck     # Check TypeScript
-bun test          # Run tests
-bun build         # Build all apps
+bun dev                    # Start all services in parallel
+bun --filter app dev       # Dashboard only (localhost:3000)
+bun --filter web dev       # Marketing site only (localhost:3001)
+bun --filter api dev       # API server only (localhost:3002)
+bun --filter docs dev      # Documentation only (localhost:3004)
 
-# Database
-bun db:push       # Push schema changes
-bun db:seed       # Seed with sample data
-bun db:studio     # Database management UI
+# Code Quality
+bun lint                   # Lint with Biome + sherif
+bun typecheck              # TypeScript check
+bun test                   # Run tests with Vitest
+bun test:run               # Run tests once (no watch)
 
-# Convex backend
-bun convex dev    # Start convex dev server
-bun convex deploy # Deploy to production
+# Database (Drizzle)
+bun db:generate            # Generate migration from schema
+bun db:migrate             # Run migrations
+bun --filter @repo/database run db:studio  # Database GUI
 
-# Individual apps
-bun dev:web       # Marketing site (3001)
-bun dev:app       # Dashboard app (3000)
-bun dev:api       # API server (3002)
-bun dev:docs      # Documentation (3004)
+# Convex Backend
+bun --filter @repo/backend run dev     # Start Convex dev server
+bun --filter @repo/backend run setup   # Initial setup
+bun --filter @repo/backend run seed    # Seed data
+
+# Build
+bun build                  # Build all apps
+bun --filter app build     # Build specific app
 ```
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```text
 v1-template/
-├── apps/
-│   ├── api/                 # Serverless functions & webhooks
-│   ├── app/                 # Main dashboard application
-│   ├── web/                 # Marketing website
-│   ├── docs/                # Documentation site
-│   ├── storybook/           # Component documentation
-│   └── studio/              # Database admin interface
+├── apps/                   # Applications
+│   ├── app/                # Main dashboard (Next.js)
+│   ├── web/                # Marketing site (Next.js)
+│   ├── api/                # API server for webhooks
+│   ├── backend/            # Convex backend (convex/ directory)
+│   ├── email/              # React Email templates
+│   ├── docs/               # Mintlify documentation
+│   ├── storybook/          # Component library (localhost:6006)
+│   ├── studio/             # Database admin panel
+│   └── extension/          # Browser extension
 ├── packages/
-│   ├── ai/                  # AI integrations and agents
-│   ├── auth/                # Clerk authentication
-│   ├── convex/              # Backend queries/mutations
-│   ├── database/            # Drizzle schema & helpers
-│   ├── design-system/       # shadcn/ui + custom components
-│   ├── payments/            # Polar.sh integration
-│   ├── errors/              # Standardized error handling
-│   ├── notifications/       # Knock notifications
-│   ├── analytics/           # PostHog & GA integration
-│   └── [shared packages]    # Reusable utilities
-└── .kiro/                   # Kiro IDE configuration
+│   ├── modules/            # Domain modules (auth, ai, database, etc.)
+│   ├── sdks/               # Platform SDKs
+│   │   ├── web/            # Web SDK (core, design, features, assets)
+│   │   ├── mobile/         # React Native SDK
+│   │   └── extension/      # Extension SDK
+│   └── tooling/            # Build tooling (tsconfig, next-config, etc.)
 ```
 
-## 🎯 AI Development Guidelines
+## Import Ordering (Biome Enforced)
 
-### ✅ Always Use These Patterns
+Biome automatically organizes imports. Follow this order:
 
-#### 1. **Environment Variables**
+1. URL imports (`:URL:`)
+2. Node.js built-ins (`:NODE:`)
+3. Bun runtime (`:BUN:`)
+4. React ecosystem (`react`, `react-*`)
+5. React platform (`@react-*`, `rn-*`)
+6. Next.js (`next`, `next-*`, `@next/*`)
+7. Expo (`expo-*`, `@expo/*`)
+8. Convex (`convex`, `convex-*`, `@convex/*`)
+9. External packages (no scope)
+10. `@udecode/*` (editor packages)
+11. `@repo/*` (workspace packages)
+12. Path aliases (`@/*`, alias paths)
+13. Relative parent imports (`../**`)
+14. Relative imports (`./**`)
+15. CSS/SCSS imports
 
-Use `@t3-oss/env-nextjs` for type-safe env variables:
+## Coding Standards
+
+### Environment Variables
+
+Use `@t3-oss/env-nextjs` for type-safe environment variables:
 
 ```typescript
 import { createEnv } from '@t3-oss/env-nextjs';
@@ -99,125 +113,129 @@ export const env = createEnv({
 });
 ```
 
-#### 2. **Import Order** (Follow exactly)
+### Logging
+
+Never use `console.log`. Use the structured logger:
 
 ```typescript
-// 1. URL imports
-// 2. Node.js built-ins (with node: prefix)
-// 3. Bun runtime
-// 4. React ecosystem
-// 5. Next.js ecosystem
-// 6. Convex ecosystem
-// 7. External packages
-// 8. Workspace packages
-// 9. Internal aliases (@/)
-// 10. Relative imports
-// 11. CSS imports
-```
-
-#### 3. **Logging (Never console.log)**
-
-```typescript
-// ❌ Never do this:
-console.log('Debug message');
-
-// ✅ Always use:
 import { logger } from '@repo/observability/logger';
-logger.info('Debug message', { userId: '123' });
+
+logger.info('Message', { userId: '123' });
+logger.error('Error occurred', { error, context: { userId } });
 ```
 
-#### 4. **Type Safety**
+### Type Safety
+
+Never use `any`. Use `AnyValue` from `@repo/types`:
 
 ```typescript
-// ❌ Never use any:
-const data: any = someFunction();
-
-// ✅ Use our AnyValue type:
 import type { AnyValue } from '@repo/types';
+
 const data: AnyValue = someFunction();
 ```
 
-#### 5. **String Templates**
+### String Templates
+
+Always use template literals, never string concatenation:
 
 ```typescript
-// ❌ Never use string concatenation:
+// ❌ Never
 const url = baseUrl + '/api/' + version + '/users';
 
-// ✅ Always use template literals:
+// ✅ Always
 const url = `${baseUrl}/api/${version}/users`;
 ```
 
-#### 6. **Error Handling**
+### Error Handling
+
+Use standardized errors from `@repo/errors`:
 
 ```typescript
-// ✅ Use our standardized error types:
 import { AppError } from '@repo/errors';
 
 try {
-  // ... code
+  // code
 } catch (error) {
-  logger.error('Operation failed', { error, context: { userId } });
+  logger.error('Operation failed', { error });
   throw new AppError('Failed to process', { cause: error });
 }
 ```
 
-## 🚫 Never Do These
+### Styling
 
-- **No console.log()** - Use @repo/observability/logger
-- **No any types** - Use @repo/types#AnyValue
+Use `cn()` for conditional Tailwind classes:
+
+```typescript
+import { cn } from '@repo/design-system/lib/utils';
+
+const className = cn(
+  'base-class',
+  isActive && 'active-class',
+  variant === 'primary' && 'primary-class',
+);
+```
+
+## Never Do These
+
+- **No `console.log()`** - Use `@repo/observability/logger`
+- **No `any` types** - Use `@repo/types#AnyValue`
 - **No string concatenation** - Use template literals
-- **No isNaN()** - Use Number.isNaN()
-- **No unsafe property access** - Use optional chaining
+- **No `isNaN()`** - Use `Number.isNaN()`
+- **No unsafe property access** - Use optional chaining (`?.`)
 - **No nested try-catch without proper logging**
 
-## 🎯 Convex Backend Guidelines
+## Convex Backend Patterns
+
+The Convex backend is in `apps/backend/convex/`.
 
 ### Schema Definition
 
 ```typescript
-// Use proper Convex schema definition
 import { v } from 'convex/values';
 
-export const User = v.object({
-  email: v.string(),
-  createdAt: v.number(),
-  subscription: v.optional(
-    v.object({
-      status: v.string(),
-      productId: v.id('products'),
-    })
-  ),
+export default defineSchema({
+  users: defineTable({
+    email: v.string(),
+    createdAt: v.number(),
+  }),
 });
 ```
 
-### Queries & Mutations
+### Queries and Mutations
 
 ```typescript
-// Always use proper typing
+import { query, mutation } from './_generated/server';
+import { v } from 'convex/values';
+
 export const listUsers = query({
   args: { limit: v.number() },
   handler: async (ctx, args) => {
-    return await ctx.db
-      .query('users')
-      .filter(q => q.eq(q.field('status'), 'active'))
-      .take(args.limit);
+    return ctx.db.query('users').take(args.limit);
+  },
+});
+
+export const createUser = mutation({
+  args: { email: v.string() },
+  handler: async (ctx, args) => {
+    return ctx.db.insert('users', { email: args.email, createdAt: Date.now() });
   },
 });
 ```
 
 ### Webhooks
 
-All webhooks are handled in `/packages/convex/convex/`:
+Webhooks are HTTP endpoints in `apps/backend/convex/webhooks/`:
 
-- `/webhooks/clerk/users` - User lifecycle events
-- `/webhooks/polar/events` - Payment & subscription events
+- `/webhooks/clerk/users` - User lifecycle (created, updated, deleted)
+- `/webhooks/polar/events` - Subscription events
 
-## 🎯 Database Guidelines
+## Database Patterns (Drizzle)
 
-### Drizzle Schema
+Schema is in `packages/modules/database/`.
 
 ```typescript
-// Use consistent naming and types
+import { pgTable, uuid, text, timestamp } from 'drizzle-orm/pg-core';
+
 export const users = pgTable('users', {
   id: uuid('id').primaryKey().defaultRandom(),
   email: text('email').notNull().unique(),
@@ -237,50 +255,10 @@ export type InsertUser = typeof users.$inferInsert;
 bun db:generate
 
 # Run in development
-bun db:push
-
-# Run in production
 bun db:migrate
 ```
 
-## 🎯 Styling Guidelines
-
-### Tailwind Patterns
-
-```typescript
-// Use cn() utility for conditional classes
-import { cn } from '@repo/web-design-system/lib/utils';
-
-const buttonClass = cn(
-  'btn inline-flex items-center justify-center rounded-md',
-  variant === 'primary' && 'bg-blue-600 text-white',
-  variant === 'secondary' && 'bg-gray-200 text-gray-900',
-  size === 'sm' && 'px-3 py-1.5 text-sm',
-  size === 'lg' && 'px-6 py-3 text-lg',
-);
-```
-
-### Component Structure
-
-```typescript
-// Follow shadcn/ui patterns
-const Component = React.forwardRef<HTMLDivElement, ComponentProps>(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn('base-classes', className)}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  }
-);
-Component.displayName = 'Component';
-```
-
-## 🎯 Testing Guidelines
+## Testing Guidelines
 
 ### Test Structure
 
@@ -314,67 +292,35 @@ vi.mock('@repo/backend/client', () => ({
 }));
 ```
 
-## 🎯 Deployment Guidelines
+## Webhook Configuration
 
-### Environment Variables by Environment
-
-#### Development
-
-```bash
-# Core services
-DATABASE_URL=postgresql://localhost:5432/v1_template_dev
-NEXT_PUBLIC_CONVEX_URL=https://dev-xxx.convex.cloud
-CLERK_PUBLISHABLE_KEY=pk_test_...
-CLERK_SECRET_KEY=sk_test_...
-
-# Payments
-POLAR_ACCESS_TOKEN=test_... (must have all read/write scopes for checkouts, customers, products, and subscriptions)
-POLAR_ORGANIZATION_ID=test_...
-POLAR_WEBHOOK_SECRET=whsec_test...
-
-# Webhooks (dev)
-NEXT_PUBLIC_CONVEX_SITE_URL=https://dev-xxx.convex.site
-```
-
-#### Production
-
-```bash
-# Update all URLs to production domains
-DATABASE_URL=production_database_url
-NEXT_PUBLIC_CONVEX_URL=https://prod-xxx.convex.cloud
-NEXT_PUBLIC_CONVEX_SITE_URL=https://prod-xxx.convex.site
-```
-
-### Webhook Configuration
-
-#### Clerk Webhooks
+### Clerk Webhooks
 
 - **URL**: `https://[CONVEX_SITE_URL]/webhooks/clerk/users`
-- **Events**: `user.created`, `user.deleted`, `user.updated`
-- **JWT Template**: Must include "metadata" claim: `"{{user.public_metadata}}"`
+- **Events**: `user.created`, `user.updated`, `user.deleted`
+- **JWT Template**: Must include `metadata` claim with value `{{user.public_metadata}}`
 
-#### Polar Webhooks
+### Polar Webhooks
 
 - **URL**: `https://[CONVEX_SITE_URL]/webhooks/polar/events`
 - **Events**: `subscription.created`, `subscription.updated`, `product.created`, `product.updated`
 
-## 🎯 Common Tasks
+## Common Tasks
 
 ### Adding a New Package
 
 ```bash
-# Create new package
-cd packages
+# Create new package in packages/modules/
+cd packages/modules
 mkdir new-package
 cd new-package
 bun init
 
-# Add to workspace
-# Update package.json name: @repo/new-package
+# Update package.json name to: @repo/new-package
 # Import using: import { thing } from '@repo/new-package';
 ```
 
-### Creating a New Route
+### Creating a New API Route
 
 ```typescript
 // In apps/[app]/app/api/new-route/route.ts
@@ -405,7 +351,7 @@ export async function POST(request: NextRequest) {
 ### Adding Database Schema
 
 ```typescript
-// In packages/database/src/schema/
+// In packages/modules/database/src/schema/
 export const newTable = pgTable('new_table', {
   id: uuid('id').primaryKey().defaultRandom(),
   userId: uuid('user_id').references(() => users.id).notNull(),
@@ -413,63 +359,69 @@ export const newTable = pgTable('new_table', {
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
 
-// Always create migration
+// Always generate migration
 bun db:generate
 ```
 
-## 🎯 AI Assistant Best Practices
+## Before Committing
 
-When generating code:
-
-1. **Check existing patterns** - Look at neighboring files first
-2. **Follow file naming** - camelCase for utils, kebab-case for comps
-3. **Use established utilities** - Check @repo packages before rolling own
-4. **Test immediately** - Write basic tests for new functions
-5. **Check conventions** - Environment variables, imports, exports
-
-### Before Contributing
+Run these commands before submitting changes:
 
 ```bash
-# Always run these before starting work
-bun lint           # Should pass without errors
-bun typecheck      # Should pass without errors
-bun test           # Should pass with existing tests
+bun lint           # Must pass
+bun typecheck      # Must pass
+bun test           # Must pass
 ```
 
-### File Naming Conventions
+## File Naming
 
 - **Components**: `PascalCase.tsx` (e.g., `UserProfile.tsx`)
 - **Utilities**: `camelCase.ts` (e.g., `validateSchema.ts`)
 - **API Routes**: `kebab-case.ts` (e.g., `get-users.ts`)
-- **Folders**: `kebab-case` (e.g., `user-management`)
+- **Directories**: `kebab-case` (e.g., `user-management`)
 
-## 🔗 Quick Resources
+## Key Package Imports
 
-- **Convex**: <https://docs.convex.dev>
-- **Clerk**: <https://clerk.com/docs>
-- **Polar**: <https://docs.polar.sh>
-- **Tailwind**: <https://tailwindcss.com/docs>
-- **shadcn/ui**: <https://ui.shadcn.com/docs>
-- **Drizzle**: <https://orm.drizzle.team/docs>
+```typescript
+// Authentication
+import { auth, currentUser } from '@repo/auth';
 
-## 🆘 Common Issues
+// Database (Drizzle)
+import { db } from '@repo/database';
+import { users } from '@repo/database/schema';
+
+// Convex
+import { api } from '@repo/backend/api';
+
+// UI Components
+import { Button } from '@repo/design-system/components/ui/button';
+
+// Logger
+import { logger } from '@repo/observability/logger';
+
+// Types
+import type { AnyValue } from '@repo/types';
+
+// Errors
+import { AppError } from '@repo/errors';
+```
+
+## Common Issues
 
 ### Convex not connecting
 
-- Check NEXT_PUBLIC_CONVEX_URL matches your deployment
-- Verify CONVEX_DEPLOYMENT is set correctly
-- Run `bun convex dev` to sync schema
+- Check `NEXT_PUBLIC_CONVEX_URL` matches your deployment
+- Verify `CONVEX_DEPLOYMENT` is set correctly
+- Run `bun --filter @repo/backend run dev` to sync schema
 
 ### TypeScript errors
 
 - Run `bun typecheck` to see specific errors
 - Check import paths vs build config
-- Verify type definitions from @repo/types
+- Verify type definitions from `@repo/types`
 
 ### Linting failures
 
-- Use `bun lint:fix --unsafe` for auto-fixes
-- Check for console.log and any types in new code
+- Run `bun fix` or `npx ultracite@latest fix` for auto-fixes
+- Check for `console.log` and `any` types in new code
 - Ensure proper import ordering
-
-This CLAUDE.md is optimized for AI-assisted development in this specific codebase. Follow these guidelines to maintain consistency and leverage the full potential of the AI-powered development experience.
