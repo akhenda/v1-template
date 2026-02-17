@@ -14,33 +14,39 @@ v1-template/
 ├── apps/                     # 🏗️ Application-specific code
 │   ├── api/                 # Next.js API server (webhooks, serverless functions)
 │   ├── app/                 # Main application dashboard
+│   ├── backend/             # Convex backend (queries, mutations, webhooks)
 │   ├── docs/                # Documentation site (Mintlify)
 │   ├── email/               # Email templates (React Email)
-│   ├── studio/              # Database studio/admin panel
+│   ├── extension/           # Browser extension
 │   ├── storybook/           # Component library documentation
+│   ├── studio/              # Database studio/admin panel
 │   └── web/                 # Marketing website
-├── packages/                # 📦 Shared libraries and tools
-│   ├── ai/                  # AI agents and integrations
-│   ├── auth/                # Authentication providers (Clerk)
-│   ├── convex/              # Convex backend (queries, mutations, webhooks)
-│   ├── database/            # Database schema and access (Drizzle)
-│   ├── design-system/       # UI components (shadcn/ui + custom)
-│   ├── payments/            # Payment integrations (Polar.sh, Stripe)
-│   ├── email/               # Email utilities and templates
-│   ├── analytics/           # Analytics tracking (PostHog, GA)
-│   ├── i18n/                # Internationalization setup
-│   ├── errors/              # Standardized error handling
-│   ├── notifications/       # Notification system (Knock)
-│   ├── storage/             # File storage (UploadThing)
-│   ├── webhooks/            # Webhook utilities (Svix)
-│   └── ...
+├── packages/
+│   ├── modules/             # 📦 Domain modules
+│   │   ├── ai/              # AI agents and integrations
+│   │   ├── auth/            # Authentication providers (Clerk)
+│   │   ├── database/        # Database schema and access (Drizzle)
+│   │   ├── payments/        # Payment integrations (Polar.sh)
+│   │   ├── analytics/       # Analytics tracking (PostHog, GA)
+│   │   ├── i18n/            # Internationalization setup
+│   │   ├── errors/          # Standardized error handling
+│   │   ├── notifications/   # Notification system (Knock)
+│   │   ├── storage/         # File storage (UploadThing)
+│   │   ├── webhooks/        # Webhook utilities (Svix)
+│   │   └── ...
+│   ├── sdks/                # 📦 Platform SDKs
+│   │   ├── web/             # Web SDK (core, design, features, assets)
+│   │   ├── mobile/          # React Native SDK
+│   │   └── extension/       # Extension SDK
+│   └── tooling/             # 📦 Build tooling (tsconfig, next-config, etc.)
 ```
 
 ## 🛠️ Tech Stack
 
 ### Frontend & Backend
 
-- **Next.js 14** - Full-stack React framework
+- **Next.js 16** - Full-stack React framework
+- **React 19** - UI library
 - **TypeScript** - Type safety throughout
 - **Convex** - Real-time backend and database
 - **Clerk** - Authentication & user management
@@ -66,7 +72,8 @@ v1-template/
 
 ### Dev & Deployment
 
-- **Turborepo** - Monorepo build system
+- **Turborepo 2.7** - Monorepo build system
+- **Bun** - Package manager and runtime
 - **Biome** - Code formatting & linting
 - **Vitest** - Unit testing
 - **Vercel** - Deployment platform
@@ -76,7 +83,7 @@ v1-template/
 
 ### Prerequisites
 
-- **Node.js 18+** and **Bun** (we use Bun instead of npm)
+- **Node.js 22+** and **Bun** (Bun is required - enforced via preinstall hook)
 - **PostgreSQL** database (Neon recommended)
 - **Convex** account
 - **Clerk** account
@@ -93,31 +100,50 @@ cd v1-template
 bun install
 
 # Copy environment files
-bun run setup:env
+cp apps/api/.env.example apps/api/.env.local
+cp apps/backend/.env.example apps/backend/.env.local
+cp apps/app/.env.example apps/app/.env.local
+cp apps/web/.env.example apps/web/.env.local
+cp apps/studio/.env.example apps/studio/.env.local
+cp apps/extension/.env.example apps/extension/.env.local
+cp packages/modules/i18n/.env.example packages/modules/i18n/.env.local
+cp packages/modules/database/.env.example packages/modules/database/.env
 ```
 
 ### 2. Database Setup
 
 ```bash
-# Run database migrations
-bun db:push
+# Generate database artifacts
+bun db:generate
 
-# Seed the database with sample data
-bun db:seed
+# Run migrations
+bun db:migrate
 ```
 
-### 3. Start Development
+### 3. Convex Setup
+
+```bash
+# Start Convex backend (this will guide you through setup)
+bun --filter @repo/backend run dev
+
+# In a new terminal, run setup
+bun --filter @repo/backend run setup
+
+# Seed with sample data (optional)
+bun --filter @repo/backend run seed
+```
+
+### 4. Start Development
 
 ```bash
 # Start all services
-cd v1-template
 bun dev
 
-# Individual services (optional)
-bun dev:web        # Marketing site - http://localhost:3001
-bun dev:app        # Dashboard - http://localhost:3000
-bun dev:api        # API server - http://localhost:3002
-bun dev:docs       # Documentation - http://localhost:3004
+# Or run individual services
+bun --filter web dev      # Marketing site - http://localhost:3001
+bun --filter app dev      # Dashboard - http://localhost:3000
+bun --filter api dev      # API server - http://localhost:3002
+bun --filter docs dev     # Documentation - http://localhost:3004
 ```
 
 ## 🔑 Required Environment Variables
@@ -135,24 +161,6 @@ You need accounts with these services:
 - 📧 **Resend** (Emails)
 - 📊 **PostHog** (Analytics)
 - 🔔 **Knock** (Notifications)
-
-### 📝 Environment Files Structure
-
-Copy these files to their `.env.local` equivalents:
-
-```bash
-# Copy all env files
-bun run setup:env
-
-# The command creates:
-# apps/api/.env.local
-# apps/app/.env.local
-# apps/web/.env.local
-# apps/studio/.env.local
-# packages/convex/.env.local
-# packages/ai/.env.local
-# packages/database/.env.local
-```
 
 ### 🆔 Clerk Setup
 
@@ -210,19 +218,6 @@ bun run setup:env
 - **POLAR_ORGANIZATION_ID**: Found in organization settings URL
 - **POLAR_ORGANIZATION_TOKEN**: Organization settings → Storefront → Advanced
 
-**4. Products Configuration**
-
-```bash
-# Add these to your convex/.env.local if you have specific products:
-POLAR_PRODUCT_FREE=your_free_product_id
-POLAR_PRODUCT_LEGEND=your_legend_product_id
-POLAR_PRODUCT_PRO_MONTHLY=your_pro_monthly_id
-POLAR_PRODUCT_PRO_YEARLY=your_pro_yearly_id
-POLAR_PRODUCT_PLUS_SMALL_PACK=your_small_pack_id
-POLAR_PRODUCT_PLUS_MEDIUM_PACK=your_medium_pack_id
-POLAR_PRODUCT_PLUS_LARGE_PACK=your_large_pack_id
-```
-
 ### 🗄️ Database Setup
 
 **Option 1: Neon (Recommended)**
@@ -241,7 +236,7 @@ brew services start postgresql
 # Create database
 createdb v1_template_db
 
-# Update database/.env.local
+# Update packages/modules/database/.env
 DATABASE_URL=postgresql://username:password@localhost:5432/v1_template_db
 ```
 
@@ -251,20 +246,8 @@ DATABASE_URL=postgresql://username:password@localhost:5432/v1_template_db
 
 - Visit [convex.dev](https://convex.dev)
 - Create account and new project
-- Follow the setup instructions
 
-**2. Connect to Project**
-
-```bash
-# Deploy your convex schema
-bun convex dev
-
-# Or if you're setting up
-npm install -g convex
-convex dev
-```
-
-**3. Get Environment Variables**
+**2. Get Environment Variables**
 
 - **CONVEX_DEPLOYMENT**: Your project's deployment ID (from dashboard)
 - **CONVEX_URL**: Your convex cloud URL
@@ -273,44 +256,32 @@ convex dev
 
 ### 📧 Resend Setup
 
-**1. Get Resend Account**
-
 - Sign up at [resend.com](https://resend.com)
 - Create an API key
-- **RESEND_TOKEN**: Your API key
+- **RESEND_API_KEY**: Your API key
 - **RESEND_FROM**: Your verified sending email or domain
-- **RESEND_API_KEY**: Same as RESEND_TOKEN (alternative naming)
 
 ### 📊 PostHog Setup
-
-**1. Create PostHog Account**
 
 - Sign up at [posthog.com](https://posthog.com)
 - Create a new project
 - **POSTHOG_KEY**: Project API key
 - **NEXT_PUBLIC_POSTHOG_KEY**: Same as POSTHOG_KEY
 - **POSTHOG_HOST**: Usually `https://eu.i.posthog.com` or `https://us.i.posthog.com`
-- **NEXT_PUBLIC_POSTHOG_HOST**: Same as POSTHOG_HOST
 
 ### 🔔 Knock Setup
 
-**1. Create Knock Account**
-
 - Sign up at [knock.app](https://knock.app)
 - **KNOCK_API_KEY**: Your API key (server-side)
-- **KNOCK_SECRET_API_KEY**: Same as KNOCK_API_KEY
 - **KNOCK_FEED_CHANNEL_ID**: Your feed channel ID
 - **NEXT_PUBLIC_KNOCK_API_KEY**: Client-side API key
 - **NEXT_PUBLIC_KNOCK_FEED_CHANNEL_ID**: Client-side feed channel
 
-### ✉️ Remaining Optional Services
+### ✉️ Optional Services
 
 **Analytics & Monitoring**
 
-- **GOOGLE_ANALYTICS_ID**: Standard GA tracking ID
-- **NEXT_PUBLIC_GA_MEASUREMENT_ID**: Same as above
 - **SENTRY_DSN**: Error tracking from [sentry.io](https://sentry.io)
-- **NEXT_PUBLIC_SENTRY_DSN**: Same as SENTRY_DSN
 
 **File Storage**
 
@@ -336,14 +307,6 @@ This is **essential** for your SaaS to function correctly with subscriptions and
 - ✅ `user.deleted`
 - ✅ `user.updated`
 
-**Setup Steps**:
-
-1. **Go to Clerk Dashboard** → Configure → Webhooks
-2. **Create new webhook endpoint**
-3. **Set URL**: `https://your-convex-site.convex.site/webhooks/clerk/users`
-4. **Select the 3 events** above
-5. **Save and test the webhook**
-
 ### 💰 Polar.sh Webhooks
 
 **Webhook URL Format**: `https://<YOUR_CONVEX_SITE_URL>/webhooks/polar/events`
@@ -355,104 +318,49 @@ This is **essential** for your SaaS to function correctly with subscriptions and
 - ✅ `product.created`
 - ✅ `product.updated`
 
-**Setup Steps**:
-
-1. **Go to Polar.sh Dashboard** → Settings → Webhooks
-2. **Create new webhook endpoint**
-3. **Set URL**: `https://your-convex-site.convex.site/webhooks/polar/events`
-4. **Select the 4 events** above
-5. **Save and test the webhook**
-
-**Visual Guide Available**: Check the `.github/images/` folder for webhook setup screenshots:
-
-- `.github/images/polar-webhook.png` - Polar webhook configuration
-- `.github/images/polar-org-token.png` - Organization token setup
-
-## 🤖 AI Coding Assistant
-
-This repo is optimized for AI-powered development with **Kiro** integration.
-
-### ✅ Pre-installed AI Tools
-
-- **Kiro IDE** integration for advanced AI assistance
-- **BMAD-method** prompt framework for consistent AI interactions
-- **Standardized coding patterns** that work well with AI models
-
-### 🔧 Recommended MCPs for Local Development
-
-To enhance your AI development experience, install these MCP servers:
-
-#### 1. **Context7** - Context-aware code assistance
-
-```bash
-claude mcp add context7 -- uvx mcp-server-context7
-```
-
-#### 2. **Fetch** - Web scraping and API calls
-
-```bash
-claude mcp add fetch -- uvx mcp-server-fetch
-```
-
-#### 3. **Serena** - IDE intelligence and project context
-
-```bash
-claude mcp add serena -- uvx --from git+https://github.com/oraios/serena serena-mcp-server --context ide-assistant --project $(pwd)
-```
-
-Run the Serena command **inside this project directory** to set up comprehensive AI assistance.
-
-### 🎨 Using Kiro Features
-
-- **Auto-completion**: AI-powered suggestions based on your codebase
-- **Context generation**: Automatic context for complex features
-- **Code review**: AI-driven review of changes before commit
-- **Documentation**: Automated code documentation generation
-
 ## 🏗️ Development Workflow
 
 ### Available Commands
 
 ```bash
 # Development
-bun dev                    # Start all services
-bun dev:web               # Marketing site only
-bun dev:app               # Dashboard only
-bun dev:api               # API only
-bun dev:docs              # Documentation only
+bun dev                           # Start all services
+bun --filter web dev              # Marketing site only
+bun --filter app dev              # Dashboard only
+bun --filter api dev              # API only
+bun --filter docs dev             # Documentation only
 
 # Database
-bun db:push               # Push schema changes
-bun db:seed               # Seed database
-bun db:studio             # Open database GUI
+bun db:generate                   # Generate Drizzle artifacts
+bun db:migrate                    # Run migrations
+bun --filter @repo/database run db:studio  # Open database GUI
 
 # Convex
-bun convex dev            # Start convex backend
-db convex deploy          # Deploy to convex
+bun --filter @repo/backend run dev   # Start Convex backend
+bun --filter @repo/backend run setup # Initial setup
+bun --filter @repo/backend run seed  # Seed data
 
 # Testing
-bun test                  # Run all tests
-bun test:coverage         # Test with coverage
-bun test:watch            # Watch mode
+bun test                          # Run all tests
+bun test:run                      # Run tests once
+bun test:coverage                 # Test with coverage
 
 # Code Quality
-bun lint                  # Lint all files
-bun lint:fix              # Auto-fix linting issues
-bun typecheck             # Check TypeScript
-bun format                # Format code with Biome
+bun lint                          # Lint all files (Biome + sherif)
+bun typecheck                     # Check TypeScript
+bun format                        # Format code with Biome
 
 # Build
-bun build                 # Build all apps
-bun build:web             # Build marketing site only
-bun build:app             # Build dashboard only
+bun build                         # Build all apps
+bun --filter app build            # Build specific app
 ```
 
 ### Project URLs in Development
 
 | Service | Development URL | Description |
 |---------|----------------|-------------|
-| **Marketing** | <http://localhost:3001> | Landing pages, pricing, blog |
 | **Dashboard** | <http://localhost:3000> | Main app interface |
+| **Marketing** | <http://localhost:3001> | Landing pages, pricing, blog |
 | **API** | <http://localhost:3002> | Webhooks, serverless functions |
 | **Docs** | <http://localhost:3004> | User documentation |
 | **Storybook** | <http://localhost:6006> | Component library |
@@ -463,7 +371,7 @@ bun build:app             # Build dashboard only
 
 1. **Environment Variables**: Set all production environment variables
 2. **Database**: Ensure your production database is migrated
-3. **Convex**: Deploy your functions: `bun convex deploy`
+3. **Convex**: Deploy your functions
 4. **Webhooks**: Update webhook URLs to production domains
 5. **Domains**: Configure your custom domains
 
@@ -494,7 +402,7 @@ Ensure these are set in your production environment:
 
 - Ensure `NEXT_PUBLIC_CONVEX_URL` matches your deployment
 - Check if `CONVEX_DEPLOYMENT` is correctly set
-- Run `bun convex dev` to sync local environment
+- Run `bun --filter @repo/backend run dev` to sync local environment
 
 **"Clerk authentication not working"**
 
@@ -517,35 +425,30 @@ Ensure these are set in your production environment:
 ### Debug Commands
 
 ```bash
-# Check all environments
+# Check code quality
 bun lint
 bun typecheck
 
-# Debug convex
-bun convex dev --debug
+# Debug Convex
+bun --filter @repo/backend run dev
 
 # Debug database connection
-bun db:studio
-
-# Reset dev environment
-bun dev:clean
+bun --filter @repo/database run db:studio
 ```
 
 ## 📚 Documentation
 
-- **[Convex Documentation](packages/convex/README.md)** - Backend setup and queries
-- **[Database Schema](packages/database/README.md)** - Database design and migrations
-- **[Component Library](packages/design-system/README.md)** - UI components and usage
-- **[AI Features](packages/ai/README.md)** - AI agents and integrations
+- **[Convex Documentation](apps/backend/README.md)** - Backend setup and queries
+- **[Database Schema](packages/modules/database/README.md)** - Database design and migrations
+- **[Design System](packages/sdks/web/design/README.md)** - UI components and usage
+- **[AI Features](packages/modules/ai/README.md)** - AI agents and integrations
 
 ## 🤝 Contributing
 
-1. **Read coding standards**: `.kiro/steering/coding-standards.md`
-2. **Create feature branch**: `git checkout -b feature/your-feature`
-3. **Follow commit conventions**: Use conventional commits
-4. **Run tests**: `bun test`
-5. **Check linting**: `bun lint`
-6. **Create pull request** with detailed description
+1. **Create feature branch**: `git checkout -b feature/your-feature`
+2. **Follow commit conventions**: Use conventional commits (`bun gc` or `bun gc-ai`)
+3. **Run checks**: `bun lint && bun typecheck && bun test`
+4. **Create pull request** with detailed description
 
 ## 📄 License
 
@@ -558,9 +461,8 @@ MIT License - see [LICENSE](LICENSE) file for details.
 If you get stuck setting up environment variables or webhooks:
 
 1. **Check the `.env.example` files** in each package
-2. **Review the webhook images**: `.github/images/` folder
-3. **Read service documentation** in the respective packages
-4. **Check the error logs** - they're very descriptive
-5. **Open an issue** with your setup details and error messages
+2. **Read service documentation** in the respective packages
+3. **Check the error logs** - they're very descriptive
+4. **Open an issue** with your setup details and error messages
 
 **Still stuck?** The most common issues are incorrect webhook URLs and missing environment variables. Double-check your configuration against the sections above!
