@@ -450,6 +450,35 @@ bun --filter @repo/database run db:studio
 3. **Run checks**: `bun lint && bun typecheck && bun test`
 4. **Create pull request** with detailed description
 
+## 🤖 AI-Assisted Development
+
+This project is optimized for AI-assisted development with vendor-agnostic instructions.
+
+### AGENTS.md Convention
+
+- `AGENTS.md` files are the **source of truth** for AI assistant instructions
+- `CLAUDE.md` files are **symlinks** pointing to their corresponding `AGENTS.md`
+- Always edit `AGENTS.md` directly, never edit the symlinks
+
+When creating new subdirectories that need AI-specific instructions:
+
+```bash
+# Create AGENTS.md with your instructions
+echo "# AGENTS.md" > path/to/AGENTS.md
+
+# Create symlink for Claude Code
+ln -s AGENTS.md path/to/CLAUDE.md
+```
+
+This convention allows different AI tools to use the same instruction file via their own symlinks.
+
+### Available AI Instruction Files
+
+| File | Purpose |
+|------|---------|
+| `AGENTS.md` | Root project instructions |
+| `apps/extension/AGENTS.md` | Browser extension-specific instructions |
+
 ## 📄 License
 
 MIT License - see [LICENSE](LICENSE) file for details.
