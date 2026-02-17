@@ -1,4 +1,4 @@
-import { copyFile, readdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { copyFile, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { cancel, intro, isCancel, log, outro, select, spinner, text } from '@clack/prompts';
@@ -51,11 +51,13 @@ const initializeGit = async () => {
 const setupEnvironmentVariables = async () => {
   const files = [
     { source: join('apps', 'api'), target: '.env.local' },
+    { source: join('apps', 'backend'), target: '.env.local' },
     { source: join('apps', 'app'), target: '.env.local' },
     { source: join('apps', 'web'), target: '.env.local' },
-    { source: join('packages', 'cms'), target: '.env.local' },
-    { source: join('packages', 'database'), target: '.env' },
-    { source: join('packages', 'internationalization'), target: '.env.local' },
+    { source: join('apps', 'studio'), target: '.env.local' },
+    { source: join('apps', 'extension'), target: '.env.local' },
+    { source: join('packages', 'modules', 'database'), target: '.env' },
+    { source: join('packages', 'modules', 'i18n'), target: '.env.local' },
   ];
 
   for (const { source, target } of files) {
@@ -74,7 +76,10 @@ const setupOrm = async (packageManager: string) => {
 const updatePackageManagerConfiguration = async (projectDir: string, packageManager: string) => {
   const packageJsonPath = join(projectDir, 'package.json');
   const packageJsonFile = await readFile(packageJsonPath, 'utf8');
-  const packageJson = JSON.parse(packageJsonFile);
+  const packageJson = JSON.parse(packageJsonFile) as {
+    packageManager?: string;
+    [key: string]: unknown;
+  };
 
   if (packageManager === 'bun') {
     packageJson.packageManager = 'bun@1.1.43';
@@ -87,69 +92,6 @@ const updatePackageManagerConfiguration = async (projectDir: string, packageMana
   const newPackageJson = JSON.stringify(packageJson, null, 2);
 
   await writeFile(packageJsonPath, `${newPackageJson}\n`);
-};
-
-const updateWorkspaceConfiguration = async (projectDir: string) => {
-  const packageJsonPath = join(projectDir, 'package.json');
-  const packageJsonFile = await readFile(packageJsonPath, 'utf8');
-  const packageJson = JSON.parse(packageJsonFile);
-
-  packageJson.workspaces = ['apps/*', 'packages/*'];
-
-  const newPackageJson = JSON.stringify(packageJson, null, 2);
-
-  await writeFile(packageJsonPath, `${newPackageJson}\n`);
-
-  await rm('pnpm-lock.yaml', { force: true });
-  await rm('pnpm-workspace.yaml', { force: true });
-};
-
-const updateInternalPackageDependencies = async (path: string) => {
-  const pkgJsonFile = await readFile(path, 'utf8');
-  const pkgJson = JSON.parse(pkgJsonFile);
-
-  if (pkgJson.dependencies) {
-    // Update dependencies
-    const entries = Object.entries(pkgJson.dependencies);
-
-    for (const [dep, version] of entries) {
-      if (version === 'workspace:*') {
-        pkgJson.dependencies[dep] = '*';
-      }
-    }
-  }
-
-  if (pkgJson.devDependencies) {
-    // Update devDependencies
-    const entries = Object.entries(pkgJson.devDependencies);
-
-    for (const [dep, version] of entries) {
-      if (version === 'workspace:*') {
-        pkgJson.devDependencies[dep] = '*';
-      }
-    }
-  }
-
-  const newPkgJson = JSON.stringify(pkgJson, null, 2);
-
-  await writeFile(path, `${newPkgJson}\n`);
-};
-
-const updateInternalDependencies = async (projectDir: string) => {
-  const rootPackageJsonPath = join(projectDir, 'package.json');
-  await updateInternalPackageDependencies(rootPackageJsonPath);
-
-  const workspaceDirs = ['apps', 'packages'];
-
-  for (const dir of workspaceDirs) {
-    const dirPath = join(projectDir, dir);
-    const packages = await readdir(dirPath);
-
-    for (const pkg of packages) {
-      const path = join(dirPath, pkg, 'package.json');
-      await updateInternalPackageDependencies(path);
-    }
-  }
 };
 
 const getName = async () => {
@@ -178,7 +120,7 @@ const getPackageManager = async () => {
       value: choice,
       label: choice,
     })),
-    initialValue: 'pnpm',
+    initialValue: 'bun',
   });
 
   if (isCancel(value)) {
@@ -195,7 +137,7 @@ export const initialize = async (options: {
   disableGit?: boolean;
 }) => {
   try {
-    intro("Let's start a next-forge project!");
+    intro("Let's start a v1-template project!");
 
     const cwd = process.cwd();
     const name = options.name || (await getName());
@@ -208,22 +150,14 @@ export const initialize = async (options: {
     const s = spinner();
     const projectDir = join(cwd, name);
 
-    s.start('Cloning next-forge...');
+    s.start('Cloning v1-template...');
     await cloneNextForge(name, packageManager);
 
     s.message('Moving into repository...');
     process.chdir(projectDir);
 
-    if (packageManager !== 'pnpm') {
-      s.message('Updating package manager configuration...');
-      await updatePackageManagerConfiguration(projectDir, packageManager);
-
-      s.message('Updating workspace config...');
-      await updateWorkspaceConfiguration(projectDir);
-
-      s.message('Updating workspace dependencies...');
-      await updateInternalDependencies(projectDir);
-    }
+    s.message('Updating package manager configuration...');
+    await updatePackageManagerConfiguration(projectDir, packageManager);
 
     s.message('Setting up environment variable files...');
     await setupEnvironmentVariables();

@@ -7,9 +7,9 @@ import { update } from './update.js';
 
 program
   .command('init')
-  .description('Initialize a new next-forge project')
+  .description('Initialize a new v1-template project')
   .option('--name <name>', 'Name of the project')
-  .option('--package-manager <manager>', 'Package manager to use (npm, yarn, bun, pnpm)')
+  .option('--package-manager <manager>', 'Package manager to use (bun)')
   .option('--disable-git', 'Disable git initialization')
   .action(initialize);
 

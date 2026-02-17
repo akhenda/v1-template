@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { promisify } from 'node:util';
 
-export const url = 'https://github.com/vercel/next-forge';
+export const url = 'https://github.com/akhenda/v1-template';
 
 export const cleanFileName = (file: string) =>
   file.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\\/g, '/');
@@ -26,11 +26,11 @@ export const allInternalContent = [...internalContentDirs, ...internalContentFil
 
 export const semver = /^\d+\.\d+\.\d+$/;
 
-export const tempDirName = 'next-forge-update';
+export const tempDirName = 'v1-template-update';
 
 export const exec = promisify(execRaw);
 
-export const supportedPackageManagers = ['npm', 'yarn', 'bun', 'pnpm'];
+export const supportedPackageManagers = ['bun'];
 
 export const getAvailableVersions = async (): Promise<string[]> => {
   const changelog = await readFile('CHANGELOG.md', 'utf-8');
