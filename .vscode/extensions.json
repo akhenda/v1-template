@@ -10,6 +10,7 @@
     "mikestead.dotenv",
     "ms-playwright.playwright",
     "unifiedjs.vscode-mdx",
-    "DavidAnson.vscode-markdownlint"
+    "DavidAnson.vscode-markdownlint",
+    "VizzleTF.geminicommit"
   ]
 }
