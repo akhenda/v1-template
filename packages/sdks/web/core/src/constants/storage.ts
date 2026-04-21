@@ -1,5 +1,5 @@
 export function getStorageKey<T extends string>(key: T) {
-  return `resume-moto-storage@${key}` as const;
+  return `v1-template-storage@${key}` as const;
 }
 
 /**

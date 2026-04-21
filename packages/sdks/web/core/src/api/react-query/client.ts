@@ -33,7 +33,7 @@ const persister = createSyncStoragePersister({
 
 export const persistOptions: PersistorOptions = {
   persister,
-  buster: 'resume-moto',
+  buster: 'v1-template',
   maxAge: THIRTY_DAYS,
 };
 
